@@ -98,4 +98,37 @@ class UsersController extends Controller
 
         return redirect()->back()->with('success', __('Account data was updated successfully'));
     }
+
+    public function add()
+    {
+        $routeName = Route::currentRouteName();
+
+        $roles = UserRole::all();
+
+        return view('dashboard.page-users-add', compact('routeName', 'roles'));
+    }
+
+    public function addSave(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        UserMeta::create([
+            'user_id' => $user->id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'description' => $request->description,
+            'birth_day' => $request->birth_day,
+        ]);
+
+        UserToRole::create([
+            'user_id' => $user->id,
+            'role_id' => $request->role_id,
+        ]);
+
+        return redirect()->route('dash.users')->with('success', __('User was created successfully'));
+    }
 }

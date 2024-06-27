@@ -13,7 +13,7 @@ class UserRolesController extends Controller
     {
         $routeName = Route::currentRouteName();
 
-        $roles = UserRole::all();
+        $roles = UserRole::paginate(10);
 
         return view('dashboard.page-user-roles', compact('routeName', 'roles'));
     }

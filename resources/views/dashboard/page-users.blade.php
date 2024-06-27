@@ -19,6 +19,10 @@
         </div>
     </div>
 
+    <div class="card-action mb-4">
+        <a href="{{ route('dash.users.edit-account.add') }}" class="btn btn-primary">{{ __('Add User') }}</a>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
