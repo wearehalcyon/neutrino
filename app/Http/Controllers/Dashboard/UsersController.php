@@ -31,9 +31,11 @@ class UsersController extends Controller
         return view('dashboard.page-users-edit', compact('routeName', 'user', 'roles'));
     }
 
-    public function editSave(Request $request)
+    public function editSave(Request $request, $id)
     {
-
+        $user = User::find($id);
+        $user->email = $request->email;
+        $user->save();
         return redirect()->back()->with('success', __('User data was updated successfully'));
     }
 }

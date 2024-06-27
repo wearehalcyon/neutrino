@@ -74,6 +74,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="password"><strong>{{ __('New Password') }}</strong></label>
+                                    <input type="password" name="password" class="form-control" id="password">
+                                </div>
                             </div>
                         </div>
                     </div>
