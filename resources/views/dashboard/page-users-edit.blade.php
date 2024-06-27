@@ -70,7 +70,7 @@
                                     <label for="role"><strong>{{ __('Role') }}</strong></label>
                                     <select name="role" id="role" class="form-select form-control">
                                         @foreach($roles as $role)
-                                            <option value="0" @if($user->getRole()->id == 0){{ 'selected' }}@endif>{{ $role->name }}</option>
+                                            <option value="0" @if($user->getRole()->id == $role->id){{ 'selected' }}@endif>{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
