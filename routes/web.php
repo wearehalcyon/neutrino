@@ -22,8 +22,13 @@ Auth::routes();
 // Dahboard
 Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/', [App\Http\Controllers\Dashboard\IndexController::class, 'index'])->name('dash');
+    // Settings
     Route::get('/site-settings', [App\Http\Controllers\Dashboard\SiteSettingsController::class, 'index'])->name('dash.site-settings');
     Route::post('/site-settings', [App\Http\Controllers\Dashboard\SiteSettingsController::class, 'update'])->name('dash.site-settings.update');
+    // Users
+    Route::get('/users', [App\Http\Controllers\Dashboard\UsersController::class, 'index'])->name('dash.users');
+    Route::get('/users/edit/{id}', [App\Http\Controllers\Dashboard\UsersController::class, 'edit'])->name('dash.users.edit');
+    Route::post('/users/edit/{id}', [App\Http\Controllers\Dashboard\UsersController::class, 'editSave'])->name('dash.users.edit.update');
 });
 
 // Front

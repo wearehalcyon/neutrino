@@ -94,16 +94,16 @@
                     </span>
                     <h4 class="text-section">{{ __('User Settings') }}</h4>
                 </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#users" class="" aria-expanded="false">
+                <li class="nav-item @if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('submenu active') }}@endif">
+                    <a data-bs-toggle="collapse" href="#users" class="" aria-expanded="@if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('true') }}@else{{ __('false') }}@endif">
                         <i class="fas fa-user-friends"></i>
                         <p>{{ __('Users') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="users">
+                    <div class="collapse @if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('show') }}@endif" id="users">
                         <ul class="nav nav-collapse">
-                            <li>
-                                <a href="components/avatars.html">
+                            <li class="@if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('active') }}@endif">
+                                <a href="{{ route('dash.users') }}">
                                     <span class="sub-item">{{ __('All Users') }}</span>
                                 </a>
                             </li>
