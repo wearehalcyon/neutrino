@@ -1,6 +1,16 @@
 <?php
 
 use App\Models\User;
+use App\Models\Setting;
+
+// Get Option
+if (!function_exists('getOption')) {
+    function getOption($name = null)
+    {
+        $option = Setting::where('option_name', $name)->first();
+        return $option->option_value;
+    }
+}
 
 // Get User
 if (!function_exists('getUser')) {
