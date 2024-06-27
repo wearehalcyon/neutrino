@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="birth_date"><strong>{{ __('Birth Date') }}</strong></label>
-                                    <input type="text" name="birth_date" class="form-control" id="birth_date" placeholder="John" value="{{ $user->getUserMeta()->birth_date }}">
+                                    <input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="John" value="{{ $user->getUserMeta()->birth_date }}">
                                 </div>
                             </div>
                         </div>
