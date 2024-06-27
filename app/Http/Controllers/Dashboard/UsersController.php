@@ -59,4 +59,11 @@ class UsersController extends Controller
 
         return redirect()->back()->with('success', __('User data was updated successfully'));
     }
+
+    public function editAccount()
+    {
+        $routeName = Route::currentRouteName();
+
+        return view('dashboard.page-users-account-edit', compact('routeName'));
+    }
 }

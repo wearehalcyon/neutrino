@@ -94,21 +94,21 @@
                     </span>
                     <h4 class="text-section">{{ __('User Settings') }}</h4>
                 </li>
-                <li class="nav-item @if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('submenu active') }}@endif">
-                    <a data-bs-toggle="collapse" href="#users" class="" aria-expanded="@if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('true') }}@else{{ __('false') }}@endif">
+                <li class="nav-item @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account'])){{ __('submenu active') }}@endif">
+                    <a data-bs-toggle="collapse" href="#users" class="" aria-expanded="@if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account'])){{ __('true') }}@else{{ __('false') }}@endif">
                         <i class="fas fa-user-friends"></i>
                         <p>{{ __('Users') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse @if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('show') }}@endif" id="users">
+                    <div class="collapse @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account'])){{ __('show') }}@endif" id="users">
                         <ul class="nav nav-collapse">
                             <li class="@if(in_array($routeName, ['dash.users', 'dash.users.edit'])){{ __('active') }}@endif">
                                 <a href="{{ route('dash.users') }}">
                                     <span class="sub-item">{{ __('All Users') }}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/avatars.html">
+                            <li class="@if(in_array($routeName, ['dash.users.edit-account'])){{ __('active') }}@endif">
+                                <a href="{{ route('dash.users.edit-account') }}">
                                     <span class="sub-item">{{ __('Account Settings') }}</span>
                                 </a>
                             </li>
