@@ -48,4 +48,15 @@ class User extends Authenticatable
     {
         return UserMeta::where('user_id', $this->id)->first();
     }
+
+    // Get user role
+    public function getRole()
+    {
+        $role = UserToRole::join('user_roles', 'user_to_roles.role_id', '=', 'user_roles.id')
+            ->where('user_to_roles.user_id', $this->id)
+            ->select('user_roles.*')
+            ->first();
+
+        return $role;
+    }
 }
