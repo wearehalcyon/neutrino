@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_metas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('firs_tname')->nullable();
+            $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('display_name')->nullable();
             $table->longText('description')->nullable();

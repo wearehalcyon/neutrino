@@ -43,6 +43,18 @@
                                     <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Doe" value="{{ $user->getUserMeta()->last_name }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="display_name"><strong>{{ __('Display Name') }}</strong></label>
+                                    <select name="display_name" id="display_name" class="form-select form-control">
+                                        <option value="0" @if($user->getUserMeta()->display_name == 0){{ 'selected' }}@endif>{{ $user->name }}</option>
+                                        @if($user->getUserMeta()->first_name)
+                                            <option value="1" @if($user->getUserMeta()->display_name == 1){{ 'selected' }}@endif>{{ $user->getUserMeta()->first_name }}</option>
+                                        @endif
+                                        @if($user->getUserMeta()->last_name)
+                                            <option value="2" @if($user->getUserMeta()->display_name == 2){{ 'selected' }}@endif>{{ $user->getUserMeta()->first_name . ' ' . $user->getUserMeta()->last_name }}</option>
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="email"><strong>{{ __('Email') }}</strong></label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder="example@site.com" value="{{ $user->email }}">
                                 </div>
