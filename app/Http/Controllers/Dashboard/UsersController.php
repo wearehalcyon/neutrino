@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserMeta;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 class UsersController extends Controller
@@ -33,9 +34,22 @@ class UsersController extends Controller
 
     public function editSave(Request $request, $id)
     {
+        // User record
         $user = User::find($id);
         $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
+
+        // User Meta record
+        $userMeta = UserMeta::where('user_id', $id)->first();
+        $userMeta->first_name = $request->first_name;
+        $userMeta->last_name = $request->last_name;
+        $userMeta->description = $request->description;
+        $userMeta->display_name = $request->display_name;
+        $userMeta->save();
+
         return redirect()->back()->with('success', __('User data was updated successfully'));
     }
 }
