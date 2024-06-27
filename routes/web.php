@@ -19,4 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Dahboard
+Route::prefix('/')->middleware('auth')->group(function (){
+    Route::get('/dashboard', [App\Http\Controllers\Dashboard\IndexController::class, 'index'])->name('dash');
+});
+
+// Front
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

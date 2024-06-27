@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_to_roles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->default(4);
 
             $table->foreign('role_id')->references('id')->on('user_roles');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
