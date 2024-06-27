@@ -8,6 +8,7 @@ use App\Models\UserMeta;
 use App\Models\UserRole;
 use App\Models\UserToRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,8 @@ class UsersController extends Controller
     {
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-users-account-edit', compact('routeName'));
+        $user = User::find(Auth::id());
+
+        return view('dashboard.page-users-account-edit', compact('routeName', 'user'));
     }
 }
