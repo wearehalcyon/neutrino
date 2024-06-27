@@ -73,6 +73,7 @@ class RegisterController extends Controller
 
         UserMeta::create([
             'user_id' => $user->id,
+            'display_name' => 0
         ]);
 
         UserToRole::create([

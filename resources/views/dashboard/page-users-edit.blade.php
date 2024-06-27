@@ -31,8 +31,24 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="sitename"><strong>{{ __('Name') }}</strong></label>
-                                    <input type="text" name="site_name" class="form-control" id="sitename" placeholder="John" value="{{ $user->name }}">
+                                    <label for="name"><strong>{{ __('Nickname') }}</strong></label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="John" value="{{ $user->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="first_name"><strong>{{ __('First Name') }}</strong></label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="John" value="{{ $user->getUserMeta()->first_name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="first_name"><strong>{{ __('Last Name') }}</strong></label>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Doe" value="{{ $user->getUserMeta()->last_name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><strong>{{ __('Email') }}</strong></label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="example@site.com" value="{{ $user->email }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bio"><strong>{{ __('Bio') }}</strong></label>
+                                    <textarea name="description" id="bio" class="form-control" cols="30" rows="6">{{ $user->getUserMeta()->description }}</textarea>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ class UsersController extends Controller
         $routeName = Route::currentRouteName();
 
         $user = User::where('id', $id)->first();
+
         return view('dashboard.page-users-edit', compact('routeName', 'user'));
     }
 
