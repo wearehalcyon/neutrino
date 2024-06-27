@@ -30,6 +30,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/users/edit/{id}', [App\Http\Controllers\Dashboard\UsersController::class, 'edit'])->name('dash.users.edit');
     Route::post('/users/edit/{id}', [App\Http\Controllers\Dashboard\UsersController::class, 'editSave'])->name('dash.users.edit.update');
     Route::get('/users/edit', [App\Http\Controllers\Dashboard\UsersController::class, 'editAccount'])->name('dash.users.edit-account');
+    Route::post('/users/edit', [App\Http\Controllers\Dashboard\UsersController::class, 'editAccountSave'])->name('dash.users.edit-account.update');
 });
 
 // Front

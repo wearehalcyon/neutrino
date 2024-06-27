@@ -69,4 +69,33 @@ class UsersController extends Controller
 
         return view('dashboard.page-users-account-edit', compact('routeName', 'user'));
     }
+
+    public function editAccountSave(Request $request)
+    {
+        $id = Auth::id();
+
+        // User record
+        $user = User::find($id);
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        // User Meta record
+        $userMeta = UserMeta::where('user_id', $id)->first();
+        $userMeta->first_name = $request->first_name;
+        $userMeta->last_name = $request->last_name;
+        $userMeta->description = $request->description;
+        $userMeta->display_name = $request->display_name;
+        $userMeta->birth_date = $request->birth_date;
+        $userMeta->save();
+
+        // User Role
+        $userRole = UserToRole::where('user_id', $id)->first();
+        $userRole->role_id = $request->role_id;
+        $userRole->save();
+
+        return redirect()->back()->with('success', __('Account data was updated successfully'));
+    }
 }

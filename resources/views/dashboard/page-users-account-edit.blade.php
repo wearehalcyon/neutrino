@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form action="#" method="post">
+                <form action="{{ route('dash.users.edit-account.update') }}" method="post">
                     @csrf
                     <div class="card-header">
                         <div class="card-title">{{ __('Your Account Data') }}</div>
