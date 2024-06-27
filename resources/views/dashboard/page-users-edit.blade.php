@@ -32,7 +32,7 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="name"><strong>{{ __('Nickname') }}</strong></label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="John" value="{{ $user->name }}">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="John" value="{{ $user->name }}" readonly disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="first_name"><strong>{{ __('First Name') }}</strong></label>

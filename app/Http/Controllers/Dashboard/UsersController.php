@@ -30,6 +30,7 @@ class UsersController extends Controller
 
     public function editSave(Request $request)
     {
+        
         return redirect()->back()->with('success', __('User data was updated successfully'));
     }
 }
