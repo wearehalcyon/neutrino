@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Get usermeta
+    public function getUserMeta()
+    {
+        return UserMeta::where('user_id', $this->id)->first();
+    }
 }
