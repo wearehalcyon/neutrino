@@ -82,12 +82,6 @@
                         <p>{{ __('Forms Database') }}</p>
                     </a>
                 </li>
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                      <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">{{ __('Media') }}</h4>
-                </li>
                 <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
                     <a href="{{ route('dash') }}">
                         <i class="fas fa-hdd"></i>
@@ -137,6 +131,18 @@
                     <a href="{{ route('dash') }}">
                         <i class="fas fa-cog"></i>
                         <p>{{ __('Site Settings') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
+                    <a href="{{ route('dash') }}">
+                        <i class="fas fa-info-circle"></i>
+                        <p>{{ __('Help') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
+                    <a href="{{ route('dash') }}">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <p>{{ __('ZEN Tools') }}</p>
                     </a>
                 </li>
             </ul>
