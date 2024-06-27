@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserMeta;
 use App\Models\UserRole;
+use App\Models\UserToRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,13 @@ class UsersController extends Controller
         $userMeta->last_name = $request->last_name;
         $userMeta->description = $request->description;
         $userMeta->display_name = $request->display_name;
+        $userMeta->birth_date = $request->birth_date;
         $userMeta->save();
+
+        // User Role
+        $userRole = UserToRole::where('user_id', $id)->first();
+        $userRole->role_id = $request->role_id;
+        $userRole->save();
 
         return redirect()->back()->with('success', __('User data was updated successfully'));
     }
