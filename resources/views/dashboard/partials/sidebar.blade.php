@@ -21,12 +21,12 @@
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
-                    <h4 class="text-section">Components</h4>
+                    <h4 class="text-section">Content</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
-                        <p>Base</p>
+                        <p>Blog</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="base">
