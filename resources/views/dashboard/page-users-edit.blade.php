@@ -62,6 +62,10 @@
                                     <label for="bio"><strong>{{ __('Bio') }}</strong></label>
                                     <textarea name="description" id="bio" class="form-control" cols="30" rows="6">{{ $user->getUserMeta()->description }}</textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="birth_date"><strong>{{ __('Birth Date') }}</strong></label>
+                                    <input type="text" name="birth_date" class="form-control" id="birth_date" placeholder="John" value="{{ $user->getUserMeta()->birth_date }}">
+                                </div>
                             </div>
                         </div>
                     </div>
