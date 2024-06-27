@@ -8,7 +8,12 @@ if (!function_exists('getOption')) {
     function getOption($name = null)
     {
         $option = Setting::where('option_name', $name)->first();
-        return $option->option_value;
+
+        if ($option) {
+            return $option->option_value;
+        }
+
+        return '';
     }
 }
 

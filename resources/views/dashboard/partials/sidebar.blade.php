@@ -127,8 +127,8 @@
                     </span>
                     <h4 class="text-section">{{ __('Tools') }}</h4>
                 </li>
-                <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
-                    <a href="{{ route('dash') }}">
+                <li class="nav-item @if($routeName == 'dash.site-settings'){{ 'active' }}@endif">
+                    <a href="{{ route('dash.site-settings') }}">
                         <i class="fas fa-cog"></i>
                         <p>{{ __('Site Settings') }}</p>
                     </a>

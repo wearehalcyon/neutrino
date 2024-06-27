@@ -20,8 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 // Dahboard
-Route::prefix('/')->middleware('auth')->group(function (){
-    Route::get('/dashboard', [App\Http\Controllers\Dashboard\IndexController::class, 'index'])->name('dash');
+Route::prefix('/dashboard')->middleware('auth')->group(function (){
+    Route::get('/', [App\Http\Controllers\Dashboard\IndexController::class, 'index'])->name('dash');
+    Route::get('/site-settings', [App\Http\Controllers\Dashboard\SiteSettingsController::class, 'index'])->name('dash.site-settings');
+    Route::post('/site-settings', [App\Http\Controllers\Dashboard\SiteSettingsController::class, 'update'])->name('dash.site-settings.update');
 });
 
 // Front
