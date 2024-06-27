@@ -66,6 +66,14 @@
                                     <label for="birth_date"><strong>{{ __('Birth Date') }}</strong></label>
                                     <input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="John" value="{{ $user->getUserMeta()->birth_date }}">
                                 </div>
+                                <div class="form-group">
+                                    <label for="role"><strong>{{ __('Role') }}</strong></label>
+                                    <select name="role" id="role" class="form-select form-control">
+                                        @foreach($roles as $role)
+                                            <option value="0" @if($user->getRole()->id == 0){{ 'selected' }}@endif>{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
