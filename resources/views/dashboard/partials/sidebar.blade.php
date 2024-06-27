@@ -115,8 +115,8 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
-                    <a href="{{ route('dash') }}">
+                <li class="nav-item @if($routeName == 'dash.users-roles'){{ 'active' }}@endif">
+                    <a href="{{ route('dash.users-roles') }}">
                         <i class="fas fa-ban"></i>
                         <p>{{ __('User Roles') }}</p>
                     </a>
