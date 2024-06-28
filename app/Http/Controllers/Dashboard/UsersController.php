@@ -16,6 +16,8 @@ class UsersController extends Controller
 {
     public function index()
     {
+        restrictAccess([3,4,5]);
+
         $routeName = Route::currentRouteName();
 
         $users = User::orderBy('created_at', 'ASC')->paginate(20);
@@ -25,6 +27,8 @@ class UsersController extends Controller
 
     public function edit($id)
     {
+        restrictAccess([3,4,5]);
+
         $routeName = Route::currentRouteName();
 
         $user = User::where('id', $id)->first();
@@ -36,6 +40,8 @@ class UsersController extends Controller
 
     public function editSave(Request $request, $id)
     {
+        restrictAccess([3,4,5]);
+
         // User record
         $user = User::find($id);
         $user->email = $request->email;
@@ -63,6 +69,8 @@ class UsersController extends Controller
 
     public function editAccount()
     {
+        restrictAccess([3,4,5]);
+
         $routeName = Route::currentRouteName();
 
         $user = User::find(Auth::id());
@@ -72,6 +80,8 @@ class UsersController extends Controller
 
     public function editAccountSave(Request $request)
     {
+        restrictAccess([3,4,5]);
+
         $id = Auth::id();
 
         // User record
@@ -101,6 +111,8 @@ class UsersController extends Controller
 
     public function add()
     {
+        restrictAccess([3,4,5]);
+
         $routeName = Route::currentRouteName();
 
         $roles = UserRole::all();
@@ -110,6 +122,8 @@ class UsersController extends Controller
 
     public function addSave(Request $request)
     {
+        restrictAccess([3,4,5]);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -134,6 +148,6 @@ class UsersController extends Controller
 
     public function delete()
     {
-
+        restrictAccess([3,4,5]);
     }
 }

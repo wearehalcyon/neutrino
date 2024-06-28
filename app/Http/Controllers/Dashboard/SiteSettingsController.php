@@ -11,6 +11,8 @@ class SiteSettingsController extends Controller
 {
     public function index()
     {
+        restrictAccess([3,4,5]);
+
         $routeName = Route::currentRouteName();
 
         return view('dashboard.page-site-settings', compact('routeName'));
@@ -18,6 +20,8 @@ class SiteSettingsController extends Controller
 
     public function update(Request $request)
     {
+        restrictAccess([3,4,5]);
+
         // Site name
         if (isset($request->site_name)) {
             $debugBar = Setting::where('option_name', 'site_name')->first();
