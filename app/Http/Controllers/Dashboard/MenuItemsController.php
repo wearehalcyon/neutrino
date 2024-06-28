@@ -20,7 +20,9 @@ class MenuItemsController extends Controller
 
         $items = MenuItem::paginate(20);
 
-        return view('dashboard.page-menu-items', compact('routeName', 'items'));
+        $menus = Menu::all();
+
+        return view('dashboard.page-menu-items', compact('routeName', 'items', 'menus'));
     }
 
     public function add()

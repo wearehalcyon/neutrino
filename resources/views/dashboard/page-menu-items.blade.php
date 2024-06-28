@@ -18,11 +18,15 @@
             <h6 class="op-7 mb-2">{{ __('All site menu items is here!') }}</h6>
         </div>
     </div>
-
-    <div class="card-action mb-4">
-        <a href="{{ route('dash.menu.items.add') }}" class="btn btn-primary">{{ __('Create New Menu Item') }}</a>
-    </div>
-
+    @if($menus->isNotEmpty())
+        <div class="card-action mb-4">
+            <a href="{{ route('dash.menu.items.add') }}" class="btn btn-primary">{{ __('Create New Menu Item') }}</a>
+        </div>
+    @else
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ __('Before create menu items you should create menu where it will be placed.') }} <a href="{{ route('dash.menus.add') }}">{{ __('Create menu') }}.</a>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="card">

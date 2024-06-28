@@ -34,8 +34,10 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Author</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,6 +45,8 @@
                                 <tr>
                                     <td>{{ $menu->id }}</td>
                                     <td><a href="{{ route('dash.menus.edit', $menu->id) }}" title="{{ $menu->name }}">{{ $menu->name }}</a></td>
+                                    <td>{{ date('M d, Y', strtotime($menu->created_at)) . ' at ' . date('H:i:s', strtotime($menu->created_at)) }}</td>
+                                    <td>{{ $menu->getAuthor()->name }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
