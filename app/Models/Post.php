@@ -16,4 +16,9 @@ class Post extends Model
         'status',
         'content',
     ];
+
+    public function getAuthor()
+    {
+        return User::where('id', $this->author_id)->first();
+    }
 }
