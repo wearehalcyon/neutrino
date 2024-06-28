@@ -46,7 +46,7 @@
                                     <td>{{ $user->id }}</td>
                                     <td><a href="{{ route('dash.users.edit', $user->id) }}" title="{{ $user->name }}">{{ $user->name }}</a></td>
                                     <td><a href="{{ 'mailto:' . $user->email }}" title="{{ $user->email }}">{{ $user->email }}</a></td>
-                                    <td>{{ 1 }}</td>
+                                    <td>{{ $user->getRole()->name }}</td>
                                     <td>{{ date('M d, Y', strtotime($user->created_at)) }} at {{ date('H:i', strtotime($user->created_at)) }}</td>
                                 </tr>
                             @endforeach
