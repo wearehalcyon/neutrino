@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-class CategoriesController extends Controller
+class TagsController extends Controller
 {
     public function index()
     {
@@ -17,9 +17,9 @@ class CategoriesController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $categories = Category::paginate(20);
+        $categories = Tag::paginate(20);
 
-        return view('dashboard.page-categories', compact('routeName', 'categories'));
+        return view('dashboard.page-tags', compact('routeName', 'categories'));
     }
 
     public function add()
@@ -28,21 +28,21 @@ class CategoriesController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-categories-add', compact('routeName'));
+        return view('dashboard.page-tags-add', compact('routeName'));
     }
 
     public function addSave(Request $request)
     {
         restrictAccess([4,5]);
 
-        Category::create([
+        Tag::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'author_id' => Auth::id(),
         ]);
 
-        return redirect()->route('dash.categories')->with('success', 'Category was created successfully!');
+        return redirect()->route('dash.tags')->with('success', 'Category was created successfully!');
     }
 
     public function edit($id)
@@ -51,21 +51,21 @@ class CategoriesController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $category = Category::find($id);
+        $category = Tag::find($id);
 
-        return view('dashboard.page-categories-edit', compact('routeName', 'category'));
+        return view('dashboard.page-tags-edit', compact('routeName', 'category'));
     }
 
     public function editSave(Request $request, $id)
     {
         restrictAccess([4,5]);
 
-        $category = Category::find($id);
+        $category = Tag::find($id);
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->description = $request->description;
         $category->save();
 
-        return redirect()->route('dash.categories')->with('success', 'Category was updated successfully!');
+        return redirect()->route('dash.tags')->with('success', 'Category was updated successfully!');
     }
 }

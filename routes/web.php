@@ -51,6 +51,16 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/menus/items/delete/{id}', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'delete'])->name('dash.menu.items.delete');
     //Post Categories
     Route::get('/categories', [App\Http\Controllers\Dashboard\CategoriesController::class, 'index'])->name('dash.categories');
+    Route::get('/categories/add', [App\Http\Controllers\Dashboard\CategoriesController::class, 'add'])->name('dash.categories.add');
+    Route::post('/categories/add', [App\Http\Controllers\Dashboard\CategoriesController::class, 'addSave'])->name('dash.categories.add.save');
+    Route::get('/categories/edit/{id}', [App\Http\Controllers\Dashboard\CategoriesController::class, 'edit'])->name('dash.categories.edit');
+    Route::post('/categories/edit/{id}', [App\Http\Controllers\Dashboard\CategoriesController::class, 'editSave'])->name('dash.categories.edit.save');
+    //Post Tags
+    Route::get('/tags', [App\Http\Controllers\Dashboard\TagsController::class, 'index'])->name('dash.tags');
+    Route::get('/tags/add', [App\Http\Controllers\Dashboard\TagsController::class, 'add'])->name('dash.tags.add');
+    Route::post('/tags/add', [App\Http\Controllers\Dashboard\TagsController::class, 'addSave'])->name('dash.tags.add.save');
+    Route::get('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'edit'])->name('dash.tags.edit');
+    Route::post('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'editSave'])->name('dash.tags.edit.save');
 });
 
 // Front
