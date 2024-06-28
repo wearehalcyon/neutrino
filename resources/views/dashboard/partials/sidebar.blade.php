@@ -56,15 +56,15 @@
                             <p>{{ __('Pages') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.menus', 'dash.menus.add'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-bars"></i>
                             <p>{{ __('Menu') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.menus', 'dash.menus.add'])){{ __('show') }}@endif" id="menu">
+                        <div class="collapse @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit'])){{ __('show') }}@endif" id="menu">
                             <ul class="nav nav-collapse">
-                                <li class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add'])){{ __('active') }}@endif">
+                                <li class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.menus') }}">
                                         <span class="sub-item">{{ __('All Menus') }}</span>
                                     </a>

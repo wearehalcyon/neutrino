@@ -51,6 +51,27 @@ class MenuController extends Controller
 
         $menu = Menu::find($id);
 
-        return view('dashboard.page-menus-add', compact('routeName', 'menu'));
+        return view('dashboard.page-menus-edit', compact('routeName', 'menu'));
+    }
+
+    public function editSave(Request $request, $id)
+    {
+        restrictAccess([4,5]);
+
+        $menu = Menu::find($id);
+        $menu->name = $request->name;
+        $menu->description = $request->description;
+        $menu->save();
+
+        return redirect()->back()->with('success', __('Menu was updated successfully!'));
+    }
+
+    public function delete($id)
+    {
+        restrictAccess([4,5]);
+
+        Menu::find($id)->delete();
+
+        return redirect()->route('dash.menus')->with('success', __('Menu was deleted successfully!'));
     }
 }

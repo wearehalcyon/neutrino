@@ -42,7 +42,7 @@
                             @foreach($menus as $menu)
                                 <tr>
                                     <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->name }}</td>
+                                    <td><a href="{{ route('dash.menus.edit', $menu->id) }}" title="{{ $menu->name }}">{{ $menu->name }}</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
