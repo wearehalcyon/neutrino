@@ -30,7 +30,7 @@
                     <div class="card-title">{{ __('Tags List') }}</div>
                 </div>
                 <div class="card-body">
-                    @if($categories->isNotEmpty())
+                    @if($tags->isNotEmpty())
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -45,7 +45,7 @@
                             @foreach($tags as $tag)
                                 <tr>
                                     <td>{{ $tag->id }}</td>
-                                    <td><a href="{{ route('dash.categories.edit', $tag->id) }}" title="{{ $tag->name }}">{{ $tag->name }}</a></td>
+                                    <td><a href="{{ route('dash.tags.edit', $tag->id) }}" title="{{ $tag->name }}">{{ $tag->name }}</a></td>
                                     <td>{{ $tag->slug }}</td>
                                     <td>{{ date('M d, Y', strtotime($tag->created_at)) . ' at ' . date('H:i:s', strtotime($tag->created_at)) }}</td>
                                     <td>{{ $tag->getAuthor()->name }}</td>

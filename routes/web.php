@@ -62,6 +62,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::post('/tags/add', [App\Http\Controllers\Dashboard\TagsController::class, 'addSave'])->name('dash.tags.add.save');
     Route::get('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'edit'])->name('dash.tags.edit');
     Route::post('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'editSave'])->name('dash.tags.edit.save');
+    Route::get('/tags/delete/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'delete'])->name('dash.tags.delete');
 });
 
 // Front

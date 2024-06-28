@@ -24,25 +24,25 @@
                         </span>
                         <h4 class="text-section">{{ __('Content') }}</h4>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.tags', 'dash.tags.add'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#blog" class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.tags', 'dash.tags.add'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#blog" class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-file-alt"></i>
                             <p>{{ __('Blog') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.tags', 'dash.tags.add'])){{ __('show') }}@endif" id="blog">
+                        <div class="collapse @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('show') }}@endif" id="blog">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="components/avatars.html">
                                         <span class="sub-item">All Articles</span>
                                     </a>
                                 </li>
-                                <li class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add'])){{ __('active') }}@endif">
+                                <li class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.categories') }}">
                                         <span class="sub-item">Categories</span>
                                     </a>
                                 </li>
-                                <li class="@if(in_array($routeName, ['dash.tags', 'dash.tags.add'])){{ __('active') }}@endif">
+                                <li class="@if(in_array($routeName, ['dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.tags') }}">
                                         <span class="sub-item">Tags</span>
                                     </a>

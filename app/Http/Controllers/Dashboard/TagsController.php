@@ -17,9 +17,9 @@ class TagsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $categories = Tag::paginate(20);
+        $tags = Tag::paginate(20);
 
-        return view('dashboard.page-tags', compact('routeName', 'categories'));
+        return view('dashboard.page-tags', compact('routeName', 'tags'));
     }
 
     public function add()
@@ -42,7 +42,7 @@ class TagsController extends Controller
             'author_id' => Auth::id(),
         ]);
 
-        return redirect()->route('dash.tags')->with('success', 'Category was created successfully!');
+        return redirect()->route('dash.tags')->with('success', 'Tag was created successfully!');
     }
 
     public function edit($id)
@@ -51,9 +51,9 @@ class TagsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $category = Tag::find($id);
+        $tag = Tag::find($id);
 
-        return view('dashboard.page-tags-edit', compact('routeName', 'category'));
+        return view('dashboard.page-tags-edit', compact('routeName', 'tag'));
     }
 
     public function editSave(Request $request, $id)
@@ -66,6 +66,15 @@ class TagsController extends Controller
         $category->description = $request->description;
         $category->save();
 
-        return redirect()->route('dash.tags')->with('success', 'Category was updated successfully!');
+        return redirect()->route('dash.tags')->with('success', 'Tag was updated successfully!');
+    }
+
+    public function delete($id)
+    {
+        restrictAccess([4,5]);
+
+        Tag::find($id)->delete();
+
+        return redirect()->route('dash.tags')->with('success', 'Tag was deleted successfully!');
     }
 }
