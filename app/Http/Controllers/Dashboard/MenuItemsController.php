@@ -92,4 +92,11 @@ class MenuItemsController extends Controller
 
         return redirect()->back()->with('success', __('Menu item was updated successfully!'));
     }
+
+    public function delete($id)
+    {
+        MenuItem::find($id)->delete();
+
+        return redirect()->route('dash.menu.items')->with('success', __('Menu item was deleted successfully!'));
+    }
 }

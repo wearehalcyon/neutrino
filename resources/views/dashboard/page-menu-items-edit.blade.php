@@ -90,7 +90,7 @@
                     @endif
                     <p><strong>{{ __('Author: ') }}</strong><span>{{ getUser($item->author_id)->name  }}</span></p>
                     <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
-                    <a href="" class="btn btn-danger delete">{{ __('Delete') }}</a>
+                    <a href="{{ route('dash.menu.items.delete', $item->id) }}" class="btn btn-danger delete">{{ __('Delete') }}</a>
                 </div>
             </div>
         </div>

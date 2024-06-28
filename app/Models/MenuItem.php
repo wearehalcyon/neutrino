@@ -19,4 +19,11 @@ class MenuItem extends Model
         'author_id',
         'menu_id',
     ];
+
+    public function getMenu()
+    {
+        $menu = Menu::where('id', $this->menu_id)->first();
+
+        return $menu;
+    }
 }
