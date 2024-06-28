@@ -56,20 +56,20 @@
                             <p>{{ __('Pages') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items', 'dash.menu.items.add'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items.add'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-bars"></i>
                             <p>{{ __('Menu') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items', 'dash.menu.items.add'])){{ __('show') }}@endif" id="menu">
+                        <div class="collapse @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('show') }}@endif" id="menu">
                             <ul class="nav nav-collapse">
                                 <li class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.menus') }}">
                                         <span class="sub-item">{{ __('All Menus') }}</span>
                                     </a>
                                 </li>
-                                <li class="@if(in_array($routeName, ['dash.menu.items', 'dash.menu.items.add'])){{ __('active') }}@endif">
+                                <li class="@if(in_array($routeName, ['dash.menu.items', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.menu.items') }}">
                                         <span class="sub-item">{{ __('Menu Items') }}</span>
                                     </a>

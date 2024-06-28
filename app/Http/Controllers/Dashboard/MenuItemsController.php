@@ -57,4 +57,39 @@ class MenuItemsController extends Controller
 
         return redirect()->route('dash.menu.items.edit', $item->id)->with('success', __('Menu item was created successfully!'));
     }
+
+    public function edit($id)
+    {
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        $item = MenuItem::find($id);
+
+        $menus = Menu::all();
+
+        return view('dashboard.page-menu-items-edit', compact('routeName', 'item', 'menus'));
+    }
+
+    public function editSave(Request $request, $id)
+    {
+        restrictAccess([4,5]);
+
+        $item = MenuItem::find($id);
+        $item->name = $request->name;
+        $item->type = $request->type;
+        if ($request->type == 1) {
+            $item->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+            $item->url = null;
+        } else {
+            $item->slug = null;
+            $item->url = $request->url;
+        }
+        $item->custom_class = $request->custom_class;
+        $item->menu_id = $request->menu_id;
+        $item->target = $request->target ? 1 : null;
+        $item->save();
+
+        return redirect()->back()->with('success', __('Menu item was updated successfully!'));
+    }
 }

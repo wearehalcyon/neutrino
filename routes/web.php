@@ -46,7 +46,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/menus/items', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'index'])->name('dash.menu.items');
     Route::get('/menus/items/add', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'add'])->name('dash.menu.items.add');
     Route::post('/menus/items/add', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'addSave'])->name('dash.menu.items.add.save');
-    Route::get('/menus/items/edit/{id}', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'add'])->name('dash.menu.items.edit');
+    Route::get('/menus/items/edit/{id}', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'edit'])->name('dash.menu.items.edit');
+    Route::post('/menus/items/edit/{id}', [App\Http\Controllers\Dashboard\MenuItemsController::class, 'editSave'])->name('dash.menu.items.edit.save');
 });
 
 // Front
