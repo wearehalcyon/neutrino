@@ -47,6 +47,7 @@
                     @if($menu->created_at != $menu->updated_at)
                         <p><strong>{{ __('Updated At: ') }}</strong><span>{{ date('M d, F', strtotime($menu->updated_at)) . ' at ' . date('H:i:s', strtotime($menu->updated_at))  }}</span></p>
                     @endif
+                    <p><strong>{{ __('Author: ') }}</strong><span>{{ getUser($menu->author_id)->name  }}</span></p>
                     <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
                     <a href="{{ route('dash.menus.delete', $menu->id) }}" class="btn btn-danger delete">{{ __('Delete Menu') }}</a>
                 </div>
