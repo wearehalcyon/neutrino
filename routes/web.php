@@ -38,6 +38,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     // Menus
     Route::get('/menus', [App\Http\Controllers\Dashboard\MenuController::class, 'index'])->name('dash.menus');
     Route::get('/menus/add', [App\Http\Controllers\Dashboard\MenuController::class, 'add'])->name('dash.menus.add');
+    Route::post('/menus/add', [App\Http\Controllers\Dashboard\MenuController::class, 'addSave'])->name('dash.menus.add.save');
+    Route::get('/menus/edit/{id}', [App\Http\Controllers\Dashboard\MenuController::class, 'edit'])->name('dash.menus.edit');
 });
 
 // Front

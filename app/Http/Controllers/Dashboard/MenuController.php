@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class MenuController extends Controller
@@ -27,5 +28,29 @@ class MenuController extends Controller
         $routeName = Route::currentRouteName();
 
         return view('dashboard.page-menus-add', compact('routeName'));
+    }
+
+    public function addSave(Request $request)
+    {
+        restrictAccess([4,5]);
+
+        $menu = Menu::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'author_id' => Auth::id()
+        ]);
+
+        return redirect()->route('dash.menus.edit', $menu->id)->with('success', __('Menu was created successfully!'));
+    }
+
+    public function edit($id)
+    {
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        $menu = Menu::find($id);
+
+        return view('dashboard.page-menus-add', compact('routeName', 'menu'));
     }
 }
