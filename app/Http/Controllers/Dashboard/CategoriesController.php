@@ -68,4 +68,13 @@ class CategoriesController extends Controller
 
         return redirect()->route('dash.categories')->with('success', 'Category was updated successfully!');
     }
+
+    public function delete($id)
+    {
+        restrictAccess([4,5]);
+
+        Category::find($id)->delete();
+
+        return redirect()->route('dash.categories')->with('success', 'Category was deleted successfully!');
+    }
 }

@@ -55,6 +55,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::post('/categories/add', [App\Http\Controllers\Dashboard\CategoriesController::class, 'addSave'])->name('dash.categories.add.save');
     Route::get('/categories/edit/{id}', [App\Http\Controllers\Dashboard\CategoriesController::class, 'edit'])->name('dash.categories.edit');
     Route::post('/categories/edit/{id}', [App\Http\Controllers\Dashboard\CategoriesController::class, 'editSave'])->name('dash.categories.edit.save');
+    Route::get('/categories/delete/{id}', [App\Http\Controllers\Dashboard\CategoriesController::class, 'delete'])->name('dash.categories.delete');
     //Post Tags
     Route::get('/tags', [App\Http\Controllers\Dashboard\TagsController::class, 'index'])->name('dash.tags');
     Route::get('/tags/add', [App\Http\Controllers\Dashboard\TagsController::class, 'add'])->name('dash.tags.add');

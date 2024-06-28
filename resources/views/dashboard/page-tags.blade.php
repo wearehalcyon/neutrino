@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-action mb-4">
-        <a href="{{ route('dash.categories.add') }}" class="btn btn-primary">{{ __('Create New Tag') }}</a>
+        <a href="{{ route('dash.tags.add') }}" class="btn btn-primary">{{ __('Create New Tag') }}</a>
     </div>
 
     <div class="row">
