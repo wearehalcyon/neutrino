@@ -33,6 +33,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::post('/users/edit', [App\Http\Controllers\Dashboard\UsersController::class, 'editAccountSave'])->name('dash.users.edit-account.update');
     Route::get('/users/add', [App\Http\Controllers\Dashboard\UsersController::class, 'add'])->name('dash.users.edit-account.add');
     Route::post('/users/add', [App\Http\Controllers\Dashboard\UsersController::class, 'addSave'])->name('dash.users.edit-account.add.save');
+    Route::delete('/users/delete/{id}', [App\Http\Controllers\Dashboard\UsersController::class, 'delete'])->name('dash.users.delete');
     // User roles
     Route::get('/users/roles', [App\Http\Controllers\Dashboard\UserRolesController::class, 'index'])->name('dash.users-roles');
     Route::get('/users/roles/add', [App\Http\Controllers\Dashboard\UserRolesController::class, 'add'])->name('dash.users-roles.add');

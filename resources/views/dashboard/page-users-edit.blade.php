@@ -83,6 +83,9 @@
                     </div>
                     <div class="card-action">
                         <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
+                        @if(Auth::id() != $user->id)
+                            <a href="{{ route('dash.users.delete', $user->id) }}" class="btn btn-danger">{{ __('Delete User') }}</a>
+                        @endif
                     </div>
                 </form>
             </div>

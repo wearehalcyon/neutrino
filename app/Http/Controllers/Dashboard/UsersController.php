@@ -131,4 +131,9 @@ class UsersController extends Controller
 
         return redirect()->route('dash.users')->with('success', __('User was created successfully'));
     }
+
+    public function delete()
+    {
+
+    }
 }

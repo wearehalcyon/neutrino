@@ -100,9 +100,9 @@
                         <p>{{ __('Users') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account', 'dash.users.edit-account', 'dash.users.edit-account.add'])){{ __('show') }}@endif" id="users">
+                    <div class="collapse @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account', 'dash.users.edit-account.add'])){{ __('show') }}@endif" id="users">
                         <ul class="nav nav-collapse">
-                            <li class="@if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account', 'dash.users.edit-account.add'])){{ __('active') }}@endif">
+                            <li class="@if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account.add'])){{ __('active') }}@endif">
                                 <a href="{{ route('dash.users') }}">
                                     <span class="sub-item">{{ __('All Users') }}</span>
                                 </a>
