@@ -35,4 +35,5 @@
 @endsection
 
 @section('footer-scripts')
+    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 @endsection
