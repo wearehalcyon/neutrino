@@ -27,7 +27,7 @@
                     <div class="card-title">{{ __('File Manager') }}</div>
                 </div>
                 <div class="card-body">
-
+                    <div id="fm" style="height: 600px;"></div>
                 </div>
             </div>
         </div>
