@@ -3,7 +3,6 @@
 @section('title', __('Media Files'))
 
 @section('header-scripts')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.5.3.2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.1.11.2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endsection
