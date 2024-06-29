@@ -43,6 +43,11 @@
         <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
         @yield('header-scripts')
+        <style>
+            .sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar .nav>.nav-item.active:hover>a:before, .sidebar .nav>.nav-item.active>a:before, .sidebar[data-background-color=white] .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar[data-background-color=white] .nav>.nav-item.active:hover>a:before, .sidebar[data-background-color=white] .nav>.nav-item.active>a:before{
+                width: 6px;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper">

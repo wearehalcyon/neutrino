@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('Create New Post'))
+@section('title', __('Edit Post'))
 
 @section('header-scripts')
     <style>
@@ -45,11 +45,11 @@
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
-            <h3 class="fw-bold mb-3">{{ __('Create New Post') }}</h3>
+            <h3 class="fw-bold mb-3">{{ __('Edit Post') }}</h3>
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.posts.add.save') }}" method="post" enctype="multipart/form-data">
+    <form class="row" action="{{ route('dash.posts.add.save') }}" method="post">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
@@ -59,16 +59,16 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name"><strong>{{ __('Title') }}</strong></label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name" value="{{ $post->name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="slug"><strong>{{ __('Slug') }}</strong></label>
-                        <input type="text" name="slug" class="form-control" id="slug">
+                        <input type="text" name="slug" class="form-control" id="slug" value="{{ $post->slug }}">
                         <small id="slug" class="form-text text-muted">{{ __('Will be automatically generated from Title field.') }}</small>
                     </div>
                     <div class="form-group">
                         <label for="description"><strong>{{ __('Description') }}</strong></label>
-                        <textarea name="content" id="description" cols="30" rows="12" class="form-control ckeditor"></textarea>
+                        <textarea name="content" id="description" cols="30" rows="12" class="form-control ckeditor">{{ $post->content }}</textarea>
                     </div>
                 </div>
             </div>
@@ -83,22 +83,22 @@
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="delayed_date"><strong>{{ __('Delayed Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ date('m-d-Y-H-i-s') }}">
+                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ $delay }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="status"><strong>{{ __('Status') }}</strong></label>
                                 <select name="status" id="status" class="form-select form-control">
-                                    <option value="1" selected>{{ __('Published') }}</option>
-                                    <option value="2">{{ __('Draft') }}</option>
+                                    <option value="1" @if($post->status == 1) selected @endif>{{ __('Published') }}</option>
+                                    <option value="2" @if($post->status == 2) selected @endif>{{ __('Draft') }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="created_at"><strong>{{ __('Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s') }}">
+                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s', strtotime($post->created_at)) }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
@@ -106,13 +106,14 @@
                                 <label for="author"><strong>{{ __('Author') }}</strong></label>
                                 <select name="author_id" id="author" class="form-select form-control">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}" @if($user->id == Auth::id()) selected @endif>{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}" @if($post->author_id == $user->id) selected @endif>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success mt-2">{{ __('Create') }}</button>
+                    <button type="submit" class="btn btn-success mt-2">{{ __('Update') }}</button>
+                    <a href="{{ route('dash.posts.delete', $post->id) }}" class="btn btn-danger delete d-inline-block mt-2" title="{{ __('Delete') }}">{{ __('Delete') }}</a>
                 </div>
             </div>
             <div class="card">
@@ -123,7 +124,7 @@
                     <div class="categories-list">
                         @foreach($categories as $category)
                             <div class="form-check">
-                                <input class="form-check-input" name="category_id[]" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}">
+                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" @if(in_array($category->id, $post->getCategoriesIds())) checked @endif>
                                 <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                             </div>
                         @endforeach
@@ -140,7 +141,7 @@
                         <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
                     </div>
                     <div class="form-group px-0 mt-3">
-                        <input id="thumbnail-uploader" name="thumbnail_file" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file">
+                        <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file">
                         <input id="thumbnail-input" type="hidden" name="thumbnail" value="">
                         <div class="remove-thumbnail" style="display: none;">
                             <a href="javascript:;" class="link-danger" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
@@ -216,6 +217,15 @@
 
                 $('.thumbnail-img').attr('src', src);
             });
+        });
+    </script>
+    <script>
+        let delBtn = $('.delete');
+        delBtn.on('click', function(){
+            if (confirm('Do you really want to delete this post?') == true) {
+                return true;
+            }
+            return false;
         });
     </script>
 @endsection

@@ -35,9 +35,18 @@ class CategoriesController extends Controller
     {
         restrictAccess([4,5]);
 
+        $baseSlug = Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
+
         Category::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $slug,
             'description' => $request->description,
             'author_id' => Auth::id(),
         ]);
@@ -60,9 +69,18 @@ class CategoriesController extends Controller
     {
         restrictAccess([4,5]);
 
+        $baseSlug = Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
+
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $category->slug = $slug;
         $category->description = $request->description;
         $category->save();
 

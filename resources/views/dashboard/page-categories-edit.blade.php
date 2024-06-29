@@ -53,7 +53,7 @@
                         <p><strong>{{ __('Updated At: ') }}</strong><span>{{ date('M d, F', strtotime($category->updated_at)) . ' at ' . date('H:i:s', strtotime($category->updated_at))  }}</span></p>
                     @endif
                     <p><strong>{{ __('Author: ') }}</strong><span>{{ getUser($category->author_id)->name  }}</span></p>
-                    <button type="submit" class="btn btn-success">{{ __('Create') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
                     <a href="{{ route('dash.categories.delete', $category->id) }}" class="btn btn-danger delete" title="{{ __('Delete') }}">{{ __('Delete') }}</a>
                 </div>
             </div>

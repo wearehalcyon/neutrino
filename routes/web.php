@@ -67,6 +67,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function (){
     Route::get('/posts', [App\Http\Controllers\Dashboard\PostsController::class, 'index'])->name('dash.posts');
     Route::get('/posts/add', [App\Http\Controllers\Dashboard\PostsController::class, 'add'])->name('dash.posts.add');
     Route::post('/posts/add', [App\Http\Controllers\Dashboard\PostsController::class, 'addSave'])->name('dash.posts.add.save');
+    Route::get('/posts/edit/{id}', [App\Http\Controllers\Dashboard\PostsController::class, 'edit'])->name('dash.posts.edit');
+    Route::get('/posts/delete/{id}', [App\Http\Controllers\Dashboard\PostsController::class, 'delete'])->name('dash.posts.delete');
     // File Manager
     Route::get('/filemanager', [App\Http\Controllers\Dashboard\FilemanagerController::class, 'index'])->name('dash.fm');
 });

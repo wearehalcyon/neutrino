@@ -16,10 +16,23 @@ class Post extends Model
         'status',
         'content',
         'delayed_date',
+        'thumbnail'
     ];
 
     public function getAuthor()
     {
         return User::where('id', $this->author_id)->first();
+    }
+
+    public function getCategoriesIds()
+    {
+        $categories = PostToCategory::where('post_id', $this->id)->get();
+
+        $ids = [];
+        foreach ($categories as $category) {
+            $ids[] =  $category->category_id;
+        }
+
+        return $ids;
     }
 }
