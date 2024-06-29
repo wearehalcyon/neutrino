@@ -3,6 +3,7 @@
 @section('title', __('Media Files'))
 
 @section('header-scripts')
+    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endsection
 
 @section('content')
