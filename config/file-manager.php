@@ -82,7 +82,21 @@ return [
      *
      * [] - no restrictions
      */
-    'allowFileTypes'    => [],
+    'allowFileTypes'    => [
+        'application/vnd.ms-excel',
+        'text/csv',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheetl',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/pdf',
+        'image/gif',
+        'image/svg+xml',
+        'image/bmp',
+        'image/png',
+        'image/jpeg',
+    ],
 
     /**
      * Show / Hide system files and folders
