@@ -15,6 +15,7 @@ class Post extends Model
         'author_id',
         'status',
         'content',
+        'delayed_date',
     ];
 
     public function getAuthor()

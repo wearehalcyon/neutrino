@@ -53,6 +53,10 @@
                     <div class="card-title">{{ __('Actions') }}</div>
                 </div>
                 <div class="card-body">
+                    <div class="form-group px-0">
+                        <label for="name"><strong>{{ __('Title') }}</strong></label>
+                        <input type="datetime-local" name="name" class="form-control" id="name" required>
+                    </div>
                     <button type="submit" class="btn btn-success">{{ __('Create') }}</button>
                 </div>
             </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('author_id');
             $table->tinyInteger('status')->default(1);
             $table->longText('content')->nullable();
+            $table->dateTime('delayed_date')->nullable();
             $table->timestamps();
         });
     }
