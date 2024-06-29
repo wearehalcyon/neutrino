@@ -34,4 +34,9 @@ class PostsController extends Controller
 
         return view('dashboard.page-posts-add', compact('routeName', 'users', 'categories'));
     }
+
+    public function addSave(Request $request)
+    {
+        dd($request);
+    }
 }

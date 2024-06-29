@@ -83,8 +83,8 @@
                             <p>{{ __('Forms Database') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
-                        <a href="{{ route('dash') }}">
+                    <li class="nav-item @if(in_array($routeName, ['dash.fm'])){{ 'active' }}@endif">
+                        <a href="{{ route('dash.fm') }}">
                             <i class="fas fa-hdd"></i>
                             <p>{{ __('Media Files') }}</p>
                         </a>

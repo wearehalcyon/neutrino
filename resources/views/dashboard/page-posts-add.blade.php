@@ -29,6 +29,10 @@
             max-height: 250px;
             object-fit: cover;
         }
+        input#name{
+            font-size: 24px;
+            font-weight: 600;
+        }
     </style>
 @endsection
 
@@ -45,7 +49,7 @@
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.categories.add.save') }}" method="post">
+    <form class="row" action="{{ route('dash.posts.add.save') }}" method="post">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
@@ -133,12 +137,14 @@
                 </div>
                 <div class="card-body">
                     <div class="post-thumbnail-preview">
-                        <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img">
+                        <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
                     </div>
                     <div class="form-group px-0 mt-3">
                         <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file">
                         <input id="thumbnail-input" type="hidden" name="thumbnail" value="">
-                        <a href="javascript:;" class="d-inline-block link-danger mt-3" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
+                        <div class="remove-thumbnail" style="display: none;">
+                            <a href="javascript:;" class="link-danger" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,6 +192,8 @@
 
                     $(this).hide();
 
+                    $('.remove-thumbnail').show();
+
                     $('#thumbnail-input').val(file.name);
 
                     const reader = new FileReader();
@@ -194,6 +202,19 @@
                     }
                     reader.readAsDataURL(file);
                 }
+            });
+            $('.remove-thumbnail a').on('click', function(e) {
+                e.preventDefault();
+
+                let src = $('.thumbnail-img').data('src');
+
+                $(this).parent().hide();
+
+                $('#thumbnail-uploader').show();
+
+                $('#thumbnail-input, #thumbnail-uploader').val('');
+
+                $('.thumbnail-img').attr('src', src);
             });
         });
     </script>
