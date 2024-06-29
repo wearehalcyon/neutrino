@@ -17,7 +17,7 @@ class CategoriesController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $categories = Category::paginate(20);
+        $categories = Category::orderBy('name', 'ASC')->paginate(20);
 
         return view('dashboard.page-categories', compact('routeName', 'categories'));
     }

@@ -7,6 +7,23 @@
         .ck-content{
             min-height: 400px;
         }
+        .categories-list{
+            padding: 10px;
+            border: 1px solid #e4e4e4;
+            border-radius: 8px;
+            height: 150px;
+            overflow-y: auto;
+        }
+        .categories-list .form-check{
+            padding: 0;
+        }
+        .categories-list .form-check input,
+        .categories-list .form-check label{
+            cursor: pointer;
+        }
+        .categories-list .form-check input:checked ~ label{
+            font-weight: 700;
+        }
     </style>
 @endsection
 
@@ -53,11 +70,66 @@
                     <div class="card-title">{{ __('Actions') }}</div>
                 </div>
                 <div class="card-body">
-                    <div class="form-group px-0">
-                        <label for="name"><strong>{{ __('Title') }}</strong></label>
-                        <input type="datetime-local" name="name" class="form-control" id="name" required>
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+                            <div class="form-group px-0">
+                                <label for="delayed_date"><strong>{{ __('Delayed Publication Date') }}</strong></label>
+                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ date('m-d-Y-H-i-s') }}">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+                            <div class="form-group px-0">
+                                <label for="status"><strong>{{ __('Status') }}</strong></label>
+                                <select name="status" id="status" class="form-select form-control">
+                                    <option value="1" selected>{{ __('Published') }}</option>
+                                    <option value="2">{{ __('Draft') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+                            <div class="form-group px-0">
+                                <label for="created_at"><strong>{{ __('Publication Date') }}</strong></label>
+                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s') }}">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+                            <div class="form-group px-0">
+                                <label for="author"><strong>{{ __('Author') }}</strong></label>
+                                <select name="author_id" id="author" class="form-select form-control">
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}" @if($user->id == Auth::id()) selected @endif>{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-success">{{ __('Create') }}</button>
+                    <button type="submit" class="btn btn-success mt-2">{{ __('Create') }}</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Categories') }}</div>
+                </div>
+                <div class="card-body">
+                    <div class="categories-list">
+                        @foreach($categories as $category)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}">
+                                <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <a href="{{ route('dash.categories.add') }}" class="d-inline-block link-primary mt-3" title="{{ __('Add New Category') }}">{{ __('Add New Category') }}</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Thumbnail') }}</div>
+                </div>
+                <div class="card-body">
+                    <div class="post-thumbnail-preview">
+
+                    </div>
                 </div>
             </div>
         </div>

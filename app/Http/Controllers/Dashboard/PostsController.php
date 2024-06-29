@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -26,6 +28,10 @@ class PostsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-posts-add', compact('routeName'));
+        $users = User::orderBy('name', 'ASC')->get();
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        return view('dashboard.page-posts-add', compact('routeName', 'users', 'categories'));
     }
 }
