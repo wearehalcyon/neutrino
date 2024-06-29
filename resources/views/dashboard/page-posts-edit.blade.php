@@ -138,12 +138,16 @@
                 </div>
                 <div class="card-body">
                     <div class="post-thumbnail-preview">
-                        <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
+                        @if($post->thumbnail)
+                            <img src="{{ asset('uploads/' . $post->thumbnail) }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
+                        @else
+                            <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
+                        @endif
                     </div>
                     <div class="form-group px-0 mt-3">
-                        <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file">
+                        <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file" @if($post->thumbnail) style="display: none;" @endif>
                         <input id="thumbnail-input" type="hidden" name="thumbnail" value="">
-                        <div class="remove-thumbnail" style="display: none;">
+                        <div class="remove-thumbnail" @if(!$post->thumbnail) style="display: none;" @endif>
                             <a href="javascript:;" class="link-danger" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
                         </div>
                     </div>
