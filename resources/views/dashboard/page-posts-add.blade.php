@@ -24,6 +24,11 @@
         .categories-list .form-check input:checked ~ label{
             font-weight: 700;
         }
+        .thumbnail-img{
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+        }
     </style>
 @endsection
 
@@ -128,7 +133,12 @@
                 </div>
                 <div class="card-body">
                     <div class="post-thumbnail-preview">
-
+                        <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img">
+                    </div>
+                    <div class="form-group px-0 mt-3">
+                        <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file">
+                        <input id="thumbnail-input" type="hidden" name="thumbnail" value="">
+                        <a href="javascript:;" class="d-inline-block link-danger mt-3" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
                     </div>
                 </div>
             </div>
@@ -165,6 +175,25 @@
                     .catch(error => {
                         console.error(error);
                     });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#thumbnail-uploader').on('change', function() {
+                const file = this.files[0];
+                if (file) {
+
+                    $(this).hide();
+
+                    $('#thumbnail-input').val(file.name);
+
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.thumbnail-img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
         });
     </script>
