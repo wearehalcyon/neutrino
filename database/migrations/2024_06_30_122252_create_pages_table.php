@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('parent_id')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->tinyInteger('status')->default(1);
             $table->longText('content')->nullable();
-            $table->dateTime('delayed_date')->nullable();
+            $table->string('template')->nullable()->default('default');
             $table->timestamps();
         });
     }

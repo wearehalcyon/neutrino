@@ -79,23 +79,11 @@
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
-                                <label for="delayed_date"><strong>{{ __('Delayed Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ date('m-d-Y-H-i-s') }}">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
-                            <div class="form-group px-0">
                                 <label for="status"><strong>{{ __('Status') }}</strong></label>
                                 <select name="status" id="status" class="form-select form-control">
                                     <option value="1" selected>{{ __('Published') }}</option>
                                     <option value="2">{{ __('Draft') }}</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-12 col-xl-6">
-                            <div class="form-group px-0">
-                                <label for="created_at"><strong>{{ __('Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s') }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
@@ -106,6 +94,12 @@
                                         <option value="{{ $user->id }}" @if($user->id == Auth::id()) selected @endif>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="form-group px-0">
+                                <label for="created_at"><strong>{{ __('Publication Date') }}</strong></label>
+                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s') }}">
                             </div>
                         </div>
                     </div>
