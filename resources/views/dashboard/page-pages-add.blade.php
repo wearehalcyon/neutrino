@@ -124,9 +124,18 @@
                             <input id="homepage_id" class="form-check-input" type="checkbox" name="homepage_id" style="cursor: pointer;">
                         @else
                             <div class="alert alert-warning alert-dismissible fade show" role="alert" style="box-shadow: none; background-color: #fff6ea;">
-                                {!! __('This page can\'t be set as the Homepage because a different page is currently selected. <a href="' . route('dash.pages.edit', $page->getHomepage()) . '" title="Edit The Homepage">Edit The Hompage</a>.') !!}
+                                {!! __('This page can\'t be set as the Homepage because a different page is currently selected. <a href="' . route('dash.pages.edit', getOption('homepage_id')) . '" title="Edit The Homepage">Edit The Hompage</a>.') !!}
                             </div>
                         @endif
+                    </div>
+                    <div class="form-group px-0">
+                        <label for="template"><strong>{{ __('Page Template') }}</strong></label>
+                        <select name="template" id="template" class="form-select form-control">
+                            <option value="default">Default</option>
+                            @foreach($templates as $template)
+                                <option value="{{ $template }}">{{ ucwords(str_replace('-', ' ', $template)) }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

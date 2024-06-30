@@ -140,7 +140,7 @@
                         <select name="template" id="template" class="form-select form-control">
                             <option value="default">Default</option>
                             @foreach($templates as $template)
-                                <option value="{{ $template }}">{{ ucwords(str_replace('-', ' ', $template)) }}</option>
+                                <option value="{{ $template }}" @if($template == $page->template) selected @endif>{{ ucwords(str_replace('-', ' ', $template)) }}</option>
                             @endforeach
                         </select>
                     </div>

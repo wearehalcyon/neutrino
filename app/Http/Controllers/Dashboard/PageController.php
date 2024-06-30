@@ -32,7 +32,18 @@ class PageController extends Controller
 
         $users = User::orderBy('name', 'ASC')->get();
 
-        return view('dashboard.page-pages-add', compact('routeName', 'users'));
+        // Get site front themes
+        $frontTheme = getOption('front_theme');
+        $directory = resource_path('views/front/' . $frontTheme . '/templates');
+        $items = scandir($directory);
+        $templates = [];
+        foreach ($items as $item) {
+            if ($item !== '.' && $item !== '..' && is_file($directory . '/' . $item)) {
+                $templates[] = str_replace(['page-', '.blade', '.php'], '', $item);
+            }
+        }
+
+        return view('dashboard.page-pages-add', compact('routeName', 'users', 'templates'));
     }
 
     public function addSave(Request $request)
