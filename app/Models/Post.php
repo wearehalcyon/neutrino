@@ -44,6 +44,10 @@ class Post extends Model
             'meta_key' => $meta_key
         ])->first();
 
-        return $value->meta_value;
+        if ($value) {
+            return $value->meta_value;
+        }
+
+        return '';
     }
 }

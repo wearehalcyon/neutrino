@@ -53,7 +53,6 @@ class PostsController extends Controller
             'content' => $request->content,
             'delayed_date' => $request->delayed_date,
         ]);
-        $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
         $post->save();
 
         if ($request->category_id) {
@@ -70,6 +69,8 @@ class PostsController extends Controller
             $file = $request->file('thumbnail_file');
             $fileName = $thumbID . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/' . $post->id), $fileName);
+            $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
+            $post->save();
         }
 
         // Add SEO meta fields
@@ -153,25 +154,51 @@ class PostsController extends Controller
             $post->save();
         }
 
+        if (!$request->thumbnail) {
+            $post->thumbnail = null;
+            $post->save();
+        }
+
         // Update SEO meta fields
-        PostMeta::where([
+        $seo_title = PostMeta::where([
             'post_id' => $id,
             'meta_key' => 'seo_title'
-        ])->update([
-            'meta_value' => $request->seo_title
-        ]);
-        PostMeta::where([
+        ])->first();
+        if ($seo_title) {
+            $seo_title->meta_value = $request->seo_title;
+        } else {
+            PostMeta::create([
+                'post_id' => $id,
+                'meta_key' => 'seo_title',
+                'meta_value' => $request->seo_title
+            ]);
+        }
+        $seo_slug = PostMeta::where([
             'post_id' => $id,
             'meta_key' => 'seo_slug'
-        ])->update([
-            'meta_value' => $request->seo_slug
-        ]);
-        PostMeta::where([
+        ])->first();
+        if ($seo_slug) {
+            $seo_slug->meta_value = $request->seo_slug;
+        } else {
+            PostMeta::create([
+                'post_id' => $id,
+                'meta_key' => 'seo_slug',
+                'meta_value' => $request->seo_slug
+            ]);
+        }
+        $meta_description = PostMeta::where([
             'post_id' => $id,
             'meta_key' => 'meta_description'
-        ])->update([
-            'meta_value' => $request->meta_description
-        ]);
+        ])->first();
+        if ($meta_description) {
+            $meta_description->meta_value = $request->meta_description;
+        } else {
+            PostMeta::create([
+                'post_id' => $id,
+                'meta_key' => 'meta_description',
+                'meta_value' => $request->meta_description
+            ]);
+        }
 
         return redirect()->back()->with('success', __('Post was updated successfully!'));
     }

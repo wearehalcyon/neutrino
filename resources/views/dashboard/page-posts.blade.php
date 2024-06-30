@@ -27,7 +27,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">{{ __('Posts List') }}</div>
+                    <div class="card-title">
+                        {{ __('Posts List') }}
+                        @if($posts->isNotEmpty())
+                            <strong>({{ $posts->total() }})</strong>
+                        @endif
+                    </div>
                 </div>
                 <div class="card-body">
                     @if($posts->isNotEmpty())
@@ -53,6 +58,22 @@
                             @endforeach
                             </tbody>
                         </table>
+                        @if($posts->links())
+                            <div class="pagination w-100 d-block">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
+                                            {{ __('Showing ' . $posts->count() . ' of ' . $posts->total() . ' entries') }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
+                                            {{ $posts->links('dashboard.partials.pagination', ['posts' => $posts]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @else
                         <p>{{ __('No any posts created yet.') }}</p>
                     @endif
