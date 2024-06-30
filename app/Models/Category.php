@@ -19,4 +19,22 @@ class Category extends Model
     {
         return User::where('id', $this->author_id)->first();
     }
+
+    public function getPosts()
+    {
+        $posts = PostToCategory::join('posts', 'post_to_categories.post_id', '=', 'posts.id')
+            ->where('post_to_categories.category_id', $this->id)
+            ->select(
+                'posts.*',
+                'posts.id as id'
+            )
+            ->get();
+
+        return $posts;
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_to_categories', 'category_id', 'post_id');
+    }
 }

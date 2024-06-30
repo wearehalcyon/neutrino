@@ -15,4 +15,10 @@ class Comment extends Model
         'comment',
         'status',
     ];
+
+    public function getAuthor()
+    {
+        $author = User::find($this->author_id);
+        return $author;
+    }
 }

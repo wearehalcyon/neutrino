@@ -41,7 +41,7 @@
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('Category') }}</th>
+                                <th scope="col">{{ __('Categories') }}</th>
                                 <th scope="col">{{ __('Created At') }}</th>
                                 <th scope="col">{{ __('Author') }}</th>
                             </tr>
@@ -51,7 +51,13 @@
                                 <tr>
                                     <td>{{ $post->id }}</td>
                                     <td><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a></td>
-                                    <td>1</td>
+                                    <td>
+                                        @if($post->categories->isNotEmpty())
+                                            @foreach($post->categories as $index => $category)
+                                                <a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a>{{ $index < $post->categories->count() - 1 ? ', ' : '' }}
+                                            @endforeach
+                                        @endif
+                                    </td>
                                     <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i:s', strtotime($post->created_at)) }}</td>
                                     <td>{{ $post->getAuthor()->name }}</td>
                                 </tr>

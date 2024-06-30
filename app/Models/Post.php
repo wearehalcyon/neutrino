@@ -50,4 +50,9 @@ class Post extends Model
 
         return '';
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'post_to_categories', 'post_id', 'category_id');
+    }
 }

@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // Dahboard
-Route::prefix('/dashboard')->middleware('auth')->group(function (){
+Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/', [App\Http\Controllers\Dashboard\IndexController::class, 'index'])->name('dash');
     // Settings
     Route::get('/site-settings', [App\Http\Controllers\Dashboard\SiteSettingsController::class, 'index'])->name('dash.site-settings');
