@@ -72,6 +72,25 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('SEO Optimization') }}</div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="seo_title"><strong>{{ __('SEO Title') }}</strong></label>
+                        <input type="text" name="seo_title" class="form-control" id="seo_title" value="{{ $post->getPostMeta('seo_title') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="seo_slug"><strong>{{ __('SEO Slug') }}</strong></label>
+                        <input type="text" name="seo_slug" class="form-control" id="seo_slug" value="{{ $post->getPostMeta('seo_slug') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="meta_description"><strong>{{ __('Meta Description') }}</strong></label>
+                        <textarea name="meta_description" id="meta_description" cols="30" rows="6" class="form-control">{{ $post->getPostMeta('meta_description') }}</textarea>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 col-lg-4 col-xl-3">
             <div class="card">

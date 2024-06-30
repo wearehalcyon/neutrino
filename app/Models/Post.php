@@ -36,4 +36,14 @@ class Post extends Model
 
         return $ids;
     }
+
+    public function getPostMeta($meta_key)
+    {
+        $value = PostMeta::where([
+            'post_id' => $this->id,
+            'meta_key' => $meta_key
+        ])->first();
+
+        return $value->meta_value;
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\PostMeta;
 use App\Models\PostToCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,6 +72,29 @@ class PostsController extends Controller
             $file->move(public_path('uploads/' . $post->id), $fileName);
         }
 
+        // Add SEO meta fields
+        if ($request->seo_title) {
+            PostMeta::create([
+                'post_id' => $post->id,
+                'meta_key' => 'seo_title',
+                'meta_value' => $request->seo_title,
+            ]);
+        }
+        if ($request->seo_slug) {
+            PostMeta::create([
+                'post_id' => $post->id,
+                'meta_key' => 'seo_slug',
+                'meta_value' => $request->seo_slug,
+            ]);
+        }
+        if ($request->meta_description) {
+            PostMeta::create([
+                'post_id' => $post->id,
+                'meta_key' => 'meta_description',
+                'meta_value' => $request->meta_description,
+            ]);
+        }
+
         return redirect()->route('dash.posts.edit', $post->id)->with('success', __('Post was created successfully!'));
     }
 
@@ -128,6 +152,26 @@ class PostsController extends Controller
             $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
             $post->save();
         }
+
+        // Update SEO meta fields
+        PostMeta::where([
+            'post_id' => $id,
+            'meta_key' => 'seo_title'
+        ])->update([
+            'meta_value' => $request->seo_title
+        ]);
+        PostMeta::where([
+            'post_id' => $id,
+            'meta_key' => 'seo_slug'
+        ])->update([
+            'meta_value' => $request->seo_slug
+        ]);
+        PostMeta::where([
+            'post_id' => $id,
+            'meta_key' => 'meta_description'
+        ])->update([
+            'meta_value' => $request->meta_description
+        ]);
 
         return redirect()->back()->with('success', __('Post was updated successfully!'));
     }

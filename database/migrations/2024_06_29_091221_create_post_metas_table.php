@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('post_metas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('post_id');
-            $table->bigInteger('meta_key');
+            $table->string('meta_key');
             $table->longText('meta_value')->nullable();
             $table->timestamps();
 
