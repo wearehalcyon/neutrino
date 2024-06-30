@@ -51,6 +51,13 @@
                 width: 34px;
                 height: 20px;
             }
+            a{
+                font-size: 15px;
+                font-weight: 600;
+            }
+            a:hover{
+                filter: brightness(1.5);
+            }
         </style>
     </head>
     <body>
