@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.posts.edit.save', $post->id) }}" method="post">
+    <form class="row" action="{{ route('dash.posts.edit.save', $post->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
@@ -124,7 +124,7 @@
                     <div class="categories-list">
                         @foreach($categories as $category)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" @if(in_array($category->id, $post->getCategoriesIds())) checked @endif>
+                                <input class="form-check-input" name="category_id[]" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" @if(in_array($category->id, $post->getCategoriesIds())) checked @endif>
                                 <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                             </div>
                         @endforeach
@@ -145,7 +145,7 @@
                         @endif
                     </div>
                     <div class="form-group px-0 mt-3">
-                        <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file" @if($post->thumbnail) style="display: none;" @endif>
+                        <input id="thumbnail-uploader" name="thumbnail_file" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file" @if($post->thumbnail) style="display: none;" @endif>
                         <input id="thumbnail-input" type="hidden" name="thumbnail" value="{{ $post->thumbnail }}">
                         <div class="remove-thumbnail" @if(!$post->thumbnail) style="display: none;" @endif>
                             <a href="javascript:;" class="link-danger" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>

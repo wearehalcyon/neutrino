@@ -16,7 +16,8 @@ class Post extends Model
         'status',
         'content',
         'delayed_date',
-        'thumbnail'
+        'thumbnail',
+        'thumbnail_file'
     ];
 
     public function getAuthor()

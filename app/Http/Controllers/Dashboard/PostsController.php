@@ -42,23 +42,15 @@ class PostsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $baseSlug = Str::slug($request->name);
-        $slug = $baseSlug;
-        $next = 2;
-
-        while (Category::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $next;
-            $next++;
-        }
-
         $thumbID = time();
 
         $post = Post::create([
             'name' => $request->name,
-            'slug' => $slug,
+            'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'author_id' => $request->author_id,
             'status' => $request->status,
             'content' => $request->content,
+            'delayed_date' => $request->delayed_date,
         ]);
         $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
         $post->save();
@@ -103,7 +95,41 @@ class PostsController extends Controller
 
     public function editSave(Request $request, $id)
     {
-        dd($request);
+        restrictAccess([4,5]);
+
+        $thumbID = time();
+
+        $post = Post::find($id);
+        $post->name = $request->name;
+        $post->content = $request->content;
+        $post->author_id = $request->author_id;
+        $post->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $post->content = $request->content;
+        $post->status = $request->status;
+        $post->delayed_date = $request->delayed_date;
+        $post->save();
+
+        $categories = PostToCategory::where('post_id', $id)->delete();
+
+        if ($request->category_id) {
+            foreach ($request->category_id as $category_id) {
+                PostToCategory::create([
+                    'post_id' => $post->id,
+                    'category_id' => $category_id,
+                ]);
+            }
+        }
+
+        // Upload thumbnail to the public/uploads/ID path
+        if ($request->hasFile('thumbnail_file')) {
+            $file = $request->file('thumbnail_file');
+            $fileName = $thumbID . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/' . $post->id), $fileName);
+            $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
+            $post->save();
+        }
+
+        return redirect()->back()->with('success', __('Post was updated successfully!'));
     }
 
     public function delete($id)
