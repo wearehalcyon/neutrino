@@ -203,9 +203,9 @@
                         <button class="btn btn-primary dropdown-toggle btn-round" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span>+</span></button>
                         <ul class="dropdown-menu" role="menu" style="">
                             <li>
-                                <a class="dropdown-item" href="#">{{ __('View All Pages') }}</a>
+                                <a class="dropdown-item" href="{{ route('dash.pages') }}">{{ __('View All Pages') }}</a>
                                 {{--                                <div class="dropdown-divider"></div>--}}
-                                <a class="dropdown-item" href="#">{{ __('Create Page') }}</a>
+                                <a class="dropdown-item" href="{{ route('dash.pages.add') }}">{{ __('Create Page') }}</a>
                             </li>
                         </ul>
 

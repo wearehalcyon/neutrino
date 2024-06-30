@@ -21,7 +21,7 @@ class PostsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $posts = Post::paginate(20);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(20);;
 
         return view('dashboard.page-posts', compact('routeName', 'posts'));
     }
