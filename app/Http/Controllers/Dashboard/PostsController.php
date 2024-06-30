@@ -53,7 +53,6 @@ class PostsController extends Controller
             'content' => $request->content,
             'delayed_date' => $request->delayed_date,
         ]);
-        $post->save();
 
         if ($request->category_id) {
             foreach ($request->category_id as $category_id) {
@@ -69,7 +68,7 @@ class PostsController extends Controller
             $file = $request->file('thumbnail_file');
             $fileName = $thumbID . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/' . $post->id), $fileName);
-            $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
+            $post->thumbnail = 'uploads/' . $thumbID . '_' . $request->thumbnail;
             $post->save();
         }
 
@@ -150,7 +149,7 @@ class PostsController extends Controller
             $file = $request->file('thumbnail_file');
             $fileName = $thumbID . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/' . $post->id), $fileName);
-            $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
+            $post->thumbnail = 'uploads/' . $thumbID . '_' . $request->thumbnail;
             $post->save();
         }
 

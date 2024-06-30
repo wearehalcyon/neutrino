@@ -47,6 +47,10 @@
             .sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar .nav>.nav-item.active:hover>a:before, .sidebar .nav>.nav-item.active>a:before, .sidebar[data-background-color=white] .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar[data-background-color=white] .nav>.nav-item.active:hover>a:before, .sidebar[data-background-color=white] .nav>.nav-item.active>a:before{
                 width: 6px;
             }
+            .form-check.form-switch input[type="checkbox"]{
+                width: 34px;
+                height: 20px;
+            }
         </style>
     </head>
     <body>

@@ -19,4 +19,23 @@ class Page extends Model
         'thumbnail',
         'thumbnail_file'
     ];
+
+    public function getAuthor()
+    {
+        return User::where('id', $this->author_id)->first();
+    }
+
+    public function getPageMeta($meta_key)
+    {
+        $value = PageMeta::where([
+            'page_id' => $this->id,
+            'meta_key' => $meta_key
+        ])->first();
+
+        if ($value) {
+            return $value->meta_value;
+        }
+
+        return '';
+    }
 }

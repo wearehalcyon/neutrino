@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('Create New Page'))
+@section('title', __('Edit Page'))
 
 @section('header-scripts')
     <style>
@@ -23,30 +23,30 @@
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
-            <h3 class="fw-bold mb-3">{{ __('Create New Page') }}</h3>
+            <h3 class="fw-bold mb-3">{{ __('Edit Page') }}</h3>
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.pages.add.save') }}" method="post" enctype="multipart/form-data">
+    <form class="row" action="{{ route('dash.pages.edit.save', $page->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">{{ __('Post Information') }}</div>
+                    <div class="card-title">{{ __('Page Information') }}</div>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name"><strong>{{ __('Title') }}</strong></label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name" value="{{ $page->name }}" required>
                     </div>
-                    <div class="form-group slug">
+                    <div class="form-group slug" @if(getOption('homepage_id') == $page->id) style="display: none;" @endif>
                         <label for="slug"><strong>{{ __('Slug') }}</strong></label>
-                        <input type="text" name="slug" class="form-control" id="slug">
+                        <input type="text" name="slug" class="form-control" id="slug" value="{{ $page->slug }}">
                         <small id="slug" class="form-text text-muted">{{ __('Will be automatically generated from Title field.') }}</small>
                     </div>
                     <div class="form-group">
                         <label for="description"><strong>{{ __('Description') }}</strong></label>
-                        <textarea name="content" id="description" cols="30" rows="12" class="form-control ckeditor"></textarea>
+                        <textarea name="content" id="description" cols="30" rows="12" class="form-control ckeditor">{{ $page->content }}</textarea>
                     </div>
                 </div>
             </div>
@@ -57,15 +57,15 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="seo_title"><strong>{{ __('SEO Title') }}</strong></label>
-                        <input type="text" name="seo_title" class="form-control" id="seo_title">
+                        <input type="text" name="seo_title" class="form-control" id="seo_title" value="{{ $page->getPageMeta('seo_title') }}">
                     </div>
                     <div class="form-group">
                         <label for="seo_slug"><strong>{{ __('SEO Slug') }}</strong></label>
-                        <input type="text" name="seo_slug" class="form-control" id="seo_slug">
+                        <input type="text" name="seo_slug" class="form-control" id="seo_slug" value="{{ $page->getPageMeta('seo_slug') }}">
                     </div>
                     <div class="form-group">
                         <label for="meta_description"><strong>{{ __('Meta Description') }}</strong></label>
-                        <textarea name="meta_description" id="meta_description" cols="30" rows="6" class="form-control"></textarea>
+                        <textarea name="meta_description" id="meta_description" cols="30" rows="6" class="form-control">{{ $page->getPageMeta('meta_description') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -80,22 +80,22 @@
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="delayed_date"><strong>{{ __('Delayed Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ date('m-d-Y-H-i-s') }}">
+                                <input type="datetime-local" name="delayed_date" class="form-control" id="delayed_date" value="{{ $delay }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="status"><strong>{{ __('Status') }}</strong></label>
                                 <select name="status" id="status" class="form-select form-control">
-                                    <option value="1" selected>{{ __('Published') }}</option>
-                                    <option value="2">{{ __('Draft') }}</option>
+                                    <option value="1" @if($page->status == 1) selected @endif>{{ __('Published') }}</option>
+                                    <option value="2" @if($page->status == 2) selected @endif>{{ __('Draft') }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
                             <div class="form-group px-0">
                                 <label for="created_at"><strong>{{ __('Publication Date') }}</strong></label>
-                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s') }}">
+                                <input type="datetime-local" name="created_at" class="form-control" id="created_at" value="{{ date('Y-m-d\TH:i:s', strtotime($page->created_at)) }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-6">
@@ -103,13 +103,16 @@
                                 <label for="author"><strong>{{ __('Author') }}</strong></label>
                                 <select name="author_id" id="author" class="form-select form-control">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}" @if($user->id == Auth::id()) selected @endif>{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}" @if($page->author_id == $user->id) selected @endif>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success mt-2">{{ __('Create') }}</button>
+                    <button type="submit" class="btn btn-success mt-2">{{ __('Update') }}</button>
+                    @if(getOption('homepage_id') != $page->id)
+                        <a href="{{ route('dash.posts.delete', $page->id) }}" class="btn btn-danger delete d-inline-block mt-2" title="{{ __('Delete') }}">{{ __('Delete') }}</a>
+                    @endif
                 </div>
             </div>
             <div class="card">
@@ -120,11 +123,15 @@
                     <div class="form-check form-switch p-0">
                         <label for="homepage_id"><strong>Make this page as Homepage</strong></label>
                         <br>
-                        @if(!getOption('homepage_id'))
-                            <input id="homepage_id" class="form-check-input" type="checkbox" name="homepage_id" style="cursor: pointer;">
+                        @if(!getOption('homepage_id') || getOption('homepage_id') == $page->id)
+                            <input id="homepage_id" class="form-check-input" type="checkbox" name="homepage_id" style="cursor: pointer;" @if(getOption('homepage_id') == $page->id) checked @endif>
+                            <br>
+                            @if(getOption('homepage_id') == $page->id)
+                                <small class="form-text text-muted mt-3" style="display: block;">{{ __('This page set as Homepage and can\'t be deleted.') }}</small>
+                            @endif
                         @else
                             <div class="alert alert-warning alert-dismissible fade show" role="alert" style="box-shadow: none; background-color: #fff6ea;">
-                                {!! __('This page can\'t be set as the Homepage because a different page is currently selected. <a href="' . route('dash.pages.edit', $page->getHomepage()) . '" title="Edit The Homepage">Edit The Hompage</a>.') !!}
+                                {!! __('This page can\'t be set as the Homepage because a different page is currently selected. <a href="' . route('dash.pages.edit', getOption('homepage_id')) . '" title="Edit The Homepage">Edit The Hompage</a>.') !!}
                             </div>
                         @endif
                     </div>
@@ -164,6 +171,15 @@
                         console.error(error);
                     });
             });
+        });
+    </script>
+    <script>
+        let delBtn = $('.delete');
+        delBtn.on('click', function(){
+            if (confirm('Do you really want to delete this page?') == true) {
+                return true;
+            }
+            return false;
         });
     </script>
     <script>

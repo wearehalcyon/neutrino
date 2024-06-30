@@ -49,7 +49,14 @@
                             @foreach($pages as $page)
                                 <tr>
                                     <td>{{ $page->id }}</td>
-                                    <td><a href="{{ route('dash.posts.edit', $page->id) }}" title="{{ $page->name }}">{{ $page->name }}</a></td>
+                                    <td>
+                                        <a href="{{ route('dash.pages.edit', $page->id) }}" title="{{ $page->name }}">
+                                            {{ $page->name }}
+                                            @if(getOption('homepage_id') == $page->id)
+                                                <span class="badge badge-black d-inline-block mx-2">{{ __('Homepage') }}</span>
+                                            @endif
+                                        </a>
+                                    </td>
                                     <td>{{ date('M d, Y', strtotime($page->created_at)) . ' at ' . date('H:i:s', strtotime($page->created_at)) }}</td>
                                     <td>{{ $page->getAuthor()->name }}</td>
                                 </tr>
@@ -73,7 +80,7 @@
                             </div>
                         @endif
                     @else
-                        <p>{{ __('No any posts created yet.') }}</p>
+                        <p>{{ __('No any pages created yet.') }}</p>
                     @endif
                 </div>
             </div>
