@@ -69,7 +69,12 @@
                                     <select name="front_theme" id="front_theme" class="form-select form-control">
                                         @if($themes)
                                             @foreach($themes as $theme)
-                                                <option value="{{ $theme }}" @if(getOption('front_theme') == $theme) selected @endif>{{ ucwords(str_replace('-', ' ', $theme)) }}</option>
+                                                <option value="{{ $theme }}" @if(getOption('front_theme') == $theme) selected @endif>
+                                                    {{ ucwords(str_replace('-', ' ', $theme)) }}
+                                                    @if(getOption('front_theme') == $theme)
+                                                        ({{ __('Current Theme') }})
+                                                    @endif
+                                                </option>
                                             @endforeach
                                         @else
                                             <option disabled selected>{{ __('There is no any theme installed') }}</option>
