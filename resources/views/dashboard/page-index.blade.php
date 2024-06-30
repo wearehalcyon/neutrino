@@ -116,7 +116,7 @@
                         <button class="btn btn-primary dropdown-toggle btn-round" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span>+</span></button>
                         <ul class="dropdown-menu" role="menu" style="">
                             <li>
-                                <a class="dropdown-item" href="{{ route('dash.posts') }}">{{ __('View All Comments') }}</a>
+                                <a class="dropdown-item" href="#">{{ __('View All Comments') }}</a>
                             </li>
                         </ul>
 
@@ -161,6 +161,51 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('dash.categories') }}">{{ __('View All Categories') }}</a>
                                 <a class="dropdown-item" href="{{ route('dash.categories.add') }}">{{ __('Create Category') }}</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Pages') }}</div>
+                </div>
+                <div class="card-body">
+                    @if($posts->isNotEmpty())
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">{{ __('Title') }}</th>
+                                <th scope="col">{{ __('Date') }}</th>
+                                <th scope="col" style="text-align: center;">{{ __('Open') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td><a href="" title="{{ $post->name }}">{{ $post->name }}</a></td>
+                                    <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i', strtotime($post->created_at)) }}</td>
+                                    <td style="text-align: center;"><a href="#" title="{{ __('Open Post To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p>{{ __('There is no any posts created yet.') }}</p>
+                    @endif
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <span>{{ 'Total posts: ' . $posts->total() }}</span>
+                    <div class="btn-group dropdown">
+                        <button class="btn btn-primary dropdown-toggle btn-round" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span>+</span></button>
+                        <ul class="dropdown-menu" role="menu" style="">
+                            <li>
+                                <a class="dropdown-item" href="#">{{ __('View All Pages') }}</a>
+                                {{--                                <div class="dropdown-divider"></div>--}}
+                                <a class="dropdown-item" href="#">{{ __('Create Page') }}</a>
                             </li>
                         </ul>
 
