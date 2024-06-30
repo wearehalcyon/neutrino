@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-action mb-4">
-        <a href="{{ route('dash.users.edit-account.add') }}" class="btn btn-primary">{{ __('Add User') }}</a>
+        <a href="{{ route('dash.users.add') }}" class="btn btn-primary">{{ __('Add User') }}</a>
     </div>
 
     <div class="row">

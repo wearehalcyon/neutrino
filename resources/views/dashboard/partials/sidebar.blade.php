@@ -89,7 +89,7 @@
                             <p>{{ __('Media Files') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account', 'dash.users.edit-account.add'])){{ 'active' }}@endif">
+                    <li class="nav-item @if(in_array($routeName, ['dash.users', 'dash.users.edit', 'dash.users.edit-account', 'dash.users.add'])){{ 'active' }}@endif">
                         <a href="{{ route('dash.users') }}">
                             <i class="fas fa-user-friends"></i>
                             <p>{{ __('Users') }}</p>
