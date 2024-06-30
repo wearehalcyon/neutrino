@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,9 @@ class SiteSettingsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-site-settings', compact('routeName'));
+        $pages = Page::orderBy('name', 'ASC')->get();
+
+        return view('dashboard.page-site-settings', compact('routeName', 'pages'));
     }
 
     public function update(Request $request)
