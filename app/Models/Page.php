@@ -16,8 +16,7 @@ class Page extends Model
         'status',
         'content',
         'delayed_date',
-        'thumbnail',
-        'thumbnail_file'
+        'template'
     ];
 
     public function getAuthor()

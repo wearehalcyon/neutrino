@@ -118,7 +118,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-check form-switch p-0">
-                        <label for="homepage_id"><strong>Make this page as Homepage</strong></label>
+                        <label for="homepage_id"><strong>{{ __('Make This Page As Homepage') }}</strong></label>
                         <br>
                         @if(!getOption('homepage_id'))
                             <input id="homepage_id" class="form-check-input" type="checkbox" name="homepage_id" style="cursor: pointer;">

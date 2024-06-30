@@ -46,6 +46,7 @@ class PageController extends Controller
             'status' => $request->status,
             'content' => $request->content,
             'delayed_date' => $request->delayed_date,
+            'template' => $request->template,
         ]);
 
         // Set Homepage
@@ -103,7 +104,18 @@ class PageController extends Controller
             $delay = null;
         }
 
-        return view('dashboard.page-pages-edit', compact('routeName', 'page', 'users', 'delay'));
+        // Get site front themes
+        $frontTheme = getOption('front_theme');
+        $directory = resource_path('views/front/' . $frontTheme . '/templates');
+        $items = scandir($directory);
+        $templates = [];
+        foreach ($items as $item) {
+            if ($item !== '.' && $item !== '..' && is_file($directory . '/' . $item)) {
+                $templates[] = str_replace(['page-', '.blade', '.php'], '', $item);
+            }
+        }
+
+        return view('dashboard.page-pages-edit', compact('routeName', 'page', 'users', 'delay', 'templates'));
     }
 
     public function editSave(Request $request, $id)
@@ -118,6 +130,7 @@ class PageController extends Controller
         $page->content = $request->content;
         $page->status = $request->status;
         $page->delayed_date = $request->delayed_date;
+        $page->template = $request->template;
         $page->save();
 
         // Set Homepage

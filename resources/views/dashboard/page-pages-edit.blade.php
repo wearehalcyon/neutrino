@@ -121,7 +121,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-check form-switch p-0">
-                        <label for="homepage_id"><strong>Make this page as Homepage</strong></label>
+                        <label for="homepage_id"><strong>{{ __('Make This Page As Homepage') }}</strong></label>
                         <br>
                         @if(!getOption('homepage_id') || getOption('homepage_id') == $page->id)
                             <input id="homepage_id" class="form-check-input" type="checkbox" name="homepage_id" style="cursor: pointer;" @if(getOption('homepage_id') == $page->id) checked @endif>
@@ -135,8 +135,14 @@
                             </div>
                         @endif
                     </div>
-                    <div class="form-check form-switch p-0">
-                        <label for="page_template"><strong>Make this page as Homepage</strong></label>
+                    <div class="form-group px-0">
+                        <label for="template"><strong>{{ __('Page Template') }}</strong></label>
+                        <select name="template" id="template" class="form-select form-control">
+                            <option value="default">Default</option>
+                            @foreach($templates as $template)
+                                <option value="{{ $template }}">{{ ucwords(str_replace('-', ' ', $template)) }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
