@@ -42,14 +42,13 @@ class SiteSettingsController extends Controller
                 'option_value' => $request->site_name,
             ]);
         } else {
+            $sitename = Setting::where('option_name', 'site_name')->first();
             if (isset($request->site_name)) {
-                $debugBar = Setting::where('option_name', 'site_name')->first();
-                $debugBar->option_value = $request->site_name;
-                $debugBar->save();
+                $sitename->option_value = $request->site_name;
+                $sitename->save();
             } else {
-                $debugBar = Setting::where('option_name', 'site_name')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $sitename->option_value = null;
+                $sitename->save();
             }
         }
 
@@ -60,14 +59,13 @@ class SiteSettingsController extends Controller
                 'option_value' => $request->site_url,
             ]);
         } else {
+            $siteurl = Setting::where('option_name', 'site_url')->first();
             if (isset($request->site_url)) {
-                $debugBar = Setting::where('option_name', 'site_url')->first();
-                $debugBar->option_value = $request->site_url;
-                $debugBar->save();
+                $siteurl->option_value = $request->site_url;
+                $siteurl->save();
             } else {
-                $debugBar = Setting::where('option_name', 'site_url')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $siteurl->option_value = null;
+                $siteurl->save();
             }
         }
 
@@ -78,14 +76,13 @@ class SiteSettingsController extends Controller
                 'option_value' => $request->site_description,
             ]);
         } else {
+            $sitedesc = Setting::where('option_name', 'site_description')->first();
             if (isset($request->site_description)) {
-                $debugBar = Setting::where('option_name', 'site_description')->first();
-                $debugBar->option_value = $request->site_description;
-                $debugBar->save();
+                $sitedesc->option_value = $request->site_description;
+                $sitedesc->save();
             } else {
-                $debugBar = Setting::where('option_name', 'site_description')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $sitedesc->option_value = null;
+                $sitedesc->save();
             }
         }
 
@@ -96,14 +93,13 @@ class SiteSettingsController extends Controller
                 'option_value' => $request->posts_per_page,
             ]);
         } else {
+            $postsperpage = Setting::where('option_name', 'posts_per_page')->first();
             if (isset($request->posts_per_page)) {
-                $debugBar = Setting::where('option_name', 'posts_per_page')->first();
-                $debugBar->option_value = $request->posts_per_page;
-                $debugBar->save();
+                $postsperpage->option_value = $request->posts_per_page;
+                $postsperpage->save();
             } else {
-                $debugBar = Setting::where('option_name', 'posts_per_page')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $postsperpage->option_value = null;
+                $postsperpage->save();
             }
         }
 
@@ -126,17 +122,19 @@ class SiteSettingsController extends Controller
         }
 
         // Set Homepage
-        if (!getOption('front_theme')) {
+        $sethomepage = Setting::where('option_name', 'homepage_id')->first();
+        if (!$sethomepage) {
             Setting::create([
                 'option_name' => 'homepage_id',
                 'option_value' => $request->homepage_id,
             ]);
         } else {
             if (isset($request->homepage_id)) {
-                $debugBar = Setting::where('option_name', 'homepage_id')->first();
-                $debugBar->option_value = $request->homepage_id;
-                $debugBar->save();
+                $sethomepage->option_value = $request->homepage_id;
+            } else {
+                $sethomepage->option_value = null;
             }
+            $sethomepage->save();
         }
 
         // Set front theme
@@ -147,65 +145,60 @@ class SiteSettingsController extends Controller
             ]);
         } else {
             if (isset($request->front_theme)) {
-                $debugBar = Setting::where('option_name', 'front_theme')->first();
-                $debugBar->option_value = $request->front_theme;
-                $debugBar->save();
+                $fronttheme = Setting::where('option_name', 'front_theme')->first();
+                $fronttheme->option_value = $request->front_theme;
+                $fronttheme->save();
             }
         }
 
         // Blog Base
-        if (!getOption('blog_base')) {
+        $blogbase = Setting::where('option_name', 'blog_base')->first();
+        if (!$blogbase) {
             Setting::create([
                 'option_name' => 'blog_base',
                 'option_value' => $request->blog_base,
             ]);
         } else {
-            if (isset($request->site_name)) {
-                $debugBar = Setting::where('option_name', 'blog_base')->first();
-                $debugBar->option_value = $request->blog_base;
-                $debugBar->save();
+            if (isset($request->blog_base)) {
+                $blogbase->option_value = $request->blog_base;
             } else {
-                $debugBar = Setting::where('option_name', 'blog_base')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $blogbase->option_value = null;
             }
+            $blogbase->save();
         }
 
         // Category Base
-        if (!getOption('category_base')) {
+        $category = Setting::where('option_name', 'category_base')->first();
+        if (!$category) {
             Setting::create([
                 'option_name' => 'category_base',
                 'option_value' => $request->category_base,
             ]);
         } else {
-            if (isset($request->site_name)) {
-                $debugBar = Setting::where('option_name', 'category_base')->first();
-                $debugBar->option_value = $request->category_base;
-                $debugBar->save();
+            if (isset($request->category_base)) {
+                $category->option_value = $request->category_base;
             } else {
-                $debugBar = Setting::where('option_name', 'category_base')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $category->option_value = null;
             }
+            $category->save();
         }
 
         // Tag Base
-        if (!getOption('tag_base')) {
+        $tagbase = Setting::where('option_name', 'tag_base')->first();
+        if (!$tagbase) {
             Setting::create([
                 'option_name' => 'tag_base',
                 'option_value' => $request->tag_base,
             ]);
         } else {
-            if (isset($request->site_name)) {
-                $debugBar = Setting::where('option_name', 'tag_base')->first();
-                $debugBar->option_value = $request->tag_base;
-                $debugBar->save();
+            if (isset($request->tag_base)) {
+                $tagbase->option_value = $request->tag_base;
             } else {
-                $debugBar = Setting::where('option_name', 'tag_base')->first();
-                $debugBar->option_value = null;
-                $debugBar->save();
+                $tagbase->option_value = null;
             }
+            $tagbase->save();
         }
+
 
         // Mailer Type
 //        if (isset($request->mailer_type)) {

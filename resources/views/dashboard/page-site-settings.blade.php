@@ -93,11 +93,11 @@
                                     <label for="tag_base"><strong>{{ __('Tag Base') }}</strong></label>
                                     <input type="text" name="tag_base" class="form-control" id="tag_base" placeholder="blog/tag" value="{{ getOption('tag_base') }}">
                                 </div>
-{{--                                <div class="form-check form-switch">--}}
-{{--                                    <label for="debugbar"><strong>{{ __('Enable Debug Bar') }}</strong></label>--}}
-{{--                                    <br>--}}
-{{--                                    <input id="debugbar" class="form-check-input" type="checkbox" name="debug_bar" style="cursor: pointer;" @if(getOption('debug_bar') == 1) checked @endif>--}}
-{{--                                </div>--}}
+                                <div class="form-check form-switch">
+                                    <label for="debugbar"><strong>{{ __('Enable Debug Bar') }}</strong></label>
+                                    <br>
+                                    <input id="debugbar" class="form-check-input" type="checkbox" name="debug_bar" style="cursor: pointer;" @if(getOption('debug_bar') == 1) checked @endif>
+                                </div>
 {{--                                <div class="form-group mt-4">--}}
 {{--                                    <label for="mailer_type"><strong>{{ __('Mailer Type') }}</strong></label>--}}
 {{--                                    <select name="mailer_type" id="mailer_type" class="form-select form-control">--}}
