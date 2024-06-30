@@ -64,6 +64,18 @@
                                         @endif
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="front_theme"><strong>{{ __('Set Front Theme') }}</strong></label>
+                                    <select name="front_theme" id="front_theme" class="form-select form-control">
+                                        @if($themes)
+                                            @foreach($themes as $theme)
+                                                <option value="{{ $theme }}" @if(getOption('front_theme') == $theme) selected @endif>{{ ucwords(str_replace('-', ' ', $theme)) }}</option>
+                                            @endforeach
+                                        @else
+                                            <option disabled selected>{{ __('There is no any theme installed') }}</option>
+                                        @endif
+                                    </select>
+                                </div>
 {{--                                <div class="form-check form-switch">--}}
 {{--                                    <label for="debugbar"><strong>{{ __('Enable Debug Bar') }}</strong></label>--}}
 {{--                                    <br>--}}

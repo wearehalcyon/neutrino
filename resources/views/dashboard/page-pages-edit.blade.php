@@ -117,7 +117,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">{{ __('Homepage') }}</div>
+                    <div class="card-title">{{ __('Page Attributes') }}</div>
                 </div>
                 <div class="card-body">
                     <div class="form-check form-switch p-0">
@@ -134,6 +134,9 @@
                                 {!! __('This page can\'t be set as the Homepage because a different page is currently selected. <a href="' . route('dash.pages.edit', getOption('homepage_id')) . '" title="Edit The Homepage">Edit The Hompage</a>.') !!}
                             </div>
                         @endif
+                    </div>
+                    <div class="form-check form-switch p-0">
+                        <label for="page_template"><strong>Make this page as Homepage</strong></label>
                     </div>
                 </div>
             </div>
