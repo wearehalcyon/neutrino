@@ -153,6 +153,60 @@ class SiteSettingsController extends Controller
             }
         }
 
+        // Blog Base
+        if (!getOption('blog_base')) {
+            Setting::create([
+                'option_name' => 'blog_base',
+                'option_value' => $request->blog_base,
+            ]);
+        } else {
+            if (isset($request->site_name)) {
+                $debugBar = Setting::where('option_name', 'blog_base')->first();
+                $debugBar->option_value = $request->blog_base;
+                $debugBar->save();
+            } else {
+                $debugBar = Setting::where('option_name', 'blog_base')->first();
+                $debugBar->option_value = null;
+                $debugBar->save();
+            }
+        }
+
+        // Category Base
+        if (!getOption('category_base')) {
+            Setting::create([
+                'option_name' => 'category_base',
+                'option_value' => $request->category_base,
+            ]);
+        } else {
+            if (isset($request->site_name)) {
+                $debugBar = Setting::where('option_name', 'category_base')->first();
+                $debugBar->option_value = $request->category_base;
+                $debugBar->save();
+            } else {
+                $debugBar = Setting::where('option_name', 'category_base')->first();
+                $debugBar->option_value = null;
+                $debugBar->save();
+            }
+        }
+
+        // Tag Base
+        if (!getOption('tag_base')) {
+            Setting::create([
+                'option_name' => 'tag_base',
+                'option_value' => $request->tag_base,
+            ]);
+        } else {
+            if (isset($request->site_name)) {
+                $debugBar = Setting::where('option_name', 'tag_base')->first();
+                $debugBar->option_value = $request->tag_base;
+                $debugBar->save();
+            } else {
+                $debugBar = Setting::where('option_name', 'tag_base')->first();
+                $debugBar->option_value = null;
+                $debugBar->save();
+            }
+        }
+
         // Mailer Type
 //        if (isset($request->mailer_type)) {
 //            $debugBar = Setting::where('option_name', 'mailer_type')->first();

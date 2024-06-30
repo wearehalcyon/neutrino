@@ -81,6 +81,18 @@
                                         @endif
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="blog_base"><strong>{{ __('Blog Base') }}</strong></label>
+                                    <input type="text" name="blog_base" class="form-control" id="blog_base" placeholder="blog" value="{{ getOption('blog_base') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category_base"><strong>{{ __('Category Base') }}</strong></label>
+                                    <input type="text" name="category_base" class="form-control" id="category_base" placeholder="blog/category" value="{{ getOption('category_base') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tag_base"><strong>{{ __('Tag Base') }}</strong></label>
+                                    <input type="text" name="tag_base" class="form-control" id="tag_base" placeholder="blog/tag" value="{{ getOption('tag_base') }}">
+                                </div>
 {{--                                <div class="form-check form-switch">--}}
 {{--                                    <label for="debugbar"><strong>{{ __('Enable Debug Bar') }}</strong></label>--}}
 {{--                                    <br>--}}
