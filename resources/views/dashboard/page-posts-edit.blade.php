@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.posts.add.save') }}" method="post">
+    <form class="row" action="{{ route('dash.posts.edit.save', $post->id) }}" method="post">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
@@ -139,14 +139,14 @@
                 <div class="card-body">
                     <div class="post-thumbnail-preview">
                         @if($post->thumbnail)
-                            <img src="{{ asset('uploads/' . $post->thumbnail) }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
+                            <img src="{{ asset($post->thumbnail) }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
                         @else
                             <img src="{{ asset('assets/images/no-thumbnail.jpg') }}" alt="{{ __('Post Thumbnail Preview') }}" class="thumbnail-img" data-src="{{ asset('assets/images/no-thumbnail.jpg') }}">
                         @endif
                     </div>
                     <div class="form-group px-0 mt-3">
                         <input id="thumbnail-uploader" class="form-control form-control-sm" accept="image/png, image/jpeg, image/jpg" type="file" @if($post->thumbnail) style="display: none;" @endif>
-                        <input id="thumbnail-input" type="hidden" name="thumbnail" value="">
+                        <input id="thumbnail-input" type="hidden" name="thumbnail" value="{{ $post->thumbnail }}">
                         <div class="remove-thumbnail" @if(!$post->thumbnail) style="display: none;" @endif>
                             <a href="javascript:;" class="link-danger" title="{{ __('Remove Thumbnail') }}">{{ __('Remove Thumbnail') }}</a>
                         </div>

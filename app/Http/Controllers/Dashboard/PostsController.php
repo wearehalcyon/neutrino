@@ -60,7 +60,7 @@ class PostsController extends Controller
             'status' => $request->status,
             'content' => $request->content,
         ]);
-        $post->thumbnail = Auth::id() . '/' . $thumbID . '_' . $request->thumbnail;
+        $post->thumbnail = 'uploads/' . $post->id . '/' . $thumbID . '_' . $request->thumbnail;
         $post->save();
 
         if ($request->category_id) {
@@ -76,7 +76,7 @@ class PostsController extends Controller
         if ($request->hasFile('thumbnail_file')) {
             $file = $request->file('thumbnail_file');
             $fileName = $thumbID . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/' . Auth::id()), $fileName);
+            $file->move(public_path('uploads/' . $post->id), $fileName);
         }
 
         return redirect()->route('dash.posts.edit', $post->id)->with('success', __('Post was created successfully!'));
@@ -101,7 +101,10 @@ class PostsController extends Controller
         return view('dashboard.page-posts-edit', compact('routeName', 'categories', 'users', 'post', 'delay'));
     }
 
-
+    public function editSave(Request $request, $id)
+    {
+        dd($request);
+    }
 
     public function delete($id)
     {
