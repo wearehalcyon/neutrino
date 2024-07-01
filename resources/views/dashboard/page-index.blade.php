@@ -18,6 +18,8 @@
             border-radius: 8px;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.1.11.2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endsection
 
 @section('content')
@@ -303,8 +305,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Media Files') }}</div>
+                </div>
+                <div class="card-body">
+                    <div id="fm" style="height: 450px;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('footer-scripts')
+    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 @endsection
