@@ -1,0 +1,9 @@
+{
+    "name": "ID Core Theme",
+    "author": "INTAKE Digital",
+    "authorUri": "https://intakedigital.net",
+    "themeUri": "https://intakedigital.net/id-engine/themes/id-core-theme",
+    "description": "This is base ID Engine theme powered by INTAKE Digital. You can learn how it works and build. Enjoy!",
+    "version": "1.0.1",
+    "license": "MIT"
+}

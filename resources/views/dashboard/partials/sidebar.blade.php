@@ -115,6 +115,22 @@
                     <h4 class="text-section">{{ __('Tools') }}</h4>
                 </li>
                 @if(hideAccess([3,4,5]))
+                    <li class="nav-item @if(in_array($routeName, ['dash.themes'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#appearance" class="@if(in_array($routeName, ['dash.themes'])){{ __('active') }}@endif" aria-expanded="false">
+                            <i class="fas fa-paint-brush"></i>
+                            <p>{{ __('Appearance') }}</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse @if(in_array($routeName, ['dash.themes'])){{ __('show') }}@endif" id="appearance">
+                            <ul class="nav nav-collapse">
+                                <li class="@if(in_array($routeName, ['dash.themes'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.themes') }}">
+                                        <span class="sub-item">{{ __('Themes') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item @if($routeName == 'dash.site-settings'){{ 'active' }}@endif">
                         <a href="{{ route('dash.site-settings') }}">
                             <i class="fas fa-cog"></i>
@@ -122,14 +138,14 @@
                         </a>
                     </li>
                 @endif
-                <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
+                <li class="nav-item @if($routeName == 'help'){{ 'active' }}@endif">
                     <a href="{{ route('dash') }}">
                         <i class="fas fa-info-circle"></i>
                         <p>{{ __('Help') }}</p>
                     </a>
                 </li>
                 @if(hideAccess([2,3,4,5]))
-                    <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
+                    <li class="nav-item @if($routeName == 'zen'){{ 'active' }}@endif">
                         <a href="{{ route('dash') }}">
                             <i class="fas fa-puzzle-piece"></i>
                             <p>{{ __('ZEN Tools') }}</p>
