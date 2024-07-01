@@ -105,7 +105,7 @@
                     </div>
                     <button type="submit" class="btn btn-success mt-2">{{ __('Update') }}</button>
                     @if(getOption('homepage_id') != $page->id)
-                        <a href="{{ route('dash.posts.delete', $page->id) }}" class="btn btn-danger delete d-inline-block mt-2" title="{{ __('Delete') }}">{{ __('Delete') }}</a>
+                        <a href="{{ route('dash.pages.delete', $page->id) }}" class="btn btn-danger delete d-inline-block mt-2" title="{{ __('Delete') }}">{{ __('Delete') }}</a>
                     @endif
                 </div>
             </div>

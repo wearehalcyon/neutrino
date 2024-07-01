@@ -76,8 +76,11 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::post('/pages/add', [App\Http\Controllers\Dashboard\PageController::class, 'addSave'])->name('dash.pages.add.save');
     Route::get('/pages/edit/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'edit'])->name('dash.pages.edit');
     Route::post('/pages/edit/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'editSave'])->name('dash.pages.edit.save');
+    Route::post('/pages/delete/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'editSave'])->name('dash.pages.delete');
     // File Manager
     Route::get('/filemanager', [App\Http\Controllers\Dashboard\FilemanagerController::class, 'index'])->name('dash.fm');
+    //Comments
+    Route::get('/comments', [App\Http\Controllers\Dashboard\CommentController::class, 'index'])->name('dash.comments');
 });
 
 // Front

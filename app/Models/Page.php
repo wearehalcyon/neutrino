@@ -15,7 +15,6 @@ class Page extends Model
         'author_id',
         'status',
         'content',
-        'delayed_date',
         'template'
     ];
 

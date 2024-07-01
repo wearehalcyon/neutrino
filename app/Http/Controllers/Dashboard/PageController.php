@@ -56,7 +56,6 @@ class PageController extends Controller
             'author_id' => $request->author_id,
             'status' => $request->status,
             'content' => $request->content,
-            'delayed_date' => $request->delayed_date,
             'template' => $request->template,
         ]);
 
@@ -140,26 +139,23 @@ class PageController extends Controller
         $page->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
         $page->content = $request->content;
         $page->status = $request->status;
-        $page->delayed_date = $request->delayed_date;
         $page->template = $request->template;
         $page->save();
 
         // Set Homepage
         $homepage = Setting::where('option_name', 'homepage_id')->first();
-
-        if ($request->homepage_id) {
-            if ($homepage) {
-                $homepage->option_value = $request->homepage_id;
-            } else {
-                Setting::create([
-                    'option_name' => 'homepage_id',
-                    'option_value' => $page->id
-                ]);
-            }
+        if (!$homepage) {
+            Setting::create([
+                'option_name' => 'homepage_id',
+                'option_value' => $page->id,
+            ]);
         } else {
-            if ($homepage->option_value == $page->id) {
-                $homepage->delete();
+            if (isset($request->homepage_id)) {
+                $homepage->option_value = $page->id;
+            } else {
+                $homepage->option_value = null;
             }
+            $homepage->save();
         }
 
         // Update SEO meta fields
@@ -204,5 +200,12 @@ class PageController extends Controller
         }
 
         return redirect()->back()->with('success', __('Page was updated successfully!'));
+    }
+
+    public function delete($id)
+    {
+        Page::find($id)->delete();
+
+        return redirect()->route('dash.pages')->with('success', __('Page was deleted successfully!'));
     }
 }

@@ -77,6 +77,12 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item @if(in_array($routeName, ['dash.comments'])){{ __('active') }}@endif">
+                        <a href="{{ route('dash.comments') }}">
+                            <i class="fas fa-comment-alt"></i>
+                            <p>{{ __('Comments') }}</p>
+                        </a>
+                    </li>
                     <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">
                         <a href="{{ route('dash') }}">
                             <i class="fas fa-envelope"></i>
