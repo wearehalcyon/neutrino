@@ -58,6 +58,13 @@
             a:hover{
                 filter: brightness(1.5);
             }
+            a.no-filter{
+                background-color: rgba(0,0,0,.05);
+            }
+            a.no-filter:hover{
+                filter: brightness(.6);
+                background-color: rgba(0,0,0,.2);
+            }
         </style>
     </head>
     <body>

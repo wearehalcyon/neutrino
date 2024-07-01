@@ -22,6 +22,11 @@
     >
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li class="nav-item open-homepage">
+                    <a href="{{ route('pages.home') }}" class="nav-link no-filter" title="{{ __('Open Site') }}" target="_blank">
+                        <i class="fas fa-globe"></i> {{ __('Open Site') }}
+                    </a>
+                </li>
                 <li class="nav-item topbar-user dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false" >
                         <div class="avatar-sm">
@@ -44,9 +49,9 @@
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Account Setting</a>
+                                <a class="dropdown-item" href="#">{{ __('Account Setting') }}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item" href="javascript:;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

@@ -40,12 +40,26 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
+                                <th scope="col">{{ __('Author') }}</th>
+                                <th scope="col">{{ __('Comment') }}</th>
+                                <th scope="col">{{ __('Date') }}</th>
+                                <th scope="col">{{ __('Status') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($comments as $comment)
                                 <tr>
                                     <td>{{ $comment->id }}</td>
+                                    <td><a href="{{ route('dash.users.edit', $comment->getAuthor()->id) }}" title="{{ $comment->getAuthor()->name }}">{{ $comment->getAuthor()->name }}</a></td>
+                                    <td>{{ $comment->comment }}</td>
+                                    <td>{{ date('M d, Y', strtotime($comment->created_at)) . ' at ' . date('H:i:s', strtotime($comment->created_at)) }}</td>
+                                    <td>
+                                        @if($comment->status == 1)
+                                            <span class="badge badge-success">{{ __('Published') }}</span>
+                                        @else
+                                            <span class="badge badge-danger">{{ __('Not Published') }}</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

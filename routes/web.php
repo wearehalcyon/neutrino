@@ -83,5 +83,12 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/comments', [App\Http\Controllers\Dashboard\CommentController::class, 'index'])->name('dash.comments');
 });
 
-// Front
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Pages
+Route::prefix('/')->group(function () {
+    Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('pages.home');
+});
+Route::prefix('blog')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/category/{category}', [BlogController::class, 'category'])->name('blog.category');
+    Route::get('/tag/{tag}', [BlogController::class, 'tag'])->name('blog.tag');
+});
