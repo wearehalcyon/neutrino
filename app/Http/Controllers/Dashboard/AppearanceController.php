@@ -36,6 +36,8 @@ class AppearanceController extends Controller
 
     public function themesActivate(Request $request, $theme)
     {
+        restrictAccess([4,5]);
+
         $themeActive = Setting::where('option_name', 'front_theme')->first();
         $themeActive->option_value = $theme;
         $themeActive->save();
@@ -45,6 +47,8 @@ class AppearanceController extends Controller
 
     public function themesDelete(Request $request, $theme)
     {
+        restrictAccess([4,5]);
+
         $directory = resource_path('views\\front\\' . $theme);
 
         if (File::exists($directory)) {
@@ -56,6 +60,8 @@ class AppearanceController extends Controller
 
     public function themesUpload(Request $request)
     {
+        restrictAccess([4,5]);
+
         $request->validate([
             'theme_file' => 'required|file|mimes:zip'
         ]);
@@ -100,5 +106,21 @@ class AppearanceController extends Controller
         }
 
         return redirect()->back()->with('success', __('Theme was uploaded and installed successfully!'))->with('log', $log);
+    }
+
+    public function customize()
+    {
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        return view('dashboard.page-custommize', compact('routeName'));
+    }
+
+    public function customizeSave(Request $request)
+    {
+        restrictAccess([4,5]);
+
+        dd($request);
     }
 }

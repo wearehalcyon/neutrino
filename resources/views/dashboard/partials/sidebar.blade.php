@@ -115,13 +115,13 @@
                     <h4 class="text-section">{{ __('Tools') }}</h4>
                 </li>
                 @if(hideAccess([3,4,5]))
-                    <li class="nav-item @if(in_array($routeName, ['dash.themes'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#appearance" class="@if(in_array($routeName, ['dash.themes'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.themes', 'dash.customize'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#appearance" class="@if(in_array($routeName, ['dash.themes', 'dash.customize'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-paint-brush"></i>
                             <p>{{ __('Appearance') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.themes'])){{ __('show') }}@endif" id="appearance">
+                        <div class="collapse @if(in_array($routeName, ['dash.themes', 'dash.customize'])){{ __('show') }}@endif" id="appearance">
                             <ul class="nav nav-collapse">
                                 <li class="@if(in_array($routeName, ['dash.themes'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.themes') }}">

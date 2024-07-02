@@ -88,6 +88,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::post('/themes/upload', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesUpload'])->name('dash.themes.upload');
     // Site Custommize
     Route::get('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customize'])->name('dash.customize');
+    Route::post('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customizeSave'])->name('dash.customize.save');
 });
 
 // Pages
