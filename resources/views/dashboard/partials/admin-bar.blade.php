@@ -4,8 +4,12 @@
         padding: 0;
     }
     #admin-bar-padding.admin-bar-padding{
-        position: relative;
-        padding-bottom: 32px;
+        position: sticky;
+        width: 100%;
+        height: 32px;
+        top: 0;
+        left: 0;
+        z-index: 999999999999999989;
     }
     #admin-bar.admin-bar{
         font-family: sans-serif;
@@ -177,8 +181,9 @@
             </a>
             <ul class="admin-bar-sub-menu">
                 <li><a href="#">Settings</a></li>
-                <form action="/logout" method="post">
-                    <button type="submit">Logout</button>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit">{{ __('Logout') }}</button>
                 </form>
             </ul>
         </li>
