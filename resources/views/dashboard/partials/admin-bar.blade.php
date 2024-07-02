@@ -1,3 +1,21 @@
+<script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+<script>
+    WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+            families: [
+                "Font Awesome 5 Solid",
+                "Font Awesome 5 Regular",
+                "Font Awesome 5 Brands",
+                "simple-line-icons",
+            ],
+            urls: ["{{ asset('assets/css/fonts.min.css') }}"],
+        },
+        active: function () {
+            sessionStorage.fonts = true;
+        },
+    });
+</script>
 <style>
     *{
         margin: 0;
@@ -25,7 +43,6 @@
         left: 0;
         width: 100%;
         height: auto;
-        margin-bottom: 100px;
         z-index: 999999999999999999;
     }
     #admin-bar.admin-bar .admin-bar-nav{
@@ -43,7 +60,7 @@
     #admin-bar.admin-bar .admin-bar-nav li a{
         display: inline-block;
         color: #b9babf;
-        padding: 6px 5px;
+        padding: 5px;
         text-decoration: none;
         font-size: 13px;
         border-radius: 4px;
@@ -122,6 +139,7 @@
         </li>
         <li>
             <a href="javascript:;">
+                <i class="fas fa-paint-brush"></i>
                 <span>Appearance</span>
             </a>
             <ul class="admin-bar-sub-menu">
@@ -131,6 +149,7 @@
         </li>
         <li>
             <a href="javascript:;">
+                <i class="fas fa-file-alt"></i>
                 <span>Blog</span>
             </a>
             <ul class="admin-bar-sub-menu">
@@ -142,6 +161,7 @@
         </li>
         <li>
             <a href="javascript:;">
+                <i class="fas fa-file"></i>
                 <span>Pages</span>
             </a>
             <ul class="admin-bar-sub-menu">
@@ -151,6 +171,7 @@
         </li>
         <li>
             <a href="javascript:;">
+                <i class="fas fa-bars"></i>
                 <span>Menus</span>
             </a>
             <ul class="admin-bar-sub-menu">
@@ -160,6 +181,7 @@
         </li>
         <li>
             <a href="javascript:;">
+                <i class="fas fa-comment-alt"></i>
                 <span>Comments</span>
             </a>
             <ul class="admin-bar-sub-menu">
@@ -168,11 +190,12 @@
         </li>
         <span style="margin-left: 5px;">|</span>
         <li>
-            <a href="/id-admin/posts/add"><span>Add New Post</span></a>
+            <a href="/id-admin/posts/add"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Post</span></a>
         </li>
         <li>
-            <a href="/id-admin/pages/add"><span>Add New Page</span></a>
+            <a href="/id-admin/pages/add"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Page</span></a>
         </li>
+        <span style="margin-left: 5px;">|</span>
     </ul>
     <ul class="admin-bar-nav right-nav">
         <li>
