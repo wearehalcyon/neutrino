@@ -9,8 +9,14 @@ class AdminBarMiddleware
 {
     public function handle($request, Closure $next)
     {
-        view()->share('showAdminBar', true);
+        $response = $next($request);
 
-        return $next($request);
+        if ($response->isSuccessful() && Auth::check() && Auth::user()->is_admin) {
+            $content = $response->getContent();
+            $adminBarHtml = view('dashboard.partials.admin-bar')->render();
+            $response->setContent($content . $adminBarHtml);
+        }
+
+        return $response;
     }
 }
