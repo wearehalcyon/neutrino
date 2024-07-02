@@ -11,7 +11,7 @@ class AdminBarMiddleware
     {
         $response = $next($request);
 
-        if ($response->isSuccessful() && Auth::check() && Auth::user()->is_admin) {
+        if ($response->isSuccessful() && Auth::check()) {
             $content = $response->getContent();
             $adminBarHtml = view('dashboard.partials.admin-bar')->render();
             $response->setContent($content . $adminBarHtml);

@@ -65,6 +65,9 @@
                 filter: brightness(1);
                 background-color: rgba(0,0,0,.2);
             }
+            .sidebar .logo-header{
+                padding-top: 55px;
+            }
         </style>
     </head>
     <body>
