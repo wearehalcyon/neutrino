@@ -15,7 +15,11 @@ class HomeController extends Controller
         $homepageID = Setting::where('option_name', 'homepage_id')->first();
         $homepage = Page::find($homepageID->option_value);
         $template = $homepage->template;
-        $theme = 'front.' . $theme->option_value . '.templates.page-' . $template;
+        if ($template == 'default') {
+            $theme = 'front.' . $theme->option_value . '.index';
+        } else {
+            $theme = 'front.' . $theme->option_value . '.templates.page-' . $template;
+        }
 
         return view($theme, [
             'page' => $homepage
