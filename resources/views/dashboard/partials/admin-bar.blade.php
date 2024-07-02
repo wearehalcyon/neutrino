@@ -200,7 +200,8 @@
     <ul class="admin-bar-nav right-nav">
         <li>
             <a href="javascript:;">
-                <span>My Account</span>
+                <i class="fas fa-user-friends"></i>
+                <span>{{ __('Howdy, ') . Auth::user()->name . '!' }}</span>
             </a>
             <ul class="admin-bar-sub-menu">
                 <li><a href="{{ route('dash.users.edit', Auth::id()) }}">Settings</a></li>
