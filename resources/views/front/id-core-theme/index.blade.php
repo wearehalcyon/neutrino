@@ -8,6 +8,6 @@
     <title>{{ getOption('site_name') }}</title>
 </head>
 <body>
-
+    123
 </body>
 </html>

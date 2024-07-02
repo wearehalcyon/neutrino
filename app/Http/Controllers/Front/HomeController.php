@@ -21,8 +21,6 @@ class HomeController extends Controller
             $theme = 'front.' . $theme->option_value . '.templates.page-' . $template;
         }
 
-        return view($theme, [
-            'page' => $homepage
-        ]);
+        return view($theme, compact('homepage'));
     }
 }

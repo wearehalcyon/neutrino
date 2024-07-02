@@ -1,4 +1,8 @@
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
     #admin-bar-padding.admin-bar-padding{
         position: relative;
         padding-bottom: 32px;
@@ -82,6 +86,29 @@
         color: #fff;
         filter: brightness(1);
     }
+    #admin-bar.admin-bar .admin-bar-nav.right-nav li .admin-bar-sub-menu{
+        left: auto;
+        right: 0;
+    }
+    #admin-bar.admin-bar .admin-bar-nav.right-nav li .admin-bar-sub-menu form button{
+        display: block;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        font-weight: 300;
+        background: transparent;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 4px;
+        margin: 0;
+        text-align: left;
+        text-shadow: 0 0 15px #000, 0 0 5px rgba(0,0,0,.5);
+    }
+    #admin-bar.admin-bar .admin-bar-nav.right-nav li .admin-bar-sub-menu form button:hover{
+        background: rgba(255,255,255,.2);
+        color: #fff;
+        filter: brightness(1);
+    }
 </style>
 <div id="admin-bar-padding" class="admin-bar-padding"></div>
 <div id="admin-bar" class="admin-bar">
@@ -148,6 +175,12 @@
             <a href="javascript:;">
                 <span>My Account</span>
             </a>
+            <ul class="admin-bar-sub-menu">
+                <li><a href="#">Settings</a></li>
+                <form action="/logout" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </ul>
         </li>
     </ul>
 </div>

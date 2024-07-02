@@ -9,9 +9,7 @@ class AdminBarMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
-            require_once resource_path('views/dashboard/partials/admin-bar.php');
-        }
+        view()->share('showAdminBar', true);
 
         return $next($request);
     }
