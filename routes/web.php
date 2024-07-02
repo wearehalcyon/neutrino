@@ -83,6 +83,9 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/comments', [App\Http\Controllers\Dashboard\CommentController::class, 'index'])->name('dash.comments');
     // Appearance
     Route::get('/themes', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themes'])->name('dash.themes');
+    Route::post('/themes/activate/{theme}', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesActivate'])->name('dash.themes.activate');
+    Route::post('/themes/delete/{theme}', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesDelete'])->name('dash.themes.delete');
+    Route::post('/themes/upload', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesUpload'])->name('dash.themes.upload');
 });
 
 // Pages

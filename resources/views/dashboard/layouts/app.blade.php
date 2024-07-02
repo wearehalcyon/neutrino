@@ -62,7 +62,7 @@
                 background-color: rgba(0,0,0,.05);
             }
             a.no-filter:hover{
-                filter: brightness(.6);
+                filter: brightness(1);
                 background-color: rgba(0,0,0,.2);
             }
         </style>
