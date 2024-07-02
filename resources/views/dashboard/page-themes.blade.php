@@ -45,7 +45,7 @@
             border-radius: 10px;
         }
         .theme-info-full .window-content.show{
-            display: flex;d int
+            display: flex;
         }
         .theme-info-full .window-content .column{
             width: 50%;
