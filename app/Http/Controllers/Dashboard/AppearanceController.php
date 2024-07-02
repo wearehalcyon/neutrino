@@ -121,6 +121,79 @@ class AppearanceController extends Controller
     {
         restrictAccess([4,5]);
 
-        dd($request);
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg',
+        ]);
+
+        // Upload Site Logo
+        $siteOption = Setting::where('option_name', 'site_logo')->first();
+        if ($request->hasFile('site_logo')) {
+            $file = $request->file('site_logo');
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('uploads/identity/'), $fileName);
+
+            if (!$siteOption) {
+                Setting::create([
+                    'option_name' => 'site_logo',
+                    'option_value' => 'identity/' . $fileName,
+                ]);
+            } else {
+                if (isset($request->site_logo)) {
+                    $siteOption->option_value = 'identity/' . $fileName;
+                    $siteOption->save();
+                }
+            }
+        }
+        if ($request->remove_logo == 1) {
+            $siteOption->delete();
+        }
+
+        // Upload Header Image
+        $siteOptionHI = Setting::where('option_name', 'header_image')->first();
+        if ($request->hasFile('header_image')) {
+            $file = $request->file('header_image');
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('uploads/identity/'), $fileName);
+
+            if (!$siteOptionHI) {
+                Setting::create([
+                    'option_name' => 'header_image',
+                    'option_value' => 'identity/' . $fileName,
+                ]);
+            } else {
+                if (isset($request->header_image)) {
+                    $siteOptionHI->option_value = 'identity/' . $fileName;
+                    $siteOptionHI->save();
+                }
+            }
+        }
+        if ($request->remove_header_image == 1) {
+            $siteOptionHI->delete();
+        }
+
+        // Upload Favicon
+        $siteOptionFav = Setting::where('option_name', 'favicon')->first();
+        if ($request->hasFile('favicon')) {
+            $file = $request->file('favicon');
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('uploads/identity/'), $fileName);
+
+            if (!$siteOptionFav) {
+                Setting::create([
+                    'option_name' => 'favicon',
+                    'option_value' => 'identity/' . $fileName,
+                ]);
+            } else {
+                if (isset($request->favicon)) {
+                    $siteOptionFav->option_value = 'identity/' . $fileName;
+                    $siteOptionHI->save();
+                }
+            }
+        }
+        if ($request->remove_favicon == 1) {
+            $siteOptionFav->delete();
+        }
+
+        return redirect()->back()->with('success', __('Site identity was updated successfully!'));
     }
 }
