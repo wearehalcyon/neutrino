@@ -135,7 +135,7 @@
 <div id="admin-bar" class="admin-bar">
     <ul class="admin-bar-nav left-nav">
         <li>
-            <a href="/id-admin"><img src="/assets/images/favicon.png" alt="ID Admin" width="20" height="20"></a>
+            <a href="{{ route('dash') }}"><img src="{{ asset('/assets/images/favicon.png') }}" alt="ID Admin" width="20" height="20"></a>
         </li>
         <li>
             <a href="javascript:;">
@@ -143,7 +143,7 @@
                 <span>Appearance</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="/id-admin/themes">Themes</a></li>
+                <li><a href="{{ route('dash.themes') }}">Themes</a></li>
                 <li><a href="/id-admin/site-identity">Site Identity</a></li>
             </ul>
         </li>
@@ -153,10 +153,10 @@
                 <span>Blog</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="/id-admin/posts">All Posts</a></li>
-                <li><a href="/id-admin/posts/add">Add New Post</a></li>
-                <li><a href="/id-admin/categories">Categories</a></li>
-                <li><a href="/id-admin/tags">Tags</a></li>
+                <li><a href="{{ route('dash.posts') }}">All Posts</a></li>
+                <li><a href="{{ route('dash.posts.add') }}">Add New Post</a></li>
+                <li><a href="{{ route('dash.categories') }}">Categories</a></li>
+                <li><a href="{{ route('dash.tags') }}">Tags</a></li>
             </ul>
         </li>
         <li>
@@ -165,8 +165,8 @@
                 <span>Pages</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="/id-admin/pages">All Pages</a></li>
-                <li><a href="/id-admin/pages/add">Add New Page</a></li>
+                <li><a href="{{ route('dash.pages') }}">All Pages</a></li>
+                <li><a href="{{ route('dash.pages.add') }}">Add New Page</a></li>
             </ul>
         </li>
         <li>
@@ -175,8 +175,8 @@
                 <span>Menus</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="/id-admin/menus">All Menus</a></li>
-                <li><a href="/id-admin/menus/add">Add New Menu</a></li>
+                <li><a href="{{ route('dash.menus') }}">All Menus</a></li>
+                <li><a href="{{ route('dash.menus.add') }}">Add New Menu</a></li>
             </ul>
         </li>
         <li>
@@ -185,15 +185,15 @@
                 <span>Comments</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="/id-admin/comments">All Comments</a></li>
+                <li><a href="{{ route('dash.comments') }}">All Comments</a></li>
             </ul>
         </li>
         <span style="margin-left: 5px;">|</span>
         <li>
-            <a href="/id-admin/posts/add"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Post</span></a>
+            <a href="{{ route('dash.posts.add') }}"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Post</span></a>
         </li>
         <li>
-            <a href="/id-admin/pages/add"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Page</span></a>
+            <a href="{{ route('dash.pages.add') }}"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>Add New Page</span></a>
         </li>
         <span style="margin-left: 5px;">|</span>
     </ul>
@@ -203,7 +203,7 @@
                 <span>My Account</span>
             </a>
             <ul class="admin-bar-sub-menu">
-                <li><a href="#">Settings</a></li>
+                <li><a href="{{ route('dash.users.edit', Auth::id()) }}">Settings</a></li>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit">{{ __('Logout') }}</button>
