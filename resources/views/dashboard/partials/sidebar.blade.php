@@ -128,6 +128,11 @@
                                         <span class="sub-item">{{ __('Themes') }}</span>
                                     </a>
                                 </li>
+                                <li class="@if(in_array($routeName, ['dash.customize'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.customize') }}">
+                                        <span class="sub-item">{{ __('Customize') }}</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
