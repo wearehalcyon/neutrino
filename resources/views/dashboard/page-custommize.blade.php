@@ -55,7 +55,8 @@
             margin: 0 !important;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('assets/css/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/codemirror5/lib/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/codemirror5/theme/monokai.css') }}">
 @endsection
 
 @section('content')
@@ -135,7 +136,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="header_scripts"><strong>{{ __('Header') }}</strong></label>
-                                    <textarea id="header_scripts" name="header_scripts" class="header_scripts" cols="30" rows="10"></textarea>
+                                    <textarea id="header_scripts" name="header_scripts" class="header_scripts codemirror" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -150,8 +151,11 @@
 @endsection
 
 @section('footer-scripts')
-    <script src="{{ asset('assets/js/codemirror.js') }}"></script>
-    <script src="{{ asset('assets/js/codemirror-mode.js') }}"></script>
+    <script src="{{ asset('assets/plugins/codemirror5/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('assets/plugins/codemirror5/mode/xml/xml.js') }}"></script>
+    <script src="{{ asset('assets/plugins/codemirror5/mode/javascript/javascript.js') }}"></script>
+    <script src="{{ asset('assets/plugins/codemirror5/mode/css/css.js') }}"></script>
+    <script src="{{ asset('assets/plugins/codemirror5/mode/htmlmixed/htmlmixed.js') }}"></script>
     <script>
         jQuery(document).ready(function($){
             $('#site_logo').on('change', function() {
@@ -216,18 +220,16 @@
         });
     </script>
     <script>
-        jQuery(document).ready(function($){
-            let code = $('.header_scripts'),
-                editor = CodeMirror.fromTextArea(code, {
+        document.addEventListener("DOMContentLoaded", function() {
+            var codeAreas = document.querySelectorAll('.codemirror');
+            codeAreas.forEach(function(codeArea) {
+                CodeMirror.fromTextArea(codeArea, {
                     lineNumbers: true,
-
+                    mode: 'htmlmixed',
+                    matchBrackets: true,
+                    theme: 'monokai'
                 });
+            });
         });
-        // var codeArea = document.getElementById('header_scripts');
-        // var editor = CodeMirror.fromTextArea(codeArea, {
-        //     lineNumbers: true,
-        //     mode: 'text/html',
-        //     matchBrackets: true
-        // });
     </script>
 @endsection
