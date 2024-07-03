@@ -194,6 +194,38 @@ class AppearanceController extends Controller
             $siteOptionFav->delete();
         }
 
+        // Header Scripts
+        $headScripts = Setting::where('option_name', 'head_scripts')->first();
+        if (!$headScripts) {
+            Setting::create([
+                'option_name' => 'head_scripts',
+                'option_value' => $request->head_scripts,
+            ]);
+        } else {
+            if (isset($request->head_scripts)) {
+                $headScripts->option_value = $request->head_scripts;
+            } else {
+                $headScripts->option_value = null;
+            }
+            $headScripts->save();
+        }
+
+        // Footer Scripts
+        $footerScripts = Setting::where('option_name', 'footer_scripts')->first();
+        if (!$footerScripts) {
+            Setting::create([
+                'option_name' => 'footer_scripts',
+                'option_value' => $request->footer_scripts,
+            ]);
+        } else {
+            if (isset($request->footer_scripts)) {
+                $footerScripts->option_value = $request->footer_scripts;
+            } else {
+                $footerScripts->option_value = null;
+            }
+            $footerScripts->save();
+        }
+
         return redirect()->back()->with('success', __('Site identity was updated successfully!'));
     }
 }

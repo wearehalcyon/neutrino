@@ -135,12 +135,12 @@
                             <h5><strong>{{ __('Site Custom Scripts and Styles') }}</strong></h5>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="header_scripts"><strong>{{ __('Header') }}</strong></label>
-                                    <textarea id="header_scripts" name="header_scripts" class="header_scripts codemirror" cols="30" rows="10"></textarea>
+                                    <label for="head_scripts"><strong>{{ __('Head') }}</strong></label>
+                                    <textarea id="head_scripts" name="head_scripts" class="head_scripts codemirror" cols="30" rows="10">{{ getOption('head_scripts') }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="header_scripts"><strong>{{ __('Footer') }}</strong></label>
-                                    <textarea id="header_scripts" name="header_scripts" class="header_scripts codemirror" cols="30" rows="10"></textarea>
+                                    <label for="footer_scripts"><strong>{{ __('Footer') }}</strong></label>
+                                    <textarea id="footer_scripts" name="footer_scripts" class="footer_scripts codemirror" cols="30" rows="10">{{ getOption('footer_scripts') }}</textarea>
                                 </div>
                             </div>
                         </div>
