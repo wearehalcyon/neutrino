@@ -138,6 +138,10 @@
                                     <label for="header_scripts"><strong>{{ __('Header') }}</strong></label>
                                     <textarea id="header_scripts" name="header_scripts" class="header_scripts codemirror" cols="30" rows="10"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="header_scripts"><strong>{{ __('Footer') }}</strong></label>
+                                    <textarea id="header_scripts" name="header_scripts" class="header_scripts codemirror" cols="30" rows="10"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
