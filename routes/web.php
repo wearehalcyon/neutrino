@@ -81,6 +81,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/filemanager', [App\Http\Controllers\Dashboard\FilemanagerController::class, 'index'])->name('dash.fm');
     //Comments
     Route::get('/comments', [App\Http\Controllers\Dashboard\CommentController::class, 'index'])->name('dash.comments');
+    Route::get('/comments/update/{id}', [App\Http\Controllers\Dashboard\CommentController::class, 'update'])->name('dash.comments.update');
     // Appearance
     Route::get('/themes', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themes'])->name('dash.themes');
     Route::post('/themes/activate/{theme}', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesActivate'])->name('dash.themes.activate');

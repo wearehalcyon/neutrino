@@ -8,6 +8,7 @@
             name="viewport"
         />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+        {{ getHead() }}
         <link
             rel="icon"
             href="{{ asset('assets/favicon/favicon.ico') }}"

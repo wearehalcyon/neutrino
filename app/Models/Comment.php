@@ -21,4 +21,10 @@ class Comment extends Model
         $author = User::find($this->author_id);
         return $author;
     }
+
+    public function getPost()
+    {
+        $post = Post::find($this->post_id);
+        return $post;
+    }
 }

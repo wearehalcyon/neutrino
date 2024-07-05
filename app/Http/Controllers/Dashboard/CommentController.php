@@ -19,4 +19,13 @@ class CommentController extends Controller
 
         return view('dashboard.page-comments', compact('routeName', 'comments'));
     }
+
+    public function update(Request $request,$id)
+    {
+        $comment = Comment::find($id);
+        $comment->status = $request->value;
+        $comment->save();
+
+        return redirect()->back()->with('success', __('Comment was updated successfully.'));
+    }
 }

@@ -69,7 +69,17 @@ if (!function_exists('hideAccess')) {
 if (!function_exists('getHead')) {
     function getHead()
     {
+        $array = [];
+        $settings = Setting::where([
+            'option_name' => 'favicon',
+        ])->get();
+
+        foreach ($settings as $setting) {
+            $array['favicon'] = $setting->option_value;
+        }
+
         echo '<script id="id-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
+        echo '<link id="id-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
         $linkFonts = asset('assets/css/fonts.min.css');
         echo <<<HTML
             <script id="id-base-webfont-inline-script">

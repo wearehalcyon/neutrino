@@ -19,10 +19,6 @@
         </div>
     </div>
 
-    <div class="card-action mb-4">
-        <a href="{{ route('dash.posts.add') }}" class="btn btn-primary">{{ __('Add New Comment') }}</a>
-    </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -42,8 +38,10 @@
                                 <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">{{ __('Author') }}</th>
                                 <th scope="col">{{ __('Comment') }}</th>
-                                <th scope="col">{{ __('Date') }}</th>
+                                <th scope="col" style="min-width: 200px;">{{ __('In Response To') }}</th>
+                                <th scope="col" style="min-width: 150px;">{{ __('Date') }}</th>
                                 <th scope="col">{{ __('Status') }}</th>
+                                <th scope="col" style="min-width: 200px;">{{ __('Action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,6 +50,7 @@
                                     <td>{{ $comment->id }}</td>
                                     <td><a href="{{ route('dash.users.edit', $comment->getAuthor()->id) }}" title="{{ $comment->getAuthor()->name }}">{{ $comment->getAuthor()->name }}</a></td>
                                     <td>{{ $comment->comment }}</td>
+                                    <td></td>
                                     <td>{{ date('M d, Y', strtotime($comment->created_at)) . ' at ' . date('H:i:s', strtotime($comment->created_at)) }}</td>
                                     <td>
                                         @if($comment->status == 1)
@@ -59,6 +58,12 @@
                                         @else
                                             <span class="badge badge-danger">{{ __('Not Published') }}</span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        <select name="status" class="form-select form-control update-comment" data-route="{{ route('dash.comments.update', $comment->id) }}">
+                                            <option value="1" @if($comment->status == 1) selected @endif>{{ __('Approved') }}</option>
+                                            <option value="0" @if($comment->status == 0) selected @endif>{{ __('Not Published') }}</option>
+                                        </select>
                                     </td>
                                 </tr>
                             @endforeach
@@ -90,4 +95,14 @@
 @endsection
 
 @section('footer-scripts')
+    <script>
+        $('.update-comment').on('change', function(event){
+            event.preventDefault();
+
+            let route = $(this).data('route'),
+                value = $(this).val();
+
+            window.location.href = route + '?value=' + value;
+        });
+    </script>
 @endsection
