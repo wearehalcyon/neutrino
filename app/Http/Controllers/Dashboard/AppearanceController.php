@@ -50,9 +50,11 @@ class AppearanceController extends Controller
         restrictAccess([4,5]);
 
         $directory = resource_path('views\\front\\' . $theme);
+        $publicTheme = public_path('themes/' . $theme);
 
         if (File::exists($directory)) {
             File::deleteDirectory($directory);
+            File::deleteDirectory($publicTheme);
         }
 
         return redirect()->back()->with('success', __('Theme was deleted successfully!'));
@@ -68,10 +70,13 @@ class AppearanceController extends Controller
 
         $zipFile = $request->file('theme_file');
         $zipFilePath = $zipFile->getPathname();
-        $extractTo = resource_path('views\\front');
+        $extractTo = resource_path('views/front');
         $zip = new ZipArchive;
 
         $log = '';
+
+        // Получаем список директорий до распаковки
+        $directoriesBefore = $this->getDirectories($extractTo);
 
         if ($zip->open($zipFilePath) === TRUE) {
             $log .= "Last Action: " . date('D M d, Y') . " at " . date('H:i:s') . " | initialized by " . Auth::user()->name . " (" . Str::slug(Auth::user()->name) . "$)\n";
@@ -89,6 +94,39 @@ class AppearanceController extends Controller
                 $log .= "Status - OK\n";
                 $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Extracting to: $extractTo\n";
                 $log .= "Status - OK\n";
+
+                // Получаем список директорий после распаковки
+                $directoriesAfter = $this->getDirectories($extractTo);
+
+                // Определяем, какая папка была добавлена
+                $newDirectories = array_diff($directoriesAfter, $directoriesBefore);
+                if (!empty($newDirectories)) {
+                    $themeName = array_pop($newDirectories);
+                    $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Theme folder found: $themeName\n";
+                    $log .= "Status - OK\n";
+
+                    // Путь к папке assets
+                    $assetsPath = $extractTo . DIRECTORY_SEPARATOR . $themeName . DIRECTORY_SEPARATOR . 'assets';
+                    $targetPath = public_path("themes/$themeName/assets");
+
+                    if (File::exists($assetsPath)) {
+                        if (!File::exists($targetPath)) {
+                            File::makeDirectory($targetPath, 0755, true);
+                        }
+
+                        File::copyDirectory($assetsPath, $targetPath);
+                        File::deleteDirectory($assetsPath);
+
+                        $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Assets folder moved successfully to $targetPath\n";
+                        $log .= "Status - OK\n";
+                    } else {
+                        $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Assets folder not found.\n";
+                        $log .= "Status - ERROR\n";
+                    }
+                } else {
+                    $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Theme folder not found.\n";
+                    $log .= "Status - ERROR\n";
+                }
             } else {
                 $log .= "id-engine:~ " . Str::slug(Auth::user()->name) . "$ Failed to extract files.\n";
                 $log .= "Status - ERROR\n";
@@ -107,6 +145,19 @@ class AppearanceController extends Controller
 
         return redirect()->back()->with('success', __('Theme was uploaded and installed successfully!'))->with('log', $log);
     }
+
+    protected function getDirectories($directory)
+    {
+        $directories = [];
+        $items = scandir($directory);
+        foreach ($items as $item) {
+            if ($item !== '.' && $item !== '..' && is_dir($directory . DIRECTORY_SEPARATOR . $item)) {
+                $directories[] = $item;
+            }
+        }
+        return $directories;
+    }
+
 
     public function customize()
     {
