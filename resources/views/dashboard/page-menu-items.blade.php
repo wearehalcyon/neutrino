@@ -42,6 +42,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Menu</th>
                                 <th scope="col">Parent</th>
+                                <th scope="col">Order</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Author</th>
                             </tr>
@@ -53,6 +54,7 @@
                                         <td><a href="{{ route('dash.menu.items.edit', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></td>
                                         <td>{{ $item->getMenu()->name }}</td>
                                         <td>{{ optional($item->getParent())->name }}</td>
+                                        <td>{{ $item->order }}</td>
                                         <td>{{ date('M d, Y', strtotime($item->created_at)) }}</td>
                                         <td><a href="{{ route('dash.users.edit', $item->getAuthor()->id) }}" title="{{ $item->getAuthor()->name }}">{{ $item->getAuthor()->name }}</a></td>
                                     </tr>
