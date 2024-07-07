@@ -229,3 +229,10 @@ if (!function_exists('getFooter')) {
         echo getOption('footer_scripts');
     }
 }
+
+// Get stylesheet
+if (!function_exists('getThemeAssetsUri')) {
+    function getThemeAssetsUri($suffix = null){
+        return url('/themes/' . getOption('front_theme') . $suffix);
+    }
+}

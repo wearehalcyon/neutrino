@@ -1,5 +1,5 @@
 // Fonts
-
+@import "inc/_fonts.scss";
 
 // Includes
 @import "inc/_mixins.scss";
@@ -7,3 +7,17 @@
 
 // Templates
 @import "templates/_homepage.scss";
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body{
+    font-family: $baseFont;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: $baseBlack;
+    color: $baseWhite;
+}
