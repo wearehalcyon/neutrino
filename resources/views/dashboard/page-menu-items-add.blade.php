@@ -79,6 +79,10 @@
                         <label for="custom_class"><strong>{{ __('Custom Class') }}</strong></label>
                         <input type="text" name="custom_class" class="form-control" id="custom_class">
                     </div>
+                    <div class="form-group">
+                        <label for="order"><strong>{{ __('Item Order') }}</strong></label>
+                        <input type="number" name="order" min="0" class="form-control" id="order" value="0">
+                    </div>
                     <div class="form-check form-switch">
                         <label for="target"><strong>{{ __('Open In New Tab') }}</strong></label>
                         <br>
