@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use App\Models\Page;
+use App\Models\Post;
 use App\Models\Setting;
 
 // Get Option
@@ -234,5 +236,24 @@ if (!function_exists('getFooter')) {
 if (!function_exists('getThemeAssetsUri')) {
     function getThemeAssetsUri($suffix = null){
         return url('/themes/' . getOption('front_theme') . $suffix);
+    }
+}
+
+// Get Permalink
+if (!function_exists('getPermalink')) {
+    function getPermalink($type = null, $id = null)
+    {
+        if ($type && $id) {
+            if ($type == 'page') {
+                $page = Page::find($id);
+                return url('/' . optional($page)->slug);
+            }
+            if ($type == 'post') {
+                $post = Post::find($id);
+                return url('/' . optional($post)->slug);
+            }
+        }
+
+        return '';
     }
 }
