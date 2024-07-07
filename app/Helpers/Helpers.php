@@ -5,6 +5,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Models\PageMeta;
 use App\Models\Setting;
 
 // Get Option
@@ -377,5 +378,22 @@ if (!function_exists('getMenu')) {
         }
 
         return $menuHtml;
+    }
+}
+
+// Get META parameter
+if (!function_exists('getMetaData')) {
+    function getMetaData($type = null, $id = null, $key = null)
+    {
+        if ($type = 'page') {
+            $data = PageMeta::where([
+                'page_id' => $id,
+                'meta_key' => $key,
+            ])->get();
+
+            return $data;
+        }
+
+        return '';
     }
 }

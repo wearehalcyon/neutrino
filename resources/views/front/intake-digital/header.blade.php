@@ -46,3 +46,4 @@
             </div>
         </div>
     </header>
+{{ dump(getMetaData('page', $homepage->id)) }}
