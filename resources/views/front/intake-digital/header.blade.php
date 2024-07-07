@@ -23,6 +23,7 @@
     @endif
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/plugins/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/plugins/swiper-bundle.min.css') }}">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa0ZL7SUc.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" crossorigin="anonymous">
