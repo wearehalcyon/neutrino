@@ -114,7 +114,7 @@ class SiteSettingsController extends Controller
             if ($request->debug_bar) {
                 $debugbar->option_value = 1;
             } else {
-                $debugbar->option_value = null;
+                $debugbar->option_value = 0;
             }
             $debugbar->save();
         }

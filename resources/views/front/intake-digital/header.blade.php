@@ -31,7 +31,7 @@
 
     {{ getHead() }}
 </head>
-<body>
+<body class="{{ getBodyClass('custom-body-theme-class') }}">
 <div id="app">
     <header class="header">
         <div class="container-fluid">

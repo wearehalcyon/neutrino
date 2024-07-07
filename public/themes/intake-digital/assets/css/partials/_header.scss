@@ -2,6 +2,8 @@ header.header{
     position: sticky;
     display: block;
     border-bottom: 1px solid rgba(255,255,255,.2);
+    background-color: rgba(0,0,0,.85);
+    backdrop-filter: blur(30px);
     top: 0;
     left: 0;
     z-index: 99999999;

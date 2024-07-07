@@ -28,4 +28,7 @@ body{
     a{
         transition: $transition;
     }
+    .container{
+        max-width: 1740px;
+    }
 }

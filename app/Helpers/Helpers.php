@@ -408,3 +408,17 @@ if (!function_exists('getMetaData')) {
         return '';
     }
 }
+
+// Get Body class
+if (!function_exists('getBodyClass')) {
+    function getBodyClass($custom_classes = null)
+    {
+        if (Auth::user()) {
+            $classes = 'body-class launched admin-bar ' . $custom_classes;
+        } else {
+            $classes = 'body-class launched ' . $custom_classes;
+        }
+
+        return $classes;
+    }
+}

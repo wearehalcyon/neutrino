@@ -1,6 +1,14 @@
 // -- Mixins Global --
 
 // Media query
+@mixin xxl {
+    @media (max-width: 1920px) { @content; }
+}
+
+@mixin xl {
+    @media (max-width: 1670px) { @content; }
+}
+
 @mixin lg {
     @media (max-width: 1200px) { @content; }
 }

@@ -7,6 +7,15 @@
     background-color: $dark;
     .slider-pictures{
         width: calc(100% - 700px);
+        @include xxl{
+            width: calc(100% - 600px);
+        }
+        @include xl{
+            width: calc(100% - 500px);
+        }
+        @include lg{
+            width: 100%;
+        }
         .slide-inner{
             display: block;
             position: relative;
@@ -17,8 +26,81 @@
             }
         }
     }
-    .sliser-content{
+    .slider-content{
         width: 700px;
         height: auto;
+        padding: 100px;
+        @include xxl{
+            width: 600px;
+        }
+        @include xl{
+            width: 500px;
+        }
+        @include lg{
+            width: 100%;
+        }
+        .slide-type{
+            display: block;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .slide-title{
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .slide-button{
+            display: block;
+            margin-top: 50px;
+            a{
+                display: inline-block;
+                border: 1px solid $baseWhite;
+                color: $baseWhite;
+                text-decoration: none;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 20px;
+                border-radius: 6px;
+                padding: 20px 40px;
+                &:hover{
+                    background-color: $orange;
+                    color: $baseBlack;
+                    border-color: $orange;
+                }
+            }
+        }
+        .swiper-pagination{
+            position: relative;
+            display: flex;
+            margin-top: 50px;
+            .swiper-pagination-bullet{
+                width: 16px;
+                height: 16px;
+                border-radius: 100px;
+                background-color: $gray;
+                margin: 0 8px;
+                opacity: 1;
+                transition: $transition;
+                &.swiper-pagination-bullet-active{
+                    background-color: $baseWhite;
+                    width: 60px;
+                }
+                &:hover{
+                    background-color: $grayLight;
+                    &.swiper-pagination-bullet-active{
+                        background-color: $baseWhite;
+                    }
+                }
+                &:first-child{
+                    margin-left: 0;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
     }
+}
+.news-posts{
+    position: relative;
+    padding: 100px 0;
 }

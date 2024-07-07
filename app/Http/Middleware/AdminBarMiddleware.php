@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 
 class AdminBarMiddleware
 {
@@ -17,9 +16,11 @@ class AdminBarMiddleware
             $adminBarHtml = View::make('dashboard.partials.admin-bar')->render();
 
             $content = $response->getContent();
-            $content = Str::replaceFirst('<body>', '' . $adminBarHtml, $content);
 
-            $response->setContent($content);
+            if (strpos($content, $adminBarHtml) === false) {
+                $content = preg_replace('/<body([^>]*)>/', '<body$1>' . $adminBarHtml, $content);
+                $response->setContent($content);
+            }
         }
 
         return $response;
