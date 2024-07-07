@@ -283,19 +283,41 @@ if (!function_exists('getMenu')) {
                 $menuHtml = '<nav' . $menuID . ' class="menu-nav ' . $menu_class . '">';
                 $menuHtml .= '<ul' . $menuID . ' class="menu-list ' . $menu_class . '">';
                 foreach ($items as $item) {
+                    // Get target
+                    if ($item->target === 1) {
+                        $target = ' target="_blank"';
+                    } else {
+                        $target = null;
+                    }
+                    // Set submenu class
                     $subItems = $item->getSubItems();
                     if ($subItems->isNotEmpty()) {
                         $menuHtml .= '<li class="menu-item menu-item-' . $item->id . ' menu-item-has-children">';
                     } else {
                         $menuHtml .= '<li class="menu-item menu-item-' . $item->id . '">';
                     }
-                    $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '">' . $item->name . '</a>';
+                    // Check link type
+                    if ($item->slug) {
+                        $menuHtml .= '<a href="' . url($item->slug) . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                    } else {
+                        $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                    }
 
                     if ($subItems->isNotEmpty()) {
                         $menuHtml .= '<ul class="sub-menu">';
                         foreach ($subItems as $subItem) {
+                            // Get target
+                            if ($subItem->target === 1) {
+                                $target = ' target="_blank"';
+                            } else {
+                                $target = null;
+                            }
                             $menuHtml .= '<li class="sub-menu-item sub-menu-item-' . $subItem->id . '">';
-                            $menuHtml .= '<a href="' . $subItem->slug . '" title="' . $subItem->name . '">' . $subItem->name . '</a>';
+                            if ($subItem->slug) {
+                                $menuHtml .= '<a href="' . url($subItem->slug) . '" title="' . $subItem->name . '"' . $target . '>' . $subItem->name . '</a>';
+                            } else {
+                                $menuHtml .= '<a href="' . $subItem->url . '" title="' . $subItem->name . '"' . $target . '>' . $subItem->name . '</a>';
+                            }
                             $menuHtml .= '</li>';
                         }
                         $menuHtml .= '</ul>';
@@ -308,19 +330,41 @@ if (!function_exists('getMenu')) {
             } else {
                 $menuHtml = '<ul' . $menuID . ' class="menu-list ' . $menu_class . '">';
                 foreach ($items as $item) {
+                    // Get target
+                    if ($item->target === 1) {
+                        $target = ' target="_blank"';
+                    } else {
+                        $target = null;
+                    }
+                    // Set submenu class
                     $subItems = $item->getSubItems();
                     if ($subItems->isNotEmpty()) {
                         $menuHtml .= '<li class="menu-item menu-item-' . $item->id . ' menu-item-has-children">';
                     } else {
                         $menuHtml .= '<li class="menu-item menu-item-' . $item->id . '">';
                     }
-                    $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '">' . $item->name . '</a>';
+                    // Check link type
+                    if ($item->slug) {
+                        $menuHtml .= '<a href="' . url($item->slug) . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                    } else {
+                        $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                    }
 
                     if ($subItems->isNotEmpty()) {
                         $menuHtml .= '<ul class="sub-menu">';
                         foreach ($subItems as $subItem) {
+                            // Get target
+                            if ($subItem->target === 1) {
+                                $target = ' target="_blank"';
+                            } else {
+                                $target = null;
+                            }
                             $menuHtml .= '<li class="sub-menu-item sub-menu-item-' . $subItem->id . '">';
-                            $menuHtml .= '<a href="' . $subItem->slug . '" title="' . $subItem->name . '">' . $subItem->name . '</a>';
+                            if ($subItem->slug) {
+                                $menuHtml .= '<a href="' . url($subItem->slug) . '" title="' . $subItem->name . '"' . $target . '>' . $subItem->name . '</a>';
+                            } else {
+                                $menuHtml .= '<a href="' . $subItem->url . '" title="' . $subItem->name . '"' . $target . '>' . $subItem->name . '</a>';
+                            }
                             $menuHtml .= '</li>';
                         }
                         $menuHtml .= '</ul>';
