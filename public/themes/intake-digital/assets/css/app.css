@@ -330,9 +330,14 @@ footer.footer .powered a:hover {
 
 .homepage-slider {
   position: relative;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   min-height: 760px;
+}
+.homepage-slider .sliser-content {
+  width: 450px;
+  height: auto;
 }
 
 * {

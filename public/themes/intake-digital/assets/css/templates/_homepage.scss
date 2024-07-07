@@ -1,6 +1,11 @@
 .homepage-slider{
     position: relative;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     min-height: 760px;
+    .sliser-content{
+        width: 450px;
+        height: auto;
+    }
 }
