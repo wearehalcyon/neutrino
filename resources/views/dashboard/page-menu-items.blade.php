@@ -61,6 +61,22 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @if($items->links())
+                            <div class="pagination w-100 d-block">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
+                                            {{ __('Showing ' . $items->count() . ' of ' . $items->total() . ' entries') }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
+                                            {{ $items->links('dashboard.partials.pagination', ['posts' => $items]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @else
                         <p>{{ __('No any menu items created yet.') }}</p>
                     @endif

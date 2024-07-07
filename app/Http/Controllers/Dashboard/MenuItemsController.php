@@ -18,7 +18,8 @@ class MenuItemsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        $items = MenuItem::paginate(20);
+        $items = MenuItem::orderBy('created_at', 'ASC')
+            ->paginate(15);
 
         $menus = Menu::all();
 
