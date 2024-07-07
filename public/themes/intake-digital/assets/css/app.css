@@ -47,5 +47,52 @@ body {
   background-color: #000;
   color: #fff;
 }
+body a {
+  transition: all 0.3s;
+}
+body header.header {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+body header.header .logo {
+  position: relative;
+  font-size: 0;
+}
+body header.header .logo a {
+  display: inline-block;
+  font-size: 0;
+}
+body header.header .logo a img {
+  width: auto;
+  height: auto;
+}
+body header.header .top-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+body header.header .top-actions .cta {
+  display: inline-block;
+}
+body header.header .top-actions .cta a {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  background-color: #FFA800;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+body header.header .top-actions .cta a:hover {
+  background-color: #fff;
+}
 
 /*# sourceMappingURL=app.css.map */

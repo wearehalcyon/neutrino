@@ -20,4 +20,52 @@ body{
     font-weight: 400;
     background-color: $baseBlack;
     color: $baseWhite;
+    a{
+        transition: $transition;
+    }
+    header.header{
+        position: relative;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,.2);
+        .logo{
+            position: relative;
+            font-size: 0;
+            a{
+                display: inline-block;
+                font-size: 0;
+                img{
+                    width: auto;
+                    height: auto;
+                }
+            }
+        }
+
+        .top-actions{
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            .cta{
+                display: inline-block;
+                a{
+                    display: inline-block;
+                    text-transform: uppercase;
+                    color: $baseBlack;
+                    font-size: 16px;
+                    line-height: 16px;
+                    font-weight: 700;
+                    background-color: $orange;
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    &:hover{
+                        background-color: $baseWhite;
+                    }
+                }
+            }
+        }
+    }
 }

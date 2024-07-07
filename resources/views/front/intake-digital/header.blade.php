@@ -29,10 +29,10 @@
                 <div class="d-none d-xl-block col-6 col-md-6 col-lg-6 col-xl-8">
                     456
                 </div>
-                <div class="col-6 col-md-6 col-lg-3 col-xl-2">
+                <div class="d-none d-xl-flex col-6 col-md-6 col-lg-3 col-xl-2 justify-content-end">
                     <ul class="top-actions">
-                        <li><a href="{{ getPermalink('page', 5) }}" title="Get Consultation">Get Consultation</a></li>
-                        <li><a href="{{ route('login') }}" title="Account"></a></li>
+                        <li class="cta"><a href="{{ getPermalink('page', 5) }}" title="Get Consultation">Get Consultation</a></li>
+                        <li class="account"><a href="{{ route('login') }}" title="Account"></a></li>
                     </ul>
                 </div>
             </div>
