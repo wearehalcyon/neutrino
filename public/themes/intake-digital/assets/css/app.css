@@ -262,6 +262,28 @@ footer.footer .social-links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  list-style-type: none;
+}
+footer.footer .social-links li {
+  display: inline-block;
+  margin: 0 15px;
+}
+footer.footer .social-links li a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 100px;
+  line-height: 20px;
+}
+footer.footer .social-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+footer.footer .copy {
+  font-size: 16px;
+  font-weight: 200;
 }
 
 * {

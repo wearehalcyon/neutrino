@@ -58,5 +58,27 @@ footer.footer{
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        list-style-type: none;
+        li{
+            display: inline-block;
+            margin: 0 15px;
+            a{
+                display: inline-flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                width: 42px;
+                height: 42px;
+                border-radius: 100px;
+                line-height: 20px;
+                &:hover{
+                    background-color: rgba(255,255,255,.1);
+                }
+            }
+        }
+    }
+    .copy{
+        font-size: 16px;
+        font-weight: 200;
     }
 }

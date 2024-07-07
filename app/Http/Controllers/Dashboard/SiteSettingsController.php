@@ -70,7 +70,7 @@ class SiteSettingsController extends Controller
         }
 
         // Site Description
-        if (!getOption('front_theme')) {
+        if (!getOption('site_description')) {
             Setting::create([
                 'option_name' => 'site_description',
                 'option_value' => $request->site_description,
@@ -104,21 +104,19 @@ class SiteSettingsController extends Controller
         }
 
         // Debug Bar
-        if (!getOption('front_theme')) {
+        $debugbar = Setting::where('option_name', 'debug_bar')->first();
+        if (!$debugbar) {
             Setting::create([
                 'option_name' => 'debug_bar',
-                'option_value' => 1,
+                'option_value' => $request->debug_bar,
             ]);
         } else {
             if (isset($request->debug_bar)) {
-                $debugBar = Setting::where('option_name', 'debug_bar')->first();
-                $debugBar->option_value = 1;
-                $debugBar->save();
+                $debugbar->option_value = 1;
             } else {
-                $debugBar = Setting::where('option_name', 'debug_bar')->first();
-                $debugBar->option_value = 0;
-                $debugBar->save();
+                $debugbar->delete();
             }
+            $debugbar->save();
         }
 
         // Set Homepage
@@ -132,7 +130,7 @@ class SiteSettingsController extends Controller
             if (isset($request->homepage_id)) {
                 $sethomepage->option_value = $request->homepage_id;
             } else {
-                $sethomepage->option_value = null;
+                $sethomepage->delete();
             }
             $sethomepage->save();
         }
@@ -178,7 +176,7 @@ class SiteSettingsController extends Controller
             if (isset($request->blog_base)) {
                 $blogbase->option_value = $request->blog_base;
             } else {
-                $blogbase->option_value = null;
+                $blogbase->delete();
             }
             $blogbase->save();
         }
@@ -194,7 +192,7 @@ class SiteSettingsController extends Controller
             if (isset($request->category_base)) {
                 $category->option_value = $request->category_base;
             } else {
-                $category->option_value = null;
+                $category->delete();
             }
             $category->save();
         }
@@ -210,99 +208,10 @@ class SiteSettingsController extends Controller
             if (isset($request->tag_base)) {
                 $tagbase->option_value = $request->tag_base;
             } else {
-                $tagbase->option_value = null;
+                $tagbase->delete();
             }
             $tagbase->save();
         }
-
-
-        // Mailer Type
-//        if (isset($request->mailer_type)) {
-//            $debugBar = Setting::where('option_name', 'mailer_type')->first();
-//            $debugBar->option_value = $request->mailer_type;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_type')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Host
-//        if (isset($request->mailer_host)) {
-//            $debugBar = Setting::where('option_name', 'mailer_host')->first();
-//            $debugBar->option_value = $request->mailer_host;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_host')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Port
-//        if (isset($request->mailer_port)) {
-//            $debugBar = Setting::where('option_name', 'mailer_port')->first();
-//            $debugBar->option_value = $request->mailer_port;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_port')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Username
-//        if (isset($request->mailer_username)) {
-//            $debugBar = Setting::where('option_name', 'mailer_username')->first();
-//            $debugBar->option_value = $request->mailer_username;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_username')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Password
-//        if (isset($request->mailer_password)) {
-//            $debugBar = Setting::where('option_name', 'mailer_password')->first();
-//            $debugBar->option_value = $request->mailer_password;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_password')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Encryption
-//        if (isset($request->mailer_encryption)) {
-//            $debugBar = Setting::where('option_name', 'mailer_encryption')->first();
-//            $debugBar->option_value = 1;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_encryption')->first();
-//            $debugBar->option_value = 0;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Sender Email
-//        if (isset($request->mailer_sender_address)) {
-//            $debugBar = Setting::where('option_name', 'mailer_sender_address')->first();
-//            $debugBar->option_value = $request->mailer_sender_address;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_sender_address')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
-//
-//        // Mailer Message Title
-//        if (isset($request->mailer_title)) {
-//            $debugBar = Setting::where('option_name', 'mailer_title')->first();
-//            $debugBar->option_value = $request->mailer_title;
-//            $debugBar->save();
-//        } else {
-//            $debugBar = Setting::where('option_name', 'mailer_title')->first();
-//            $debugBar->option_value = null;
-//            $debugBar->save();
-//        }
 
         // Return
         return redirect()->back()->with('success', __('Site settings was updated successfully!'));
