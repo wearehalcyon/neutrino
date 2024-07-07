@@ -1,0 +1,61 @@
+.menu-list.main-nav{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li{
+        display: inline-block;
+        position: relative;
+        font-size: 0;
+        a{
+            display: inline-block;
+            color: $baseWhite;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 16px;
+            text-decoration: none;
+            line-height: 16px;
+            padding: 25px 30px;
+            overflow: hidden;
+            &::after{
+                content: '';
+                display: block;
+                position: absolute;
+                width: calc(100% - 20px);
+                height: 0;
+                left: 10px;
+                bottom: 0;
+                background-color: $baseWhite;
+                transition: $transition;
+                z-index: 1;
+            }
+        }
+        .sub-menu{
+            display: none;
+        }
+        &:hover{
+            a{
+                &::after{
+                    height: 3px;
+                }
+            }
+        }
+        &.menu-item-has-children{
+            &::after{
+                content: '';
+                display: inline-block;
+                position: absolute;
+                width: 10px;
+                height: 6px;
+                top: 10px;
+                right: 0;
+                background: url('../images/svg/arrow-down.svg') no-repeat center;
+                background-size: 10px 6px;
+                z-index: 1;
+            }
+        }
+    }
+}

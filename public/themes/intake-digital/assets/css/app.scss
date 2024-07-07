@@ -5,6 +5,9 @@
 @import "inc/_mixins.scss";
 @import "inc/_variables.scss";
 
+// Partials
+@import "partials/_nav.scss";
+
 // Templates
 @import "templates/_homepage.scss";
 
@@ -39,7 +42,6 @@ body{
                 }
             }
         }
-
         .top-actions{
             position: relative;
             display: flex;
