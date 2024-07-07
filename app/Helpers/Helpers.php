@@ -80,8 +80,12 @@ if (!function_exists('getHead')) {
             'option_name' => 'favicon',
         ])->get();
 
-        foreach ($settings as $setting) {
-            $array['favicon'] = $setting->option_value;
+        if ($settings->isNotEmpty()) {
+            foreach ($settings as $setting) {
+                $array['favicon'] = $setting->option_value;
+            }
+        } else {
+            $array['favicon'] = null;
         }
 
         echo '<script id="id-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
