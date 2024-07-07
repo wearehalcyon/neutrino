@@ -125,9 +125,12 @@
 }
 
 header.header {
-  position: relative;
+  position: sticky;
   display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  top: 0;
+  left: 0;
+  z-index: 99999999;
 }
 header.header .logo {
   position: relative;
