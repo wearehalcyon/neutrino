@@ -17,7 +17,23 @@
 <body>
     <div id="app">
         <header class="header">
-            123
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-6 col-lg-3 col-xl-2">
+                        <div class="logo">
+                            <a href="{{ url('/') }}" title="{{ getOption('site_name') }}">
+                                <img src="{{ asset('uploads/' . getOption('site_logo')) }}" alt="{{ getOption('site_name') . ' Logo' }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="d-none d-xl-block col-6 col-md-6 col-lg-6 col-xl-8">
+                        456
+                    </div>
+                    <div class="col-6 col-md-6 col-lg-3 col-xl-2">
+                        789
+                    </div>
+                </div>
+            </div>
         </header>
         <footer class="footer">
             123
