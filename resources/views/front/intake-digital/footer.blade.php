@@ -1,5 +1,9 @@
         <footer class="footer">
-            123
+            <div class="container-fluid">
+                <div class="row">
+
+                </div>
+            </div>
         </footer>
     </div>
     {{ getFooter() }}

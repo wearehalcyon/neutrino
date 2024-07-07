@@ -165,6 +165,7 @@ class PageController extends Controller
         ])->first();
         if ($seo_title) {
             $seo_title->meta_value = $request->seo_title;
+            $seo_title->save();
         } else {
             PageMeta::create([
                 'page_id' => $id,
@@ -172,12 +173,14 @@ class PageController extends Controller
                 'meta_value' => $request->seo_title
             ]);
         }
+
         $seo_slug = PageMeta::where([
             'page_id' => $id,
             'meta_key' => 'seo_slug'
         ])->first();
         if ($seo_slug) {
             $seo_slug->meta_value = $request->seo_slug;
+            $seo_slug->save();
         } else {
             PageMeta::create([
                 'page_id' => $id,
@@ -185,12 +188,14 @@ class PageController extends Controller
                 'meta_value' => $request->seo_slug
             ]);
         }
+
         $meta_description = PageMeta::where([
             'page_id' => $id,
             'meta_key' => 'meta_description'
         ])->first();
         if ($meta_description) {
             $meta_description->meta_value = $request->meta_description;
+            $meta_description->save();
         } else {
             PageMeta::create([
                 'page_id' => $id,

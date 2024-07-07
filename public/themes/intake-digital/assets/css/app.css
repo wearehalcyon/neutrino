@@ -124,6 +124,88 @@
   z-index: 1;
 }
 
+header.header {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+header.header .logo {
+  position: relative;
+  font-size: 0;
+}
+header.header .logo a {
+  display: inline-block;
+  font-size: 0;
+}
+header.header .logo a img {
+  width: auto;
+  height: auto;
+}
+header.header .top-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+header.header .top-actions .cta {
+  display: inline-block;
+}
+header.header .top-actions .cta a {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  background-color: #FFA800;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+header.header .top-actions .cta a:hover {
+  background-color: #fff;
+}
+header.header .top-actions .account {
+  position: relative;
+  margin-left: 15px;
+}
+header.header .top-actions .account a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  line-height: 24px;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+header.header .top-actions .account a svg {
+  transition: all 0.3s;
+}
+header.header .top-actions .account a svg path {
+  transition: all 0.3s;
+}
+header.header .top-actions .account a:hover {
+  background-color: #FFA800;
+}
+header.header .top-actions .account a:hover svg {
+  fill: #000;
+}
+header.header .top-actions .account a:hover svg path {
+  fill: #000;
+}
+
+footer.footer {
+  position: relative;
+  display: block;
+  background-color: #0D0D0D;
+  padding: 100px 0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -139,80 +221,6 @@ body {
 }
 body a {
   transition: all 0.3s;
-}
-body header.header {
-  position: relative;
-  display: block;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-body header.header .logo {
-  position: relative;
-  font-size: 0;
-}
-body header.header .logo a {
-  display: inline-block;
-  font-size: 0;
-}
-body header.header .logo a img {
-  width: auto;
-  height: auto;
-}
-body header.header .top-actions {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-body header.header .top-actions .cta {
-  display: inline-block;
-}
-body header.header .top-actions .cta a {
-  display: inline-block;
-  text-transform: uppercase;
-  color: #000;
-  font-size: 16px;
-  line-height: 16px;
-  font-weight: 700;
-  background-color: #FFA800;
-  padding: 10px 15px;
-  border-radius: 4px;
-  text-decoration: none;
-}
-body header.header .top-actions .cta a:hover {
-  background-color: #fff;
-}
-body header.header .top-actions .account {
-  position: relative;
-  margin-left: 15px;
-}
-body header.header .top-actions .account a {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  line-height: 24px;
-  border-radius: 100px;
-  background-color: rgba(255, 255, 255, 0.2);
-}
-body header.header .top-actions .account a svg {
-  transition: all 0.3s;
-}
-body header.header .top-actions .account a svg path {
-  transition: all 0.3s;
-}
-body header.header .top-actions .account a:hover {
-  background-color: #FFA800;
-}
-body header.header .top-actions .account a:hover svg {
-  fill: #000;
-}
-body header.header .top-actions .account a:hover svg path {
-  fill: #000;
 }
 
 /*# sourceMappingURL=app.css.map */
