@@ -286,10 +286,28 @@ if (!function_exists('getMenu')) {
                 $menuHtml .= '</nav>';
             } else {
                 $menuHtml = '<ul' . $menuID . ' class="menu-list ' . $menu_class . '">';
-                    foreach ($items as $item) {
-                        $menuHtml .= '<li><a href="' . $item->slug . '" title="' . $item->name . '">' . $item->name . '</a></li>';
+                foreach ($items as $item) {
+                    $subItems = $item->getSubItems();
+                    if ($subItems->isNotEmpty()) {
+                        $menuHtml .= '<li class="menu-item menu-item-' . $item->id . ' menu-item-has-children">';
+                    } else {
+                        $menuHtml .= '<li class="menu-item menu-item-' . $item->id . '">';
                     }
-                $menuHtml .= '';
+                    $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '">' . $item->name . '</a>';
+
+                    if ($subItems->isNotEmpty()) {
+                        $menuHtml .= '<ul class="sub-menu">';
+                        foreach ($subItems as $subItem) {
+                            $menuHtml .= '<li class="sub-menu-item sub-menu-item-' . $subItem->id . '">';
+                            $menuHtml .= '<a href="' . $subItem->slug . '" title="' . $subItem->name . '">' . $subItem->name . '</a>';
+                            $menuHtml .= '</li>';
+                        }
+                        $menuHtml .= '</ul>';
+                    }
+
+                    $menuHtml .= '</li>';
+                }
+                $menuHtml .= '</ul>';
             }
         }
 

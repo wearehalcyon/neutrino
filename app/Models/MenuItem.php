@@ -42,4 +42,11 @@ class MenuItem extends Model
 
         return $author;
     }
+
+    public function getSubItems()
+    {
+        $items = MenuItem::where('parent', $this->id)->orderBy('order', 'ASC')->get();
+
+        return $items;
+    }
 }
