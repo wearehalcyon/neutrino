@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="d-none d-xl-block col-6 col-md-6 col-lg-6 col-xl-8">
-                    456
+                    {!! getMenu('Main Menu', 'main-nav', 'main-nav', false) !!}
                 </div>
                 <div class="d-none d-xl-flex col-6 col-md-6 col-lg-3 col-xl-2 justify-content-end">
                     <ul class="top-actions">

@@ -94,5 +94,35 @@ body header.header .top-actions .cta a {
 body header.header .top-actions .cta a:hover {
   background-color: #fff;
 }
+body header.header .top-actions .account {
+  position: relative;
+  margin-left: 15px;
+}
+body header.header .top-actions .account a {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  line-height: 24px;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+body header.header .top-actions .account a svg {
+  transition: all 0.3s;
+}
+body header.header .top-actions .account a svg path {
+  transition: all 0.3s;
+}
+body header.header .top-actions .account a:hover {
+  background-color: #FFA800;
+}
+body header.header .top-actions .account a:hover svg {
+  fill: #000;
+}
+body header.header .top-actions .account a:hover svg path {
+  fill: #000;
+}
 
 /*# sourceMappingURL=app.css.map */

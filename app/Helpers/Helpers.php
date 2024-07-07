@@ -3,6 +3,8 @@
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Setting;
 
 // Get Option
@@ -255,5 +257,42 @@ if (!function_exists('getPermalink')) {
         }
 
         return '';
+    }
+}
+
+// Get Menu
+if (!function_exists('getMenu')) {
+    function getMenu($name = null, $menu_id = null, $menu_class = null, $container = true){
+        $menu = Menu::where('name', $name)->first();
+
+        if ($menu) {
+            $items = MenuItem::where([
+                'menu_id' => $menu->id,
+                'parent' => null,
+            ])
+            ->orderBy('order', 'ASC')
+            ->get();
+
+            if ($menu_id) {
+                $menuID = ' id="' . $menu_id . '"';
+            } else {
+                $menuID = null;
+            }
+
+            if ($container) {
+                $menuHtml = '<nav' . $menuID . ' class="menu-nav ' . $menu_class . '">';
+                $menuHtml .= '<ul class="menu-list">';
+                $menuHtml .= '';
+                $menuHtml .= '</nav>';
+            } else {
+                $menuHtml = '<ul' . $menuID . ' class="menu-list ' . $menu_class . '">';
+                    foreach ($items as $item) {
+                        $menuHtml .= '<li><a href="' . $item->slug . '" title="' . $item->name . '">' . $item->name . '</a></li>';
+                    }
+                $menuHtml .= '';
+            }
+        }
+
+        return $menuHtml;
     }
 }

@@ -66,6 +66,36 @@ body{
                     }
                 }
             }
+            .account{
+                position: relative;
+                margin-left: 15px;
+                a{
+                    display: inline-flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    width: 32px;
+                    height: 32px;
+                    line-height: 24px;
+                    border-radius: 100px;
+                    background-color: rgba(255,255,255,.2);
+                    svg{
+                        transition: $transition;
+                        path{
+                            transition: $transition;
+                        }
+                    }
+                    &:hover{
+                        background-color: $orange;
+                        svg{
+                            fill: $baseBlack;
+                            path{
+                                fill: $baseBlack;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
