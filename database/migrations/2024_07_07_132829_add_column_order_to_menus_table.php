@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('menu_items', function (Blueprint $table) {
-            $table->string('order')->nullable()->after('parent');
+            $table->string('order')->default(0)->after('parent');
         });
     }
 
