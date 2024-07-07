@@ -58,5 +58,6 @@
     </div>
     {{ getFooter() }}
     <script src="{{ getThemeAssetsUri('/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+    <script src="{{ getThemeAssetsUri('/assets/js/app.js') }}"></script>
 </body>
 </html>
