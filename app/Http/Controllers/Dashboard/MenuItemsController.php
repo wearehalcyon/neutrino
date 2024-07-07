@@ -33,7 +33,9 @@ class MenuItemsController extends Controller
 
         $menus = Menu::all();
 
-        return view('dashboard.page-menu-items-add', compact('routeName', 'menus'));
+        $menuItems = MenuItem::orderBy('name', 'ASC')->get();
+
+        return view('dashboard.page-menu-items-add', compact('routeName', 'menus', 'menuItems'));
     }
 
     public function addSave(Request $request)
@@ -54,7 +56,8 @@ class MenuItemsController extends Controller
             'author_id' => Auth::id(),
             'menu_id' => $request->menu_id,
             'target' => $request->target ? 1 : null,
-            'url' => $request->url
+            'url' => $request->url,
+            'parent' => $request->parent,
         ]);
 
         return redirect()->route('dash.menu.items.edit', $item->id)->with('success', __('Menu item was created successfully!'));
@@ -70,7 +73,9 @@ class MenuItemsController extends Controller
 
         $menus = Menu::all();
 
-        return view('dashboard.page-menu-items-edit', compact('routeName', 'item', 'menus'));
+        $menuItems = MenuItem::orderBy('name', 'ASC')->get();
+
+        return view('dashboard.page-menu-items-edit', compact('routeName', 'item', 'menus', 'menuItems'));
     }
 
     public function editSave(Request $request, $id)
@@ -89,6 +94,7 @@ class MenuItemsController extends Controller
         }
         $item->custom_class = $request->custom_class;
         $item->menu_id = $request->menu_id;
+        $item->parent = $request->parent;
         $item->target = $request->target ? 1 : null;
         $item->save();
 

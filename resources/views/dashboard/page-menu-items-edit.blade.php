@@ -18,6 +18,10 @@
         </div>
     @endif
 
+    <div class="card-action mb-4">
+        <a href="{{ route('dash.menu.items.add') }}" class="btn btn-primary">{{ __('Create New Menu Item') }}</a>
+    </div>
+
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
             <h3 class="fw-bold mb-3">{{ __('Edit Menu Item') }}</h3>
@@ -65,6 +69,15 @@
                     <div class="form-group custom">
                         <label for="url"><strong>{{ __('Custom URL') }}</strong></label>
                         <input type="text" name="url" class="form-control" id="url" value="{{ $item->url }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="parent"><strong>{{ __('Parent Menu Item') }}</strong></label>
+                        <select name="parent" id="parent" class="form-select form-control">
+                            <option disabled selected></option>
+                            @foreach($menuItems as $menuItem)
+                                <option value="{{ $menuItem->id }}" @if($item->parent == $menuItem->id) selected @endif>{{ $menuItem->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="custom_class"><strong>{{ __('Custom Class') }}</strong></label>

@@ -67,6 +67,15 @@
                         <input type="text" name="url" class="form-control" id="url">
                     </div>
                     <div class="form-group">
+                        <label for="parent"><strong>{{ __('Parent Menu Item') }}</strong></label>
+                        <select name="parent" id="parent" class="form-select form-control">
+                            <option disabled selected></option>
+                            @foreach($menuItems as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="custom_class"><strong>{{ __('Custom Class') }}</strong></label>
                         <input type="text" name="custom_class" class="form-control" id="custom_class">
                     </div>
