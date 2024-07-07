@@ -18,6 +18,7 @@ class MenuItem extends Model
         'custom_class',
         'author_id',
         'menu_id',
+        'parent',
     ];
 
     public function getMenu()
