@@ -58,7 +58,9 @@ footer.footer{
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: flex-end;
         list-style-type: none;
+        padding-right: 100px;
         li{
             display: inline-block;
             margin: 0 15px;
@@ -75,10 +77,41 @@ footer.footer{
                     background-color: rgba(255,255,255,.1);
                 }
             }
+            &:first-child{
+                margin-left: 0;
+            }
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+        @include lg{
+            padding-right: 0;
         }
     }
     .copy{
         font-size: 16px;
         font-weight: 200;
+        text-align: right;
+        padding-right: 100px;
+        @include lg{
+            padding-right: 0;
+        }
+    }
+    .powered{
+        font-size: 16px;
+        font-weight: 300;
+        text-align: right;
+        padding-right: 100px;
+        color: $gray;
+        a{
+            color: $baseWhite;
+            text-decoration: none;
+            &:hover{
+                color: $orange;
+            }
+        }
+        @include lg{
+            padding-right: 0;
+        }
     }
 }
