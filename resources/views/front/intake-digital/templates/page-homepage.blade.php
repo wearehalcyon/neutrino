@@ -45,6 +45,25 @@
     <section class="news-posts">
         <div class="container">
             <h2 class="title">News Posts</h2>
+            @if(getPosts()->count())
+                <div class="row">
+                    @foreach(getPosts(1, 'created_at', 'ASC', null) as $post)
+                        <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
+                            <a href="" class="post-item">
+                                <div class="thumbnail">
+                                    <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}">
+                                </div>
+                                <div class="meta">
+                                    <span class="category">@dump(getPostCategories($post->id))</span>
+                                    <span class="date">{{ getPostDate('F d, Y', $post->created_at) }}</span>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p>No news posts available now.</p>
+            @endif
         </div>
     </section>
 @include('front.intake-digital.footer')

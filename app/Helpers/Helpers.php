@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\PageMeta;
 use App\Models\PostMeta;
+use App\Models\Category;
 use App\Models\Setting;
 
 // Get Option
@@ -424,5 +425,45 @@ if (!function_exists('getBodyClass')) {
         }
 
         return $classes;
+    }
+}
+
+// Get posts
+if (!function_exists('getPosts')) {
+    function getPosts($category = null, $orderby = 'created_at', $order = 'ASC', $limit = null)
+    {
+        if ($limit) {
+            $limit = $limit;
+        } else {
+            $limit = getOption('posts_per_page');
+        }
+        if ($category) {
+            $posts = Post::orderBy($orderby, $order)->limit($limit)->get();
+        } else {
+            $posts = Post::orderBy($orderby, $order)->limit($limit)->get();
+        }
+
+        return $posts;
+    }
+}
+
+// Get date
+if (!function_exists('getPostDate')) {
+    function getPostDate($format = null, $date = null)
+    {
+        return date($format, strtotime($date));
+    }
+}
+
+// Get post categories
+if (!function_exists('getPostCategories')) {
+    function getPostCategories($id = null)
+    {
+        $categories = Category::join('post_to_categories', 'categories.id', '=', 'post_to_categories.category_id')
+            ->where('post_to_categories.post_id', $id)
+            ->select('categories.*')
+            ->get();
+
+        return $categories;
     }
 }
