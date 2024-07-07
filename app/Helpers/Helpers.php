@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\PageMeta;
+use App\Models\PostMeta;
 use App\Models\Setting;
 
 // Get Option
@@ -85,6 +86,7 @@ if (!function_exists('getHead')) {
 
         echo '<script id="id-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
         echo '<link id="id-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
+        echo '<link rel="apple-touch-icon" href="' . asset('uploads/' . $array['favicon']) . '">';
         $linkFonts = asset('assets/css/fonts.min.css');
         echo <<<HTML
             <script id="id-base-webfont-inline-script">
@@ -389,9 +391,18 @@ if (!function_exists('getMetaData')) {
             $data = PageMeta::where([
                 'page_id' => $id,
                 'meta_key' => $key,
-            ])->get();
+            ])->first();
 
-            return $data;
+            return optional($data)->meta_value;
+        }
+
+        if ($type = 'post') {
+            $data = PostMeta::where([
+                'post_id' => $id,
+                'meta_key' => $key,
+            ])->first();
+
+            return optional($data)->meta_value;
         }
 
         return '';

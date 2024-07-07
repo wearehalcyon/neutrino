@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=yes, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ getOption('site_name') }}</title>
-    {{ getHead() }}
+    <meta http-equiv="Content-Language" content="en">
+    @if(getMetaData('page', $homepage->id, 'seo_title'))
+        <title>{{ getMetaData('page', $homepage->id, 'seo_title') }}</title>
+    @else
+        <title>{{ getOption('site_name') }}</title>
+    @endif
+    @if(getMetaData('page', $homepage->id, 'meta_description'))
+        <meta name="description" content="{{ getMetaData('page', $homepage->id, 'meta_description') }}">
+    @endif
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport-fit" content="cover">
+    @if(getMetaData('page', $homepage->id, 'seo_slug'))
+        <link rel="canonical" href="{{ url(getMetaData('page', $homepage->id, 'seo_slug')) }}">
+    @endif
+
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa0ZL7SUc.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/plugins/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/app.css') }}">
+
+    {{ getHead() }}
 </head>
 <body>
 <div id="app">
@@ -46,4 +61,3 @@
             </div>
         </div>
     </header>
-{{ dump(getMetaData('page', $homepage->id)) }}
