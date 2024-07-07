@@ -95,6 +95,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
 // Pages
 Route::prefix('/')->group(function () {
     Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('pages.home');
+    Route::get('/{slug}', [App\Http\Controllers\Front\PageController::class, 'internal'])->name('pages.internal');
 });
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog.index');
