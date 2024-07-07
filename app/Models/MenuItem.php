@@ -34,4 +34,11 @@ class MenuItem extends Model
 
         return $parent;
     }
+
+    public function getAuthor()
+    {
+        $author = User::find($this->author_id);
+
+        return $author;
+    }
 }

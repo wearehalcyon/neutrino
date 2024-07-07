@@ -52,9 +52,9 @@
                                         <td>{{ $item->id }}</td>
                                         <td><a href="{{ route('dash.menu.items.edit', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></td>
                                         <td>{{ $item->getMenu()->name }}</td>
-                                        <td>{{ $item->getMenu()->name }}</td>
+                                        <td>{{ optional($item->getParent())->name }}</td>
                                         <td>{{ date('M d, Y', strtotime($item->created_at)) }}</td>
-                                        <td>{{ 1 }}</td>
+                                        <td><a href="{{ route('dash.users.edit', $item->getAuthor()->id) }}" title="{{ $item->getAuthor()->name }}">{{ $item->getAuthor()->name }}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
