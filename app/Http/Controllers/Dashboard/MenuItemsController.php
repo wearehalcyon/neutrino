@@ -58,6 +58,7 @@ class MenuItemsController extends Controller
             'target' => $request->target ? 1 : null,
             'url' => $request->url,
             'parent' => $request->parent,
+            'order' => $request->order,
         ]);
 
         return redirect()->route('dash.menu.items.edit', $item->id)->with('success', __('Menu item was created successfully!'));
@@ -95,6 +96,7 @@ class MenuItemsController extends Controller
         $item->custom_class = $request->custom_class;
         $item->menu_id = $request->menu_id;
         $item->parent = $request->parent;
+        $item->order = $request->order;
         $item->target = $request->target ? 1 : null;
         $item->save();
 
