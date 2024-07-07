@@ -13,6 +13,8 @@
     @endif
     @if(getMetaData('page', $homepage->id, 'meta_description'))
         <meta name="description" content="{{ getMetaData('page', $homepage->id, 'meta_description') }}">
+    @else
+        <meta name="description" content="{{ getOption('site_description') }}">
     @endif
     <meta name="theme-color" content="#000000">
     <meta name="viewport-fit" content="cover">

@@ -108,13 +108,13 @@ class SiteSettingsController extends Controller
         if (!$debugbar) {
             Setting::create([
                 'option_name' => 'debug_bar',
-                'option_value' => $request->debug_bar,
+                'option_value' => 1,
             ]);
         } else {
-            if (isset($request->debug_bar)) {
+            if ($request->debug_bar) {
                 $debugbar->option_value = 1;
             } else {
-                $debugbar->delete();
+                $debugbar->option_value = null;
             }
             $debugbar->save();
         }
@@ -130,7 +130,7 @@ class SiteSettingsController extends Controller
             if (isset($request->homepage_id)) {
                 $sethomepage->option_value = $request->homepage_id;
             } else {
-                $sethomepage->delete();
+                $sethomepage->option_value = null;
             }
             $sethomepage->save();
         }
@@ -146,7 +146,7 @@ class SiteSettingsController extends Controller
             if (isset($request->blog_index_id)) {
                 $setblogpage->option_value = $request->blog_index_id;
             } else {
-                $setblogpage->delete();
+                $setblogpage->option_value = null;
             }
             $setblogpage->save();
         }
@@ -176,7 +176,7 @@ class SiteSettingsController extends Controller
             if (isset($request->blog_base)) {
                 $blogbase->option_value = $request->blog_base;
             } else {
-                $blogbase->delete();
+                $blogbase->option_value = null;
             }
             $blogbase->save();
         }
@@ -192,7 +192,7 @@ class SiteSettingsController extends Controller
             if (isset($request->category_base)) {
                 $category->option_value = $request->category_base;
             } else {
-                $category->delete();
+                $category->option_value = null;
             }
             $category->save();
         }
@@ -208,7 +208,7 @@ class SiteSettingsController extends Controller
             if (isset($request->tag_base)) {
                 $tagbase->option_value = $request->tag_base;
             } else {
-                $tagbase->delete();
+                $tagbase->option_value = null;
             }
             $tagbase->save();
         }
