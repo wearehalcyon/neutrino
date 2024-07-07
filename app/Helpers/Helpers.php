@@ -379,7 +379,7 @@ if (!function_exists('getMenu')) {
             }
         }
 
-        return $menuHtml;
+        return $menuHtml ?? null;
     }
 }
 

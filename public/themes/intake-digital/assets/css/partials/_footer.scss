@@ -3,4 +3,60 @@ footer.footer{
     display: block;
     background-color: $dark;
     padding: 100px 0;
+    .footer-nav{
+        padding-left: 100px;
+        margin-bottom: 100px;
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            li{
+                display: inline-block;
+                margin-right: 40px;
+                a{
+                    color: $baseWhite;
+                    text-decoration: none;
+                    font-size: 22px;
+                    &:hover{
+                        color: $orange;
+                    }
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+            &.second-nav{
+                li{
+                    margin-right: 30px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    a{
+                        color: $gray;
+                        font-size: 18px;
+                        &:hover{
+                            color: $orange;
+                        }
+                    }
+                }
+            }
+        }
+        @include lg{
+            padding-left: 0;
+        }
+    }
+    .footer-logo{
+        padding-left: 100px;
+        a{
+            display: inline-block;
+        }
+        @include lg{
+            padding-left: 0;
+        }
+    }
+    .social-links{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 }
