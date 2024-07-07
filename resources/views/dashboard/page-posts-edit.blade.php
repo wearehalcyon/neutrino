@@ -43,6 +43,10 @@
         </div>
     @endif
 
+    <div class="card-action mb-4">
+        <a href="{{ route('dash.posts.add') }}" class="btn btn-primary">{{ __('Create New Post') }}</a>
+    </div>
+
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
             <h3 class="fw-bold mb-3">{{ __('Edit Post') }}</h3>

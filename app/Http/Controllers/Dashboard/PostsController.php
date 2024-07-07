@@ -66,9 +66,9 @@ class PostsController extends Controller
         // Upload thumbnail to the public/uploads/ID path
         if ($request->hasFile('thumbnail_file')) {
             $file = $request->file('thumbnail_file');
-            $fileName = $thumbID . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/' . $post->id), $fileName);
-            $post->thumbnail = 'uploads/' . $thumbID . '_' . $request->thumbnail;
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('uploads/'), $fileName);
+            $post->thumbnail = 'uploads/' . $request->thumbnail;
             $post->save();
         }
 
@@ -147,9 +147,9 @@ class PostsController extends Controller
         // Upload thumbnail to the public/uploads/ID path
         if ($request->hasFile('thumbnail_file')) {
             $file = $request->file('thumbnail_file');
-            $fileName = $thumbID . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/' . $post->id), $fileName);
-            $post->thumbnail = 'uploads/' . $thumbID . '_' . $request->thumbnail;
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('uploads/'), $fileName);
+            $post->thumbnail = 'uploads/' . $request->thumbnail;
             $post->save();
         }
 
