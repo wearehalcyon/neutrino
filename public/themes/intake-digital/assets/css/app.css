@@ -462,6 +462,8 @@ footer.footer .powered a:hover {
   border-radius: 15px;
   color: #fff;
   text-decoration: none;
+  width: 100%;
+  height: 100%;
 }
 .news-posts .post-item .thumbnail {
   display: block;
@@ -479,6 +481,20 @@ footer.footer .powered a:hover {
   padding: 30px;
   color: #777;
   font-size: 20px;
+}
+.news-posts .post-item .meta .category {
+  color: #fff;
+}
+.news-posts .post-item .meta .date {
+  display: inline-block;
+  margin-left: 20px;
+}
+.news-posts .post-item .post-title {
+  margin: 0;
+  padding: 0 30px 30px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 50px;
 }
 
 * {

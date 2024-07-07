@@ -54,9 +54,14 @@
                                     <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}">
                                 </div>
                                 <div class="meta">
-                                    <span class="category">@dump(getPostCategories($post->id))</span>
+                                    <span class="category">
+                                        @foreach(getPostCategories($post->id) as $category)
+                                            {{ $category->name }}@if (!$loop->last), @endif
+                                        @endforeach
+                                    </span>
                                     <span class="date">{{ getPostDate('F d, Y', $post->created_at) }}</span>
                                 </div>
+                                <h3 class="post-title">{{ $post->name }}</h3>
                             </a>
                         </div>
                     @endforeach
