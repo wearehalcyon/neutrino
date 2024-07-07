@@ -51,6 +51,7 @@
                                     <label for="homepage_id"><strong>{{ __('Set Homepage') }}</strong></label>
                                     <select name="homepage_id" id="homepage_id" class="form-select form-control">
                                         @if($pages->isNotEmpty())
+                                            <option disabled selected></option>
                                             @foreach($pages as $page)
                                                 <option value="{{ $page->id }}" @if(getOption('homepage_id') == $page->id) selected @endif>
                                                     {{ $page->name }}
@@ -58,6 +59,26 @@
                                                         ({{ __('Current Homepage') }})
                                                     @endif
                                                 </option>
+                                            @endforeach
+                                        @else
+                                            <option disabled>{{ __('No any page created yet') }}</option>
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blog_index_id"><strong>{{ __('Set Blog Index Page') }}</strong></label>
+                                    <select name="blog_index_id" id="blog_index_id" class="form-select form-control">
+                                        @if($pages->isNotEmpty())
+                                            <option disabled selected></option>
+                                            @foreach($pages as $page)
+                                                @if($page->id != getOption('homepage_id'))
+                                                    <option value="{{ $page->id }}" @if(getOption('blog_index_id') == $page->id) selected @endif>
+                                                        {{ $page->name }}
+                                                        @if(getOption('blog_index_id') == $page->id)
+                                                            ({{ __('Current Blog Index Page') }})
+                                                        @endif
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         @else
                                             <option disabled>{{ __('No any page created yet') }}</option>

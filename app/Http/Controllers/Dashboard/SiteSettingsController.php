@@ -137,6 +137,22 @@ class SiteSettingsController extends Controller
             $sethomepage->save();
         }
 
+        // Set Blog Index Page
+        $setblogpage = Setting::where('option_name', 'blog_index_id')->first();
+        if (!$setblogpage) {
+            Setting::create([
+                'option_name' => 'blog_index_id',
+                'option_value' => $request->blog_index_id,
+            ]);
+        } else {
+            if (isset($request->blog_index_id)) {
+                $setblogpage->option_value = $request->blog_index_id;
+            } else {
+                $setblogpage->delete();
+            }
+            $setblogpage->save();
+        }
+
         // Set front theme
         if (!getOption('front_theme')) {
             Setting::create([

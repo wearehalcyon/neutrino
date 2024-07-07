@@ -27,4 +27,11 @@ class MenuItem extends Model
 
         return $menu;
     }
+
+    public function getParent()
+    {
+        $parent = MenuItem::find($this->parent);
+
+        return $parent;
+    }
 }

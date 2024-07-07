@@ -41,6 +41,7 @@
                                 <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Menu</th>
+                                <th scope="col">Parent</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Author</th>
                             </tr>
@@ -50,6 +51,7 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td><a href="{{ route('dash.menu.items.edit', $item->id) }}" title="{{ $item->name }}">{{ $item->name }}</a></td>
+                                        <td>{{ $item->getMenu()->name }}</td>
                                         <td>{{ $item->getMenu()->name }}</td>
                                         <td>{{ date('M d, Y', strtotime($item->created_at)) }}</td>
                                         <td>{{ 1 }}</td>
