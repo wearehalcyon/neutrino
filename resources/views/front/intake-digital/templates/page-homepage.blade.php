@@ -4,9 +4,9 @@
             <div class="swiper homepage-slider-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="slide-inner">
-
-                        </div>
+                        <a class="slide-inner" href="">
+                            <img src="{{ getThemeAssetsUri('/assets/images/slide-01.jpg') }}" alt="Slide 01" width="1520" height="760">
+                        </a>
                     </div>
                 </div>
             </div>

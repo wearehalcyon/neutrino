@@ -339,6 +339,15 @@ footer.footer .powered a:hover {
 .homepage-slider .slider-pictures {
   width: calc(100% - 700px);
 }
+.homepage-slider .slider-pictures .slide-inner {
+  display: block;
+  position: relative;
+}
+.homepage-slider .slider-pictures .slide-inner img {
+  width: 100%;
+  height: 760px;
+  object-fit: cover;
+}
 .homepage-slider .sliser-content {
   width: 700px;
   height: auto;
