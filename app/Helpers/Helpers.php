@@ -307,7 +307,7 @@ if (!function_exists('getMenu')) {
                     if ($item->slug) {
                         $menuHtml .= '<a href="' . url($item->slug) . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
                     } else {
-                        $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                        $menuHtml .= '<a href="' . $item->url . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
                     }
 
                     if ($subItems->isNotEmpty()) {
@@ -354,7 +354,7 @@ if (!function_exists('getMenu')) {
                     if ($item->slug) {
                         $menuHtml .= '<a href="' . url($item->slug) . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
                     } else {
-                        $menuHtml .= '<a href="' . $item->slug . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
+                        $menuHtml .= '<a href="' . $item->url . '" title="' . $item->name . '"' . $target . '>' . $item->name . '</a>';
                     }
 
                     if ($subItems->isNotEmpty()) {
