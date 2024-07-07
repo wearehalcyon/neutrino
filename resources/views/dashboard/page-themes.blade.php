@@ -131,8 +131,8 @@
                 <div class="card-body">
                     <div class="row">
                         @php
-                            $screenshot = resource_path('views\\front\\' . $themeActive->option_value . '\\screenshot.png');
-                            $information = resource_path('views\\front\\' . $themeActive->option_value . '\\info.json');
+                            $screenshot = resource_path('views/front/' . $themeActive->option_value . '/screenshot.png');
+                            $information = resource_path('views/front/' . $themeActive->option_value . '/info.json');
                             if (File::exists($screenshot)) {
                                 $imageData = File::get($screenshot);
                                 $base64Image = 'data:' . File::mimeType($screenshot) . ';base64,' . base64_encode($imageData);
