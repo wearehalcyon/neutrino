@@ -47,11 +47,11 @@
             <h2 class="title">News Posts</h2>
             @if(getPosts()->count())
                 <div class="row">
-                    @foreach(getPosts(1, 'created_at', 'ASC', null) as $post)
+                    @foreach(getPosts(null, 'created_at', 'ASC', null) as $post)
                         <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
                             <a href="" class="post-item">
                                 <div class="thumbnail">
-                                    <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}">
+                                    <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}" width="530" height="350">
                                 </div>
                                 <div class="meta">
                                     <span class="category">
@@ -65,10 +65,78 @@
                             </a>
                         </div>
                     @endforeach
+                    <div class="col-12 pt-5 view-all">
+                        <a href="{{ url('/blog/news/') }}">View All</a>
+                    </div>
                 </div>
             @else
                 <p>No news posts available now.</p>
             @endif
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="container">
+            <h2 class="title">Reviews</h2>
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <div class="swiper reviews-slider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="row reviews-slide">
+                                    <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
+                                        <div class="photo">
+                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
+                                        <div class="review-text">
+                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="row reviews-slide">
+                                    <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
+                                        <div class="photo">
+                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
+                                        <div class="review-text">
+                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="row reviews-slide">
+                                    <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
+                                        <div class="photo">
+                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
+                                        <div class="review-text">
+                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-form">
+        <div class="container">
+            <h2 class="title">Quick Contact</h2>
+            <p class="subtitle">We will contact you as soon as possible</p>
         </div>
     </section>
 @include('front.intake-digital.footer')

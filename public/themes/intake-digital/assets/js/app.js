@@ -1,7 +1,8 @@
 'use strict';
 
 jQuery(document).ready(function($){
-    var swiper = new Swiper(".homepage-slider-container", {
+    // Homepage hero slide
+    let swiperHeroHomepage = new Swiper(".homepage-slider-container", {
         spaceBetween: 30,
         autoplay: true,
         loop: true,
@@ -11,21 +12,32 @@ jQuery(document).ready(function($){
         },
     });
 
-    swiper.on('slideChange', function () {
-        var activeSlide = swiper.slides[swiper.activeIndex];
-        var slideType = $(activeSlide).data('type');
-        var slideTitle = $(activeSlide).data('title');
-        var slideLink = $(activeSlide).data('url');
+    swiperHeroHomepage.on('slideChange', function () {
+        let activeSlide = swiperHeroHomepage.slides[swiperHeroHomepage.activeIndex];
+        let slideType = $(activeSlide).data('type');
+        let slideTitle = $(activeSlide).data('title');
+        let slideLink = $(activeSlide).data('url');
         $('.slider-content .slide-type').text(slideType);
         $('.slider-content .slide-title').text(slideTitle);
         $('.slider-content .slide-button a').attr('href', slideLink);
     });
 
-    var initialActiveSlide = swiper.slides[swiper.activeIndex];
-    var initialType = $(initialActiveSlide).data('type');
-    var initialTitle = $(initialActiveSlide).data('title');
-    var initialLink = $(initialActiveSlide).data('url');
+    let initialActiveSlide = swiperHeroHomepage.slides[swiperHeroHomepage.activeIndex];
+    let initialType = $(initialActiveSlide).data('type');
+    let initialTitle = $(initialActiveSlide).data('title');
+    let initialLink = $(initialActiveSlide).data('url');
     $('.slider-content .slide-type').text(initialType);
     $('.slider-content .slide-title').text(initialTitle);
     $('.slider-content .slide-button a').attr('href', initialLink);
+
+    // Homepage reviews slider
+    let swiperReviewsHomepage = new Swiper(".reviews-slider", {
+        spaceBetween: 30,
+        autoplay: true,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
 });

@@ -146,4 +146,145 @@
             line-height: 50px;
         }
     }
+    .view-all{
+        display: block;
+        position: relative;
+        text-align: center;
+        a{
+            display: inline-block;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 22px;
+            border: 1px solid $baseWhite;
+            border-radius: 6px;
+            padding: 10px 30px;
+            text-decoration: none;
+            color: $baseWhite;
+            &:hover{
+                border-color: $orange;
+                background-color: $orange;
+                color: $dark;
+            }
+        }
+    }
+}
+.reviews{
+    position: relative;
+    padding: 0 0 100px;
+    .reviews-slide{
+        position: relative;
+        .photo{
+            position: relative;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            img{
+                border-radius: 100%;
+            }
+        }
+        .review-text{
+            display: block;
+            position: relative;
+            padding: 0 100px 0 50px;
+            p{
+                font-size: 24px;
+                font-weight: 200;
+                font-style: italic;
+                line-height: 40px;
+                margin-bottom: 30px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            &::before{
+                content: '';
+                width: 48px;
+                height: 36px;
+                display: inline-block;
+                position: absolute;
+                background: url('../images/svg/review-quote.svg') no-repeat center;
+                background-size: 48px 36px;
+                top: 0;
+                left: -20px;
+                z-index: 1;
+            }
+            &::after{
+                content: '';
+                width: 48px;
+                height: 36px;
+                display: inline-block;
+                position: absolute;
+                background: url('../images/svg/review-quote.svg') no-repeat center;
+                background-size: 48px 36px;
+                top: calc(100% - 30px);
+                right: 30px;
+                transform: rotate(180deg);
+                z-index: 1;
+            }
+        }
+    }
+    .swiper-pagination{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 80px;
+        .swiper-pagination-bullet{
+            width: 16px;
+            height: 16px;
+            border-radius: 100px;
+            background-color: $gray;
+            margin: 0 8px;
+            opacity: 1;
+            transition: $transition;
+            &.swiper-pagination-bullet-active{
+                background-color: $baseWhite;
+                width: 60px;
+            }
+            &:hover{
+                background-color: $grayLight;
+                &.swiper-pagination-bullet-active{
+                    background-color: $baseWhite;
+                }
+            }
+            &:first-child{
+                margin-left: 0;
+            }
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+}
+.contact-form{
+    position: relative;
+    padding: 100px 0;
+    background: url('../images/contact-form.jpg') center;
+    background-size: cover;
+    &::before{
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,.7);
+        z-index: 1;
+    }
+    .container{
+        position: relative;
+        z-index: 2;
+        .title{
+            text-transform: uppercase;
+            font-size: 56px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .subtitle{
+            font-size: 22px;
+            font-weight: 300;
+            text-align: center;
+        }
+    }
 }
