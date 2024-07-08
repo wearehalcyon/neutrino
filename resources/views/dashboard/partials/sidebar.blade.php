@@ -50,7 +50,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.pages', 'dash.pages.add'])){{ __('active') }}@endif">
+                    <li class="nav-item @if(in_array($routeName, ['dash.pages', 'dash.pages.add', , 'dash.pages.edit'])){{ __('active') }}@endif">
                         <a href="{{ route('dash.pages') }}">
                             <i class="fas fa-file"></i>
                             <p>{{ __('Pages') }}</p>
