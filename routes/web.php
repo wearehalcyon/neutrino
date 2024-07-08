@@ -95,6 +95,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/contact-forms/add', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'add'])->name('dash.c-forms.add');
     Route::post('/contact-forms/add', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'addSave'])->name('dash.c-forms.add.save');
     Route::get('/contact-forms/edit/{id}', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'edit'])->name('dash.c-forms.edit');
+    Route::post('/contact-forms/edit/{id}', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'editSave'])->name('dash.c-forms.edit.save');
 });
 
 // Pages

@@ -29,6 +29,8 @@ class ContactFormsController extends Controller
 
     public function addSave(Request $request)
     {
+        restrictAccess([4,5]);
+
         $request->validate([
             'name' => 'required',
             'form_fields' => 'required'
@@ -39,6 +41,34 @@ class ContactFormsController extends Controller
             'form_fields' => $request->form_fields,
         ]);
 
-        return redirect()->route('dash.c-forms.edit', $form->id)->with('success', __('Form was created'));
+        return redirect()->route('dash.c-forms.edit', $form->id)->with('success', __('Form was created successfully.'));
+    }
+
+    public function edit($id)
+    {
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        $form = ContactForm::find($id);
+
+        return view('dashboard.page-contact-forms-edit', compact('routeName', 'form'));
+    }
+
+    public function editSave(Request $request, $id)
+    {
+        restrictAccess([4,5]);
+
+        $request->validate([
+            'name' => 'required',
+            'form_fields' => 'required'
+        ]);
+
+        $form = ContactForm::find($id);
+        $form->name = $request->name;
+        $form->form_fields = $request->form_fields;
+        $form->save();
+
+        return redirect()->back()->with('success', __('Form was created successfully.'));
     }
 }

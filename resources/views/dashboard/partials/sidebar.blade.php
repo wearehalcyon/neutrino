@@ -56,6 +56,12 @@
                             <p>{{ __('Pages') }}</p>
                         </a>
                     </li>
+                    <li class="nav-item @if(in_array($routeName, ['dash.comments'])){{ __('active') }}@endif">
+                        <a href="{{ route('dash.comments') }}">
+                            <i class="fas fa-comment-alt"></i>
+                            <p>{{ __('Comments') }}</p>
+                        </a>
+                    </li>
                     <li class="nav-item @if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('submenu active') }}@endif">
                         <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.menus', 'dash.menus.add', 'dash.menus.edit', 'dash.menu.items.add', 'dash.menu.items.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-bars"></i>
@@ -77,17 +83,26 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.comments'])){{ __('active') }}@endif">
-                        <a href="{{ route('dash.comments') }}">
-                            <i class="fas fa-comment-alt"></i>
-                            <p>{{ __('Comments') }}</p>
-                        </a>
-                    </li>
-                    <li class="nav-item  @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ 'active' }}@endif">
-                        <a href="{{ route('dash.c-forms') }}">
+                    <li class="nav-item @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
                             <p>{{ __('Contact Forms') }}</p>
+                            <span class="caret"></span>
                         </a>
+                        <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('show') }}@endif" id="menu">
+                            <ul class="nav nav-collapse">
+                                <li class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.c-forms') }}">
+                                        <span class="sub-item">{{ __('All Forms') }}</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('dash.c-forms') }}">
+                                        <span class="sub-item">{{ __('Forms Database') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item @if(in_array($routeName, ['dash.fm'])){{ 'active' }}@endif">
                         <a href="{{ route('dash.fm') }}">
