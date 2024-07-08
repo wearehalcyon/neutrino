@@ -166,10 +166,14 @@
         tinymce.init({
             menubar: {{ $editor }},
             selector: '.ckeditor',
-            plugins: 'code table lists media image editimage',
-            height: 600,
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | table image media | code',
-            content_style: 'body { font-family: serif; font-size:18px }'
+            @if(getOption('extended_editor') == 1)
+                plugins: 'link autolink code table lists media image autoresize autosave pagebreak quickbars searchreplace visualblocks emoticons preview wordcount ',
+                toolbar: 'undo redo | blocks fontsize forecolor bold italic alignleft aligncenter alignright indent outdent bullist numlist blockquote | pagebreak link table image media | emoticons searchreplace restoredraft preview visualblocks code',
+            @else
+                plugins: 'link autolink code lists media image autoresize autosave quickbars visualblocks wordcount ',
+                toolbar: 'blocks bold italic alignleft aligncenter alignright indent outdent bullist numlist blockquote | link image media | restoredraft visualblocks code',
+            @endif
+            content_style: 'body { font-family: serif; font-size:18px; }',
         });
     </script>
     <script>
