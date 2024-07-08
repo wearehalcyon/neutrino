@@ -15,7 +15,9 @@ class ContactFormsController extends Controller
 
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-contact-forms', compact('routeName'));
+        $forms = ContactForm::orderBy('created_at', 'DESC')->get();
+
+        return view('dashboard.page-contact-forms', compact('routeName', 'forms'));
     }
 
     public function add()
