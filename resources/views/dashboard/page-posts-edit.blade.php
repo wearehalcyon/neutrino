@@ -33,6 +33,10 @@
             font-size: 24px;
             font-weight: 600;
         }
+        .tox-promotion,
+        .tox-statusbar__branding{
+            display: none;
+        }
     </style>
 @endsection
 
@@ -188,35 +192,12 @@
 @endsection
 
 @section('footer-scripts')
-    <script src="{{ asset('assets/js/ckeditor5.js') }}"></script>
-    <script src="{{ asset('assets/js/ckeditor5-alignment.js') }}"></script>
+    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('.ckeditor').each(function() {
-                ClassicEditor
-                    .create(this, {
-                        toolbar: {
-                            items: [
-                                'heading',
-                                '|',
-                                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                                '|',
-                                'link', 'blockQuote', 'codeBlock',
-                                '|',
-                                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent', 'alignment',
-                                '|'
-                            ],
-                            shouldNotGroupWhenFull: false
-                        },
-                        alignment: {
-                            options: ['left', 'center', 'right', 'justify'] // Настройки выравнивания
-                        },
-                        shouldNotGroupWhenFull: true
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            });
+        tinymce.init({
+            selector: '.ckeditor',
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table '
         });
     </script>
     <script>
