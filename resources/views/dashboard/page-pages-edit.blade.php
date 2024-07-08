@@ -66,6 +66,13 @@
                     <div class="form-group">
                         <label for="meta_description"><strong>{{ __('Meta Description') }}</strong></label>
                         <textarea name="meta_description" id="meta_description" cols="30" rows="6" class="form-control">{{ $page->getPageMeta('meta_description') }}</textarea>
+                        <div class="seo-limiter">
+                            <div class="limiter-desc">
+                                <span class="form-text text-muted">{{ __('Meta description characters level (170 best choice).') }}</span>
+                                <span class="form-text text-muted current-count">0/170</span>
+                            </div>
+                            <div class="limiter"><div class="level"></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,6 +200,54 @@
                 } else {
                     $('.form-group.slug').show();
                 }
+            });
+        });
+    </script>
+    <script>
+        let seoTextarea = $('textarea[name="meta_description"]'),
+            current = seoTextarea.val().length,
+            max = 170,
+            result = (100 / max) * current;
+
+        if (result <= 25) {
+            var color = '#f00';
+        } else if (result <= 50) {
+            var color = '#ff9900';
+        } else if (result <= 75) {
+            var color = '#00c4ff';
+        } else if (result <= 100) {
+            var color = '#51d842';
+        } else {
+            var color = '#f00';
+        }
+
+        $('.seo-limiter .limiter-desc .current-count').text(current + '/170');
+        $('.seo-limiter .limiter .level').css({
+            'width': result + '%',
+            'background-color': color
+        });
+
+        seoTextarea.on('keydown keyup change', function(){
+            let current = $(this).val().length,
+                max = 170,
+                result = (100 / max) * current;
+
+            if (result <= 25) {
+                var color = '#f00';
+            } else if (result <= 50) {
+                var color = '#ff9900';
+            } else if (result <= 75) {
+                var color = '#00c4ff';
+            } else if (result <= 100) {
+                var color = '#51d842';
+            } else {
+                var color = '#f00';
+            }
+
+            $('.seo-limiter .limiter-desc .current-count').text(current + '/170');
+            $('.seo-limiter .limiter .level').css({
+                'width': result + '%',
+                'background-color': color
             });
         });
     </script>

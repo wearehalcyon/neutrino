@@ -3,6 +3,14 @@
 @section('title', __('Pages'))
 
 @section('header-scripts')
+    <style>
+        .seo-icon{
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 100px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -43,6 +51,7 @@
                                 <th scope="col">{{ __('Name') }}</th>
                                 <th scope="col">{{ __('Created At') }}</th>
                                 <th scope="col">{{ __('Author') }}</th>
+                                <th scope="col" style="text-align: center;">{{ __('SEO') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,6 +68,25 @@
                                     </td>
                                     <td>{{ date('M d, Y', strtotime($page->created_at)) . ' at ' . date('H:i:s', strtotime($page->created_at)) }}</td>
                                     <td>{{ $page->getAuthor()->name }}</td>
+                                    <td style="text-align: center;">
+                                        @php($length = \Illuminate\Support\Str::length($page->getPageMeta('meta_description')))
+                                        @php($max = 170)
+                                        @php($result = (100 / $max) * $length)
+                                        @if($result < 1)
+                                            @php($color = '#e8e8e8')
+                                        @elseif($result <= 25)
+                                            @php($color = '#f00')
+                                        @elseif($result <= 50)
+                                            @php($color = '#ff9900')
+                                        @elseif($result <= 75)
+                                            @php($color = '#00c4ff')
+                                        @elseif($result <= 100)
+                                            @php($color = '#51d842')
+                                        @else
+                                            @php($color = '#f00')
+                                        @endif
+                                        <span class="seo-icon" style="background-color: {{ $color }};"></span>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

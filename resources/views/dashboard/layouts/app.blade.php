@@ -69,6 +69,38 @@
             .sidebar .logo-header{
                 padding-top: 55px;
             }
+            .seo-limiter{
+                display: block;
+                position: relative;
+                margin-top: 5px;
+            }
+            .seo-limiter .limiter{
+                display: block;
+                position: relative;
+                width: 100%;
+                height: 6px;
+                background-color: #e8e8e8;
+                overflow: hidden;
+                border-radius: 100px;
+            }
+            .seo-limiter .limiter .level{
+                display: block;
+                position: absolute;
+                width: 0%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: #f00;
+                transition: all .3s;
+                border-radius: 100px;
+                z-index: 1;
+            }
+            .seo-limiter .limiter-desc{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+            }
         </style>
     </head>
     <body>
