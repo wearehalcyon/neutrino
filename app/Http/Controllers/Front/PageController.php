@@ -13,16 +13,20 @@ class PageController extends Controller
     {
         $page = Page::where('slug', $slug)->first();
 
-        $theme = Setting::where('option_name', 'front_theme')->first();
-        $theme = $theme->option_value;
-        $template = $page->template;
+        if ($page) {
+            $theme = Setting::where('option_name', 'front_theme')->first();
+            $theme = $theme->option_value;
+            $template = $page->template;
 
-        if($template != 'default') {
-            $template = 'templates.page-' . $template;
+            if($template != 'default') {
+                $template = 'templates.page-' . $template;
+            } else {
+                $template = 'index';
+            }
+
+            return view('front.' . $theme . '.' . $template, compact('page'));
         } else {
-            $template = 'index';
+            abort(404);
         }
-
-        return view('front.' . $theme . '.' . $template, compact('page'));
     }
 }
