@@ -158,8 +158,13 @@
 @section('footer-scripts')
     <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
+        @if(getOption('extended_editor') == 1)
+            @php($editor = 'true')
+        @else
+            @php($editor = 'false')
+        @endif
         tinymce.init({
-            menubar: false,
+            menubar: {{ $editor }},
             selector: '.ckeditor',
             plugins: 'code table lists',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | code'
