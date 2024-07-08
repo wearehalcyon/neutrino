@@ -334,6 +334,12 @@ footer.footer .powered a:hover {
   }
 }
 
+.form {
+  position: relative;
+  display: block;
+  z-index: 2;
+}
+
 .homepage-slider {
   position: relative;
   display: flex;

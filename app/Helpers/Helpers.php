@@ -9,6 +9,8 @@ use App\Models\PageMeta;
 use App\Models\PostMeta;
 use App\Models\Category;
 use App\Models\Setting;
+use App\Models\ContactForm;
+use Illuminate\Support\Str;
 
 // Get Option
 if (!function_exists('getOption')) {
@@ -465,5 +467,27 @@ if (!function_exists('getPostCategories')) {
             ->get();
 
         return $categories;
+    }
+}
+
+// Get contact form
+if (!function_exists('getContactForm')) {
+    function getContactForm($name = null, $id = null, $custom_form_id = null, $custom_form_class = null)
+    {
+        $form = ContactForm::where([
+            'id' => $id,
+            'name' => $name,
+        ])->first();
+
+        if ($form) {
+            $html = '<form id="contact-form-' . $id . ' ' . $custom_form_id . '" action="' . route('c-form.submit', [$id, $name, Str::random(5) . '-' . Str::random(5) . '-' . Str::random(5)]) . '" method="post" enctype="multipart/form-data" class="contact-form contact-form-' . $id . ' ' . $custom_form_class . '">';
+            $html .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+            $html .= $form->form_fields;
+            $html .= '</form>';
+
+            return $html;
+        }
+
+        return '';
     }
 }

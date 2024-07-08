@@ -96,8 +96,8 @@
                                         <span class="sub-item">{{ __('All Forms') }}</span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="{{ route('dash.c-forms') }}">
+                                <li class="@if(in_array($routeName, ['dash.c-forms-db'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.c-forms-db') }}">
                                         <span class="sub-item">{{ __('Forms Database') }}</span>
                                     </a>
                                 </li>
@@ -116,12 +116,6 @@
                             <p>{{ __('Users') }}</p>
                         </a>
                     </li>
-    {{--                <li class="nav-item @if($routeName == 'dash.users-roles'){{ 'active' }}@endif">--}}
-    {{--                    <a href="{{ route('dash.users-roles') }}">--}}
-    {{--                        <i class="fas fa-ban"></i>--}}
-    {{--                        <p>{{ __('User Roles') }}</p>--}}
-    {{--                    </a>--}}
-    {{--                </li>--}}
                 @endif
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">

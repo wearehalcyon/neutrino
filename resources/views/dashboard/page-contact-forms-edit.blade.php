@@ -55,9 +55,13 @@
                         <label for="form_fields"><strong>{{ __('Form Markup') }}</strong></label>
                         <textarea name="form_fields" id="form_fields" cols="30" rows="25" class="form-control codemirror">{{ old('form_fields') ? old('form_fields') : $form->form_fields }}</textarea>
                     </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="shortcode"><strong>{{ __('Form Shortcode') }}</strong></label>--}}
+{{--                        <input type="text" value='[getContactForm title="{{ $form->name }}" id="{{ $form->id }}"]' class="form-control" disabled readonly style="font-weight: 700;">--}}
+{{--                    </div>--}}
                     <div class="form-group">
-                        <label for="shortcode"><strong>{{ __('Form Shortcode') }}</strong></label>
-                        <input type="text" value='[contact-form title="{{ $form->name }}" id="{{ $form->id }}"]' class="form-control" disabled readonly style="font-weight: 700;">
+                        <label for="shortcode"><strong>{{ __('Form PHP Function') }}</strong></label>
+                        <input type="text" value="getContactForm('{{ $form->name }}', '{{ $form->id }}')" class="form-control" disabled readonly style="font-weight: 700;">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">{{ __('Update Form') }}</button>

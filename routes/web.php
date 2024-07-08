@@ -110,3 +110,5 @@ Route::prefix('blog')->group(function () {
     Route::get('/category/{category}', [BlogController::class, 'category'])->name('blog.category');
     Route::get('/tag/{tag}', [BlogController::class, 'tag'])->name('blog.tag');
 });
+// Contact Forms
+Route::post('/c-form-submit-{form_id}-{name}-{unique_id}', [App\Http\Controllers\Front\ContactFormController::class, 'submit'])->name('c-form.submit');
