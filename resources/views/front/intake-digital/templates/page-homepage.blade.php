@@ -138,7 +138,7 @@
             <h2 class="title">Quick Contact</h2>
             <p class="subtitle">We will contact you as soon as possible</p>
             <div class="form">
-                {!! getContactForm('Homepage Form', '2', 'homepage-footer-form', 'homepage-footer-form') !!}
+                {!! getContactForm('Homepage Form', '2', 'homepage-footer-form', 'homepage-footer-form row justify-content-center') !!}
             </div>
         </div>
     </section>

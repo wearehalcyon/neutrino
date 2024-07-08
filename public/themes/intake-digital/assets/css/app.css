@@ -339,6 +339,78 @@ footer.footer .powered a:hover {
   display: block;
   z-index: 2;
 }
+.form input[type=text],
+.form input[type=email],
+.form input[type=tel] {
+  width: 100%;
+  border: none;
+  border-bottom: 3px solid #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 15px 20px;
+  background-color: #000;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+}
+.form input[type=text]:focus,
+.form input[type=email]:focus,
+.form input[type=tel]:focus {
+  border-color: #FFA800;
+}
+.form select {
+  width: 100%;
+  border: none;
+  border-bottom: 3px solid #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 15px 20px;
+  background-color: #000;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+  color: #777;
+}
+.form select:focus {
+  border-color: #FFA800;
+}
+.form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 3px solid #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 15px 20px;
+  background-color: #000;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+  height: 200px;
+  resize: none;
+}
+.form textarea:focus {
+  border-color: #FFA800;
+}
+.form .submit-button {
+  display: block;
+  text-align: center;
+}
+.form .submit-button button {
+  display: inline-block;
+  border: none;
+  background: #FFA800;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 12px 30px;
+  cursor: pointer;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.3s;
+}
+.form .submit-button button:hover {
+  background-color: #fff;
+}
 
 .homepage-slider {
   position: relative;
