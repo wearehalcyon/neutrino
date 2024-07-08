@@ -801,6 +801,20 @@ body.page-template-default .inner-hero .container .hero-title {
   font-weight: 700;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
 }
+body.page-template-default .content {
+  padding: 100px 0;
+  position: relative;
+}
+body.page-template-default .content .text {
+  font-size: 20px;
+  font-weight: 300;
+}
+body.page-template-default .content .text p {
+  margin-bottom: 30px;
+}
+body.page-template-default .content .text p:last-child {
+  margin-bottom: 0;
+}
 
 body.page-template-about {
   position: relative;

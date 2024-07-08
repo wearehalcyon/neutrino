@@ -84,12 +84,12 @@
                         </div>
                     </li>
                     <li class="nav-item @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#menu" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif" aria-expanded="false">
+                        <a data-bs-toggle="collapse" href="#c-forms" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
                             <p>{{ __('Contact Forms') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('show') }}@endif" id="menu">
+                        <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('show') }}@endif" id="c-forms">
                             <ul class="nav nav-collapse">
                                 <li class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.c-forms') }}">
