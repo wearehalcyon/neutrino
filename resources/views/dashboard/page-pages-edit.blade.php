@@ -166,8 +166,10 @@
         tinymce.init({
             menubar: {{ $editor }},
             selector: '.ckeditor',
-            plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | code'
+            plugins: 'code table lists media image editimage',
+            height: 600,
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | table image media | code',
+            content_style: 'body { font-family: serif; font-size:18px }'
         });
     </script>
     <script>

@@ -149,13 +149,14 @@ class PageController extends Controller
                 'option_name' => 'homepage_id',
                 'option_value' => $page->id,
             ]);
-        } else {
+        }
+        if ($homepage && $homepage->option_value == $page->id) {
             if (isset($request->homepage_id)) {
                 $homepage->option_value = $page->id;
+                $homepage->save();
             } else {
-                $homepage->option_value = null;
+                $homepage->delete();
             }
-            $homepage->save();
         }
 
         // Update SEO meta fields
