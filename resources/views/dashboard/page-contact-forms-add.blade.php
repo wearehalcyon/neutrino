@@ -3,8 +3,6 @@
 @section('title', __('Add Contact Form'))
 
 @section('header-scripts')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.1.11.2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endsection
 
 @section('content')
@@ -21,13 +19,41 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">{{ __('Forms List') }}</div>
+                    <div class="card-title">{{ __('Form Fields') }}</div>
+                </div>
+                <form id="contact-form-builder" action="{{ route('dash.c-forms.add.save') }}" method="post" class="card-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="form_fields"><strong>{{ __('Form Markup') }}</strong></label>
+                        <textarea name="form_fields" id="form_fields" cols="30" rows="25" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">{{ __('Save Form') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Settings') }}</div>
                 </div>
                 <div class="card-body">
-
+                    <div class="form-group">
+                        <label for="column"><strong>{{ __('Column') }}</strong></label>
+                        <select class="form-select column" id="column">
+                            <option value="1">1/4</option>
+                            <option value="2">2/4</option>
+                            <option value="3">3/4</option>
+                            <option value="4">4/4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary add-field">{{ __('Add Field') }}</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,5 +61,10 @@
 @endsection
 
 @section('footer-scripts')
-    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+    <script>
+        jQuery(document).ready(function(event){
+            event.preventDefault();
+
+        });
+    </script>
 @endsection

@@ -93,6 +93,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     // Contact Forms
     Route::get('/contact-forms', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'index'])->name('dash.c-forms');
     Route::get('/contact-forms/add', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'add'])->name('dash.c-forms.add');
+    Route::post('/contact-forms/add', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'addSave'])->name('dash.c-forms.add.save');
 });
 
 // Pages

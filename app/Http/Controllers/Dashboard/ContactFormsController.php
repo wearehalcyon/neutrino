@@ -25,4 +25,9 @@ class ContactFormsController extends Controller
 
         return view('dashboard.page-contact-forms-add', compact('routeName'));
     }
+
+    public function addSave(Request $request)
+    {
+        dd($request);
+    }
 }
