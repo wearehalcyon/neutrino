@@ -480,7 +480,7 @@ if (!function_exists('getContactForm')) {
         ])->first();
 
         if ($form) {
-            $html = '<form id="contact-form-' . $id . ' ' . $custom_form_id . '" action="' . route('c-form.submit', [$id, $name, Str::random(5) . '-' . Str::random(5) . '-' . Str::random(5)]) . '" method="post" enctype="multipart/form-data" class="contact-form contact-form-' . $id . ' ' . $custom_form_class . '">';
+            $html = '<form id="contact-form-' . $id . ' ' . $custom_form_id . '" action="' . route('c-form.submit', [$id, $name, Str::random(5) . '-' . Str::random(5) . '-' . Str::random(5)]) . '" method="post" enctype="multipart/form-data" class="contact-form-wrapper contact-form-' . $id . ' ' . $custom_form_class . '">';
             $html .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
             $html .= $form->form_fields;
             $html .= '</form>';
