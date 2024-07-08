@@ -131,6 +131,7 @@ class PostsController extends Controller
         $post->content = $request->content;
         $post->status = $request->status;
         $post->delayed_date = $request->delayed_date;
+        $post->created_at = $request->created_at;
         $post->save();
 
         $categories = PostToCategory::where('post_id', $id)->delete();
@@ -165,6 +166,7 @@ class PostsController extends Controller
         ])->first();
         if ($seo_title) {
             $seo_title->meta_value = $request->seo_title;
+            $seo_title->save();
         } else {
             PostMeta::create([
                 'post_id' => $id,
@@ -178,6 +180,7 @@ class PostsController extends Controller
         ])->first();
         if ($seo_slug) {
             $seo_slug->meta_value = $request->seo_slug;
+            $seo_slug->save();
         } else {
             PostMeta::create([
                 'post_id' => $id,
@@ -191,6 +194,7 @@ class PostsController extends Controller
         ])->first();
         if ($meta_description) {
             $meta_description->meta_value = $request->meta_description;
+            $meta_description->save();
         } else {
             PostMeta::create([
                 'post_id' => $id,

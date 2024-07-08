@@ -51,7 +51,11 @@
                         <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
                             <a href="" class="post-item">
                                 <div class="thumbnail">
-                                    <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}" width="530" height="350">
+                                    @if($post->thumbnail)
+                                        <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}" width="530" height="350">
+                                    @else
+                                        <img src="{{ getThemeAssetsUri('/assets/images/svg/no-thumbnail.svg') }}" alt="{{ $post->name }}" width="530" height="350">
+                                    @endif
                                 </div>
                                 <div class="meta">
                                     <span class="category">
