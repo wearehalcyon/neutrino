@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,16 @@ class ContactFormsController extends Controller
 
     public function addSave(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'name' => 'required',
+            'form_fields' => 'required'
+        ]);
+
+        $form = ContactForm::create([
+            'name' => $request->name,
+            'form_fields' => $request->form_fields,
+        ]);
+
+        return redirect()->route('dash.c-forms.edit', $form->id)->with('success', __('Form was created'));
     }
 }
