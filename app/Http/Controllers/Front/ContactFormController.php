@@ -19,6 +19,6 @@ class ContactFormController extends Controller
             'form_data' => json_encode($formData)
         ]);
 
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('cf-success', '');
     }
 }

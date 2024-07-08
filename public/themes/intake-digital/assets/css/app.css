@@ -387,6 +387,7 @@ footer.footer .powered a:hover {
   margin-bottom: 30px;
   height: 200px;
   resize: none;
+  color: #fff;
 }
 .form textarea:focus {
   border-color: #FFA800;
@@ -410,6 +411,46 @@ footer.footer .powered a:hover {
 }
 .form .submit-button button:hover {
   background-color: #fff;
+}
+
+.success-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 99999999;
+}
+.success-popup .popup-window {
+  position: relative;
+  display: block;
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 30px;
+  color: #000;
+  text-align: center;
+}
+.success-popup .popup-window h2 {
+  font-weight: 600;
+}
+.success-popup .popup-window a {
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+  background-color: #FFA800;
+  line-height: 20px;
+  padding: 15px 30px;
+  border-radius: 6px;
+}
+.success-popup .popup-window a:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 .homepage-slider {

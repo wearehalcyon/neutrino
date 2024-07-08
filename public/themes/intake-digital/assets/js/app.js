@@ -40,4 +40,11 @@ jQuery(document).ready(function($){
             clickable: true,
         },
     });
+
+    // Close popup
+    $('.close-popup').on('click', function(event){
+        event.preventDefault();
+
+        $(this).parent().parent().remove();
+    });
 });

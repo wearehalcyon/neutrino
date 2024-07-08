@@ -55,8 +55,16 @@
                 </div>
             </div>
         </footer>
+        @if(session('cf-success'))
+            <div class="success-popup d-flex align-items-center justify-content-center">
+                <div class="popup-window">
+                    <h2>Thank You!</h2>
+                    <p>Your message was sent! We will contact you very soon. Be patient please :)</p>
+                    <a href="javascript:;" class="close-popup">OK</a>
+                </div>
+            </div>
+        @endif
     </div>
-        {!! getMenu('Test Menu') !!}
     {{ getFooter() }}
     <script src="{{ getThemeAssetsUri('/assets/js/plugins/swiper-bundle.min.js') }}"></script>
     <script src="{{ getThemeAssetsUri('/assets/js/app.js') }}"></script>
