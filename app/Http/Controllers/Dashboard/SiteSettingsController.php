@@ -119,6 +119,21 @@ class SiteSettingsController extends Controller
             $debugbar->save();
         }
 
+        $texteditor = Setting::where('option_name', 'extended_editor')->first();
+        if (!$texteditor) {
+            Setting::create([
+                'option_name' => 'extended_editor',
+                'option_value' => 1,
+            ]);
+        } else {
+            if ($request->extended_editor) {
+                $texteditor->option_value = 1;
+            } else {
+                $texteditor->option_value = 0;
+            }
+            $texteditor->save();
+        }
+
         // Set Homepage
         $sethomepage = Setting::where('option_name', 'homepage_id')->first();
         if (!$sethomepage) {
