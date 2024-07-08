@@ -23,6 +23,6 @@ class PageController extends Controller
             $template = 'index';
         }
 
-        return view('front.' . $theme . '.' . $template);
+        return view('front.' . $theme . '.' . $template, compact('page'));
     }
 }
