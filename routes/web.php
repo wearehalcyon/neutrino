@@ -90,6 +90,9 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     // Site Custommize
     Route::get('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customize'])->name('dash.customize');
     Route::post('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customizeSave'])->name('dash.customize.save');
+    // Contact Forms
+    Route::get('/contact-forms', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'index'])->name('dash.c-forms');
+    Route::get('/contact-forms/add', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'add'])->name('dash.c-forms.add');
 });
 
 // Pages

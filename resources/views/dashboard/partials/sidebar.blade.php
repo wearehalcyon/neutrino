@@ -83,12 +83,12 @@
                             <p>{{ __('Comments') }}</p>
                         </a>
                     </li>
-{{--                    <li class="nav-item @if($routeName == 'media'){{ 'active' }}@endif">--}}
-{{--                        <a href="{{ route('dash') }}">--}}
-{{--                            <i class="fas fa-envelope"></i>--}}
-{{--                            <p>{{ __('Contact') }}</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="nav-item  @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ 'active' }}@endif">
+                        <a href="{{ route('dash.c-forms') }}">
+                            <i class="fas fa-envelope"></i>
+                            <p>{{ __('Contact Forms') }}</p>
+                        </a>
+                    </li>
                     <li class="nav-item @if(in_array($routeName, ['dash.fm'])){{ 'active' }}@endif">
                         <a href="{{ route('dash.fm') }}">
                             <i class="fas fa-hdd"></i>
