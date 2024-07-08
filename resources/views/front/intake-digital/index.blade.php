@@ -1,4 +1,5 @@
 @include('front.intake-digital.header')
+    <section class="inner-hero"></section>
     <main class="content">
         <div class="container">
             <div class="row">

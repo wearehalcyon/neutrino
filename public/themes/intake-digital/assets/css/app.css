@@ -759,6 +759,14 @@ footer.footer .powered a:hover {
   text-align: center;
 }
 
+body.page-template-default {
+  position: relative;
+}
+
+body.page-template-about {
+  position: relative;
+}
+
 * {
   margin: 0;
   padding: 0;

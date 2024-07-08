@@ -36,7 +36,7 @@
 
     {{ getHead() }}
 </head>
-<body class="{{ getBodyClass('custom-body-theme-class') }}">
+<body class="{{ getBodyClass('custom-body-theme-class page-template-' . $page->template) }}">
 <div id="app">
     <header class="header">
         <div class="container-fluid">
