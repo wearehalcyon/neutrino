@@ -334,14 +334,18 @@ footer.footer .powered a:hover {
   }
 }
 
-.form {
+.form,
+.contact-form-wrapper {
   position: relative;
   display: block;
   z-index: 2;
 }
 .form input[type=text],
 .form input[type=email],
-.form input[type=tel] {
+.form input[type=tel],
+.contact-form-wrapper input[type=text],
+.contact-form-wrapper input[type=email],
+.contact-form-wrapper input[type=tel] {
   width: 100%;
   border: none;
   border-bottom: 3px solid #fff;
@@ -355,10 +359,14 @@ footer.footer .powered a:hover {
 }
 .form input[type=text]:focus,
 .form input[type=email]:focus,
-.form input[type=tel]:focus {
+.form input[type=tel]:focus,
+.contact-form-wrapper input[type=text]:focus,
+.contact-form-wrapper input[type=email]:focus,
+.contact-form-wrapper input[type=tel]:focus {
   border-color: #FFA800;
 }
-.form select {
+.form select,
+.contact-form-wrapper select {
   width: 100%;
   border: none;
   border-bottom: 3px solid #fff;
@@ -371,10 +379,12 @@ footer.footer .powered a:hover {
   margin-bottom: 30px;
   color: #777;
 }
-.form select:focus {
+.form select:focus,
+.contact-form-wrapper select:focus {
   border-color: #FFA800;
 }
-.form textarea {
+.form textarea,
+.contact-form-wrapper textarea {
   width: 100%;
   border: none;
   border-bottom: 3px solid #fff;
@@ -389,14 +399,17 @@ footer.footer .powered a:hover {
   resize: none;
   color: #fff;
 }
-.form textarea:focus {
+.form textarea:focus,
+.contact-form-wrapper textarea:focus {
   border-color: #FFA800;
 }
-.form .submit-button {
+.form .submit-button,
+.contact-form-wrapper .submit-button {
   display: block;
   text-align: center;
 }
-.form .submit-button button {
+.form .submit-button button,
+.contact-form-wrapper .submit-button button {
   display: inline-block;
   border: none;
   background: #FFA800;
@@ -409,7 +422,8 @@ footer.footer .powered a:hover {
   outline: none;
   transition: all 0.3s;
 }
-.form .submit-button button:hover {
+.form .submit-button button:hover,
+.contact-form-wrapper .submit-button button:hover {
   background-color: #fff;
 }
 
@@ -451,6 +465,23 @@ footer.footer .powered a:hover {
 .success-popup .popup-window a:hover {
   background-color: #000;
   color: #fff;
+}
+
+aside.sidebar {
+  position: relative;
+  display: block;
+}
+aside.sidebar .sidebar-widget {
+  position: relative;
+  display: block;
+  padding: 20px;
+  background-color: #0D0D0D;
+}
+aside.sidebar .sidebar-widget .widget-title {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .homepage-slider {

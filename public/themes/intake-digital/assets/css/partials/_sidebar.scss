@@ -1,0 +1,16 @@
+aside.sidebar{
+    position: relative;
+    display: block;
+    .sidebar-widget{
+        position: relative;
+        display: block;
+        padding: 20px;
+        background-color: $dark;
+        .widget-title{
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    }
+}
