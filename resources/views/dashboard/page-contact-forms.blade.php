@@ -32,7 +32,44 @@
                     <div class="card-title">{{ __('Forms List') }}</div>
                 </div>
                 <div class="card-body">
-
+                    @if($forms->isNotEmpty())
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col" style="width: 100px;">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Blade Function</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($forms as $form)
+                                <tr>
+                                    <td>{{ $form->id }}</td>
+                                    <td><a href="{{ route('dash.c-forms.edit', $form->id) }}" title="{{ $form->name }}">{{ $form->name }}</a></td>
+                                    <td><input type="text" class="form-control" disabled readonly value="getContactForm('{{ $form->name }}', '{{ $form->id }}')"></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        @if($forms->links())
+                            <div class="pagination w-100 d-block">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
+                                            {{ __('Showing ' . $forms->count() . ' of ' . $forms->total() . ' entries') }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
+                                            {{ $forms->links('dashboard.partials.pagination', ['posts' => $forms]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @else
+                        <p>{{ __('No any forms created yet.') }}</p>
+                    @endif
                 </div>
             </div>
         </div>
