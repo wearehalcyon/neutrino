@@ -103,13 +103,18 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
 
 // Pages
 Route::prefix('/')->group(function () {
+    $blogBase = Setting::where('option_name', 'blog_base')->first();
+    $blogBase = $blogBase->option_value;
+
     $catBase = Setting::where('option_name', 'category_base')->first();
     $catBase = $catBase->option_value;
 
+    $tagBase = Setting::where('option_name', 'tag_base')->first();
+    $tagBase = $tagBase->option_value;
+
     Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('pages.home');
     Route::get('/{slug}', [App\Http\Controllers\Front\PageController::class, 'internal'])->name('pages.internal');
-    Route::get('/' . $catBase, [App\Http\Controllers\Front\BlogController::class, 'index'])->name('blog.category');
-    Route::get('/' . $catBase . '/{post}', [App\Http\Controllers\Front\BlogController::class, 'post'])->name('blog.category.post');
+    Route::get('/' . $blogBase . '/{post}', [App\Http\Controllers\Front\BlogController::class, 'post'])->name('pages.blog.post');
 });
 // Contact Forms
 Route::post('/c-form-submit-{form_id}-{name}-{unique_id}', [App\Http\Controllers\Front\ContactFormController::class, 'submit'])->name('c-form.submit');

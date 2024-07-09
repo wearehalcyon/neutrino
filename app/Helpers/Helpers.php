@@ -497,7 +497,7 @@ if (!function_exists('getPostLink')) {
     function getPostLink($slug = null)
     {
         if ($slug) {
-            return route('blog.category.post', $slug);
+            return route('pages.blog.post', $slug);
         }
         return null;
     }
