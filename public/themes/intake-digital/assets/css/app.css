@@ -792,62 +792,6 @@ aside.sidebar .sidebar-widget .widget-title {
 body.page-template-default {
   position: relative;
 }
-body.page-template-default .inner-hero {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-  min-height: 600px;
-}
-body.page-template-default .inner-hero img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-body.page-template-default .inner-hero::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 2;
-}
-body.page-template-default .inner-hero .container {
-  position: relative;
-  z-index: 3;
-}
-body.page-template-default .inner-hero .container .hero-title {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 82px;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
-}
-body.page-template-default .content {
-  padding: 100px 0;
-  position: relative;
-}
-body.page-template-default .content .text {
-  font-size: 20px;
-  font-weight: 300;
-}
-body.page-template-default .content .text p {
-  margin-bottom: 30px;
-}
-body.page-template-default .content .text p:last-child {
-  margin-bottom: 0;
-}
-body.page-template-default .content .text ul, body.page-template-default .content .text ol {
-  padding-left: 40px;
-}
 
 body.page-template-about {
   position: relative;
@@ -875,6 +819,68 @@ body a:hover {
 }
 body .container {
   max-width: 1740px;
+}
+body .inner-hero {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-height: 600px;
+}
+body .inner-hero img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+body .inner-hero::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+body .inner-hero .container {
+  position: relative;
+  z-index: 3;
+}
+body .inner-hero .container .hero-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 82px;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+body .content {
+  padding: 100px 0;
+  position: relative;
+}
+body .content .text {
+  font-size: 20px;
+  font-weight: 300;
+}
+body .content .text p {
+  margin-bottom: 30px;
+}
+body .content .text p:last-child {
+  margin-bottom: 0;
+}
+body .content .text ul, body .content .text ol {
+  padding-left: 40px;
+}
+body .content .text strong {
+  font-weight: 700;
+}
+body .content .text h2 {
+  font-size: 32px;
 }
 
 /*# sourceMappingURL=app.css.map */
