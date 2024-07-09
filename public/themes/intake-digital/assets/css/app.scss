@@ -47,6 +47,10 @@ body{
         align-items: center;
         width: 100%;
         min-height: 600px;
+        @include lg{
+            min-height: 10px;
+            padding: 100px 0;
+        }
         img{
             position: absolute;
             width: 100%;
@@ -78,6 +82,9 @@ body{
                 text-shadow: 0 0 20px rgba(0, 0, 0, .5),
                 0 0 20px rgba(0, 0, 0, .5),
                 0 0 20px rgba(0, 0, 0, .5);
+                @include lg{
+                    font-size: 32px;
+                }
             }
         }
     }
@@ -102,6 +109,15 @@ body{
             h2{
                 font-size: 32px;
             }
+        }
+    }
+    .mobile-button{
+        position: relative;
+        text-align: right;
+        .open-mobile{
+            border: none;
+            background-color: transparent;
+            outline: none;
         }
     }
 }

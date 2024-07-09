@@ -40,4 +40,15 @@ jQuery(document).ready(function($){
             clickable: true,
         },
     });
+
+    // Mobile menu
+    $('.mobile-button .open-mobile').on('click', function(event){
+        event.preventDefault();
+
+        if (!$('.mobile-menu').hasClass('show')) {
+            $('.mobile-menu').addClass('show');
+        } else {
+            $('.mobile-menu').removeClass('show');
+        }
+    });
 });

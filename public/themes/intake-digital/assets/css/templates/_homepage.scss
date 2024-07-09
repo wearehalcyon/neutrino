@@ -23,6 +23,9 @@
                 width: 100%;
                 height: 760px;
                 object-fit: cover;
+                @include lg{
+                    height: 400px;
+                }
             }
         }
     }
@@ -38,6 +41,7 @@
         }
         @include lg{
             width: 100%;
+            padding: 20px;
         }
         .slide-type{
             display: block;
@@ -47,6 +51,9 @@
         .slide-title{
             font-size: 48px;
             font-weight: 700;
+            @include lg{
+                font-size: 32px;
+            }
         }
         .slide-button{
             display: block;
@@ -186,6 +193,9 @@
             display: block;
             position: relative;
             padding: 0 100px 0 50px;
+            @include lg{
+                padding: 0 20px;
+            }
             p{
                 font-size: 24px;
                 font-weight: 200;
@@ -194,6 +204,9 @@
                 margin-bottom: 30px;
                 &:last-child{
                     margin-bottom: 0;
+                }
+                @include lg{
+                    font-size: 18px;
                 }
             }
             &::before{
@@ -207,6 +220,9 @@
                 top: 0;
                 left: -20px;
                 z-index: 1;
+                @include lg{
+                    display: none;
+                }
             }
             &::after{
                 content: '';
@@ -220,6 +236,9 @@
                 right: 30px;
                 transform: rotate(180deg);
                 z-index: 1;
+                @include lg{
+                    display: none;
+                }
             }
         }
     }

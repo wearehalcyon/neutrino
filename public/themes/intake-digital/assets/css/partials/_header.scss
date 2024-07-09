@@ -7,6 +7,9 @@ header.header{
     top: 0;
     left: 0;
     z-index: 99999999;
+    @include lg{
+        padding: 10px 0;
+    }
     .logo{
         position: relative;
         font-size: 0;
