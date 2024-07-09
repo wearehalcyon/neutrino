@@ -12,7 +12,7 @@
                     <div class="text">{!! $page->content !!}</div>
                 </div>
                 <div class="col-md-12 col-lg-4 col-xl-3">
-                    {!! getContactForm('Sidebar Form', '1') !!}
+                    {!! getContactForm('Homepage Form', '2') !!}
                 </div>
             </div>
         </div>
