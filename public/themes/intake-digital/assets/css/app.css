@@ -868,7 +868,11 @@ body {
   color: #fff;
 }
 body a {
+  color: #FFA800;
   transition: all 0.3s;
+}
+body a:hover {
+  color: #fff;
 }
 body .container {
   max-width: 1740px;
