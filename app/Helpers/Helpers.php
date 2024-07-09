@@ -491,3 +491,14 @@ if (!function_exists('getContactForm')) {
         return '';
     }
 }
+
+// Get post link
+if (!function_exists('getPostLink')) {
+    function getPostLink($slug = null)
+    {
+        if ($slug) {
+            return route('blog.category.post', $slug);
+        }
+        return null;
+    }
+}

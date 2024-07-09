@@ -49,7 +49,7 @@
                 <div class="row">
                     @foreach(getPosts(null, 'created_at', 'ASC', null) as $post)
                         <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
-                            <a href="" class="post-item">
+                            <a href="{{ getPostLink() }}" class="post-item">
                                 <div class="thumbnail">
                                     @if($post->thumbnail)
                                         <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->name }}" width="530" height="350">
