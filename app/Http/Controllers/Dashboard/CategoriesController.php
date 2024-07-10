@@ -73,9 +73,15 @@ class CategoriesController extends Controller
         $slug = $baseSlug;
         $next = 2;
 
-        while (Category::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $next;
-            $next++;
+        $existingPages = Category::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Category::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $slug = $baseSlug . '-' . $next;
+                $next++;
+            }
         }
 
         $category = Category::find($id);

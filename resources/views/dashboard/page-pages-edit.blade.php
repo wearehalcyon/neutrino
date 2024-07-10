@@ -177,7 +177,7 @@
                 plugins: 'link autolink code lists media image autoresize autosave quickbars visualblocks wordcount ',
                 toolbar: 'blocks bold italic underline strikethrough alignleft aligncenter alignright indent outdent bullist numlist blockquote | link image media | restoredraft visualblocks code',
             @endif
-            content_style: 'body { font-family: serif; font-size:18px; }',
+            content_style: 'body { font-family: serif; font-size:18px; min-height: 300px !important; }',
         });
     </script>
     <script>

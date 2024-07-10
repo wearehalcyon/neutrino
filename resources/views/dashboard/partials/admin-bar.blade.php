@@ -55,14 +55,14 @@
                 <li><a href="{{ route('dash.comments') }}">{{ __('All Comments') }}</a></li>
             </ul>
         </li>
-        <span style="margin-left: 5px;">|</span>
-        <li>
+        <span class="ab-dm-none" style="margin-left: 5px;">|</span>
+        <li class="ab-dm-none">
             <a href="{{ route('dash.posts.add') }}"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>{{ __('Add New Post') }}</span></a>
         </li>
-        <li>
+        <li class="ab-dm-none">
             <a href="{{ route('dash.pages.add') }}"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>{{ __('Add New Page') }}</span></a>
         </li>
-        <span style="margin-left: 5px;">|</span>
+        <span class="ab-dm-none" style="margin-left: 5px;">|</span>
     </ul>
     <ul class="admin-bar-nav right-nav">
         <li>

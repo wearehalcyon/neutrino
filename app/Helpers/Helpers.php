@@ -228,6 +228,21 @@ if (!function_exists('getHead')) {
                         color: #fff;
                         filter: brightness(1);
                     }
+                    @media screen and (max-width: 1200px) {
+                        #admin-bar.admin-bar .admin-bar-nav .ab-dm-none,
+                        #admin-bar.admin-bar .admin-bar-nav li.ab-dm-none{
+                            display: none;
+                        }
+                        #admin-bar.admin-bar .admin-bar-nav li a{
+                            font-size: 0;
+                        }
+                        #admin-bar.admin-bar .admin-bar-nav li a i{
+                            font-size: 16px;
+                        }
+                        #admin-bar.admin-bar .admin-bar-nav li .admin-bar-sub-menu li a{
+                            font-size: 15px;
+                        }
+                    }
                 </style>
             HTML;
         echo getOption('head_scripts');

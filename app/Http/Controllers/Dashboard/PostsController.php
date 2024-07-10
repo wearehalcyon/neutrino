@@ -135,9 +135,15 @@ class PostsController extends Controller
         $slug = $baseSlug;
         $next = 2;
 
-        while (Post::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $next;
-            $next++;
+        $existingPages = Post::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Post::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $slug = $baseSlug . '-' . $next;
+                $next++;
+            }
         }
 
         $post = Post::find($id);

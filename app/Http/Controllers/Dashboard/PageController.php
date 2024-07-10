@@ -148,9 +148,15 @@ class PageController extends Controller
         $slug = $baseSlug;
         $next = 2;
 
-        while (Page::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $next;
-            $next++;
+        $existingPages = Page::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Page::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $slug = $baseSlug . '-' . $next;
+                $next++;
+            }
         }
 
         $page = Page::find($id);

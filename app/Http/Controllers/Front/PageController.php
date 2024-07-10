@@ -21,10 +21,22 @@ class PageController extends Controller
             if($template != 'default') {
                 $template = 'templates.page-' . $template;
             } else {
-                $template = 'index';
+                $template = 'page';
             }
 
-            return view('front.' . $theme . '.' . $template, compact('page'));
+            // Breadcrumbs
+            $breadcrumbs = [
+                [
+                    'name' => 'Home',
+                    'url' => url('/')
+                ],
+                [
+                    'name' => $page->name,
+                    'url' => false
+                ]
+            ];
+
+            return view('front.' . $theme . '.' . $template, compact('page', 'breadcrumbs'));
         } else {
             abort(404);
         }

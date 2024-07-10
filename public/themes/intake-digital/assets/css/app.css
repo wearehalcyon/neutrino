@@ -953,6 +953,15 @@ body .content .text strong {
 }
 body .content .text h2 {
   font-size: 32px;
+  font-weight: 600;
+}
+body .content .text h3 {
+  font-size: 26px;
+  font-weight: 600;
+}
+body .content .text h4 {
+  font-size: 22px;
+  font-weight: 600;
 }
 body .mobile-button {
   position: relative;

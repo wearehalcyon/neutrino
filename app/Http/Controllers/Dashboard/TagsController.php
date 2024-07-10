@@ -73,9 +73,15 @@ class TagsController extends Controller
         $slug = $baseSlug;
         $next = 2;
 
-        while (Tag::where('slug', $slug)->exists()) {
-            $slug = $baseSlug . '-' . $next;
-            $next++;
+        $existingPages = Tag::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Tag::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $slug = $baseSlug . '-' . $next;
+                $next++;
+            }
         }
 
         $category = Tag::find($id);
