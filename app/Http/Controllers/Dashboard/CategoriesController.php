@@ -35,7 +35,7 @@ class CategoriesController extends Controller
     {
         restrictAccess([4,5]);
 
-        $baseSlug = Str::slug($request->name);
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
         $slug = $baseSlug;
         $next = 2;
 
@@ -69,7 +69,7 @@ class CategoriesController extends Controller
     {
         restrictAccess([4,5]);
 
-        $baseSlug = Str::slug($request->name);
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
         $slug = $baseSlug;
         $next = 2;
 

@@ -43,11 +43,18 @@ class PostsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $thumbID = time();
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Post::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
 
         $post = Post::create([
             'name' => $request->name,
-            'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
+            'slug' => $slug,
             'author_id' => $request->author_id,
             'status' => $request->status,
             'content' => $request->content,
@@ -124,13 +131,20 @@ class PostsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $thumbID = time();
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Post::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
 
         $post = Post::find($id);
         $post->name = $request->name;
         $post->content = $request->content;
         $post->author_id = $request->author_id;
-        $post->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $post->slug = $slug;
         $post->content = $request->content;
         $post->status = $request->status;
         $post->delayed_date = $request->delayed_date;

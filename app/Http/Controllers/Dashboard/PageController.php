@@ -50,9 +50,18 @@ class PageController extends Controller
     {
         restrictAccess([4,5]);
 
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Page::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
+
         $page = Page::create([
             'name' => $request->name,
-            'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
+            'slug' => $slug,
             'author_id' => $request->author_id,
             'status' => $request->status,
             'content' => $request->content,
@@ -135,11 +144,20 @@ class PageController extends Controller
     {
         restrictAccess([4,5]);
 
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
+
+        while (Page::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
+        }
+
         $page = Page::find($id);
         $page->name = $request->name;
         $page->content = $request->content;
         $page->author_id = $request->author_id;
-        $page->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $page->slug = $slug;
         $page->content = $request->content;
         $page->status = $request->status;
         $page->template = $request->template;

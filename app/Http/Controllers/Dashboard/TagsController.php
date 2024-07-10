@@ -35,23 +35,18 @@ class TagsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $slug = Str::slug($request->name);
-        $tag = Tag::where('slug', $slug)->first();
-        if ($tag) {
-            $count = 2;
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
 
-            while (Tag::where('slug', $slug . '-' . $count)->exists()) {
-                $count++;
-            }
-
-            $finalSlug = $slug . '-' . $count;
-        } else {
-            $finalSlug = $slug;
+        while (Tag::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
         }
 
         Tag::create([
             'name' => $request->name,
-            'slug' => $finalSlug,
+            'slug' => $slug,
             'description' => $request->description,
             'author_id' => Auth::id(),
         ]);
@@ -74,23 +69,18 @@ class TagsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $slug = Str::slug($request->name);
-        $tag = Tag::where('slug', $slug)->first();
-        if ($tag) {
-            $count = 2;
+        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $slug = $baseSlug;
+        $next = 2;
 
-            while (Tag::where('slug', $slug . '-' . $count)->exists()) {
-                $count++;
-            }
-
-            $finalSlug = $slug . '-' . $count;
-        } else {
-            $finalSlug = $slug;
+        while (Tag::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $next;
+            $next++;
         }
 
         $category = Tag::find($id);
         $category->name = $request->name;
-        $category->slug = $finalSlug;
+        $category->slug = $slug;
         $category->description = $request->description;
         $category->save();
 
