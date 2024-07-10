@@ -20,6 +20,11 @@ class Post extends Model
         'thumbnail_file'
     ];
 
+    public function type()
+    {
+        return 'post';
+    }
+
     public function getAuthor()
     {
         return User::where('id', $this->author_id)->first();

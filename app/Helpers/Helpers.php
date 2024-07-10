@@ -394,7 +394,7 @@ if (!function_exists('getMenu')) {
 if (!function_exists('getMetaData')) {
     function getMetaData($type = null, $id = null, $key = null)
     {
-        if ($type = 'page') {
+        if ($type == 'page') {
             $data = PageMeta::where([
                 'page_id' => $id,
                 'meta_key' => $key,
@@ -403,7 +403,7 @@ if (!function_exists('getMetaData')) {
             return optional($data)->meta_value;
         }
 
-        if ($type = 'post') {
+        if ($type == 'post') {
             $data = PostMeta::where([
                 'post_id' => $id,
                 'meta_key' => $key,

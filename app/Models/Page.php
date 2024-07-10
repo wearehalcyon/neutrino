@@ -18,6 +18,11 @@ class Page extends Model
         'template'
     ];
 
+    public function type()
+    {
+        return 'page';
+    }
+
     public function getAuthor()
     {
         return User::where('id', $this->author_id)->first();

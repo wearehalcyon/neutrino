@@ -11,20 +11,20 @@
     @else
         @php($page = $page)
     @endif
-    @if(getMetaData('page', $page->id, 'seo_title'))
-        <title>{{ getMetaData('page', $page->id, 'seo_title') }}</title>
+    @if(getMetaData($page->type(), $page->id, 'seo_title'))
+        <title>{{ getMetaData($page->type(), $page->id, 'seo_title') }}</title>
     @else
         <title>{{ getOption('site_name') }}</title>
     @endif
-    @if(getMetaData('page', $page->id, 'meta_description'))
-        <meta name="description" content="{{ getMetaData('page', $page->id, 'meta_description') }}">
+    @if(getMetaData($page->type(), $page->id, 'meta_description'))
+        <meta name="description" content="{{ getMetaData($page->type(), $page->id, 'meta_description') }}">
     @else
         <meta name="description" content="{{ getOption('site_description') }}">
     @endif
     <meta name="theme-color" content="#000000">
     <meta name="viewport-fit" content="cover">
-    @if(getMetaData('page', $page->id, 'seo_slug'))
-        <link rel="canonical" href="{{ url(getMetaData('page', $page->id, 'seo_slug')) }}">
+    @if(getMetaData($page->type(), $page->id, 'seo_slug'))
+        <link rel="canonical" href="{{ url(getMetaData($page->type(), $page->id, 'seo_slug')) }}">
     @endif
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/plugins/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ getThemeAssetsUri('/assets/css/app.css') }}">
