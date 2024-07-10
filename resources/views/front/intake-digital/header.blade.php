@@ -70,7 +70,7 @@
                 </div>
                 <div class="d-block d-xl-none col-6">
                     <div class="mobile-button">
-                        <button class="open-mobile">
+                        <button class="open-mobile-menu" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" x="0" y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <path d="M29 8H3a2 2 0 0 1 0-4h26a2 2 0 0 1 0 4zM29 28H3a2 2 0 0 1 0-4h26a2 2 0 0 1 0 4zM29 18H3a2 2 0 0 1 0-4h26a2 2 0 0 1 0 4z" fill="#fff" opacity="1" data-original="#fff"></path>
                             </svg>

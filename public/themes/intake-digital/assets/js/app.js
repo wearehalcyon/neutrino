@@ -22,13 +22,15 @@ jQuery(document).ready(function($){
         $('.slider-content .slide-button a').attr('href', slideLink);
     });
 
-    let initialActiveSlide = swiperHeroHomepage.slides[swiperHeroHomepage.activeIndex];
-    let initialType = $(initialActiveSlide).data('type');
-    let initialTitle = $(initialActiveSlide).data('title');
-    let initialLink = $(initialActiveSlide).data('url');
-    $('.slider-content .slide-type').text(initialType);
-    $('.slider-content .slide-title').text(initialTitle);
-    $('.slider-content .slide-button a').attr('href', initialLink);
+    if (swiperHeroHomepage.length > 0) {
+        let initialActiveSlide = swiperHeroHomepage.slides[swiperHeroHomepage.activeIndex];
+        let initialType = $(initialActiveSlide).data('type');
+        let initialTitle = $(initialActiveSlide).data('title');
+        let initialLink = $(initialActiveSlide).data('url');
+        $('.slider-content .slide-type').text(initialType);
+        $('.slider-content .slide-title').text(initialTitle);
+        $('.slider-content .slide-button a').attr('href', initialLink);
+    }
 
     // Homepage reviews slider
     let swiperReviewsHomepage = new Swiper(".reviews-slider", {
@@ -42,13 +44,13 @@ jQuery(document).ready(function($){
     });
 
     // Mobile menu
-    $('.mobile-button .open-mobile').on('click', function(event){
+    $('.open-mobile-menu').on('click', function(event){
         event.preventDefault();
 
-        if (!$('.mobile-menu').hasClass('show')) {
-            $('.mobile-menu').addClass('show');
-        } else {
+        if ($('.mobile-menu').hasClass('show')) {
             $('.mobile-menu').removeClass('show');
+        } else {
+            $('.mobile-menu').addClass('show');
         }
     });
 });

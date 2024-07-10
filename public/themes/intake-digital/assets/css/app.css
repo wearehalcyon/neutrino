@@ -124,6 +124,10 @@
   z-index: 1;
 }
 
+body.admin-bar .mobile-menu {
+  top: 32px;
+}
+
 .mobile-menu {
   display: block;
   position: fixed;
@@ -928,7 +932,7 @@ body .inner-hero .container .hero-title {
 }
 @media (max-width: 1200px) {
   body .inner-hero .container .hero-title {
-    font-size: 32px;
+    font-size: 42px;
   }
 }
 body .content {
@@ -967,7 +971,7 @@ body .mobile-button {
   position: relative;
   text-align: right;
 }
-body .mobile-button .open-mobile {
+body .mobile-button .open-mobile-menu {
   border: none;
   background-color: transparent;
   outline: none;
