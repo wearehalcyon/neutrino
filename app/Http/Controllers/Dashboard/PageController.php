@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
-use App\Models\PageMeta;
+use App\Models\ContentMeta;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -75,24 +75,27 @@ class PageController extends Controller
 
         // Add SEO meta fields
         if ($request->seo_title) {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $page->id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title,
+                'type' => 'page'
             ]);
         }
         if ($request->seo_slug) {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $page->id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug,
+                'type' => 'page'
             ]);
         }
         if ($request->meta_description) {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $page->id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description,
+                'type' => 'page'
             ]);
         }
 
@@ -160,7 +163,7 @@ class PageController extends Controller
         }
 
         // Update SEO meta fields
-        $seo_title = PageMeta::where([
+        $seo_title = ContentMeta::where([
             'page_id' => $id,
             'meta_key' => 'seo_title'
         ])->first();
@@ -168,14 +171,14 @@ class PageController extends Controller
             $seo_title->meta_value = $request->seo_title;
             $seo_title->save();
         } else {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title
             ]);
         }
 
-        $seo_slug = PageMeta::where([
+        $seo_slug = ContentMeta::where([
             'page_id' => $id,
             'meta_key' => 'seo_slug'
         ])->first();
@@ -183,14 +186,14 @@ class PageController extends Controller
             $seo_slug->meta_value = $request->seo_slug;
             $seo_slug->save();
         } else {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug
             ]);
         }
 
-        $meta_description = PageMeta::where([
+        $meta_description = ContentMeta::where([
             'page_id' => $id,
             'meta_key' => 'meta_description'
         ])->first();
@@ -198,7 +201,7 @@ class PageController extends Controller
             $meta_description->meta_value = $request->meta_description;
             $meta_description->save();
         } else {
-            PageMeta::create([
+            ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description
