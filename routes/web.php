@@ -64,6 +64,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'edit'])->name('dash.tags.edit');
     Route::post('/tags/edit/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'editSave'])->name('dash.tags.edit.save');
     Route::get('/tags/delete/{id}', [App\Http\Controllers\Dashboard\TagsController::class, 'delete'])->name('dash.tags.delete');
+    Route::get('/tags/search', [App\Http\Controllers\Dashboard\TagsController::class, 'searchJson'])->name('dash.tags.search');
     // Posts
     Route::get('/posts', [App\Http\Controllers\Dashboard\PostsController::class, 'index'])->name('dash.posts');
     Route::get('/posts/add', [App\Http\Controllers\Dashboard\PostsController::class, 'add'])->name('dash.posts.add');

@@ -37,7 +37,17 @@
         .tox-statusbar__branding{
             display: none;
         }
+        .select2{
+            width: 100% !important;
+        }
+        .select2-container--default .select2-selection--multiple{
+            border-color: #e3e3e3 !important;
+        }
+        .select2-selection__choice{
+            background-color: #f1f1f1 !important;
+        }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
 @endsection
 
 @section('content')
@@ -173,15 +183,7 @@
                     <div class="card-title">{{ __('Tags') }}</div>
                 </div>
                 <div class="card-body">
-                    <div class="categories-list">
-                        @foreach($tags as $tag)
-                            <div class="form-check">
-                                <input class="form-check-input" name="category_id[]" type="checkbox" value="{{ $tag->id }}" id="category-{{ $tag->id }}" @if(in_array($tag->id, $post->getCategoriesIds())) checked @endif>
-                                <label class="form-check-label" for="category-{{ $tag->id }}">{{ $tag->name }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                    <a href="{{ route('dash.categories.add') }}" class="d-inline-block link-primary mt-3" title="{{ __('Add New Category') }}">{{ __('Add New Category') }}</a>
+                    <select id="tag-select" class="js-example-basic-multiple" name="tags[]" multiple="multiple"></select>
                 </div>
             </div>
             <div class="card">
@@ -319,6 +321,24 @@
                 'width': result + '%',
                 'background-color': color
             });
+        });
+    </script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
+    <script>
+        $('#tag-select').select2({
+            placeholder: "{{ __('Find tags...') }}",
+            minimumInputLength: 2,
+            ajax: {
+                url: '{{ route('dash.tags.search') }}',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
         });
     </script>
 @endsection

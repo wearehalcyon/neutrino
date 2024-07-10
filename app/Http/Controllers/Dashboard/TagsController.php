@@ -101,4 +101,22 @@ class TagsController extends Controller
 
         return redirect()->route('dash.tags')->with('success', 'Tag was deleted successfully!');
     }
+
+    public function searchJson(Request $request)
+    {
+        $searchTerm = $request->term;
+
+        $tags = Tag::where('name', 'like', '%' . $searchTerm . '%')->get();
+
+        $formattedTags = [];
+
+        foreach ($tags as $tag) {
+            $formattedTags[] = [
+                'id' => $tag->id,
+                'text' => $tag->name
+            ];
+        }
+
+        return response()->json($formattedTags);
+    }
 }
