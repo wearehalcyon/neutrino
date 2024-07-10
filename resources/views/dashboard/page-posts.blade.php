@@ -69,11 +69,12 @@
                         <div class="form-groups d-flex">
                             <div class="form-group">
                                 <div class="input-group input-group-actions">
-                                    <select name="action" class="form-select form-control" disabled style="min-width: 100px;">
+                                    <select name="action" class="form-select form-control" disabled style="min-width: 150px;">
+                                        <option selected>Bulk Actions</option>
                                         <option value="1">{{ __('Draft') }}</option>
                                         <option value="2">{{ __('Delete') }}</option>
                                     </select>
-                                    <button type="button" class="btn input-group-text" disabled onclick="$('#quick-action').submit();">{{ __('Find') }}</button>
+                                    <button type="button" class="btn input-group-text" disabled onclick="$('#quick-action').submit();">{{ __('Apply') }}</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -114,6 +115,8 @@
                                                         <li><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
                                                         <li class="separator">|</li>
                                                         <li><a class="link-danger delete" href="{{ route('dash.posts.delete', $post->id) }}" title="{{ __('Delete') }}">{{ __('Delete') }}</a></li>
+                                                        <li class="separator">|</li>
+                                                        <li><a href="{{ route('dash.posts.duplicate', $post->id) }}" title="{{ __('Duplicate') }}">{{ __('Duplicate') }}</a></li>
                                                         <li class="separator">|</li>
                                                         <li><a href="{{ route('pages.blog.post', $post->slug) }}" title="{{ __('View') }}" target="_blank">{{ __('View') }}</a></li>
                                                     </ul>

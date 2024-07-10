@@ -314,7 +314,7 @@
             ajax: {
                 url: '{{ route('dash.tags.search') }}',
                 dataType: 'json',
-                delay: 250,
+                delay: 50,
                 processResults: function (data) {
                     return {
                         results: data

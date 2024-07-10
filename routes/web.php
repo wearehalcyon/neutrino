@@ -73,6 +73,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::post('/posts/edit/{id}', [App\Http\Controllers\Dashboard\PostsController::class, 'editSave'])->name('dash.posts.edit.save');
     Route::get('/posts/delete/{id}', [App\Http\Controllers\Dashboard\PostsController::class, 'delete'])->name('dash.posts.delete');
     Route::post('/posts/quick', [App\Http\Controllers\Dashboard\PostsController::class, 'quickActions'])->name('dash.posts.quickaction');
+    Route::get('/posts/duplicate/{id}', [App\Http\Controllers\Dashboard\PostsController::class, 'duplicate'])->name('dash.posts.duplicate');
     // Pages
     Route::get('/pages', [App\Http\Controllers\Dashboard\PageController::class, 'index'])->name('dash.pages');
     Route::get('/pages/add', [App\Http\Controllers\Dashboard\PageController::class, 'add'])->name('dash.pages.add');

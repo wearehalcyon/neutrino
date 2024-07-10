@@ -130,7 +130,7 @@ class PostsController extends Controller
                 'post_id' => $post->id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title,
-                'type' => 'post'
+                'type' => $post->type()
             ]);
         }
         if ($request->seo_slug) {
@@ -138,7 +138,7 @@ class PostsController extends Controller
                 'post_id' => $post->id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug,
-                'type' => 'post'
+                'type' => $post->type()
             ]);
         }
         if ($request->meta_description) {
@@ -146,7 +146,7 @@ class PostsController extends Controller
                 'post_id' => $post->id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description,
-                'type' => 'post'
+                'type' => $post->type()
             ]);
         }
 
@@ -339,5 +339,79 @@ class PostsController extends Controller
         Post::find($id)->delete();
 
         return redirect()->route('dash.posts')->with('success', __('Post was deleted successfully!'));
+    }
+
+    public function duplicate($id)
+    {
+        $post = Post::find($id);
+
+        restrictAccess([4,5]);
+
+        $baseSlug = $post->slug ? Str::slug($post->slug) : Str::slug($post->name);
+        $slug = $baseSlug;
+        $next = 2;
+        $next2 = 2;
+
+        $existingPages = Post::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Post::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $name = $post->name . ' ' . $next;
+                $slug = $baseSlug . '-' . $next2;
+                $next++;
+                $next2++;
+            }
+        }
+
+        $newPost = Post::create([
+            'name' => $post->name,
+            'slug' => $slug,
+            'author_id' => $post->author_id,
+            'status' => $post->status,
+            'content' => $post->content,
+            'delayed_date' => $post->delayed_date,
+        ]);
+
+        $categories = PostToCategory::join('categories', 'post_to_categories.category_id', '=', 'categories.id')
+            ->where('post_to_categories.post_id', $post->id)
+            ->select('categories.*')
+            ->get();
+        foreach ($categories as $category){
+            PostToCategory::create([
+                'post_id' => $newPost->id,
+                'category_id' => $category->id
+            ]);
+        }
+
+        $tags = PostToTag::join('tags', 'post_to_tags.tag_id', '=', 'tags.id')
+            ->where('post_to_tags.post_id', $post->id)
+            ->select('tags.*')
+            ->get();
+        foreach ($tags as $tag){
+            PostToTag::create([
+                'post_id' => $newPost->id,
+                'tag_id' => $tag->id
+            ]);
+        }
+
+        $postMetas = ContentMeta::where([
+            'post_id' => $post->id,
+            'type' => 'post'
+        ])->get();
+        foreach ($postMetas as $postMeta) {
+            ContentMeta::create([
+                'page_id' => null,
+                'post_id' => $newPost->id,
+                'category_id' => null,
+                'tag_id' => null,
+                'type' => $newPost->type(),
+                'meta_key' => $postMeta->meta_key,
+                'meta_value' => $postMeta->meta_value,
+            ]);
+        }
+
+        return redirect()->back()->with('success', __('Post was duplicated successfully'));
     }
 }
