@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\PostMeta;
+use App\Models\ContentMeta;
 use App\Models\PostToCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -74,24 +74,27 @@ class PostsController extends Controller
 
         // Add SEO meta fields
         if ($request->seo_title) {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $post->id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title,
+                'type' => 'post'
             ]);
         }
         if ($request->seo_slug) {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $post->id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug,
+                'type' => 'post'
             ]);
         }
         if ($request->meta_description) {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $post->id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description,
+                'type' => 'post'
             ]);
         }
 
@@ -160,7 +163,7 @@ class PostsController extends Controller
         }
 
         // Update SEO meta fields
-        $seo_title = PostMeta::where([
+        $seo_title = ContentMeta::where([
             'post_id' => $id,
             'meta_key' => 'seo_title'
         ])->first();
@@ -168,13 +171,13 @@ class PostsController extends Controller
             $seo_title->meta_value = $request->seo_title;
             $seo_title->save();
         } else {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title
             ]);
         }
-        $seo_slug = PostMeta::where([
+        $seo_slug = ContentMeta::where([
             'post_id' => $id,
             'meta_key' => 'seo_slug'
         ])->first();
@@ -182,13 +185,13 @@ class PostsController extends Controller
             $seo_slug->meta_value = $request->seo_slug;
             $seo_slug->save();
         } else {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug
             ]);
         }
-        $meta_description = PostMeta::where([
+        $meta_description = ContentMeta::where([
             'post_id' => $id,
             'meta_key' => 'meta_description'
         ])->first();
@@ -196,7 +199,7 @@ class PostsController extends Controller
             $meta_description->meta_value = $request->meta_description;
             $meta_description->save();
         } else {
-            PostMeta::create([
+            ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description

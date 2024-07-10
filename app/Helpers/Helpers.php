@@ -5,8 +5,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Menu;
 use App\Models\MenuItem;
-use App\Models\PageMeta;
-use App\Models\PostMeta;
+use App\Models\ContentMeta;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\ContactForm;
@@ -394,25 +393,13 @@ if (!function_exists('getMenu')) {
 if (!function_exists('getMetaData')) {
     function getMetaData($type = null, $id = null, $key = null)
     {
-        if ($type == 'page') {
-            $data = PageMeta::where([
-                'page_id' => $id,
-                'meta_key' => $key,
-            ])->first();
+        $data = ContentMeta::where([
+            'type' => $type,
+            $type . '_id' => $id,
+            'meta_key' => $key,
+        ])->first();
 
-            return optional($data)->meta_value;
-        }
-
-        if ($type == 'post') {
-            $data = PostMeta::where([
-                'post_id' => $id,
-                'meta_key' => $key,
-            ])->first();
-
-            return optional($data)->meta_value;
-        }
-
-        return '';
+        return optional($data)->meta_value;
     }
 }
 

@@ -30,7 +30,7 @@ class Page extends Model
 
     public function getPageMeta($meta_key)
     {
-        $value = PageMeta::where([
+        $value = ContentMeta::where([
             'page_id' => $this->id,
             'meta_key' => $meta_key
         ])->first();

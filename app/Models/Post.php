@@ -44,7 +44,7 @@ class Post extends Model
 
     public function getPostMeta($meta_key)
     {
-        $value = PostMeta::where([
+        $value = ContentMeta::where([
             'post_id' => $this->id,
             'meta_key' => $meta_key
         ])->first();
