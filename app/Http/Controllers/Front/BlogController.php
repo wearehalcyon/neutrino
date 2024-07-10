@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -20,5 +21,10 @@ class BlogController extends Controller
         $page = Post::where('slug', $slug)->first();
 
         return view('front.' . $theme . '.post', compact('page'));
+    }
+
+    public function category($category)
+    {
+        $category = Category::where('slug', $category)->first();
     }
 }

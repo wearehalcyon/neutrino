@@ -15,6 +15,10 @@ class Category extends Model
         'author_id',
     ];
 
+    public function type()
+    {
+        return 'category';
+    }
     public function getAuthor()
     {
         return User::where('id', $this->author_id)->first();

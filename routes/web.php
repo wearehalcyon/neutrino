@@ -115,6 +115,7 @@ Route::prefix('/')->group(function () {
     Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('pages.home');
     Route::get('/{slug}', [App\Http\Controllers\Front\PageController::class, 'internal'])->name('pages.internal');
     Route::get('/' . $blogBase . '/{post}', [App\Http\Controllers\Front\BlogController::class, 'post'])->name('pages.blog.post');
+    Route::get('/' . $catBase, [App\Http\Controllers\Front\BlogController::class, 'category'])->name('pages.blog.category');
 });
 // Contact Forms
 Route::post('/c-form-submit-{form_id}-{name}-{unique_id}', [App\Http\Controllers\Front\ContactFormController::class, 'submit'])->name('c-form.submit');
