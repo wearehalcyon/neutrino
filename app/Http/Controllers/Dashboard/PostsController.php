@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ContentMeta;
 use App\Models\PostToCategory;
+use App\Models\PostToTag;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -62,12 +63,44 @@ class PostsController extends Controller
             'delayed_date' => $request->delayed_date,
         ]);
 
+        // Add categories
         if ($request->category_id) {
             foreach ($request->category_id as $category_id) {
                 PostToCategory::create([
                     'post_id' => $post->id,
                     'category_id' => $category_id,
                 ]);
+            }
+        }
+
+        // Add tags
+        if ($request->tags) {
+            foreach ($request->tags as $tag) {
+                if (!(int)$tag) {
+                    $tagSlug = Str::slug($tag);
+                    $next = 2;
+
+                    while (Tag::where('slug', $slug)->exists()) {
+                        $tagSlug = $tagSlug . '-' . $next;
+                        $next++;
+                    }
+
+                    $newTag = Tag::create([
+                        'name' => $tag,
+                        'slug' => $tagSlug,
+                        'author_id' => Auth::id()
+                    ]);
+
+                    PostToTag::create([
+                        'post_id' => $post->id,
+                        'tag_id' => $newTag->id
+                    ]);
+                } else {
+                    PostToTag::create([
+                        'post_id' => $post->id,
+                        'tag_id' => $tag
+                    ]);
+                }
             }
         }
 
@@ -116,7 +149,10 @@ class PostsController extends Controller
         $routeName = Route::currentRouteName();
 
         $categories = Category::orderBy('name', 'ASC')->get();
-        $tags = Tag::orderBy('name', 'ASC')->get();
+        $tags = PostToTag::join('tags', 'post_to_tags.tag_id', '=', 'tags.id')
+            ->where('post_to_tags.post_id', $id)
+            ->select('tags.*')
+            ->get();
         $users = User::orderBy('name', 'ASC')->get();
         $post = Post::find($id);
 
@@ -159,15 +195,71 @@ class PostsController extends Controller
         $post->created_at = $request->created_at;
         $post->save();
 
-        $categories = PostToCategory::where('post_id', $id)->delete();
+        // Update categories
+        if ($request->has('category_id')) {
+            $newCategoryIds = $request->category_id;
+            $currentCategoryIds = $post->categories()->pluck('category_id')->toArray();
+            $categoriesToAdd = array_diff($newCategoryIds, $currentCategoryIds);
+            $categoriesToRemove = array_diff($currentCategoryIds, $newCategoryIds);
 
-        if ($request->category_id) {
-            foreach ($request->category_id as $category_id) {
+            foreach ($categoriesToAdd as $categoryId) {
                 PostToCategory::create([
                     'post_id' => $post->id,
-                    'category_id' => $category_id,
+                    'category_id' => $categoryId,
                 ]);
             }
+
+            PostToCategory::where('post_id', $post->id)
+                ->whereIn('category_id', $categoriesToRemove)
+                ->delete();
+        } else {
+            PostToCategory::where('post_id', $post->id)->delete();
+        }
+
+        // Update categories
+        if ($request->has('tags')) {
+            $newTagIds = $request->tags;
+            $currentTagIds = $post->tags()->pluck('tag_id')->toArray();
+            $tagsToAdd = array_diff($newTagIds, $currentTagIds);
+            $tagsToRemove = array_diff($currentTagIds, $newTagIds);
+
+            foreach ($tagsToAdd as $tagId) {
+//                PostToTag::create([
+//                    'post_id' => $post->id,
+//                    'tag_id' => $tagId,
+//                ]);
+                if (!(int)$tagId) {
+                    $tagSlug = Str::slug($tagId);
+                    $next = 2;
+
+                    while (Tag::where('slug', $slug)->exists()) {
+                        $tagSlug = $tagSlug . '-' . $next;
+                        $next++;
+                    }
+
+                    $newTag = Tag::create([
+                        'name' => $tagId,
+                        'slug' => $tagSlug,
+                        'author_id' => Auth::id()
+                    ]);
+
+                    PostToTag::create([
+                        'post_id' => $post->id,
+                        'tag_id' => $newTag->id
+                    ]);
+                } else {
+                    PostToTag::create([
+                        'post_id' => $post->id,
+                        'tag_id' => $tagId
+                    ]);
+                }
+            }
+
+            PostToTag::where('post_id', $post->id)
+                ->whereIn('tag_id', $tagsToRemove)
+                ->delete();
+        } else {
+            PostToTag::where('post_id', $post->id)->delete();
         }
 
         // Upload thumbnail to the public/uploads/ID path

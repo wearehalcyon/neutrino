@@ -37,7 +37,17 @@
         .tox-statusbar__branding{
             display: none;
         }
+        .select2{
+            width: 100% !important;
+        }
+        .select2-container--default .select2-selection--multiple{
+            border-color: #e3e3e3 !important;
+        }
+        .select2-selection__choice{
+            background-color: #f1f1f1 !important;
+        }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
 @endsection
 
 @section('content')
@@ -165,6 +175,14 @@
             </div>
             <div class="card">
                 <div class="card-header">
+                    <div class="card-title">{{ __('Tags') }}</div>
+                </div>
+                <div class="card-body">
+                    <select id="tag-select" class="js-example-basic-multiple" name="tags[]" multiple="multiple"></select>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
                     <div class="card-title">{{ __('Thumbnail') }}</div>
                 </div>
                 <div class="card-body">
@@ -285,6 +303,32 @@
                 'width': result + '%',
                 'background-color': color
             });
+        });
+    </script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
+    <script>
+        $('#tag-select').select2({
+            placeholder: "{{ __('Find tags...') }}",
+            minimumInputLength: 2,
+            tags: true,
+            ajax: {
+                url: '{{ route('dash.tags.search') }}',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            createTag: function (params) {
+                return {
+                    id: params.term,
+                    text: params.term,
+                    newTag: true
+                }
+            }
         });
     </script>
 @endsection

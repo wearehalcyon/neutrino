@@ -60,4 +60,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class, 'post_to_categories', 'post_id', 'category_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_to_tags', 'post_id', 'tag_id');
+    }
 }

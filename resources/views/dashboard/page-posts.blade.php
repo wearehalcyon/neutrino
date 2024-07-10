@@ -10,6 +10,30 @@
             height: 16px;
             border-radius: 100px;
         }
+        .editable .post-actions{
+            display: block;
+            opacity: 0;
+        }
+        .editable:hover .post-actions{
+            opacity: 1;
+        }
+        .editable .post-actions ul{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .editable .post-actions ul li.separator{
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 14px;
+        }
+        .editable .post-actions ul li a{
+            font-weight: 500;
+            font-size: 14px;
+        }
     </style>
 @endsection
 
@@ -50,6 +74,7 @@
                                 <th scope="col" style="width: 100px;">ID</th>
                                 <th scope="col">{{ __('Name') }}</th>
                                 <th scope="col">{{ __('Categories') }}</th>
+                                <th scope="col">{{ __('Tags') }}</th>
                                 <th scope="col">{{ __('Created At') }}</th>
                                 <th scope="col">{{ __('Author') }}</th>
                                 <th scope="col" style="text-align: center;">{{ __('SEO') }}</th>
@@ -59,11 +84,29 @@
                             @foreach($posts as $post)
                                 <tr>
                                     <td>{{ $post->id }}</td>
-                                    <td><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a></td>
+                                    <td class="editable">
+                                        <a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a>
+                                        <div class="post-actions">
+                                            <ul>
+                                                <li><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
+                                                <li class="separator">|</li>
+                                                <li><a class="link-danger delete" href="{{ route('dash.posts.delete', $post->id) }}" title="{{ __('Delete') }}">{{ __('Delete') }}</a></li>
+                                                <li class="separator">|</li>
+                                                <li><a href="{{ route('pages.blog.post', $post->slug) }}" title="{{ __('View') }}">{{ __('View') }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
                                     <td>
                                         @if($post->categories->isNotEmpty())
                                             @foreach($post->categories as $index => $category)
                                                 <a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a>{{ $index < $post->categories->count() - 1 ? ', ' : '' }}
+                                            @endforeach
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($post->tags->isNotEmpty())
+                                            @foreach($post->tags as $index => $tag)
+                                                <a href="{{ route('dash.tags.edit', $tag->id) }}" title="{{ $tag->name }}">{{ '#' . $tag->name }}</a>{{ $index < $post->tags->count() - 1 ? ', ' : '' }}
                                             @endforeach
                                         @endif
                                     </td>
@@ -118,4 +161,13 @@
 @endsection
 
 @section('footer-scripts')
+    <script>
+        let delBtn = $('.delete');
+        delBtn.on('click', function(){
+            if (confirm('Do you really want to delete this post?') == true) {
+                return true;
+            }
+            return false;
+        });
+    </script>
 @endsection

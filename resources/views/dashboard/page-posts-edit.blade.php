@@ -84,6 +84,7 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text">{{ url('/' . getOption('blog_base')) . '/' }}</span>
                             <input type="text" class="form-control" id="slug" name="slug" value="{{ $post->slug }}">
+                            <a href="{{ url('/' . getOption('blog_base') . '/' . $post->slug) }}" class="btn input-group-text" target="_blank">{{ __('View Post') }}</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -183,7 +184,13 @@
                     <div class="card-title">{{ __('Tags') }}</div>
                 </div>
                 <div class="card-body">
-                    <select id="tag-select" class="js-example-basic-multiple" name="tags[]" multiple="multiple"></select>
+                    <select id="tag-select" class="js-example-basic-multiple" name="tags[]" multiple="multiple">
+                        @if($tags->isNotEmpty())
+                            @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}" selected>{{ $tag->name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
             </div>
             <div class="card">
@@ -328,16 +335,24 @@
         $('#tag-select').select2({
             placeholder: "{{ __('Find tags...') }}",
             minimumInputLength: 2,
+            tags: true,
             ajax: {
                 url: '{{ route('dash.tags.search') }}',
                 dataType: 'json',
-                delay: 250,
+                delay: 50,
                 processResults: function (data) {
                     return {
                         results: data
                     };
                 },
                 cache: true
+            },
+            createTag: function (params) {
+                return {
+                    id: params.term,
+                    text: params.term,
+                    newTag: true
+                }
             }
         });
     </script>
