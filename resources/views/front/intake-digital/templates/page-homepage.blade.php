@@ -47,7 +47,7 @@
             <h2 class="title">News Posts</h2>
             @if(getPosts()->count())
                 <div class="row">
-                    @foreach(getPosts(null, 'created_at', 'ASC', null) as $post)
+                    @foreach(getPosts(null, 'created_at', 'DESC', null) as $post)
                         <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
                             <a href="{{ getPostLink($post->slug) }}" class="post-item">
                                 <div class="thumbnail">
