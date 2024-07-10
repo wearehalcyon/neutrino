@@ -35,9 +35,23 @@ class TagsController extends Controller
     {
         restrictAccess([4,5]);
 
+        $slug = Str::slug($request->name);
+        $tag = Tag::where('slug', $slug)->first();
+        if ($tag) {
+            $count = 2;
+
+            while (Tag::where('slug', $slug . '-' . $count)->exists()) {
+                $count++;
+            }
+
+            $finalSlug = $slug . '-' . $count;
+        } else {
+            $finalSlug = $slug;
+        }
+
         Tag::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $finalSlug,
             'description' => $request->description,
             'author_id' => Auth::id(),
         ]);
@@ -60,9 +74,23 @@ class TagsController extends Controller
     {
         restrictAccess([4,5]);
 
+        $slug = Str::slug($request->name);
+        $tag = Tag::where('slug', $slug)->first();
+        if ($tag) {
+            $count = 2;
+
+            while (Tag::where('slug', $slug . '-' . $count)->exists()) {
+                $count++;
+            }
+
+            $finalSlug = $slug . '-' . $count;
+        } else {
+            $finalSlug = $slug;
+        }
+
         $category = Tag::find($id);
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $category->slug = $finalSlug;
         $category->description = $request->description;
         $category->save();
 

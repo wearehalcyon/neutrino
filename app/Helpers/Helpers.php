@@ -393,11 +393,12 @@ if (!function_exists('getMenu')) {
 if (!function_exists('getMetaData')) {
     function getMetaData($type = null, $id = null, $key = null)
     {
-        $data = ContentMeta::where([
+        $args = [
             'type' => $type,
             $type . '_id' => $id,
             'meta_key' => $key,
-        ])->first();
+        ];
+        $data = ContentMeta::where($args)->first();
 
         return optional($data)->meta_value;
     }

@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <form class="row" action="{{ route('dash.categories.edit.save', $tag->id) }}" method="post">
+    <form class="row" action="{{ route('dash.tags.edit.save', $tag->id) }}" method="post">
         @csrf
         <div class="col-md-8 col-lg-8 col-xl-9">
             <div class="card">
