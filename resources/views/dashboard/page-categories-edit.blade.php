@@ -32,8 +32,10 @@
                     </div>
                     <div class="form-group">
                         <label for="slug"><strong>{{ __('Slug') }}</strong></label>
-                        <input type="text" name="slug" class="form-control" id="slug" value="{{ $category->slug }}">
-                        <small id="slug" class="form-text text-muted">{{ __('Will be automatically generated from Name field.') }}</small>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">{{ url('/' . str_replace('{category}', '', getOption('category_base'))) . '/' }}</span>
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ $category->slug }}">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description"><strong>{{ __('Description') }}</strong></label>

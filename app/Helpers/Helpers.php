@@ -443,9 +443,9 @@ if (!function_exists('getPosts')) {
             $limit = getOption('posts_per_page');
         }
         if ($category) {
-            $posts = Post::orderBy($orderby, $order)->limit($limit)->get();
+            $posts = Post::orderBy($orderby, $order)->paginate($limit);
         } else {
-            $posts = Post::orderBy($orderby, $order)->limit($limit)->get();
+            $posts = Post::orderBy($orderby, $order)->paginate($limit);
         }
 
         return $posts;

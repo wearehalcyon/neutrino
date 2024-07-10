@@ -151,6 +151,13 @@
             font-weight: 600;
             font-size: 30px;
             line-height: 50px;
+            transition: $transition;
+        }
+        &:hover{
+            border-color: rgba(255,255,255,.4);
+            .post-title{
+                color: $orange;
+            }
         }
     }
     .view-all{

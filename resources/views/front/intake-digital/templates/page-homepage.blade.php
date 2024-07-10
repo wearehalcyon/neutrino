@@ -70,7 +70,7 @@
                         </div>
                     @endforeach
                     <div class="col-12 pt-5 view-all">
-                        <a href="{{ url('/blog/news/') }}">View All</a>
+                        <a href="{{ url('/blog/') }}">View All</a>
                     </div>
                 </div>
             @else

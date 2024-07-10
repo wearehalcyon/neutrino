@@ -45,8 +45,10 @@
                     </div>
                     <div class="form-group slug">
                         <label for="slug"><strong>{{ __('Slug') }}</strong></label>
-                        <input type="text" name="slug" class="form-control" id="slug">
-                        <small id="slug" class="form-text text-muted">{{ __('Will be automatically generated from Title field.') }}</small>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">{{ url('/') . '/' }}</span>
+                            <input type="text" class="form-control" id="slug" name="slug">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description"><strong>{{ __('Description') }}</strong></label>

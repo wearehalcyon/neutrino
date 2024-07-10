@@ -1,8 +1,22 @@
 @include('front.intake-digital.header')
     <section class="inner-hero">
         <img src="{{ asset($page->thumbnail) }}" alt="Internal Hero Image">
-        <div class="container">
+        <div class="container text-center">
             <h1 class="hero-title">{{ $page->name }}</h1>
+            <div class="breadcrumbs">
+                <ol>
+                    @foreach($breadcrumbs as $breadcrumb)
+                        <li>
+                            @if($breadcrumb['url'])
+                                <a href="{{ $breadcrumb['url'] }}"><span>{{ $breadcrumb['name'] }}</span></a>
+                                <span class="separator">»</span>
+                            @else
+                                <span>{{ $breadcrumb['name'] }}</span>
+                            @endif
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
         </div>
     </section>
     <main class="content">

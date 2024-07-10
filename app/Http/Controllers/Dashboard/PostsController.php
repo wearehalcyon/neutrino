@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ContentMeta;
 use App\Models\PostToCategory;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,6 +116,7 @@ class PostsController extends Controller
         $routeName = Route::currentRouteName();
 
         $categories = Category::orderBy('name', 'ASC')->get();
+        $tags = Tag::orderBy('name', 'ASC')->get();
         $users = User::orderBy('name', 'ASC')->get();
         $post = Post::find($id);
 
@@ -124,7 +126,7 @@ class PostsController extends Controller
             $delay = null;
         }
 
-        return view('dashboard.page-posts-edit', compact('routeName', 'categories', 'users', 'post', 'delay'));
+        return view('dashboard.page-posts-edit', compact('routeName', 'categories', 'tags', 'users', 'post', 'delay'));
     }
 
     public function editSave(Request $request, $id)

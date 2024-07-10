@@ -71,8 +71,10 @@
                     </div>
                     <div class="form-group">
                         <label for="slug"><strong>{{ __('Slug') }}</strong></label>
-                        <input type="text" name="slug" class="form-control" id="slug" value="{{ $post->slug }}">
-                        <small id="slug" class="form-text text-muted">{{ __('Will be automatically generated from Title field.') }}</small>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">{{ url('/' . getOption('blog_base')) . '/' }}</span>
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ $post->slug }}">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description"><strong>{{ __('Description') }}</strong></label>
@@ -160,6 +162,22 @@
                             <div class="form-check">
                                 <input class="form-check-input" name="category_id[]" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" @if(in_array($category->id, $post->getCategoriesIds())) checked @endif>
                                 <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <a href="{{ route('dash.categories.add') }}" class="d-inline-block link-primary mt-3" title="{{ __('Add New Category') }}">{{ __('Add New Category') }}</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">{{ __('Tags') }}</div>
+                </div>
+                <div class="card-body">
+                    <div class="categories-list">
+                        @foreach($tags as $tag)
+                            <div class="form-check">
+                                <input class="form-check-input" name="category_id[]" type="checkbox" value="{{ $tag->id }}" id="category-{{ $tag->id }}" @if(in_array($tag->id, $post->getCategoriesIds())) checked @endif>
+                                <label class="form-check-label" for="category-{{ $tag->id }}">{{ $tag->name }}</label>
                             </div>
                         @endforeach
                     </div>

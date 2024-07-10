@@ -20,7 +20,23 @@ class BlogController extends Controller
         $theme = Setting::where('option_name', 'front_theme')->first()->option_value;
         $page = Post::where('slug', $slug)->first();
 
-        return view('front.' . $theme . '.post', compact('page'));
+        // Breadcrumbs
+        $breadcrumbs = [
+            [
+                'name' => 'Home',
+                'url' => url('/')
+            ],
+            [
+                'name' => 'Blog',
+                'url' => route('pages.blog')
+            ],
+            [
+                'name' => $page->name,
+                'url' => false
+            ]
+        ];
+
+        return view('front.' . $theme . '.post', compact('page', 'breadcrumbs'));
     }
 
     public function category($category)
