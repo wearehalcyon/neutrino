@@ -69,12 +69,13 @@
                         <div class="form-groups d-flex">
                             <div class="form-group">
                                 <div class="input-group input-group-actions">
-                                    <select name="action" class="form-select form-control" disabled style="min-width: 150px;">
-                                        <option selected>Bulk Actions</option>
-                                        <option value="1">{{ __('Draft') }}</option>
-                                        <option value="2">{{ __('Delete') }}</option>
+                                    <select name="action" class="form-select form-control bulk-actions" disabled style="min-width: 150px;">
+                                        <option selected disabled>Bulk Actions</option>
+                                        <option value="1">{{ __('Draft/Publish') }}</option>
+                                        <option value="2">{{ __('Duplicate') }}</option>
+                                        <option value="3">{{ __('Delete') }}</option>
                                     </select>
-                                    <button type="button" class="btn input-group-text" disabled onclick="$('#quick-action').submit();">{{ __('Apply') }}</button>
+                                    <button type="button" class="btn input-group-text submit-action" disabled onclick="submitQuickAction()">{{ __('Apply') }}</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -87,7 +88,7 @@
                     </div>
                 </div>
                     @if($posts->isNotEmpty())
-                        <form id="quick-action" action="{{ route('dash.posts.quickaction') }}" method="post" class="card-body">
+                        <form id="quick-action" action="{{ route('dash.posts.quickaction') }}" method="get" class="card-body">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -222,5 +223,41 @@
 
             updateActionControls();
         });
+    </script>
+    <script>
+        function submitQuickAction() {
+            var form = document.getElementById('quick-action');
+            var action = document.querySelector('.bulk-actions').value;
+
+            if (action && action !== 'Bulk Actions') {
+                var actionInput = form.querySelector('input[name="action"]');
+                if (!actionInput) {
+                    actionInput = document.createElement('input');
+                    actionInput.type = 'hidden';
+                    actionInput.name = 'action';
+                    form.appendChild(actionInput);
+                }
+
+                actionInput.value = action;
+
+                form.submit();
+            } else {
+                alert('Please select a bulk action');
+            }
+        }
+
+        function toggleApplyButton() {
+            var selectElement = document.querySelector('.bulk-actions');
+            var applyButton = document.querySelector('.submit-action');
+
+            if (selectElement.value && selectElement.value !== 'Bulk Actions') {
+                applyButton.disabled = false;
+            } else {
+                applyButton.disabled = true;
+            }
+        }
+
+        document.querySelector('.bulk-actions').addEventListener('change', toggleApplyButton);
+        document.addEventListener('DOMContentLoaded', toggleApplyButton);
     </script>
 @endsection

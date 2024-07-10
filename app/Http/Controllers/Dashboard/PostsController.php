@@ -414,4 +414,38 @@ class PostsController extends Controller
 
         return redirect()->back()->with('success', __('Post was duplicated successfully'));
     }
+
+    public function quickActions(Request $request)
+    {
+        $action = $request->query('action');
+        $ids = $request->query('selects', []);
+
+        if ($action == 1) {
+            foreach ($ids as $id) {
+                $post = Post::find($id);
+                if ($post->status == 1) {
+                    $post->status = 2;
+                } else {
+                    $post->status = 1;
+                }
+                $post->save();
+            }
+        } elseif ($action == 2) {
+            foreach ($ids as $id) {
+                $post = Post::find($id);
+                if ($post->status == 1) {
+                    $post->status = 2;
+                } else {
+                    $post->status = 1;
+                }
+                $post->save();
+            }
+        } elseif ($action == 3) {
+            foreach ($ids as $id) {
+                Post::find($id)->delete();
+            }
+        }
+
+        return redirect()->back()->with('success', __('Post bulk actions was completed successfully'));
+    }
 }
