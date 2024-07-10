@@ -86,10 +86,10 @@
                                     <input type="checkbox" name="select_all" style="width: 14px; height: 14px;">
                                 </th>
                                 <th scope="col">{{ __('Name') }}</th>
+                                <th scope="col">{{ __('Author') }}</th>
                                 <th scope="col">{{ __('Categories') }}</th>
                                 <th scope="col">{{ __('Tags') }}</th>
                                 <th scope="col">{{ __('Created At') }}</th>
-                                <th scope="col">{{ __('Author') }}</th>
                                 <th scope="col" style="text-align: center;">{{ __('SEO') }}</th>
                             </tr>
                             </thead>
@@ -110,11 +110,14 @@
                                                 </ul>
                                             </div>
                                         </td>
+                                        <td>{{ $post->getAuthor()->name }}</td>
                                         <td>
                                             @if($post->categories->isNotEmpty())
                                                 @foreach($post->categories as $index => $category)
                                                     <a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a>{{ $index < $post->categories->count() - 1 ? ', ' : '' }}
                                                 @endforeach
+                                            @else
+                                                —
                                             @endif
                                         </td>
                                         <td>
@@ -122,10 +125,11 @@
                                                 @foreach($post->tags as $index => $tag)
                                                     <a href="{{ route('dash.tags.edit', $tag->id) }}" title="{{ $tag->name }}">{{ '#' . $tag->name }}</a>{{ $index < $post->tags->count() - 1 ? ', ' : '' }}
                                                 @endforeach
+                                            @else
+                                                —
                                             @endif
                                         </td>
                                         <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i:s', strtotime($post->created_at)) }}</td>
-                                        <td>{{ $post->getAuthor()->name }}</td>
                                         <td style="text-align: center;">
                                             @php($length = \Illuminate\Support\Str::length($post->getPostMeta('meta_description')))
                                             @php($max = 170)
