@@ -17,13 +17,24 @@ use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         restrictAccess([4,5]);
+        $query = Post::query();
 
         $routeName = Route::currentRouteName();
 
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(20);;
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'LIKE', "%{$searchTerm}%");
+                    //->orWhere('content', 'LIKE', "%{$searchTerm}%");
+            });
+
+            $posts = $query->orderBy('created_at', 'DESC')->paginate(20);
+        } else {
+            $posts = Post::orderBy('created_at', 'DESC')->paginate(20);
+        }
 
         return view('dashboard.page-posts', compact('routeName', 'posts'));
     }
