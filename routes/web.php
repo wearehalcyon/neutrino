@@ -81,6 +81,8 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::get('/pages/edit/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'edit'])->name('dash.pages.edit');
     Route::post('/pages/edit/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'editSave'])->name('dash.pages.edit.save');
     Route::get('/pages/delete/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'delete'])->name('dash.pages.delete');
+    Route::get('/pages/quick', [App\Http\Controllers\Dashboard\PageController::class, 'quickActions'])->name('dash.pages.quickaction');
+    Route::get('/pages/duplicate/{id}', [App\Http\Controllers\Dashboard\PageController::class, 'duplicate'])->name('dash.pages.duplicate');
     // File Manager
     Route::get('/filemanager', [App\Http\Controllers\Dashboard\FilemanagerController::class, 'index'])->name('dash.fm');
     //Comments

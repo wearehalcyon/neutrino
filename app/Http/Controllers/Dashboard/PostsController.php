@@ -345,9 +345,9 @@ class PostsController extends Controller
 
     public function duplicate($id)
     {
-        $post = Post::find($id);
-
         restrictAccess([4,5]);
+
+        $post = Post::find($id);
 
         $baseSlug = $post->slug ? Str::slug($post->slug) : Str::slug($post->name);
         $slug = $baseSlug;

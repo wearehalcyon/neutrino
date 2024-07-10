@@ -92,7 +92,6 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    {{--                                <th scope="col" style="width: 50px;">ID</th>--}}
                                     <th scope="col" style="width: 20px;">
                                         <input type="checkbox" name="select_all" style="width: 14px; height: 14px;">
                                     </th>
@@ -107,7 +106,6 @@
                                 <tbody>
                                     @foreach($posts as $post)
                                         <tr>
-                                            {{--                                    <td>{{ $post->id }}</td>--}}
                                             <td><input type="checkbox" name="selects[]" value="{{ $post->id }}" style="width: 14px; height: 14px;"></td>
                                             <td class="editable">
                                                 <a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a>@if($post->status == 2) <strong>{{ __('— Draft') }}</strong> @endif

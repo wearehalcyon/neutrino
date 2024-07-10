@@ -13,13 +13,24 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         restrictAccess([4,5]);
+        $query = Page::query();
 
         $routeName = Route::currentRouteName();
 
-        $pages = Page::orderBy('created_at', 'DESC')->paginate(20);
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'LIKE', "%{$searchTerm}%");
+                //->orWhere('content', 'LIKE', "%{$searchTerm}%");
+            });
+
+            $pages = $query->orderBy('created_at', 'DESC')->paginate(20);
+        } else {
+            $pages = Page::orderBy('created_at', 'DESC')->paginate(20);
+        }
 
         return view('dashboard.page-pages', compact('routeName', 'pages'));
     }
@@ -240,5 +251,62 @@ class PageController extends Controller
         Page::find($id)->delete();
 
         return redirect()->route('dash.pages')->with('success', __('Page was deleted successfully!'));
+    }
+
+    public function duplicate($id)
+    {
+        restrictAccess([4,5]);
+
+        $page = Page::find($id);
+
+        $baseSlug = $page->slug ? Str::slug($page->slug) : Str::slug($page->name);
+        $slug = $baseSlug;
+        $next = 2;
+        $next2 = 2;
+
+        $existingPages = Page::where('slug', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+
+        if ($existingPages->count() > 0) {
+            while (Page::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+                $name = $page->name . ' ' . $next;
+                $slug = $baseSlug . '-' . $next2;
+                $next++;
+                $next2++;
+            }
+        }
+
+        $newPage = Page::create([
+            'name' => $page->name,
+            'slug' => $slug,
+            'author_id' => $page->author_id,
+            'status' => $page->status,
+            'content' => $page->content,
+            'template' => $page->template,
+        ]);
+
+        $postMetas = ContentMeta::where([
+            'post_id' => $page->id,
+            'type' => 'page'
+        ])->get();
+        foreach ($postMetas as $postMeta) {
+            ContentMeta::create([
+                'page_id' => null,
+                'post_id' => $newPage->id,
+                'category_id' => null,
+                'tag_id' => null,
+                'type' => $newPage->type(),
+                'meta_key' => $postMeta->meta_key,
+                'meta_value' => $postMeta->meta_value,
+            ]);
+        }
+
+        return redirect()->back()->with('success', __('Page was duplicated successfully'));
+    }
+
+    public function quickActions()
+    {
+
     }
 }
