@@ -66,7 +66,16 @@
                                 <strong>({{ $posts->total() }})</strong>
                             @endif
                         </span>
-                        <div class="form-groups">
+                        <div class="form-groups d-flex">
+                            <div class="form-group">
+                                <div class="input-group input-group-actions">
+                                    <select name="action" class="form-select form-control" disabled style="min-width: 100px;">
+                                        <option value="1">{{ __('Draft') }}</option>
+                                        <option value="2">{{ __('Delete') }}</option>
+                                    </select>
+                                    <button type="button" class="btn input-group-text" disabled onclick="$('#quick-action').submit();">{{ __('Find') }}</button>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <form action="{{ route('dash.posts') }}" method="get" class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="{{ __('Search posts...') }}" value="{{ request()->input('search') }}">
@@ -76,103 +85,103 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('dash.posts.quickaction') }}" method="post" class="card-body">
                     @if($posts->isNotEmpty())
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                {{--                                <th scope="col" style="width: 50px;">ID</th>--}}
-                                <th scope="col" style="width: 20px;">
-                                    <input type="checkbox" name="select_all" style="width: 14px; height: 14px;">
-                                </th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('Author') }}</th>
-                                <th scope="col">{{ __('Categories') }}</th>
-                                <th scope="col">{{ __('Tags') }}</th>
-                                <th scope="col">{{ __('Created At') }}</th>
-                                <th scope="col" style="text-align: center;">{{ __('SEO') }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($posts as $post)
-                                    <tr>
-                                        {{--                                    <td>{{ $post->id }}</td>--}}
-                                        <td><input type="checkbox" name="selects[]" value="{{ $post->id }}" style="width: 14px; height: 14px;"></td>
-                                        <td class="editable">
-                                            <a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a>@if($post->status == 2) <strong>{{ __('— Draft') }}</strong> @endif
-                                            <div class="post-actions">
-                                                <ul>
-                                                    <li><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
-                                                    <li class="separator">|</li>
-                                                    <li><a class="link-danger delete" href="{{ route('dash.posts.delete', $post->id) }}" title="{{ __('Delete') }}">{{ __('Delete') }}</a></li>
-                                                    <li class="separator">|</li>
-                                                    <li><a href="{{ route('pages.blog.post', $post->slug) }}" title="{{ __('View') }}" target="_blank">{{ __('View') }}</a></li>
-                                                </ul>
+                        <form id="quick-action" action="{{ route('dash.posts.quickaction') }}" method="post" class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    {{--                                <th scope="col" style="width: 50px;">ID</th>--}}
+                                    <th scope="col" style="width: 20px;">
+                                        <input type="checkbox" name="select_all" style="width: 14px; height: 14px;">
+                                    </th>
+                                    <th scope="col">{{ __('Name') }}</th>
+                                    <th scope="col">{{ __('Author') }}</th>
+                                    <th scope="col">{{ __('Categories') }}</th>
+                                    <th scope="col">{{ __('Tags') }}</th>
+                                    <th scope="col">{{ __('Created At') }}</th>
+                                    <th scope="col" style="text-align: center;">{{ __('SEO') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($posts as $post)
+                                        <tr>
+                                            {{--                                    <td>{{ $post->id }}</td>--}}
+                                            <td><input type="checkbox" name="selects[]" value="{{ $post->id }}" style="width: 14px; height: 14px;"></td>
+                                            <td class="editable">
+                                                <a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a>@if($post->status == 2) <strong>{{ __('— Draft') }}</strong> @endif
+                                                <div class="post-actions">
+                                                    <ul>
+                                                        <li><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
+                                                        <li class="separator">|</li>
+                                                        <li><a class="link-danger delete" href="{{ route('dash.posts.delete', $post->id) }}" title="{{ __('Delete') }}">{{ __('Delete') }}</a></li>
+                                                        <li class="separator">|</li>
+                                                        <li><a href="{{ route('pages.blog.post', $post->slug) }}" title="{{ __('View') }}" target="_blank">{{ __('View') }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>{{ $post->getAuthor()->name }}</td>
+                                            <td>
+                                                @if($post->categories->isNotEmpty())
+                                                    @foreach($post->categories as $index => $category)
+                                                        <a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a>{{ $index < $post->categories->count() - 1 ? ', ' : '' }}
+                                                    @endforeach
+                                                @else
+                                                    —
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($post->tags->isNotEmpty())
+                                                    @foreach($post->tags as $index => $tag)
+                                                        <a href="{{ route('dash.tags.edit', $tag->id) }}" title="{{ $tag->name }}">{{ '#' . $tag->name }}</a>{{ $index < $post->tags->count() - 1 ? ', ' : '' }}
+                                                    @endforeach
+                                                @else
+                                                    —
+                                                @endif
+                                            </td>
+                                            <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i:s', strtotime($post->created_at)) }}</td>
+                                            <td style="text-align: center;">
+                                                @php($length = \Illuminate\Support\Str::length($post->getPostMeta('meta_description')))
+                                                @php($max = 170)
+                                                @php($result = (100 / $max) * $length)
+                                                @if($result < 1)
+                                                    @php($color = '#e8e8e8')
+                                                @elseif($result <= 25)
+                                                    @php($color = '#f00')
+                                                @elseif($result <= 50)
+                                                    @php($color = '#ff9900')
+                                                @elseif($result <= 75)
+                                                    @php($color = '#00c4ff')
+                                                @elseif($result <= 100)
+                                                    @php($color = '#51d842')
+                                                @else
+                                                    @php($color = '#f00')
+                                                @endif
+                                                <span class="seo-icon" style="background-color: {{ $color }};"></span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @if($posts->links())
+                                <div class="pagination w-100 d-block">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
+                                                {{ __('Showing ' . $posts->count() . ' of ' . $posts->total() . ' entries') }}
                                             </div>
-                                        </td>
-                                        <td>{{ $post->getAuthor()->name }}</td>
-                                        <td>
-                                            @if($post->categories->isNotEmpty())
-                                                @foreach($post->categories as $index => $category)
-                                                    <a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a>{{ $index < $post->categories->count() - 1 ? ', ' : '' }}
-                                                @endforeach
-                                            @else
-                                                —
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($post->tags->isNotEmpty())
-                                                @foreach($post->tags as $index => $tag)
-                                                    <a href="{{ route('dash.tags.edit', $tag->id) }}" title="{{ $tag->name }}">{{ '#' . $tag->name }}</a>{{ $index < $post->tags->count() - 1 ? ', ' : '' }}
-                                                @endforeach
-                                            @else
-                                                —
-                                            @endif
-                                        </td>
-                                        <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i:s', strtotime($post->created_at)) }}</td>
-                                        <td style="text-align: center;">
-                                            @php($length = \Illuminate\Support\Str::length($post->getPostMeta('meta_description')))
-                                            @php($max = 170)
-                                            @php($result = (100 / $max) * $length)
-                                            @if($result < 1)
-                                                @php($color = '#e8e8e8')
-                                            @elseif($result <= 25)
-                                                @php($color = '#f00')
-                                            @elseif($result <= 50)
-                                                @php($color = '#ff9900')
-                                            @elseif($result <= 75)
-                                                @php($color = '#00c4ff')
-                                            @elseif($result <= 100)
-                                                @php($color = '#51d842')
-                                            @else
-                                                @php($color = '#f00')
-                                            @endif
-                                            <span class="seo-icon" style="background-color: {{ $color }};"></span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        @if($posts->links())
-                            <div class="pagination w-100 d-block">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
-                                            {{ __('Showing ' . $posts->count() . ' of ' . $posts->total() . ' entries') }}
                                         </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
-                                            {{ $posts->links('dashboard.partials.pagination', ['posts' => $posts]) }}
+                                        <div class="col-sm-12 col-md-7">
+                                            <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
+                                                {{ $posts->links('dashboard.partials.pagination', ['posts' => $posts]) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </form>
                     @else
                         <p>{{ __('No any posts found at this time.') }}</p>
                     @endif
-                </form>
             </div>
         </div>
     </div>
@@ -186,6 +195,29 @@
                 return true;
             }
             return false;
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            function updateActionControls() {
+                var anyChecked = $('input[name="selects[]"]:checked').length > 0;
+                $('.input-group-actions select, .input-group-actions button').prop('disabled', !anyChecked);
+            }
+
+            $('input[name="select_all"]').change(function() {
+                var isChecked = $(this).prop('checked');
+                $('input[name="selects[]"]').prop('checked', isChecked);
+                updateActionControls();
+            });
+
+            $('input[name="selects[]"]').change(function() {
+                var allChecked = $('input[name="selects[]"]:checked').length === $('input[name="selects[]"]').length;
+                var anyChecked = $('input[name="selects[]"]:checked').length > 0;
+                $('input[name="select_all"]').prop('checked', allChecked);
+                updateActionControls();
+            });
+
+            updateActionControls();
         });
     </script>
 @endsection
