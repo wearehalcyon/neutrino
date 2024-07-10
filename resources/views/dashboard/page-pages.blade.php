@@ -112,7 +112,7 @@
                                                 @if(getOption('homepage_id') == $page->id)
                                                     <span class="badge badge-black d-inline-block mx-2">{{ __('Homepage') }}</span>
                                                 @endif
-                                            </a>
+                                            </a>@if($page->status == 2) <strong>{{ __('— Draft') }}</strong> @endif
                                             <div class="post-actions">
                                                 <ul>
                                                     <li><a href="{{ route('dash.posts.edit', $page->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>

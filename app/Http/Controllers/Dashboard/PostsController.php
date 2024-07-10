@@ -294,12 +294,14 @@ class PostsController extends Controller
         ])->first();
         if ($seo_title) {
             $seo_title->meta_value = $request->seo_title;
+            $seo_title->type = $post->type();
             $seo_title->save();
         } else {
             ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'seo_title',
-                'meta_value' => $request->seo_title
+                'meta_value' => $request->seo_title,
+                'type' => $post->type()
             ]);
         }
         $seo_slug = ContentMeta::where([
@@ -308,12 +310,14 @@ class PostsController extends Controller
         ])->first();
         if ($seo_slug) {
             $seo_slug->meta_value = $request->seo_slug;
+            $seo_slug->type = $post->type();
             $seo_slug->save();
         } else {
             ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'seo_slug',
-                'meta_value' => $request->seo_slug
+                'meta_value' => $request->seo_slug,
+                'type' => $post->type()
             ]);
         }
         $meta_description = ContentMeta::where([
@@ -322,12 +326,14 @@ class PostsController extends Controller
         ])->first();
         if ($meta_description) {
             $meta_description->meta_value = $request->meta_description;
+            $meta_description->type = $post->type();
             $meta_description->save();
         } else {
             ContentMeta::create([
                 'post_id' => $id,
                 'meta_key' => 'meta_description',
-                'meta_value' => $request->meta_description
+                'meta_value' => $request->meta_description,
+                'type' => $post->type()
             ]);
         }
 
@@ -349,26 +355,20 @@ class PostsController extends Controller
 
         $post = Post::find($id);
 
-        $baseSlug = $post->slug ? Str::slug($post->slug) : Str::slug($post->name);
-        $slug = $baseSlug;
+        $name = $post->name;
+        $slug = $post->slug;
         $next = 2;
         $next2 = 2;
 
-        $existingPages = Post::where('slug', 'like', $slug . '%')
-            ->where('id', '<>', $id)
-            ->get();
-
-        if ($existingPages->count() > 0) {
-            while (Post::where('slug', $slug)->where('id', '<>', $id)->exists()) {
-                $name = $post->name . ' ' . $next;
-                $slug = $baseSlug . '-' . $next2;
-                $next++;
-                $next2++;
-            }
+        while (Post::where('slug', $slug)->exists()) {
+            $name = $name . ' ' . $next;
+            $slug = $slug . '-' . $next2;
+            $next++;
+            $next2++;
         }
 
         $newPost = Post::create([
-            'name' => $post->name,
+            'name' => $name,
             'slug' => $slug,
             'author_id' => $post->author_id,
             'status' => $post->status,
@@ -438,26 +438,21 @@ class PostsController extends Controller
         } elseif ($action == 2) {
             foreach ($ids as $id) {
                 $post = Post::find($id);
-                $baseSlug = $post->slug ? Str::slug($post->slug) : Str::slug($post->name);
-                $slug = $baseSlug;
+
+                $name = $post->name;
+                $slug = $post->slug;
                 $next = 2;
                 $next2 = 2;
 
-                $existingPages = Post::where('slug', 'like', $slug . '%')
-                    ->where('id', '<>', $id)
-                    ->get();
-
-                if ($existingPages->count() > 0) {
-                    while (Post::where('slug', $slug)->where('id', '<>', $id)->exists()) {
-                        $name = $post->name . ' ' . $next;
-                        $slug = $baseSlug . '-' . $next2;
-                        $next++;
-                        $next2++;
-                    }
+                while (Post::where('slug', $slug)->exists()) {
+                    $name = $name . ' ' . $next;
+                    $slug = $slug . '-' . $next2;
+                    $next++;
+                    $next2++;
                 }
 
                 $newPost = Post::create([
-                    'name' => $post->name,
+                    'name' => $name,
                     'slug' => $slug,
                     'author_id' => $post->author_id,
                     'status' => $post->status,
@@ -510,6 +505,6 @@ class PostsController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', __('Post bulk actions was completed successfully'));
+        return redirect()->back()->with('success', __('Posts bulk actions was completed successfully'));
     }
 }

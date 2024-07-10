@@ -99,7 +99,7 @@ class PageController extends Controller
                 'page_id' => $page->id,
                 'meta_key' => 'seo_title',
                 'meta_value' => $request->seo_title,
-                'type' => 'page'
+                'type' => $page->type()
             ]);
         }
         if ($request->seo_slug) {
@@ -107,7 +107,7 @@ class PageController extends Controller
                 'page_id' => $page->id,
                 'meta_key' => 'seo_slug',
                 'meta_value' => $request->seo_slug,
-                'type' => 'page'
+                'type' => $page->type()
             ]);
         }
         if ($request->meta_description) {
@@ -115,7 +115,7 @@ class PageController extends Controller
                 'page_id' => $page->id,
                 'meta_key' => 'meta_description',
                 'meta_value' => $request->meta_description,
-                'type' => 'page'
+                'type' => $page->type()
             ]);
         }
 
@@ -204,12 +204,14 @@ class PageController extends Controller
         ])->first();
         if ($seo_title) {
             $seo_title->meta_value = $request->seo_title;
+            $seo_title->type = $page->type();
             $seo_title->save();
         } else {
             ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'seo_title',
-                'meta_value' => $request->seo_title
+                'meta_value' => $request->seo_title,
+                'type' => $page->type()
             ]);
         }
 
@@ -219,12 +221,14 @@ class PageController extends Controller
         ])->first();
         if ($seo_slug) {
             $seo_slug->meta_value = $request->seo_slug;
+            $seo_slug->type = $page->type();
             $seo_slug->save();
         } else {
             ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'seo_slug',
-                'meta_value' => $request->seo_slug
+                'meta_value' => $request->seo_slug,
+                'type' => $page->type()
             ]);
         }
 
@@ -234,12 +238,14 @@ class PageController extends Controller
         ])->first();
         if ($meta_description) {
             $meta_description->meta_value = $request->meta_description;
+            $meta_description->type = $page->type();
             $meta_description->save();
         } else {
             ContentMeta::create([
                 'page_id' => $id,
                 'meta_key' => 'meta_description',
-                'meta_value' => $request->meta_description
+                'meta_value' => $request->meta_description,
+                'type' => $page->type()
             ]);
         }
 
@@ -259,26 +265,20 @@ class PageController extends Controller
 
         $page = Page::find($id);
 
-        $baseSlug = $page->slug ? Str::slug($page->slug) : Str::slug($page->name);
-        $slug = $baseSlug;
+        $name = $page->name;
+        $slug = $page->slug;
         $next = 2;
         $next2 = 2;
 
-        $existingPages = Page::where('slug', 'like', $slug . '%')
-            ->where('id', '<>', $id)
-            ->get();
-
-        if ($existingPages->count() > 0) {
-            while (Page::where('slug', $slug)->where('id', '<>', $id)->exists()) {
-                $name = $page->name . ' ' . $next;
-                $slug = $baseSlug . '-' . $next2;
-                $next++;
-                $next2++;
-            }
+        while (Page::where('slug', $slug)->exists()) {
+            $name = $name . ' ' . $next;
+            $slug = $slug . '-' . $next2;
+            $next++;
+            $next2++;
         }
 
         $newPage = Page::create([
-            'name' => $page->name,
+            'name' => $name,
             'slug' => $slug,
             'author_id' => $page->author_id,
             'status' => $page->status,
@@ -305,8 +305,71 @@ class PageController extends Controller
         return redirect()->back()->with('success', __('Page was duplicated successfully'));
     }
 
-    public function quickActions()
+    public function quickActions(Request $request)
     {
+        restrictAccess([4,5]);
 
+        $action = $request->query('action');
+        $ids = $request->query('selects', []);
+
+        if ($action == 1) {
+            foreach ($ids as $id) {
+                $page = Page::find($id);
+                if ($page->status == 1) {
+                    $page->status = 2;
+                } else {
+                    $page->status = 1;
+                }
+                $page->save();
+            }
+        } elseif ($action == 2) {
+            foreach ($ids as $id) {
+                $page = Page::find($id);
+
+                $name = $page->name;
+                $slug = $page->slug;
+                $next = 2;
+                $next2 = 2;
+
+                while (Page::where('slug', $slug)->exists()) {
+                    $name = $name . ' ' . $next;
+                    $slug = $slug . '-' . $next2;
+                    $next++;
+                    $next2++;
+                }
+
+                $newPage = Page::create([
+                    'name' => $name,
+                    'slug' => $slug,
+                    'author_id' => $page->author_id,
+                    'status' => $page->status,
+                    'content' => $page->content,
+                    'delayed_date' => $page->delayed_date,
+                    'template' => $page->template,
+                ]);
+
+                $pageMetas = ContentMeta::where([
+                    'post_id' => $post->id,
+                    'type' => 'post'
+                ])->get();
+                foreach ($pageMetas as $pageMeta) {
+                    ContentMeta::create([
+                        'page_id' => $newPage->id,
+                        'post_id' => null,
+                        'category_id' => null,
+                        'tag_id' => null,
+                        'type' => $newPage->type(),
+                        'meta_key' => $pageMeta->meta_key,
+                        'meta_value' => $pageMeta->meta_value,
+                    ]);
+                }
+            }
+        } elseif ($action == 3) {
+            foreach ($ids as $id) {
+                Page::find($id)->delete();
+            }
+        }
+
+        return redirect()->back()->with('success', __('Pages bulk actions was completed successfully'));
     }
 }
