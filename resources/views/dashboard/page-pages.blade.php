@@ -115,7 +115,7 @@
                                             </a>@if($page->status == 2) <strong>{{ __('— Draft') }}</strong> @endif
                                             <div class="post-actions">
                                                 <ul>
-                                                    <li><a href="{{ route('dash.posts.edit', $page->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
+                                                    <li><a href="{{ route('dash.pages.edit', $page->id) }}" title="{{ __('Edit') }}">{{ __('Edit') }}</a></li>
                                                     <li class="separator">|</li>
                                                     <li><a class="link-danger delete" href="{{ route('dash.pages.delete', $page->id) }}" title="{{ __('Delete') }}">{{ __('Delete') }}</a></li>
                                                     <li class="separator">|</li>
