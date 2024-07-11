@@ -505,3 +505,5 @@ if (!function_exists('getPostLink')) {
         return null;
     }
 }
+
+// Get related posts

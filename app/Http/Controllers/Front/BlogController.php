@@ -20,6 +20,10 @@ class BlogController extends Controller
         $theme = Setting::where('option_name', 'front_theme')->first()->option_value;
         $page = Post::where('slug', $slug)->first();
 
+        if (!$page) {
+            abort(404);
+        }
+
         // Breadcrumbs
         $breadcrumbs = [
             [
