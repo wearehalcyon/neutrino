@@ -11,11 +11,9 @@
     @else
         @php($page = $page)
     @endif
-    @if(getMetaData($page->type(), $page->id, 'seo_title'))
-        <title>{{ getMetaData($page->type(), $page->id, 'seo_title') }}</title>
-    @else
-        <title>{{ getOption('site_name') }}</title>
-    @endif
+    @php($title = getMetaData($page->type(), $page->id, 'seo_title') ? getMetaData($page->type(), $page->id, 'seo_title') : getOption('site_name') . ' | ' . $page->name)
+    @php($title = $title ? $title : getOption('site_name') . ' | ' . $title)
+    <title>{{ $title }}</title>
     @if(getMetaData($page->type(), $page->id, 'meta_description'))
         <meta name="description" content="{{ getMetaData($page->type(), $page->id, 'meta_description') }}">
     @else

@@ -10,19 +10,15 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index()
-    {
-
-    }
-
     public function post($slug)
     {
-        $theme = Setting::where('option_name', 'front_theme')->first()->option_value;
         $page = Post::where('slug', $slug)->first();
 
         if (!$page) {
             abort(404);
         }
+
+        $theme = Setting::where('option_name', 'front_theme')->first()->option_value;
 
         // Breadcrumbs
         $breadcrumbs = [
@@ -45,6 +41,14 @@ class BlogController extends Controller
 
     public function category($category)
     {
-        $category = Category::where('slug', $category)->first();
+        $page = Category::where('slug', $category)->first();
+
+        if (!$page) {
+            abort(404);
+        }
+
+        $theme = Setting::where('option_name', 'front_theme')->first()->option_value;
+
+        return view('front.' . $theme . '.page-category', compact('page'));
     }
 }
