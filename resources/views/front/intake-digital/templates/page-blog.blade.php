@@ -47,7 +47,7 @@
                 @endforeach
             </div>
         @else
-            <p>No news posts available now.</p>
+            <p>No posts available now.</p>
         @endif
     </div>
 </main>

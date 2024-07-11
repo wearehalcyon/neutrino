@@ -16,6 +16,11 @@ class Tag extends Model
         'author_id',
     ];
 
+    public function type()
+    {
+        return 'tag';
+    }
+
     public function getAuthor()
     {
         return User::where('id', $this->author_id)->first();

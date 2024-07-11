@@ -2,7 +2,7 @@
 <section class="inner-hero">
     <img src="{{ getThemeAssetsUri('/assets/images/hero/hero-0' . rand(1, 9) . '.jpg') }}" alt="Internal Hero Image">
     <div class="container text-center">
-        <h1 class="hero-title">{{ $page->name }}</h1>
+        <h1 class="hero-title">{{ '#' . $page->name }}</h1>
         <div class="breadcrumbs">
             <ol>
                 @foreach($breadcrumbs as $breadcrumb)
