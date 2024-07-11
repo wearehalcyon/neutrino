@@ -33,12 +33,14 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
+                                <th scope="col" style="width: 100px;">{{ __('Form Name') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($messages as $message)
                                     <tr>
                                         <td>{{ $message->id }}</td>
+                                        <td><a href="" title="{{ $message->form_name }}">{{ $message->form_name }}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
