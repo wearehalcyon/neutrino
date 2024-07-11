@@ -90,14 +90,14 @@
                                 <div class="row reviews-slide">
                                     <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
                                         <div class="photo">
-                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                            <img src="{{ asset('/uploads/steven-sharp.jpg') }}" alt="Review Photo" width="150" height="150">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
                                         <div class="review-text">
-                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                            <p>INTAKE Digital proved to be true professionals in their field. Their team developed a web platform for us that exceeded our expectations. They not only carefully listened to our requirements but also offered creative solutions that significantly enhanced our customer interactions. Thanks to INTAKE Digital, we were able to strengthen our market position and significantly increase our user base. Highly recommend their services!</p>
                                         </div>
+                                        <div class="name">— Steven Sharp</div>
                                     </div>
                                 </div>
                             </div>
@@ -105,14 +105,14 @@
                                 <div class="row reviews-slide">
                                     <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
                                         <div class="photo">
-                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                            <img src="{{ asset('/assets/images/david-mcfaul.jpg') }}" alt="Review Photo" width="150" height="150">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
                                         <div class="review-text">
-                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                            <p>INTAKE Digital delivered exactly what we needed. Their team's expertise and proactive approach ensured our project's success. We're impressed with the results and look forward to future collaborations.</p>
                                         </div>
+                                        <div class="name">— David McFaul</div>
                                     </div>
                                 </div>
                             </div>
@@ -120,14 +120,14 @@
                                 <div class="row reviews-slide">
                                     <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
                                         <div class="photo">
-                                            <img src="{{ getThemeAssetsUri('/assets/images/review-photo.jpg') }}" alt="Review Photo" width="150" height="150">
+                                            <img src="{{ asset('/assets/images/eugene-stetsiuk.jpg') }}" alt="Review Photo" width="150" height="150">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
                                         <div class="review-text">
-                                            <p>Vivamus euismod mauris. Quisque rutrum. Cras non dolor. Etiam ut purus mattis mauris sodales aliquam. Etiam sit amet orci eget eros faucibus tincidunt.</p>
-                                            <p>Quisque id odio. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Nam commodo suscipit quam. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.</p>
+                                            <p>INTAKE Digital provided exceptional service. Their team's professionalism and innovative solutions were instrumental in achieving our project goals efficiently. We're grateful for their expertise and look forward to continuing our partnership.</p>
                                         </div>
+                                        <div class="name">— Eugene Stetsiuk</div>
                                     </div>
                                 </div>
                             </div>
