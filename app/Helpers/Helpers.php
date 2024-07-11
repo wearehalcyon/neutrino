@@ -627,3 +627,11 @@ if (!function_exists('getCFMCounter')) {
         return $messages;
     }
 }
+
+// Get GeoIP
+if (!function_exists('getGeoIp')) {
+    function getGeoIp($ip = null)
+    {
+        $location = geoip()->getLocation($ip);
+    }
+}
