@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ContactFormDatabase;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Page;
@@ -615,5 +616,14 @@ if (!function_exists('getCategoryLink')) {
         }
 
         return '';
+    }
+}
+
+// Get Contact Form Database messages counter
+if (!function_exists('getCFMCounter')) {
+    function getContactFormsMessages(){
+        $messages = ContactFormDatabase::orderBy('created_at', 'DESC')->paginate(20);
+
+        return $messages;
     }
 }

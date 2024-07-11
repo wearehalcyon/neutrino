@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('Contact Forms'))
+@section('title', __('Contact Forms Database'))
 
 @section('header-scripts')
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.1.11.2.min.css') }}">
@@ -16,13 +16,9 @@
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
-            <h3 class="fw-bold mb-3">{{ __('Contact Forms') }}</h3>
-            <h6 class="op-7 mb-2">{{ __('All site contact forms is here!') }}</h6>
+            <h3 class="fw-bold mb-3">{{ __('Contact Forms Database') }}</h3>
+            <h6 class="op-7 mb-2">{{ __('All site contact forms messages is here!') }}</h6>
         </div>
-    </div>
-
-    <div class="card-action mb-4">
-        <a href="{{ route('dash.c-forms.add') }}" class="btn btn-primary">{{ __('Create New Contact Form') }}</a>
     </div>
 
     <div class="row">
@@ -32,43 +28,39 @@
                     <div class="card-title">{{ __('Forms List') }}</div>
                 </div>
                 <div class="card-body">
-                    @if($forms->isNotEmpty())
+                    @if($messages->isNotEmpty())
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('Blade Function') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($forms as $form)
+                            @foreach($messages as $message)
                                 <tr>
-                                    <td>{{ $form->id }}</td>
-                                    <td><a href="{{ route('dash.c-forms.edit', $form->id) }}" title="{{ $form->name }}">{{ $form->name }}</a></td>
-                                    <td><input type="text" class="form-control" disabled readonly value="getContactForm('{{ $form->name }}', '{{ $form->id }}')"></td>
+                                    <td>{{ $message->id }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        @if($forms->links())
+                        @if($messages->links())
                             <div class="pagination w-100 d-block">
                                 <div class="row justify-content-between align-items-center">
                                     <div class="col-sm-12 col-md-5">
                                         <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">
-                                            {{ __('Showing ' . $forms->count() . ' of ' . $forms->total() . ' entries') }}
+                                            {{ __('Showing ' . $messages->count() . ' of ' . $messages->total() . ' entries') }}
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="d-flex dataTables_paginate paging_simple_numbers justify-content-end">
-                                            {{ $forms->links('dashboard.partials.pagination', ['posts' => $forms]) }}
+                                            {{ $messages->links('dashboard.partials.pagination', ['posts' => $messages]) }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @endif
                     @else
-                        <p>{{ __('No any forms created yet.') }}</p>
+                        <p>{{ __('No any forms messages received yet.') }}</p>
                     @endif
                 </div>
             </div>

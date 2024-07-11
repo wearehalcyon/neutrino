@@ -87,6 +87,9 @@
                         <a data-bs-toggle="collapse" href="#c-forms" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
                             <p>{{ __('Contact Forms') }}</p>
+                            @if(getContactFormsMessages()->count() > 0)
+                                <span class="badge badge-danger">{{ getContactFormsMessages()->count() }}</span>
+                            @endif
                             <span class="caret"></span>
                         </a>
                         <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('show') }}@endif" id="c-forms">
@@ -98,7 +101,12 @@
                                 </li>
                                 <li class="@if(in_array($routeName, ['dash.c-forms-db'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.c-forms-db') }}">
-                                        <span class="sub-item">{{ __('Forms Database') }}</span>
+                                        <span class="sub-item">
+                                            {{ __('Forms Database') }}
+                                            @if(getContactFormsMessages()->count() > 0)
+                                                <span class="badge badge-danger">{{ getContactFormsMessages()->count() }}</span>
+                                            @endif
+                                        </span>
                                     </a>
                                 </li>
                             </ul>

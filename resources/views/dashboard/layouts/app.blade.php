@@ -101,6 +101,10 @@
                 align-items: center;
                 justify-content: space-between;
             }
+            body .wrapper .sidebar .nav.nav-secondary>.nav-item .nav-collapse li.active>a{
+                color: #fff !important;
+                font-weight: 400;
+            }
         </style>
     </head>
     <body>
