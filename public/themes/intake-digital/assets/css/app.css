@@ -179,6 +179,7 @@ header.header .logo a {
 header.header .logo a img {
   width: auto;
   height: auto;
+  max-height: 24px;
 }
 header.header .top-actions {
   position: relative;
