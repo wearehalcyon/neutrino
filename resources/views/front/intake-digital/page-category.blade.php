@@ -23,7 +23,7 @@
     <div class="container">
         @if(getCategoryPosts($page->id)->count())
             <div class="row">
-                @foreach(getCategoryPosts($page->id, '', [], 'created_at', 'DESC') as $post)
+                @foreach(getCategoryPosts($page->id, '', [], 'created_at', 'DESC', 12) as $post)
                     <div class="col-12 col-md-12 col-lg-6 col-xl-4 my-3">
                         <a href="{{ getPostLink($post->slug) }}" class="post-item">
                             <div class="thumbnail">

@@ -510,6 +510,32 @@ if (!function_exists('getCategoryPosts')) {
     }
 }
 
+// Get category posts
+if (!function_exists('getTagPosts')) {
+    function getTagPosts($id = null, $orderby = 'created_at', $order = 'ASC', $limit = null)
+    {
+        if ($orderby == 'random') {
+            $posts = Post::join('post_to_tags', 'posts.id', '=', 'post_to_tags.post_id')
+                ->where('post_to_tags.tag_id', $id)
+                ->select('posts.*')
+                ->inRandomOrder()
+                ->paginate($limit);
+        } else {
+            $posts = Post::join('post_to_tags', 'posts.id', '=', 'post_to_tags.post_id')
+                ->where('post_to_tags.tag_id', $id)
+                ->select('posts.*')
+                ->orderBy('posts.' . $orderby, $order)
+                ->paginate($limit);
+        }
+
+        if ($posts) {
+            return $posts;
+        }
+
+        return '';
+    }
+}
+
 // Get contact form
 if (!function_exists('getContactForm')) {
     function getContactForm($name = null, $id = null, $custom_form_id = null, $custom_form_class = null)

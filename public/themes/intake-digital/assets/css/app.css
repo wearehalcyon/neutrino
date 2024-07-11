@@ -1156,6 +1156,60 @@ body.category .post-item:hover .post-title {
   color: #FFA800;
 }
 
+body.tag {
+  position: relative;
+}
+body.tag .post-item {
+  position: relative;
+  display: block;
+  background-color: #0D0D0D;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  border-radius: 15px;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+body.tag .post-item .thumbnail {
+  display: block;
+  position: relative;
+}
+body.tag .post-item .thumbnail img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+body.tag .post-item .meta {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 30px;
+  color: #777;
+  font-size: 20px;
+}
+body.tag .post-item .meta .category {
+  color: #fff;
+}
+body.tag .post-item .meta .date {
+  display: inline-block;
+  margin-left: 20px;
+}
+body.tag .post-item .post-title {
+  margin: 0;
+  padding: 0 30px 30px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 50px;
+  transition: all 0.3s;
+}
+body.tag .post-item:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+body.tag .post-item:hover .post-title {
+  color: #FFA800;
+}
+
 * {
   margin: 0;
   padding: 0;
