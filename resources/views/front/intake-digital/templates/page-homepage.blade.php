@@ -10,7 +10,7 @@
                         </a>
                     </div>
                     <div class="swiper-slide" data-type="ZEN Task" data-title="ZEN Task BETA release" data-url="{{ url('/blog/asana-killer-called-zen-is-available-to-free-testing-and-use') }}">
-                        <a class="slide-inner" href="{{ url('/blog/asana-killer-called-zen-is-available-to-free-testing-and-use') }}" target="_blank">
+                        <a class="slide-inner" href="{{ url('/blog/asana-killer-called-zen-is-available-to-free-testing-and-use') }}">
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-02.jpg') }}" alt="Slide 02" width="1520" height="760">
                         </a>
                     </div>
