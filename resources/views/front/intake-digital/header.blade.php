@@ -36,7 +36,8 @@
 
     {{ getHead() }}
 </head>
-<body class="{{ getBodyClass('custom-body-theme-class page-template-' . $page->template) }}">
+@php($templateName = $page->template ?? 'default')
+<body class="{{ getBodyClass('custom-body-theme-class ' . $page->type() . ' ' . $page->type() . '-template-' . $templateName) }}">
 <div id="app">
     <div class="mobile-menu">
         {!! getMenu('Main Menu', 'main-nav', 'main-nav', false) !!}

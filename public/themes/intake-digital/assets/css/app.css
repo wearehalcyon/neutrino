@@ -516,6 +516,56 @@ aside.sidebar .sidebar-widget .widget-title {
   font-weight: 700;
   text-transform: uppercase;
 }
+aside.sidebar .sidebar-widget .post-item {
+  position: relative;
+  display: block;
+  background-color: #0D0D0D;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  border-radius: 15px;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+aside.sidebar .sidebar-widget .post-item .thumbnail {
+  display: block;
+  position: relative;
+}
+aside.sidebar .sidebar-widget .post-item .thumbnail img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+aside.sidebar .sidebar-widget .post-item .meta {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 10px;
+  color: #777;
+  font-size: 12px;
+}
+aside.sidebar .sidebar-widget .post-item .meta .category {
+  color: #fff;
+}
+aside.sidebar .sidebar-widget .post-item .meta .date {
+  display: inline-block;
+  margin-left: 10px;
+}
+aside.sidebar .sidebar-widget .post-item .post-title {
+  margin: 0;
+  padding: 0 10px 10px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  transition: all 0.3s;
+}
+aside.sidebar .sidebar-widget .post-item:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+aside.sidebar .sidebar-widget .post-item:hover .post-title {
+  color: #FFA800;
+}
 
 .homepage-slider {
   position: relative;
@@ -921,6 +971,16 @@ body.page-template-blog .post-item:hover {
 }
 body.page-template-blog .post-item:hover .post-title {
   color: #FFA800;
+}
+
+body.post {
+  position: relative;
+}
+body.post .text {
+  position: relative;
+  display: block;
+  border-bottom: 4px solid #FFA800;
+  padding-bottom: 50px;
 }
 
 * {

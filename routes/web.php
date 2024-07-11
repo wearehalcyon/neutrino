@@ -125,3 +125,12 @@ Route::prefix('/')->group(function () {
 });
 // Contact Forms
 Route::post('/c-form-submit-{form_id}-{name}-{unique_id}', [App\Http\Controllers\Front\ContactFormController::class, 'submit'])->name('c-form.submit');
+
+Route::get('/copycom/test/verbose/test-db', function () {
+    DB::enableQueryLog();
+    $result = DB::table('posts')->where('id', '!=', 2)->take(5)->get();
+    \Log::info('Test Query: ' . DB::getQueryLog()[0]['query']);
+    \Log::info('Test Bindings: ' . json_encode(DB::getQueryLog()[0]['bindings']));
+    \Log::info('Test Results: ' . count($result));
+    return $result;
+});

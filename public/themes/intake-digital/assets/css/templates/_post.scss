@@ -1,0 +1,9 @@
+body.post{
+    position: relative;
+    .text{
+        position: relative;
+        display: block;
+        border-bottom: 4px solid $orange;
+        padding-bottom: 50px;
+    }
+}

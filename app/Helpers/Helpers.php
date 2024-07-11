@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Post;
@@ -507,3 +508,20 @@ if (!function_exists('getPostLink')) {
 }
 
 // Get related posts
+if (!function_exists('getRelatedPosts')) {
+    function getRelatedPosts($id = null, $limit = null, $orderby = 'created_at', $order = 'ASC'){
+        $query = Post::where('id', '!=', $id);
+
+        if ($orderby === 'random') {
+            $query->inRandomOrder();
+        } else {
+            $query->orderBy($orderby, $order);
+        }
+
+        if ($limit !== null) {
+            $query->limit($limit);
+        }
+
+        return $query->get();
+    }
+}
