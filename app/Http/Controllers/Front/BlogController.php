@@ -90,7 +90,7 @@ class BlogController extends Controller
                 'url' => route('pages.blog')
             ],
             [
-                'name' => $page->name,
+                'name' => '#' . $page->name,
                 'url' => false
             ]
         ];
