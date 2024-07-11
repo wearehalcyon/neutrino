@@ -8,6 +8,12 @@ body.post{
     }
     .tags{
         display: block;
+        position: relative;
+        h4{
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 32px;
+        }
         ul{
             list-style: none;
             display: flex;
@@ -30,6 +36,84 @@ body.post{
                 }
                 &:last-child{
                     margin-right: 0;
+                }
+            }
+        }
+    }
+    .category-posts{
+        display: block;
+        position: relative;
+        h4{
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        .category-title{
+            position: relative;
+            background-color: $orange;
+            color: $baseBlack;
+            padding: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            a{
+                text-decoration: none;
+                color: $baseBlack;
+                &:hover{
+                    color: $baseWhite;
+                }
+            }
+        }
+        .post-item{
+            position: relative;
+            display: block;
+            background-color: $dark;
+            border: 1px solid rgba(255,255,255,.15);
+            overflow: hidden;
+            border-radius: 15px;
+            color: $baseWhite;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            .thumbnail{
+                display: block;
+                position: relative;
+                img{
+                    width: 100%;
+                    height: 150px;
+                    object-fit: cover;
+                    @include md{
+                        height: 250px;
+                    }
+                }
+            }
+            .meta{
+                display: flex;
+                flex-wrap: wrap;
+                position: relative;
+                padding: 10px;
+                color: $gray;
+                font-size: 12px;
+                .category{
+                    color: $baseWhite;
+                }
+                .date{
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+            }
+            .post-title{
+                margin: 0;
+                padding: 0 10px 10px;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                transition: $transition;
+            }
+            &:hover{
+                border-color: rgba(255,255,255,.4);
+                .post-title{
+                    color: $orange;
                 }
             }
         }

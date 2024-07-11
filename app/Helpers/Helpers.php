@@ -470,7 +470,43 @@ if (!function_exists('getPostCategories')) {
             ->select('categories.*')
             ->get();
 
-        return $categories;
+        if ($categories) {
+            return $categories;
+        }
+
+        return '';
+    }
+}
+
+// Get category posts
+if (!function_exists('getCategoryPosts')) {
+    function getCategoryPosts($id = null, $excluded = null, $doubles = [], $orderby = 'created_at', $order = 'ASC')
+    {
+        if ($orderby == 'random') {
+            $posts = Post::join('post_to_categories', 'posts.id', '=', 'post_to_categories.post_id')
+                ->where('post_to_categories.category_id', $id)
+                ->where('posts.id', '!=', $excluded)
+                ->whereNotIn('posts.id', $doubles)
+                ->select('posts.*')
+                ->distinct()
+                ->inRandomOrder()
+                ->get();
+        } else {
+            $posts = Post::join('post_to_categories', 'posts.id', '=', 'post_to_categories.post_id')
+                ->where('post_to_categories.category_id', $id)
+                ->where('posts.id', '!=', $excluded)
+                ->whereNotIn('posts.id', $doubles)
+                ->select('posts.*')
+                ->distinct()
+                ->orderBy('posts.' . $orderby, $order)
+                ->get();
+        }
+
+        if ($posts) {
+            return $posts;
+        }
+
+        return '';
     }
 }
 
@@ -531,6 +567,21 @@ if (!function_exists('getTagLink')) {
     function getTagLink($slug = null) {
         if ($slug) {
             $link = route('pages.blog.tag', $slug);
+
+            if ($link) {
+                return $link;
+            }
+        }
+
+        return '';
+    }
+}
+
+// Get category link
+if (!function_exists('getCategoryLink')) {
+    function getCategoryLink($slug = null) {
+        if ($slug) {
+            $link = route('pages.blog.category', $slug);
 
             if ($link) {
                 return $link;
