@@ -105,7 +105,7 @@
                                 <div class="row reviews-slide">
                                     <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
                                         <div class="photo">
-                                            <img src="{{ asset('/assets/images/david-mcfaul.jpg') }}" alt="Review Photo" width="150" height="150">
+                                            <img src="{{ asset('/uploads/david-mcfaul.jpg') }}" alt="Review Photo" width="150" height="150">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
@@ -120,7 +120,7 @@
                                 <div class="row reviews-slide">
                                     <div class="col-12 col-md-12 col-lg-3 col-xl-2 my-2">
                                         <div class="photo">
-                                            <img src="{{ asset('/assets/images/eugene-stetsiuk.jpg') }}" alt="Review Photo" width="150" height="150">
+                                            <img src="{{ asset('/uploads/eugene-stetsiuk.jpg') }}" alt="Review Photo" width="150" height="150">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-12 col-lg-9 col-xl-10 my-2">
