@@ -33,14 +33,34 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px;">ID</th>
-                                <th scope="col" style="width: 100px;">{{ __('Form Name') }}</th>
+                                <th scope="col">{{ __('Form Name') }}</th>
+                                <th scope="col">{{ __('Unique ID') }}</th>
+                                <th scope="col">{{ __('IP') }}</th>
+                                <th scope="col">{{ __('User Agent') }}</th>
+                                <th scope="col">{{ __('Received') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($messages as $message)
                                     <tr>
                                         <td>{{ $message->id }}</td>
-                                        <td><a href="" title="{{ $message->form_name }}">{{ $message->form_name }}</a></td>
+                                        <td><a href="{{ route('dash.c-forms-db.view', [$message->id, $message->form_unique_id]) }}" title="{{ $message->form_name }}">{{ $message->form_name }}</a></td>
+                                        <td>{{ $message->form_unique_id }}</td>
+                                        <td>
+                                            @if($message->user_ip)
+                                                {{ $message->user_ip }}
+                                            @else
+                                                —
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($message->user_agent)
+                                                {{ $message->user_agent }}
+                                            @else
+                                                —
+                                            @endif
+                                        </td>
+                                        <td>{{ date('M d, Y', strtotime($message->created_at)) . ' at ' . date('H:i:s', strtotime($message->created_at)) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

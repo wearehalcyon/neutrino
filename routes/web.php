@@ -104,6 +104,7 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     Route::post('/contact-forms/edit/{id}', [App\Http\Controllers\Dashboard\ContactFormsController::class, 'editSave'])->name('dash.c-forms.edit.save');
     // Contact Forms Database
     Route::get('/contact-forms/database', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'index'])->name('dash.c-forms-db');
+    Route::get('/contact-forms/database/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'view'])->name('dash.c-forms-db.view');
 });
 
 // Pages
