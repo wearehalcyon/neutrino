@@ -75,6 +75,8 @@
                         <li>
                             <strong class="input-name">{{ __('IP Address') }}</strong>
                             <a href="https://ipaddres.com/ip/{{ $message->user_ip }}" title="{{ __('Get IP Information') }}" target="_blank">{{ $message->user_ip }} <i class="fas fa-external-link-alt"></i></a>
+                            <br>
+                            {{ 'Country: ' . getGeoIp($message->user_ip) }}
                         </li>
                     </ul>
                 </div>

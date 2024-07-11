@@ -632,6 +632,8 @@ if (!function_exists('getCFMCounter')) {
 if (!function_exists('getGeoIp')) {
     function getGeoIp($ip = null)
     {
-        $location = geoip()->getLocation($ip);
+        $location = $ip;
+
+        return $location;
     }
 }
