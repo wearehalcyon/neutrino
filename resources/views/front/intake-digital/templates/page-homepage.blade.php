@@ -9,8 +9,8 @@
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-01.jpg') }}" alt="Slide 01" width="1520" height="760">
                         </a>
                     </div>
-                    <div class="swiper-slide" data-type="ZEN Task" data-title="ZEN Task BETA release" data-url="{{ url('/blog/news/zen-task-beta-release') }}">
-                        <a class="slide-inner" href="{{ url('/blog/news/zen-task-beta-release') }}" target="_blank">
+                    <div class="swiper-slide" data-type="ZEN Task" data-title="ZEN Task BETA release" data-url="{{ url('/blog/asana-killer-called-zen-is-available-to-free-testing-and-use') }}">
+                        <a class="slide-inner" href="{{ url('/blog/asana-killer-called-zen-is-available-to-free-testing-and-use') }}" target="_blank">
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-02.jpg') }}" alt="Slide 02" width="1520" height="760">
                         </a>
                     </div>
@@ -19,14 +19,14 @@
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-03.jpg') }}" alt="Slide 03" width="1520" height="760">
                         </a>
                     </div>
-                    <div class="swiper-slide" data-type="ID Engine" data-title="INTAKE Digital release first public version of new CMS - ID Engine" data-url="{{ url('/id-engine/') }}">
-                        <a class="slide-inner" href="{{ url('/id-engine/') }}" target="_blank">
+                    <div class="swiper-slide" data-type="ID Engine" data-title="INTAKE Digital release first public version of new CMS - ID Engine" data-url="{{ url('/id-engine-cms/') }}">
+                        <a class="slide-inner" href="{{ url('/id-engine-cms/') }}">
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-04.jpg') }}" alt="Slide 04" width="1520" height="760">
                         </a>
                     </div>
-                    <div class="swiper-slide" data-type="News" data-title="We launched our services. Whats next?" data-url="{{ url('/blog/news/we-launched-our-services-whats-next/') }}">
-                        <a class="slide-inner" href="{{ url('/blog/news/we-launched-our-services-whats-next/') }}" target="_blank">
-                            <img src="{{ getThemeAssetsUri('/assets/images/slide-05.jpg') }}" alt="Slide 05" width="1520" height="760">
+                    <div class="swiper-slide" data-type="News" data-title="AI techs integration in our most used Apps" data-url="{{ url('/blog/future-is-coming-ai-techs-will-be-integreated-in-our-most-used-apps') }}">
+                        <a class="slide-inner" href="{{ url('/blog/future-is-coming-ai-techs-will-be-integreated-in-our-most-used-apps') }}">
+                            <img src="{{ asset('/uploads/d4aad1bd01754bb890ad551162e72552.webp') }}" alt="Slide 05" width="1520" height="760">
                         </a>
                     </div>
                 </div>
