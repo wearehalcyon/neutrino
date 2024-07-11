@@ -49,7 +49,7 @@
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">{{ __('Account Setting') }}</a>
+                                <a class="dropdown-item" href="{{ route('dash.users.edit', Auth::id()) }}">{{ __('Account Setting') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
