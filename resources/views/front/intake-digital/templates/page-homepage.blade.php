@@ -1,4 +1,5 @@
 @include('front.intake-digital.header')
+    <h1 style="display: none;">INTAKE Digital Home</h1>
     <section class="homepage-slider d-flex align-items-center">
         <div class="slider-pictures">
             <div class="swiper homepage-slider-container">
