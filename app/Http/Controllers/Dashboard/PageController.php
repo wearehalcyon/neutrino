@@ -349,7 +349,7 @@ class PageController extends Controller
                 ]);
 
                 $pageMetas = ContentMeta::where([
-                    'post_id' => $post->id,
+                    'page_id' => $page->id,
                     'type' => 'post'
                 ])->get();
                 foreach ($pageMetas as $pageMeta) {
