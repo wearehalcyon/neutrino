@@ -36,11 +36,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($messages as $message)
-                                <tr>
-                                    <td>{{ $message->id }}</td>
-                                </tr>
-                            @endforeach
+                                @foreach($messages as $message)
+                                    <tr>
+                                        <td>{{ $message->id }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         @if($messages->links())
