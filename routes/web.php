@@ -122,15 +122,7 @@ Route::prefix('/')->group(function () {
     Route::get('/' . $blogBase, [App\Http\Controllers\Front\BlogController::class, 'post'])->name('pages.blog');
     Route::get('/' . $blogBase . '/{post}', [App\Http\Controllers\Front\BlogController::class, 'post'])->name('pages.blog.post');
     Route::get('/' . $catBase, [App\Http\Controllers\Front\BlogController::class, 'category'])->name('pages.blog.category');
+    Route::get('/' . $tagBase, [App\Http\Controllers\Front\BlogController::class, 'tag'])->name('pages.blog.tag');
 });
 // Contact Forms
 Route::post('/c-form-submit-{form_id}-{name}-{unique_id}', [App\Http\Controllers\Front\ContactFormController::class, 'submit'])->name('c-form.submit');
-
-Route::get('/copycom/test/verbose/test-db', function () {
-    DB::enableQueryLog();
-    $result = DB::table('posts')->where('id', '!=', 2)->take(5)->get();
-    \Log::info('Test Query: ' . DB::getQueryLog()[0]['query']);
-    \Log::info('Test Bindings: ' . json_encode(DB::getQueryLog()[0]['bindings']));
-    \Log::info('Test Results: ' . count($result));
-    return $result;
-});

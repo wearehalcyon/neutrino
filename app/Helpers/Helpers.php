@@ -525,3 +525,18 @@ if (!function_exists('getRelatedPosts')) {
         return $query->get();
     }
 }
+
+// Get tag link
+if (!function_exists('getTagLink')) {
+    function getTagLink($slug = null) {
+        if ($slug) {
+            $link = route('pages.blog.tag', $slug);
+
+            if ($link) {
+                return $link;
+            }
+        }
+
+        return '';
+    }
+}

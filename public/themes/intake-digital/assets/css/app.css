@@ -982,6 +982,34 @@ body.post .text {
   border-bottom: 4px solid #FFA800;
   padding-bottom: 50px;
 }
+body.post .tags {
+  display: block;
+}
+body.post .tags ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+body.post .tags ul li {
+  display: inline-block;
+  margin-right: 5px;
+}
+body.post .tags ul li a {
+  display: inline-block;
+  background-color: #fff;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+body.post .tags ul li a:hover {
+  background-color: #FFA800;
+}
+body.post .tags ul li:last-child {
+  margin-right: 0;
+}
 
 * {
   margin: 0;

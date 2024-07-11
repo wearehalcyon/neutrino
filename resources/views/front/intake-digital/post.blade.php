@@ -24,6 +24,16 @@
             <div class="row">
                 <div class="col-md-12 col-lg-7 col-xl-8 col-xxl-9">
                     <div class="text">{!! $page->content !!}</div>
+                    @if($page->tags)
+                        <div class="tags mt-4">
+                            <h4>Post Tags</h4>
+                            <ul>
+                                @foreach($page->tags as $tag)
+                                    <li><a href="{{ getTagLink($tag->slug) }}" title="{{ $tag->name }}">{{ '#' . $tag->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-12 col-lg-5 col-xl-4 col-xxl-3 mt-3 mt-xl-0">
                     <aside class="sidebar">

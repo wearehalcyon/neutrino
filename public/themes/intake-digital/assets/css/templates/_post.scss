@@ -6,4 +6,32 @@ body.post{
         border-bottom: 4px solid $orange;
         padding-bottom: 50px;
     }
+    .tags{
+        display: block;
+        ul{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                display: inline-block;
+                margin-right: 5px;
+                a{
+                    display: inline-block;
+                    background-color: $baseWhite;
+                    text-decoration: none;
+                    color: $baseBlack;
+                    font-weight: 500;
+                    font-size: 12px;
+                    border-radius: 4px;
+                    padding: 2px 5px;
+                    &:hover{
+                        background-color: $orange;
+                    }
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
 }
