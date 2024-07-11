@@ -3,6 +3,27 @@
 @section('title', __('View Contact Form Message'))
 
 @section('header-scripts')
+    <style>
+        .message-list{
+            display: block;
+            position: relative;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .message-list li{
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            padding: 10px;
+        }
+        .message-list li .input-name{
+            display: block;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -25,7 +46,14 @@
                     <div class="card-title">{{ __('Message Data') }}</div>
                 </div>
                 <div class="card-body">
-
+                    <ul class="message-list">
+                        @foreach($formData as $key => $value)
+                            <li>
+                                <strong class="input-name">{{ $key }}: </strong>
+                                {{ $value }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
@@ -35,7 +63,20 @@
                     <div class="card-title">{{ __('Sender Info') }}</div>
                 </div>
                 <div class="card-body">
-                    123
+                    <ul class="message-list in-sidebar">
+                        @foreach($formData as $key => $value)
+                            @if(\Illuminate\Support\Str::contains($value, '@') && \Illuminate\Support\Str::contains($value, '.'))
+                                <li>
+                                    <strong class="input-name">{{ __('Email') }}</strong>
+                                    <a href="mailt:{{ $value }}" title="{{ $value }}">{{ $value }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+                        <li>
+                            <strong class="input-name">{{ __('IP Address') }}</strong>
+                            <a href="https://ipaddres.com/ip/{{ $message->user_ip }}" title="{{ __('Get IP Information') }}" target="_blank">{{ $message->user_ip }}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

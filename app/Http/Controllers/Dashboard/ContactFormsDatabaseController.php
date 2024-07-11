@@ -32,6 +32,8 @@ class ContactFormsDatabaseController extends Controller
             'form_unique_id' => $uid
         ])->first();
 
-        return view('dashboard.page-contact-forms-database-view', compact('routeName', 'message'));
+        $formData = json_decode($message->form_data, TRUE);
+
+        return view('dashboard.page-contact-forms-database-view', compact('routeName', 'message', 'formData'));
     }
 }
