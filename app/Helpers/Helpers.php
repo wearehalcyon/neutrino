@@ -480,7 +480,7 @@ if (!function_exists('getPostCategories')) {
 
 // Get category posts
 if (!function_exists('getCategoryPosts')) {
-    function getCategoryPosts($id = null, $excluded = null, $doubles = [], $orderby = 'created_at', $order = 'ASC')
+    function getCategoryPosts($id = null, $excluded = null, $doubles = [], $orderby = 'created_at', $order = 'ASC', $limit = null)
     {
         if ($orderby == 'random') {
             $posts = Post::join('post_to_categories', 'posts.id', '=', 'post_to_categories.post_id')
@@ -490,7 +490,7 @@ if (!function_exists('getCategoryPosts')) {
                 ->select('posts.*')
                 ->distinct()
                 ->inRandomOrder()
-                ->get();
+                ->paginate($limit);
         } else {
             $posts = Post::join('post_to_categories', 'posts.id', '=', 'post_to_categories.post_id')
                 ->where('post_to_categories.category_id', $id)
@@ -499,7 +499,7 @@ if (!function_exists('getCategoryPosts')) {
                 ->select('posts.*')
                 ->distinct()
                 ->orderBy('posts.' . $orderby, $order)
-                ->get();
+                ->paginate($limit);
         }
 
         if ($posts) {

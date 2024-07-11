@@ -1102,6 +1102,60 @@ body.post .category-posts .post-item:hover .post-title {
   color: #FFA800;
 }
 
+body.category {
+  position: relative;
+}
+body.category .post-item {
+  position: relative;
+  display: block;
+  background-color: #0D0D0D;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  border-radius: 15px;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+body.category .post-item .thumbnail {
+  display: block;
+  position: relative;
+}
+body.category .post-item .thumbnail img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+body.category .post-item .meta {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 30px;
+  color: #777;
+  font-size: 20px;
+}
+body.category .post-item .meta .category {
+  color: #fff;
+}
+body.category .post-item .meta .date {
+  display: inline-block;
+  margin-left: 20px;
+}
+body.category .post-item .post-title {
+  margin: 0;
+  padding: 0 30px 30px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 50px;
+  transition: all 0.3s;
+}
+body.category .post-item:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+body.category .post-item:hover .post-title {
+  color: #FFA800;
+}
+
 * {
   margin: 0;
   padding: 0;
