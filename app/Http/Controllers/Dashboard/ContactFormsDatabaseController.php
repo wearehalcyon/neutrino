@@ -20,4 +20,18 @@ class ContactFormsDatabaseController extends Controller
 
         return view('dashboard.page-contact-forms-database', compact('routeName', 'messages', 'messagesCount'));
     }
+
+    public function view($id, $uid)
+    {
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        $message = ContactFormDatabase::where([
+            'id' => $id,
+            'form_unique_id' => $uid
+        ])->first();
+
+        return view('dashboard.page-contact-forms-database-view', compact('routeName', 'message'));
+    }
 }

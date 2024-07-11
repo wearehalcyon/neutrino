@@ -83,8 +83,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#c-forms" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit', 'dash.c-forms-db', 'dash.c-forms-db.view'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#c-forms" class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit', 'dash.c-forms-db', 'dash.c-forms-db.view'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
                             <p>{{ __('Contact Forms') }}</p>
                             @if(getContactFormsMessages()->count() > 0)
@@ -92,14 +92,14 @@
                             @endif
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('show') }}@endif" id="c-forms">
+                        <div class="collapse @if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit', 'dash.c-forms-db', 'dash.c-forms-db.view'])){{ __('show') }}@endif" id="c-forms">
                             <ul class="nav nav-collapse">
                                 <li class="@if(in_array($routeName, ['dash.c-forms', 'dash.c-forms.add', 'dash.c-forms.edit'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.c-forms') }}">
                                         <span class="sub-item">{{ __('All Forms') }}</span>
                                     </a>
                                 </li>
-                                <li class="@if(in_array($routeName, ['dash.c-forms-db'])){{ __('active') }}@endif">
+                                <li class="@if(in_array($routeName, ['dash.c-forms-db', 'dash.c-forms-db.view'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.c-forms-db') }}">
                                         <span class="sub-item">
                                             {{ __('Forms Database') }}

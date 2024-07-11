@@ -3,8 +3,6 @@
 @section('title', __('Contact Forms Database'))
 
 @section('header-scripts')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.1.11.2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endsection
 
 @section('content')
@@ -25,7 +23,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">{{ __('Forms List') }}</div>
+                    <div class="card-title">{{ __('Messages List') }}</div>
                 </div>
                 <div class="card-body">
                     @if($messages->isNotEmpty())
@@ -91,5 +89,4 @@
 @endsection
 
 @section('footer-scripts')
-    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 @endsection
