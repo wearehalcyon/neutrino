@@ -17,7 +17,7 @@ class AdminBarMiddleware
     {
         $currentRouteName = Route::currentRouteName();
 
-        if (in_array($currentRouteName, $excludedRoutes)) {
+        if (in_array($currentRouteName, $this->excludedRoutes)) {
             return $next($request);
         }
 
