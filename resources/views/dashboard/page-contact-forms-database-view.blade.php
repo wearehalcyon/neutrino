@@ -103,6 +103,8 @@
                             <p style="margin: 5px 0;"><strong>{{ __('Browser: ') }}</strong>{{ getUserAgent($message->user_agent, 'browser') }}</p>
                         </li>
                     </ul>
+                    <a href="{{ route('dash.c-forms-db.delete', [$message->id, $message->form_unique_id]) }}" class="btn btn-danger mt-2 delete">{{ __('Delete') }}</a>
+                    <a href="{{ route('dash.c-forms-db.mark-unread', [$message->id, $message->form_unique_id]) }}" class="btn btn-primary mt-2">{{ __('Mark Unread') }}</a>
                 </div>
             </div>
         </div>
@@ -110,4 +112,13 @@
 @endsection
 
 @section('footer-scripts')
+    <script>
+        let delBtn = $('.delete');
+        delBtn.on('click', function(){
+            if (confirm('Do you really want to delete this message?') == true) {
+                return true;
+            }
+            return false;
+        });
+    </script>
 @endsection

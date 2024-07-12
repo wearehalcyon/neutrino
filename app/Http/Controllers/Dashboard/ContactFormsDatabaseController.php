@@ -41,4 +41,26 @@ class ContactFormsDatabaseController extends Controller
 
         return view('dashboard.page-contact-forms-database-view', compact('routeName', 'message', 'formData'));
     }
+
+    public function delete($id, $uid)
+    {
+        restrictAccess([4,5]);
+        ContactFormDatabase::where([
+            'id' => $id,
+            'form_unique_id' => $uid
+        ])->first()->delete();
+        return redirect()->route('dash.c-forms-db')->with('success', __('Message was deleted successfully.'));
+    }
+
+    public function markUnread($id, $uid)
+    {
+        $message = ContactFormDatabase::where([
+            'id' => $id,
+            'form_unique_id' => $uid
+        ])->first();
+        $message->read = 0;
+        $message->save();
+
+        return redirect()->route('dash.c-forms-db')->with('success', __('Message was marked as unread successfully.'));
+    }
 }

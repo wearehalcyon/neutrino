@@ -105,6 +105,8 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
     // Contact Forms Database
     Route::get('/contact-forms/database', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'index'])->name('dash.c-forms-db');
     Route::get('/contact-forms/database/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'view'])->name('dash.c-forms-db.view');
+    Route::get('/contact-forms/database/delete/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'delete'])->name('dash.c-forms-db.delete');
+    Route::get('/contact-forms/database/mark-unread/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'markUnread'])->name('dash.c-forms-db.mark-unread');
 });
 
 // Pages
