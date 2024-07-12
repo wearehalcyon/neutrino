@@ -34,9 +34,9 @@ class ContactFormController extends Controller
                 Mail::to(getOption('site_email'))->send(new ContactFormNotificator($mailTitle, $mailText));
             }
 
-            return redirect()->back()->with('cf-success', '');
+            return redirect()->back()->with('cf-success', 'Test');
         } catch (\Exception $e) {
-            return redirect()->back()->with('cf-error', '');
+            return redirect()->back()->with('cf-error', 'Test');
         }
     }
 }

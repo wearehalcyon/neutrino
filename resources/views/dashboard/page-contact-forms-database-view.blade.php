@@ -63,6 +63,7 @@
                     <div class="card-title">{{ __('Sender Info') }}</div>
                 </div>
                 <div class="card-body">
+                    <div class="date" style="padding: 0 10px;">{{ date('F d, Y', strtotime($message->created_at)) . ' at ' . date('H:i:s', strtotime($message->created_at)) }}</div>
                     <ul class="message-list in-sidebar">
                         @foreach($formData as $key => $value)
                             @if(\Illuminate\Support\Str::contains($value, '@') && \Illuminate\Support\Str::contains($value, '.'))
