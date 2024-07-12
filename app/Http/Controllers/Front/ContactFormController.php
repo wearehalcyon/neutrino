@@ -14,6 +14,21 @@ class ContactFormController extends Controller
     public function submit(Request $request, $form_id, $name, $unique_id)
     {
         try {
+            // Build form mail
+            try {
+                $form = ContactForm::find($form_id);
+
+                $mailTitle = 'Received message from "' . $form->name . '" Contact Form';
+                $mailText = 'You received mail from "<strong>' . $form->name . '</strong>" Contact Form.<br><strong>Form: </strong><a href="' . route('dash.c-forms.edit', $form->id) . '" target="_blank">' . $form->name . '</a><br><strong>Unique Message ID: </strong><a href="' . route('dash.c-forms-db.view', [$message->id, $message->form_unique_id]) . '" target="_blank">' . $message->form_unique_id . '</a><br><strong>Date: </strong>' . date('F d, Y', strtotime($message->created_at)) . ' at ' . date('H:i:s', strtotime($message->created_at));
+
+                if (getOption('site_email')) {
+                    Mail::to(getOption('site_email'))->send(new ContactFormNotificator($mailTitle, $mailText));
+                }
+            } catch (\Exception $e) {
+                return redirect()->back()->with('cf-error', 'Test');
+            }
+
+            // Create record
             $formData = $request->except('_token');
 
             $message = ContactFormDatabase::create([
@@ -24,15 +39,6 @@ class ContactFormController extends Controller
                 'user_ip' => $request->ip(),
                 'user_agent' => $request->header('User-Agent')
             ]);
-
-            $form = ContactForm::find($form_id);
-
-            $mailTitle = 'Received message from "' . $form->name . '" Contact Form';
-            $mailText = 'You received mail from "<strong>' . $form->name . '</strong>" Contact Form.<br><strong>Form: </strong><a href="' . route('dash.c-forms.edit', $form->id) . '" target="_blank">' . $form->name . '</a><br><strong>Unique Message ID: </strong><a href="' . route('dash.c-forms-db.view', [$message->id, $message->form_unique_id]) . '" target="_blank">' . $message->form_unique_id . '</a><br><strong>Date: </strong>' . date('F d, Y', strtotime($message->created_at)) . ' at ' . date('H:i:s', strtotime($message->created_at));
-
-            if (getOption('site_email')) {
-                Mail::to(getOption('site_email'))->send(new ContactFormNotificator($mailTitle, $mailText));
-            }
 
             return redirect()->back()->with('cf-success', 'Test');
         } catch (\Exception $e) {
