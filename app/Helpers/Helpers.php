@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\ContactFormDatabase;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Post;
@@ -12,6 +11,8 @@ use App\Models\Category;
 use App\Models\Setting;
 use App\Models\ContactForm;
 use Illuminate\Support\Str;
+// use Jenssegers\Agent\Agent;
+use Jenssegers\Agent\Facades\Agent;
 
 // Get Option
 if (!function_exists('getOption')) {
@@ -622,7 +623,7 @@ if (!function_exists('getCategoryLink')) {
 // Get Contact Form Database messages counter
 if (!function_exists('getCFMCounter')) {
     function getContactFormsMessages(){
-        $messages = ContactFormDatabase::orderBy('created_at', 'DESC')->paginate(20);
+        $messages = ContactFormDatabase::where('read', 0)->get();
 
         return $messages;
     }
@@ -632,8 +633,49 @@ if (!function_exists('getCFMCounter')) {
 if (!function_exists('getGeoIp')) {
     function getGeoIp($ip = null)
     {
-        $location = $ip;
+        $location = collect(Location::get($ip));
+        if (!$location) {
+            return '';
+        }
 
         return $location;
+    }
+}
+
+// Get user agent
+if (!function_exists('getUserAgent')) {
+    function getUserAgent($data = null, $value = null)
+    {
+        if (!$data) {
+            return '';
+        }
+        $device = Agent::device($data);
+        $platform = Agent::platform($data);
+        $browser = Agent::browser($data);
+        $lang = Agent::languages($data);
+
+        if ($value == 'device') {
+            if (!$device) {
+                return 'Computer/Laptop';
+            } else {
+                return $device;
+            }
+        } elseif ($value == 'platform') {
+            return $platform;
+        } elseif ($value == 'browser') {
+            return $browser;
+        }
+    }
+}
+
+// Is mobile detect
+if (!function_exists('isMobile')) {
+    function isMobile($data = null)
+    {
+        if ($data) {
+            return Agent::isMobile($data);
+        } else {
+            return Agent::isMobile();
+        }
     }
 }

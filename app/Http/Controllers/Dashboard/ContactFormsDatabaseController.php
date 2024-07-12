@@ -16,9 +16,8 @@ class ContactFormsDatabaseController extends Controller
         $routeName = Route::currentRouteName();
 
         $messages = ContactFormDatabase::orderBy('created_at', 'DESC')->paginate(20);
-        $messagesCount = $messages->count();
 
-        return view('dashboard.page-contact-forms-database', compact('routeName', 'messages', 'messagesCount'));
+        return view('dashboard.page-contact-forms-database', compact('routeName', 'messages'));
     }
 
     public function view($id, $uid)
@@ -31,6 +30,12 @@ class ContactFormsDatabaseController extends Controller
             'id' => $id,
             'form_unique_id' => $uid
         ])->first();
+        $message->read = 1;
+        $message->save();
+
+        if (!$message) {
+            abort(404);
+        }
 
         $formData = json_decode($message->form_data, TRUE);
 

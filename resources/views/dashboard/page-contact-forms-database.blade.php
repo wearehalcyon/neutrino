@@ -3,6 +3,17 @@
 @section('title', __('Contact Forms Database'))
 
 @section('header-scripts')
+    <style>
+        .table-tr{
+            border-left: 4px solid #f6f6f6;
+        }
+        .table-tr.unread{
+            border-left: 4px solid #4adb74;
+        }
+        .table-tr.unread td{
+            background-color: #eafff0;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -40,7 +51,7 @@
                             </thead>
                             <tbody>
                                 @foreach($messages as $message)
-                                    <tr>
+                                    <tr class="table-tr @if($message->read === 0) unread @endif">
                                         <td>{{ $message->id }}</td>
                                         <td><a href="{{ route('dash.c-forms-db.view', [$message->id, $message->form_unique_id]) }}" title="{{ $message->form_name }}">{{ $message->form_name }}</a></td>
                                         <td>{{ $message->form_unique_id }}</td>
