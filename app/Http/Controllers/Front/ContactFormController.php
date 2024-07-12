@@ -16,7 +16,9 @@ class ContactFormController extends Controller
             'form_id' => $form_id,
             'form_name' => $name,
             'form_unique_id' => $unique_id,
-            'form_data' => json_encode($formData)
+            'form_data' => json_encode($formData),
+            'user_ip' => $request->ip(),
+            'user_agent' => $request->header('User-Agent')
         ]);
 
         return redirect()->back()->with('cf-success', 'Test');

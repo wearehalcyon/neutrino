@@ -390,6 +390,7 @@ footer.footer .powered a:hover {
   border-radius: 6px;
   transition: all 0.3s;
   margin-bottom: 30px;
+  color: #fff;
 }
 .form input[type=text]:focus,
 .form input[type=email]:focus,
