@@ -36,7 +36,7 @@ class ContactFormController extends Controller
 
             return redirect()->back()->with('cf-success', 'Test');
         } catch (\Exception $e) {
-            return redirect()->back()->with('cf-error', 'Test');
+            return redirect()->back()->with('cf-error', $e);
         }
     }
 }
