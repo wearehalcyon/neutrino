@@ -12,9 +12,8 @@ class AdminBarMiddleware
     {
         $response = $next($request);
 
-        if (Auth::check()) {
+        if (Auth::check() && $response instanceof \Illuminate\Http\Response) {
             $adminBarHtml = View::make('dashboard.partials.admin-bar')->render();
-
             $content = $response->getContent();
 
             if (strpos($content, $adminBarHtml) === false) {
