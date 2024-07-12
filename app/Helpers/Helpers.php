@@ -13,6 +13,7 @@ use App\Models\ContactForm;
 use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Facades\Agent;
+use Stevebauman\Location\Facades\Location;
 
 // Get Option
 if (!function_exists('getOption')) {
