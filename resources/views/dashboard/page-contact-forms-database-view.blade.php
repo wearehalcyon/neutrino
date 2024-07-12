@@ -72,13 +72,13 @@
                                 </li>
                             @endif
                         @endforeach
-                        <li>
-                            <strong class="input-name">{{ __('IP Address') }}</strong>
-                            <a href="https://ipaddres.com/ip/{{ $message->user_ip }}" title="{{ __('Get IP Information') }}" target="_blank">{{ $message->user_ip }} <i class="fas fa-external-link-alt"></i></a>
-                            <br>
-                            @php($location = getGeoIp($message->user_ip))
-                            @php($countryCode = $location['countryCode'])
-                            @if($location)
+                        @php($location = getGeoIp($message->user_ip))
+                        @if($location)
+                            <li>
+                                <strong class="input-name">{{ __('IP Address') }}</strong>
+                                <a href="https://ipaddres.com/ip/{{ $message->user_ip }}" title="{{ __('Get IP Information') }}" target="_blank">{{ $message->user_ip }} <i class="fas fa-external-link-alt"></i></a>
+                                <br>
+                                @php($countryCode = $location['countryCode'])
                                 @foreach($location as $key => $value)
                                     @if($key == 'countryName')
                                         <p style="margin: 5px 0;"><strong>{{ __('Country: ') }}</strong>{{ __($value) . ' (' . $countryCode . ')' }}</p>
@@ -93,8 +93,8 @@
                                         <p style="margin: 5px 0;"><strong>{{ __('Time Zone: ') }}</strong>{{ __($value) }}</p>
                                     @endif
                                 @endforeach
-                            @endif
-                        </li>
+                            </li>
+                        @endif
                         <li>
                             <strong class="input-name">{{ __('User Agent') }}</strong>
                             <p style="margin: 5px 0;"><strong>{{ __('Screen: ') }}</strong>@if(isMobile($message->user_agent)){{ __('Mobile') }}@else{{ __('Desktop') }}@endif</p>

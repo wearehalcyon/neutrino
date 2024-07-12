@@ -30,6 +30,11 @@ class ContactFormsDatabaseController extends Controller
             'id' => $id,
             'form_unique_id' => $uid
         ])->first();
+
+        if (!$message) {
+            abort();
+        }
+
         $message->read = 1;
         $message->save();
 

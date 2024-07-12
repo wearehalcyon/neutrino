@@ -14,5 +14,7 @@ class ContactFormDatabase extends Model
         'form_name',
         'form_unique_id',
         'form_data',
+        'user_ip',
+        'user_agent',
     ];
 }

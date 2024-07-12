@@ -634,11 +634,11 @@ if (!function_exists('getCFMCounter')) {
 if (!function_exists('getGeoIp')) {
     function getGeoIp($ip = null)
     {
-        $location = collect(Location::get($ip));
+        $location = Location::get($ip);
         if (!$location) {
-            return '';
+            return false;
         }
-
+        $location = collect($location);
         return $location;
     }
 }
@@ -653,7 +653,6 @@ if (!function_exists('getUserAgent')) {
         $device = Agent::device($data);
         $platform = Agent::platform($data);
         $browser = Agent::browser($data);
-        $lang = Agent::languages($data);
 
         if ($value == 'device') {
             if (!$device) {

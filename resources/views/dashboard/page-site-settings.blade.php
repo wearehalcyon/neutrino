@@ -40,6 +40,10 @@
                                     <small id="siteurl" class="form-text text-muted">{{ __('Please set this value without slash in end.') }}</small>
                                 </div>
                                 <div class="form-group">
+                                    <label for="site_email"><strong>{{ __('Site Adminstration Email') }}</strong></label>
+                                    <input type="email" name="site_email" class="form-control" id="site_email" placeholder="admin@example.com" value="{{ getOption('site_email') }}" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="sitedesc"><strong>{{ __('Site Description') }}</strong></label>
                                     <textarea class="form-control" name="site_description" id="" cols="30" rows="6" placeholder="{{ __('This is my site and this is my short description for SEO settings...') }}">{{ getOption('site_description') }}</textarea>
                                 </div>

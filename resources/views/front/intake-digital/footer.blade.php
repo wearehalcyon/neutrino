@@ -64,6 +64,15 @@
                 </div>
             </div>
         @endif
+        @if(session('cf-error'))
+            <div class="success-popup d-flex align-items-center justify-content-center">
+                <div class="popup-window">
+                    <h2>OOOPS!</h2>
+                    <p>Something went wrong and message was not sent. Please try again later.</p>
+                    <a href="javascript:;" class="close-popup">OK</a>
+                </div>
+            </div>
+        @endif
     </div>
     {{ getFooter() }}
     <script src="{{ getThemeAssetsUri('/assets/js/plugins/swiper-bundle.min.js') }}"></script>

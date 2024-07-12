@@ -13,12 +13,16 @@ class ContactFormNotificator extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $mailTitle;
+    public $mailText;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($mailTitle, $mailText)
     {
-        //
+        $this->mailTitle = $mailTitle;
+        $this->mailText = $mailText;
     }
 
     /**
@@ -37,7 +41,7 @@ class ContactFormNotificator extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.contact-form-notificator',
         );
     }
 

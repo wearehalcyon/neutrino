@@ -1224,6 +1224,10 @@ body.tag .post-item:hover .post-title {
   padding: 0;
   outline: none;
 }
+*::selection {
+  background-color: #FFA800;
+  color: #000;
+}
 
 body {
   font-family: "Inter", sans-serif;

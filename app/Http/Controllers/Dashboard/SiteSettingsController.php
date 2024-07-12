@@ -69,6 +69,23 @@ class SiteSettingsController extends Controller
             }
         }
 
+        // Site administration email
+        if (!getOption('site_email')) {
+            Setting::create([
+                'option_name' => 'site_email',
+                'option_value' => $request->site_email,
+            ]);
+        } else {
+            $siteemail = Setting::where('option_name', 'site_email')->first();
+            if (isset($request->site_email)) {
+                $siteemail->option_value = $request->site_email;
+                $siteemail->save();
+            } else {
+                $siteemail->option_value = null;
+                $siteemail->save();
+            }
+        }
+
         // Site Description
         if (!getOption('site_description')) {
             Setting::create([
