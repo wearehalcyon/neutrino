@@ -4,16 +4,28 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
 class AdminBarMiddleware
 {
+    protected $excludedRoutes = [
+        'c-form.submit',
+    ];
+
     public function handle($request, Closure $next)
     {
+        $currentRouteName = Route::currentRouteName();
+
+        if (in_array($currentRouteName, $excludedRoutes)) {
+            return $next($request);
+        }
+
         $response = $next($request);
 
-        if (Auth::check() && $response instanceof \Illuminate\Http\Response) {
+        if (Auth::check()) {
             $adminBarHtml = View::make('dashboard.partials.admin-bar')->render();
+
             $content = $response->getContent();
 
             if (strpos($content, $adminBarHtml) === false) {
