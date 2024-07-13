@@ -63,6 +63,24 @@
             <a href="{{ route('dash.pages.add') }}"><i class="fas fa-plus" style="margin-right: 5px;"></i><span>{{ __('Add New Page') }}</span></a>
         </li>
         <span class="ab-dm-none" style="margin-left: 5px;">|</span>
+        @php
+            $lastSegment = request()->segment(count(request()->segments()));
+        @endphp
+        @if(getPost($lastSegment))
+            <li class="ab-dm-none">
+                <a href="{{ route('dash.posts.edit', getPost($lastSegment)->id) }}"><span>{{ __('Edit Post') }}</span></a>
+            </li>
+        @endif
+        @if(getPage($lastSegment))
+            <li class="ab-dm-none">
+                <a href="{{ route('dash.pages.edit', getPage($lastSegment)->id) }}"><span>{{ __('Edit Page') }}</span></a>
+            </li>
+        @endif
+        @if(!$lastSegment)
+            <li class="ab-dm-none">
+                <a href="{{ route('dash.pages.edit', getPageByID(getOption('homepage_id'))) }}"><span>{{ __('Edit Homepage') }}</span></a>
+            </li>
+        @endif
     </ul>
     <ul class="admin-bar-nav right-nav">
         <li>

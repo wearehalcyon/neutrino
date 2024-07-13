@@ -438,6 +438,48 @@ if (!function_exists('getBodyClass')) {
     }
 }
 
+// Get page
+if (!function_exists('getPage')) {
+    function getPage($slug = null)
+    {
+        $page = Page::where('slug', $slug)->first();
+
+        if (!$page) {
+            return false;
+        }
+
+        return $page;
+    }
+}
+
+// Get page by ID
+if (!function_exists('getPageByID')) {
+    function getPageByID($id = null)
+    {
+        $page = Page::find($id);
+
+        if (!$page) {
+            return false;
+        }
+
+        return $page;
+    }
+}
+
+// Get post
+if (!function_exists('getPost')) {
+    function getPost($slug = null)
+    {
+        $post = Post::where('slug', $slug)->first();
+
+        if (!$post) {
+            return false;
+        }
+
+        return $post;
+    }
+}
+
 // Get posts
 if (!function_exists('getPosts')) {
     function getPosts($category = null, $orderby = 'created_at', $order = 'ASC', $limit = null)
