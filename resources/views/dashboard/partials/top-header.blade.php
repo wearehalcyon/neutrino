@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                 <li class="nav-item topbar-icon dropdown hidden-caret">
-                    <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle no-filter no-bg" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-envelope"></i>
                         @if(getContactFormsMessages()->count() > 0)
                             <span class="notification">{{ getContactFormsMessages()->count() }}</span>
@@ -37,59 +37,19 @@
                         <li>
                             <div class="scroll-wrapper message-notif-scroll scrollbar-outer" style="position: relative;"><div class="message-notif-scroll scrollbar-outer scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 0px;">
                                     <div class="notif-center">
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/jm_denis.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Jimmy Denis</span>
-                                                <span class="block">
-															How are you ?
-														</span>
-                                                <span class="time">5 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/chadengle.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Chad</span>
-                                                <span class="block">
-															Ok, Thanks !
-														</span>
-                                                <span class="time">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/mlane.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Jhon Doe</span>
-                                                <span class="block">
-															Ready for the meeting today...
-														</span>
-                                                <span class="time">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/talha.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Talha</span>
-                                                <span class="block">
-															Hi, Apa Kabar ?
-														</span>
-                                                <span class="time">17 minutes ago</span>
-                                            </div>
-                                        </a>
+                                        @foreach(getContactFormsMessages() as $message)
+                                            <a href="{{ route('dash.c-forms-db.view', [$message->id, $message->form_unique_id]) }}" class="no-filter">
+                                                <div class="notif-content">
+                                                    <span class="subject">{{ $message->form_name }}</span>
+                                                    <span class="time">{{ date('M d, Y', strtotime($message->created_at)) . ' at ' . date('H:i:s', strtotime($message->created_at)) }}</span>
+                                                </div>
+                                            </a>
+                                        @endforeach
                                     </div>
                                 </div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar"></div></div></div></div>
                         </li>
                         <li>
-                            <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
+                            <a class="see-all" href="{{ route('dash.c-forms-db') }}">See all messages<i class="fa fa-angle-right"></i> </a>
                         </li>
                     </ul>
                 </li>
@@ -99,7 +59,7 @@
                     </a>
                 </li>
                 <li class="nav-item topbar-user dropdown hidden-caret">
-                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false" >
+                    <a class="dropdown-toggle profile-pic no-filter no-bg" data-bs-toggle="dropdown" href="#" aria-expanded="false" >
                         <div class="avatar-sm">
                             <img src="{{ asset('assets/images/svg/user.svg') }}" alt="..." class="avatar-img rounded-circle" />
                         </div>

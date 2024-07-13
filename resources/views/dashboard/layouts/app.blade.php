@@ -46,6 +46,9 @@
                 filter: brightness(1);
                 background-color: rgba(0,0,0,.2);
             }
+            a.no-bg{
+                background-color: transparent;
+            }
             .sidebar .logo-header{
                 padding-top: 55px;
             }
