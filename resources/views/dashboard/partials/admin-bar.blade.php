@@ -66,22 +66,22 @@
         @php
             $lastSegment = request()->segment(count(request()->segments()));
         @endphp
-        @if(getPost($lastSegment))
+        @if(getPost($lastSegment) && (!getPage($lastSegment) && !getCategory($lastSegment) && !getTag($lastSegment)))
             <li class="ab-dm-none">
                 <a href="{{ route('dash.posts.edit', getPost($lastSegment)->id) }}"><span>{{ __('Edit Post') }}</span></a>
             </li>
         @endif
-        @if(getPage($lastSegment))
+        @if(getPage($lastSegment) && (!getPost($lastSegment) && !getCategory($lastSegment) && !getTag($lastSegment)))
             <li class="ab-dm-none">
                 <a href="{{ route('dash.pages.edit', getPage($lastSegment)->id) }}"><span>{{ __('Edit Page') }}</span></a>
             </li>
         @endif
-        @if(getCategory($lastSegment))
+        @if(getCategory($lastSegment) && (!getPage($lastSegment) && !getPost($lastSegment) && !getTag($lastSegment)))
             <li class="ab-dm-none">
                 <a href="{{ route('dash.categories.edit', getCategory($lastSegment)->id) }}"><span>{{ __('Edit Category') }}</span></a>
             </li>
         @endif
-        @if(getTag($lastSegment))
+        @if(getTag($lastSegment) && (!getCategory($lastSegment) && !getPage($lastSegment) && !getPost($lastSegment)))
             <li class="ab-dm-none">
                 <a href="{{ route('dash.tags.edit', getTag($lastSegment)->id) }}"><span>{{ __('Edit Tag') }}</span></a>
             </li>
