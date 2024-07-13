@@ -76,6 +76,16 @@
                 <a href="{{ route('dash.pages.edit', getPage($lastSegment)->id) }}"><span>{{ __('Edit Page') }}</span></a>
             </li>
         @endif
+        @if(getCategory($lastSegment))
+            <li class="ab-dm-none">
+                <a href="{{ route('dash.categories.edit', getCategory($lastSegment)->id) }}"><span>{{ __('Edit Category') }}</span></a>
+            </li>
+        @endif
+        @if(getTag($lastSegment))
+            <li class="ab-dm-none">
+                <a href="{{ route('dash.tags.edit', getTag($lastSegment)->id) }}"><span>{{ __('Edit Tag') }}</span></a>
+            </li>
+        @endif
         @if(!$lastSegment)
             <li class="ab-dm-none">
                 <a href="{{ route('dash.pages.edit', getPageByID(getOption('homepage_id'))) }}"><span>{{ __('Edit Homepage') }}</span></a>

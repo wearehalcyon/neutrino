@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ContactFormDatabase;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Post;
@@ -435,6 +436,34 @@ if (!function_exists('getBodyClass')) {
         }
 
         return $classes;
+    }
+}
+
+// Get category
+if (!function_exists('getCategory')) {
+    function getCategory($slug = null)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        if (!$category) {
+            return false;
+        }
+
+        return $category;
+    }
+}
+
+// Get tag
+if (!function_exists('getTag')) {
+    function getTag($slug = null)
+    {
+        $tag = Tag::where('slug', $slug)->first();
+
+        if (!$tag) {
+            return false;
+        }
+
+        return $tag;
     }
 }
 
