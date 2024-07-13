@@ -126,7 +126,7 @@ if (!function_exists('getHead')) {
                     #admin-bar-padding.admin-bar-padding{
                         position: sticky;
                         width: 100%;
-                        height: 32px;
+                        height: 30px;
                         top: 0;
                         left: 0;
                         z-index: 999999999999999989;

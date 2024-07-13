@@ -85,6 +85,11 @@
                 color: #fff !important;
                 font-weight: 400;
             }
+            @media screen and (max-width: 1200px) {
+                .main-header{
+                    top: 30px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -138,7 +143,7 @@
         <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
         <!-- Kaiadmin JS -->
-        <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
+        <script src="{{ asset('assets/js/kaiadmin.js') }}"></script>
 
         @yield('footer-scripts')
     </body>
