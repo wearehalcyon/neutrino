@@ -186,6 +186,7 @@ if (!function_exists('getHead')) {
                         box-shadow: 0 5px 20px rgba(0,0,0,.2);
                         border-radius: 6px;
                         backdrop-filter: blur(30px) saturate(1.2);
+                        -webkit-backdrop-filter: blur(30px) saturate(1.2);
                         border: 1px solid rgba(255,255,255,.15);
                     }
                     #admin-bar.admin-bar .admin-bar-nav li:hover .admin-bar-sub-menu{
