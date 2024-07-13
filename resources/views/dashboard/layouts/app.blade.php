@@ -92,6 +92,9 @@
                 .main-header{
                     top: 30px;
                 }
+                .sidebar .nav{
+                    margin-top: 50px;
+                }
             }
         </style>
     </head>
