@@ -69,7 +69,6 @@
                 <div class="popup-window">
                     <h2>OOOPS!</h2>
                     <p>Something went wrong and message was not sent. Please try again later.</p>
-                    <code>{{ session('cf-error') }}</code>
                     <a href="javascript:;" class="close-popup">OK</a>
                 </div>
             </div>
