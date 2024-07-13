@@ -48,9 +48,9 @@
                             <tbody>
                                 @foreach($posts as $post)
                                     <tr>
-                                        <td><a href="" title="{{ $post->name }}">{{ $post->name }}</a></td>
+                                        <td><a href="{{ route('dash.posts.edit', $post->id) }}" title="{{ $post->name }}">{{ $post->name }}</a></td>
                                         <td>{{ date('M d, Y', strtotime($post->created_at)) . ' at ' . date('H:i', strtotime($post->created_at)) }}</td>
-                                        <td style="text-align: center;"><a href="#" title="{{ __('Open Post To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+                                        <td style="text-align: center;"><a href="{{ url('/' . getOption('blog_base') . '/' . $post->slug) }}" title="{{ __('Open Post To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -146,7 +146,7 @@
                                     <tr>
                                         <td><a href="{{ route('dash.categories.edit', $category->id) }}" title="{{ $category->name }}">{{ $category->name }}</a></td>
                                         <td style="text-align: center;">{{ $category->getPosts()->count() }}</td>
-                                        <td style="text-align: center;"><a href="#" title="{{ __('Open Category To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+                                        <td style="text-align: center;"><a href="{{ route('pages.blog.category', $category->slug) }}" title="{{ __('Open Category To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -188,9 +188,16 @@
                             <tbody>
                             @foreach($pages as $page)
                                 <tr>
-                                    <td><a href="" title="{{ $page->name }}">{{ $page->name }}</a></td>
+                                    <td>
+                                        <a href="{{ route('dash.pages.edit', $page->id) }}" title="{{ $page->name }}">
+                                            {{ $page->name }}
+                                            @if(getOption('homepage_id') == $page->id)
+                                                <span class="badge badge-black d-inline-block mx-2">{{ __('Homepage') }}</span>
+                                            @endif
+                                        </a>
+                                    </td>
                                     <td>{{ date('M d, Y', strtotime($page->created_at)) . ' at ' . date('H:i', strtotime($page->created_at)) }}</td>
-                                    <td style="text-align: center;"><a href="#" title="{{ __('Open Post To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+                                    <td style="text-align: center;"><a href="{{ route('pages.internal', $page->slug) }}" title="{{ __('Open Post To View') }}" target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
                                 </tr>
                             @endforeach
                             </tbody>
