@@ -9,8 +9,8 @@
     {{ getHead() }}
     <style>
         body{
-            background: #000;
-            color: #fff;
+            background: #f0f0f0;
+            color: #333;
             font-family: sans-serif;
             overflow: hidden;
         }
@@ -48,9 +48,10 @@
 <body>
 <main class="error-page">
     <div>
-        <img src="{{ getThemeAssetsUri('/assets/images/error-500.webp') }}" alt="Error 500 Image">
+        <img src="{{ asset('assets/images/error-500.png') }}" alt="Error 500 Image">
+        <div class="text" style="text-align: center;">{{ __('There has been a critical error on this website.') }}</div>
         <div class="cta">
-            <a href="{{ url('/') }}" title="Go to homepage">Go to Homepage</a>
+            <a href="{{ url('/') }}" title="Go to homepage">{{ __('Go to Homepage') }}</a>
         </div>
     </div>
 </main>

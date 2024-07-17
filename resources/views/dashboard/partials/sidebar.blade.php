@@ -3,7 +3,7 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
             <a href="{{ route('dash') }}" title="{{ __('Dashboard Home') }}">
-                <img src="{{ asset('assets/images/svg/id-logo-dash.svg') }}" alt="{{ __('Dashboard Home') }}" width="112" height="30">
+                <img src="{{ asset('assets/images/svg/nt-logo-dash-light.svg') }}" alt="{{ __('Dashboard Home') }}" width="112" height="30">
             </a>
         </div>
         <!-- End Logo Header -->

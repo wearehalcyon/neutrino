@@ -11,7 +11,7 @@
         {{ getHead() }}
         <link
             rel="icon"
-            href="{{ asset('assets/favicon/favicon.ico') }}"
+            href="{{ asset('favicon.png') }}"
             type="image/x-icon"
         />
 
