@@ -96,8 +96,13 @@ if (!function_exists('getHead')) {
         }
 
         echo '<script id="id-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
-        echo '<link id="id-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
-        echo '<link rel="apple-touch-icon" href="' . asset('uploads/' . $array['favicon']) . '">';
+        if ($array['favicon']) {
+            echo '<link id="id-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
+            echo '<link rel="apple-touch-icon" href="' . asset('uploads/' . $array['favicon']) . '">';
+        } else {
+            echo '<link id="id-base-favicon" rel="icon" href="' . asset('favicon.png') . '" type="image/x-icon">';
+            echo '<link rel="apple-touch-icon" href="' . asset('favicon.png') . '">';
+        }
         $linkFonts = asset('assets/css/fonts.min.css');
         echo <<<HTML
             <script id="id-base-webfont-inline-script">
