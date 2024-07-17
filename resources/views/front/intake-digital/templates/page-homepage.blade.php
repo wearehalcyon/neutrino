@@ -19,7 +19,7 @@
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-03.jpg') }}" alt="Slide 03" width="1520" height="760">
                         </a>
                     </div>
-                    <div class="swiper-slide" data-type="ID Engine" data-title="INTAKE Digital release first public version of new CMS - ID Engine" data-url="{{ url('/id-engine-cms/') }}">
+                    <div class="swiper-slide" data-type="Neutrino" data-title="INTAKE Digital release first public version of new CMS - Neutrino" data-url="{{ url('/neutrino-cms/') }}">
                         <a class="slide-inner" href="{{ url('/id-engine-cms/') }}">
                             <img src="{{ getThemeAssetsUri('/assets/images/slide-04.jpg') }}" alt="Slide 04" width="1520" height="760">
                         </a>
