@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-4 col-xl-3">
-                        <div class="powered">Powered by <a href="{{ getPermalink('page', 13) }}" title="Get Neutrino CMS">Neutrino</a>.</div>
+                        <div class="powered">Powered by <a href="{{ url('/neutrino-cms/') }}" title="Get Neutrino CMS">Neutrino</a>.</div>
                     </div>
                 </div>
             </div>
