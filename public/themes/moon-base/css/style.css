@@ -113,6 +113,9 @@ body .post-hero .hero-inner {
 body .post-hero .hero-inner .date {
   font-style: italic;
 }
+body .post-hero .hero-inner .author {
+  margin-bottom: 0;
+}
 body .content {
   position: relative;
 }

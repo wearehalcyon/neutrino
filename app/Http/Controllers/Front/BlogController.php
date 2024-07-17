@@ -66,7 +66,7 @@ class BlogController extends Controller
             ]
         ];
 
-        return view('front.' . $theme . '.page-category', compact('page', 'breadcrumbs'));
+        return view('front.' . $theme . '.category', compact('page', 'breadcrumbs'));
     }
 
     public function tag($tag)

@@ -4,6 +4,12 @@
             <h1 class="title">{{ $page->name }}</h1>
             <span class="date">{{ getPostDate('F d, Y', $page->created_at) }}</span>
             <p class="author mt-1">Author: <strong>{{ getAuthor($page->author_id)->name }}</strong></p>
+            <p class="author">
+                Categories:
+                @foreach(getPostCategories($page->id) as $category)
+                    <a href="{{ getCategoryLink($category->slug) }}" title="{{ $category->name }}"><strong>{{ $category->name }}</strong></a>
+                @endforeach
+            </p>
         </div>
     </section>
     <section class="breadcrumbs mt-4">
