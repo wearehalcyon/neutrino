@@ -131,8 +131,8 @@
                 <div class="card-body">
                     <div class="row">
                         @php
-                            $screenshot = resource_path('views/front/' . $themeActive->option_value . '/screenshot.png');
-                            $information = resource_path('views/front/' . $themeActive->option_value . '/info.json');
+                            $screenshot = resource_path('views/front/' . optional($themeActive)->option_value . '/screenshot.png');
+                            $information = resource_path('views/front/' . optional($themeActive)->option_value . '/info.json');
                             if (File::exists($screenshot)) {
                                 $imageData = File::get($screenshot);
                                 $base64Image = 'data:' . File::mimeType($screenshot) . ';base64,' . base64_encode($imageData);
@@ -158,7 +158,7 @@
                                             @if(optional($infoData)->name)
                                                 {{ optional($infoData)->name }}
                                             @else
-                                                {{ $themeActive->option_value }}
+                                                {{ optional($themeActive)->option_value }}
                                             @endif
                                         </strong>
                                     </h4>
@@ -175,7 +175,7 @@
                                         @if(!is_array($infoData))
                                             <a href="javascript:;" class="btn btn-primary no-filter open-full-info-popup" data-theme="{{ $themeActive->option_value }}">{{ __('Information') }}</a>
                                         @endif
-                                        <div id="{{ $themeActive->option_value }}" class="theme-info-full">
+                                        <div id="{{ optional($themeActive)->option_value }}" class="theme-info-full">
                                             <div class="card m-4">
                                                 <div class="card-body">
                                                     <div class="window-content">
@@ -206,8 +206,8 @@
                         </div>
                         @foreach($themes as $theme)
                             @php
-                                $screenshot = resource_path('views\\front\\' . $theme . '\\screenshot.png');
-                                $information = resource_path('views\\front\\' . $theme . '\\info.json');
+                                $screenshot = resource_path('views/front/' . $theme . '/screenshot.png');
+                                $information = resource_path('views/front/' . $theme . '/info.json');
                                 if (File::exists($screenshot)) {
                                     $imageData = File::get($screenshot);
                                     $base64Image = 'data:' . File::mimeType($screenshot) . ';base64,' . base64_encode($imageData);
@@ -220,7 +220,7 @@
                                     $infoData = [];
                                 }
                             @endphp
-                            @if($theme != $themeActive->option_value)
+                            @if($theme != optional($themeActive)->option_value)
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3 mt-2 mb-2">
                                     <div class="card">
                                         <div class="card-body">
@@ -251,7 +251,7 @@
                                                 @if(!is_array($infoData))
                                                     <a href="javascript:;" class="btn btn-primary no-filter open-full-info-popup" data-theme="{{ $theme }}">{{ __('Information') }}</a>
                                                 @endif
-                                                @if($theme != $themeActive->option_value)
+                                                @if($theme != optional($themeActive)->option_value)
                                                     <form class="d-inline-block w-auto" action="{{ route('dash.themes.activate', $theme) }}" method="post">
                                                         @csrf
                                                         <button type="submit" class="btn btn-success no-filter">{{ __('activate') }}</button>

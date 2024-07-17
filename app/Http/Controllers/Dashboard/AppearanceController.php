@@ -39,8 +39,15 @@ class AppearanceController extends Controller
         restrictAccess([4,5]);
 
         $themeActive = Setting::where('option_name', 'front_theme')->first();
-        $themeActive->option_value = $theme;
-        $themeActive->save();
+        if ($themeActive) {
+            $themeActive->option_value = $theme;
+            $themeActive->save();
+        } else {
+            Setting::create([
+                'option_name' => 'front_theme',
+                'option_value' => $theme
+            ]);
+        }
 
         return redirect()->back()->with('success', __('Theme was activated successfully!'));
     }
