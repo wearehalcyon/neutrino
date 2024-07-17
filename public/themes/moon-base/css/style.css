@@ -1,0 +1,170 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+body {
+  font-family: "Public Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}
+body a {
+  color: #4aac8d;
+  text-decoration: none;
+}
+body a:hover {
+  color: #4aac8d;
+  text-decoration: underline;
+}
+body .header {
+  position: sticky;
+  display: block;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+body .header .navbar {
+  position: relative;
+  padding: 20px 0;
+  background-color: #fff !important;
+}
+body .header .navbar .navbar-brand {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+}
+body .header .navbar .menu-list.navbar-nav {
+  position: relative;
+}
+body .header .navbar .menu-list.navbar-nav li {
+  display: inline-block;
+  margin-left: 20px;
+}
+body .header .navbar .menu-list.navbar-nav li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+body .header .navbar .menu-list.navbar-nav li:hover a {
+  color: #4aac8d;
+}
+body .homepage-hero {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 700px;
+  background: #fff9e4 url("../images/moon-base-hero-bg.jpg") no-repeat center center;
+  background-size: cover;
+}
+body .homepage-hero .page-title {
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 72px;
+  padding: 10px 10px 10px 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 15px;
+  backdrop-filter: blur(10px);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+@media screen and (max-width: 1200px) {
+  body .homepage-hero .page-title {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  body .homepage-hero {
+    padding: 0 30px;
+  }
+}
+body .post-hero {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  background: #fff9e4;
+}
+body .post-hero .hero-inner {
+  text-align: center;
+}
+body .post-hero .hero-inner .date {
+  font-style: italic;
+}
+body .content {
+  position: relative;
+}
+body .content .content-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+body .content .text {
+  display: block;
+  position: relative;
+}
+body .content .text p {
+  font-size: 22px;
+  font-weight: 300;
+}
+body .footer {
+  position: relative;
+  border-top: 1px solid #ecda98;
+  background-color: #fff9e4;
+}
+body .footer .nav {
+  position: relative;
+}
+body .footer .nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+body .footer .nav li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #777;
+  transition: all 0.2s;
+}
+body .footer .nav li a:hover {
+  color: #4aac8d;
+}
+body .post-content {
+  position: relative;
+  font-size: 22px;
+  font-weight: 300;
+}
+body .sidebar {
+  display: block;
+  position: relative;
+}
+body .sidebar .widget {
+  position: relative;
+  padding: 30px;
+  background-color: #fff9e4;
+}
+body.admin-bar .header {
+  top: 30px;
+}
+
+/*# sourceMappingURL=style.css.map */

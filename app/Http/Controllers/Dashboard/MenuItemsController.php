@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Utils\SlugMaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +45,7 @@ class MenuItemsController extends Controller
         restrictAccess([4,5]);
 
         if ($request->type == 1) {
-            $slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+            $slug = $request->slug ? SlugMaker::slug($request->slug) : Str::slug($request->name);
         } else {
             $slug = null;
         }
@@ -88,7 +89,7 @@ class MenuItemsController extends Controller
         $item->name = $request->name;
         $item->type = $request->type;
         if ($request->type == 1) {
-            $item->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+            $item->slug = $request->slug ? SlugMaker::slug($request->slug) : Str::slug($request->name);
             $item->url = null;
         } else {
             $item->slug = null;

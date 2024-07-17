@@ -13,14 +13,14 @@ class HomeController extends Controller
     {
         $theme = Setting::where('option_name', 'front_theme')->first();
         $homepageID = Setting::where('option_name', 'homepage_id')->first();
-        $homepage = Page::find($homepageID->option_value);
-        $template = $homepage->template;
+        $page = Page::find($homepageID->option_value);
+        $template = $page->template;
         if ($template == 'default') {
             $theme = 'front.' . $theme->option_value . '.index';
         } else {
             $theme = 'front.' . $theme->option_value . '.templates.page-' . $template;
         }
 
-        return view($theme, compact('homepage'));
+        return view($theme, compact('page'));
     }
 }

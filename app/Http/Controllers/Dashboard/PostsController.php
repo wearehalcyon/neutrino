@@ -9,6 +9,7 @@ use App\Models\PostToCategory;
 use App\Models\PostToTag;
 use App\Models\Tag;
 use App\Models\User;
+use App\Utils\SlugMaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,7 @@ class PostsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $baseSlug = $request->slug ? SlugMaker::slug($request->slug) : Str::slug($request->name);
         $slug = $baseSlug;
         $next = 2;
 
@@ -180,7 +181,7 @@ class PostsController extends Controller
     {
         restrictAccess([4,5]);
 
-        $baseSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+        $baseSlug = $request->slug ? SlugMaker::slug($request->slug) : Str::slug($request->name);
         $slug = $baseSlug;
         $next = 2;
 

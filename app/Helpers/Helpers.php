@@ -95,17 +95,17 @@ if (!function_exists('getHead')) {
             $array['favicon'] = null;
         }
 
-        echo '<script id="id-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
+        echo '<script id="nt-base-webfont-script" src="' . asset('assets/js/plugin/webfont/webfont.min.js') . '"></script>';
         if ($array['favicon']) {
-            echo '<link id="id-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
+            echo '<link id="nt-base-favicon" rel="icon" href="' . asset('uploads/' . $array['favicon']) . '" type="image/x-icon">';
             echo '<link rel="apple-touch-icon" href="' . asset('uploads/' . $array['favicon']) . '">';
         } else {
-            echo '<link id="id-base-favicon" rel="icon" href="' . asset('favicon.png') . '" type="image/x-icon">';
+            echo '<link id="nt-base-favicon" rel="icon" href="' . asset('favicon.png') . '" type="image/x-icon">';
             echo '<link rel="apple-touch-icon" href="' . asset('favicon.png') . '">';
         }
         $linkFonts = asset('assets/css/fonts.min.css');
         echo <<<HTML
-            <script id="id-base-webfont-inline-script">
+            <script id="nt-base-webfont-inline-script">
                 WebFont.load({
                     google: { families: ["Public Sans:300,400,500,600,700"] },
                     custom: {
@@ -124,7 +124,7 @@ if (!function_exists('getHead')) {
             </script>
             HTML;
         echo <<<HTML
-                <style id="id-base-admin-bar-styles">
+                <style id="nt-base-admin-bar-styles">
                     *{
                         margin: 0;
                         padding: 0;
@@ -264,7 +264,7 @@ if (!function_exists('getHead')) {
 if (!function_exists('getFooter')) {
     function getFooter()
     {
-        echo '<script id="id-base-jquery-script" src="' . asset('assets/js/core/jquery-3.7.1.min.js') . '"></script>';
+        echo '<script id="nt-base-jquery-script" src="' . asset('assets/js/core/jquery-3.7.1.min.js') . '"></script>';
         echo getOption('footer_scripts');
     }
 }
@@ -287,7 +287,7 @@ if (!function_exists('getPermalink')) {
             }
             if ($type == 'post') {
                 $post = Post::find($id);
-                return url('/' . optional($post)->slug);
+                return url('/' . getOption('blog_base') . '/' . optional($post)->slug);
             }
         }
 
@@ -754,5 +754,15 @@ if (!function_exists('isMobile')) {
         } else {
             return Agent::isMobile();
         }
+    }
+}
+
+// Get author
+if (!function_exists('getAuthor')) {
+    function getAuthor($id = null)
+    {
+        $user = User::find($id);
+
+        return $user;
     }
 }

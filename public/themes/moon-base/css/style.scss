@@ -1,0 +1,168 @@
+*{
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+body{
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    a{
+        color: #4aac8d;
+        text-decoration: none;
+        &:hover{
+            color: #4aac8d;
+            text-decoration: underline;
+        }
+    }
+    .header{
+        position: sticky;
+        display: block;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+        box-shadow: 0 0 15px rgba(0,0,0,.2);
+        z-index: 99;
+        .navbar{
+            position: relative;
+            padding: 20px 0;
+            background-color: #fff !important;
+            .navbar-brand{
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                font-size: 28px;
+                line-height: 28px;
+                text-transform: uppercase;
+                font-weight: 500;
+                text-decoration: none;
+            }
+            .menu-list.navbar-nav{
+                position: relative;
+                li{
+                    display: inline-block;
+                    margin-left: 20px;
+                    a{
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        color: #000;
+                        font-weight: 600;
+                        transition: all .2s;
+                    }
+                    &:hover{
+                        a{
+                            color: #4aac8d;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .homepage-hero{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        min-height: 700px;
+        background: #fff9e4 url('../images/moon-base-hero-bg.jpg') no-repeat center center;
+        background-size: cover;
+        .page-title{
+            display: inline-block;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 72px;
+            line-height: 72px;
+            padding: 10px 10px 10px 25px;
+            background-color: rgba(255,255,255,.2);
+            letter-spacing: 15px;
+            backdrop-filter: blur(10px);
+            text-shadow: 0 0 10px rgba(0,0,0,.4);
+            @media screen and (max-width: 1200px) {
+                font-size: 32px;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            padding: 0 30px;
+        }
+    }
+    .post-hero{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        background: #fff9e4;
+        .hero-inner{
+            text-align: center;
+            .date{
+                font-style: italic;
+            }
+        }
+    }
+    .content{
+        position: relative;
+        .content-title{
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+        }
+        .text{
+            display: block;
+            position: relative;
+            p{
+                font-size: 22px;
+                font-weight: 300;
+            }
+        }
+    }
+    .footer{
+        position: relative;
+        border-top: 1px solid #ecda98;
+        background-color: #fff9e4;
+        .nav{
+            position: relative;
+            li{
+                display: inline-block;
+                margin: 0 10px;
+                a{
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: #777;
+                    transition: all .2s;
+                    &:hover{
+                        color: #4aac8d;
+                    }
+                }
+            }
+        }
+    }
+    .post-content{
+        position: relative;
+        font-size: 22px;
+        font-weight: 300;
+    }
+    .sidebar{
+        display: block;
+        position: relative;
+        .widget{
+            position: relative;
+            padding: 30px;
+            background-color: #fff9e4;
+        }
+    }
+    &.admin-bar{
+        .header{
+            top: 30px;
+        }
+    }
+}
