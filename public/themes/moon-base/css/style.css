@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
@@ -162,6 +163,27 @@ body .sidebar .widget {
   position: relative;
   padding: 30px;
   background-color: #fff9e4;
+}
+body .breadcrumbs {
+  position: relative;
+}
+body .breadcrumbs ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+body .breadcrumbs ol li {
+  position: relative;
+}
+body .breadcrumbs ol li::after {
+  content: "»";
+  display: inline-block;
+  position: relative;
+  margin: 0 5px 0 2px;
+}
+body .breadcrumbs ol li:last-child::after {
+  display: none;
 }
 body.admin-bar .header {
   top: 30px;

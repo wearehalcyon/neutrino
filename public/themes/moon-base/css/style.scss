@@ -160,6 +160,29 @@ body{
             background-color: #fff9e4;
         }
     }
+    .breadcrumbs{
+        position: relative;
+        ol{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            li{
+                position: relative;
+                &::after{
+                    content: '»';
+                    display: inline-block;
+                    position: relative;
+                    margin: 0 5px 0 2px;
+                }
+                &:last-child{
+                    &::after{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
     &.admin-bar{
         .header{
             top: 30px;
