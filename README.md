@@ -33,10 +33,10 @@ Clone Neutrino to your device
 
 #### Step 2:
 - Set up <strong>.env</strong> file (Copy from <strong>.env.example</strong> or create manualy).
-- Set base64 app code: <code>php artisan key:generate</code>
+- Set base64 app code: <code>php artisan key:generate</code>.
 - Set database connection.
-- <strong>Optional:</strong> set DB_SOCKET if needed
-- Run migrations: <code>php artisan migrate</code>
+- <strong>Optional:</strong> set DB_SOCKET if needed.
+- Import tables from <strong>database.sql</strong> file.
 
 #### Step 3:
 
@@ -51,5 +51,15 @@ Run npm commands (minimum node version is 18^)
 <code>npm install</code>
 
 <code>npm run build</code>
+
+#### Step 5:
+
+Login to dashboard with base credentials
+<br>
+<strong>Login: </strong><i>admin@admin.com</i>
+<br>
+<strong>Password: </strong><i>Administrator</i>
+
+<hr>
 
 Enjoy! :)

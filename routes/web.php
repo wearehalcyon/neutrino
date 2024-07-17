@@ -112,13 +112,25 @@ Route::prefix('/id-admin')->middleware('auth')->group(function (){
 // Pages
 Route::prefix('/')->group(function () {
     $blogBase = Setting::where('option_name', 'blog_base')->first();
-    $blogBase = $blogBase->option_value;
+    if ($blogBase) {
+        $blogBase = $blogBase->option_value;
+    } else {
+        $blogBase = '';
+    }
 
     $catBase = Setting::where('option_name', 'category_base')->first();
-    $catBase = $catBase->option_value;
+    if ($catBase) {
+        $catBase = $catBase->option_value;
+    } else {
+        $catBase = '';
+    }
 
     $tagBase = Setting::where('option_name', 'tag_base')->first();
-    $tagBase = $tagBase->option_value;
+    if ($tagBase) {
+        $tagBase = $tagBase->option_value;
+    } else {
+        $tagBase = '';
+    }
 
     Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('pages.home');
     Route::get('/{slug}', [App\Http\Controllers\Front\PageController::class, 'internal'])->name('pages.internal');
