@@ -185,6 +185,32 @@ body .breadcrumbs ol li::after {
 body .breadcrumbs ol li:last-child::after {
   display: none;
 }
+body .post-card {
+  display: block;
+  text-decoration: none !important;
+  padding: 30px;
+  border: 1px solid #eaeaea;
+}
+body .post-card h4 {
+  color: #000;
+}
+body .post-card .date {
+  font-size: 16px;
+  color: #777;
+}
+body .post-card .author {
+  font-size: 16px;
+  color: #000;
+}
+body .post-card .excerpt {
+  color: #000;
+  font-size: 16px;
+  line-height: 22px;
+}
+body .post-card:hover {
+  background-color: #fff9e4;
+  border: 1px solid #ecda98;
+}
 body.admin-bar .header {
   top: 30px;
 }

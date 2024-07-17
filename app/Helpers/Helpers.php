@@ -766,3 +766,19 @@ if (!function_exists('getAuthor')) {
         return $user;
     }
 }
+
+// Get excerpt
+if (!function_exists('getExcerpt')) {
+    function getExcerpt($content = null, $limit = null, $suffix = null)
+    {
+        if (!$content) {
+            return '';
+        }
+
+        $clean = strip_tags($content);
+
+        $excerpt = Str::limit($clean, $limit, $suffix);
+
+        return $excerpt;
+    }
+}
