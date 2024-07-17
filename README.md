@@ -63,3 +63,5 @@ Login to dashboard with base credentials
 <hr>
 
 Enjoy! :)
+<br>
+And don't forget to change your Administrator credentials!
