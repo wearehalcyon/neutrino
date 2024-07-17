@@ -12,6 +12,12 @@ Neutrino CMS: An innovative content management system built on the powerful Lara
 
 With Neutrino CMS, creating and managing websites becomes simpler and more efficient!
 
+## Requirements
+
+- PHP 8.0 or higher
+- Apache/Nginx server
+- Node 18 or higher
+
 ## License
 
 The Neutrino CMS is open-sourced software licensed under the [GPL-3.0 license](https://github.com/wearehalcyon/neutrino?tab=GPL-3.0-1-ov-file#readme).
@@ -21,29 +27,29 @@ The Neutrino CMS is open-sourced software licensed under the [GPL-3.0 license](h
 #### Step 1:
 Clone Neutrino to your device
 
-<code style="background-color: #666;">git clone git@github.com:wearehalcyon/neutrino.git project-name</code>
+<code>git clone git@github.com:wearehalcyon/neutrino.git project-name</code>
 
 <i>PS. Index directory should be "/public".</i>
 
 #### Step 2:
 - Set up <strong>.env</strong> file (Copy from <strong>.env.example</strong> or create manualy).
-- Set base64 app code: <code style="background-color: #666;">php artisan key:generate</code>
+- Set base64 app code: <code>php artisan key:generate</code>
 - Set database connection.
 - <strong>Optional:</strong> set DB_SOCKET if needed
-- Run migrations: <code style="background-color: #666;">php artisan migrate</code>
+- Run migrations: <code>php artisan migrate</code>
 
 #### Step 3:
 
 Run composer
 
-<code style="background-color: #666;">composer update</code>
+<code>composer update</code>
 
 #### Step 4:
 
 Run npm commands (minimum node version is 18^)
 
-<code style="background-color: #666;">npm install</code>
+<code>npm install</code>
 
-<code style="background-color: #666;">npm run build</code>
+<code>npm run build</code>
 
 Enjoy! :)
