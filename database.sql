@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Июл 17 2024 г., 06:32
+-- Время создания: Июл 17 2024 г., 07:04
 -- Версия сервера: 5.7.39
 -- Версия PHP: 7.4.33
 
@@ -36,6 +36,13 @@ CREATE TABLE `nt_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `nt_categories`
+--
+
+INSERT INTO `nt_categories` (`id`, `name`, `slug`, `description`, `author_id`, `created_at`, `updated_at`) VALUES
+(1, 'Uncategorized', 'uncategorized', 'Base category created after installation.', 1, '2024-07-17 04:02:44', '2024-07-17 04:02:44');
 
 -- --------------------------------------------------------
 
@@ -277,6 +284,13 @@ CREATE TABLE `nt_post_to_categories` (
   `post_id` bigint(20) UNSIGNED NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `nt_post_to_categories`
+--
+
+INSERT INTO `nt_post_to_categories` (`id`, `post_id`, `category_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -581,7 +595,7 @@ ALTER TABLE `nt_user_to_roles`
 -- AUTO_INCREMENT для таблицы `nt_categories`
 --
 ALTER TABLE `nt_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `nt_comments`
@@ -653,7 +667,7 @@ ALTER TABLE `nt_posts`
 -- AUTO_INCREMENT для таблицы `nt_post_to_categories`
 --
 ALTER TABLE `nt_post_to_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `nt_post_to_tags`

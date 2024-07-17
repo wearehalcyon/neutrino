@@ -2,7 +2,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="{{ route('dash') }}" title="{{ __('Dashboard Home') }}">
+            <a href="{{ route('dash') }}" title="{{ __('Dashboard Home') }}" class="no-filter">
                 <img src="{{ asset('assets/images/svg/nt-logo-dash-light.svg') }}" alt="{{ __('Dashboard Home') }}" width="112" height="30">
             </a>
         </div>
