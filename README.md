@@ -1,4 +1,4 @@
-<center><img src="https://raw.githubusercontent.com/wearehalcyon/neutrino/main/public/favicon.png" alt="Neutrino CMS" width="120" height="120"></center>
+<p align="center"><img src="https://raw.githubusercontent.com/wearehalcyon/neutrino/main/public/favicon.png" alt="Neutrino CMS" width="120" height="120"></p>
 
 ### Actual version:
 - 0.5.1 (BETA)
