@@ -16,6 +16,18 @@ use Illuminate\Support\Str;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
 
+// Check installation
+if (!function_exists('checkInstallation')) {
+    function checkInstallation(){
+        $instDir = public_path('/installation/');
+        if (File::exists($instDir)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 // Get Option
 if (!function_exists('getOption')) {
     function getOption($name = null)

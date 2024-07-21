@@ -16,6 +16,13 @@ use App\Models\Setting;
 
 Auth::routes();
 
+Route::get('/nt-admin/action/installation/remove', function(){
+    $instDir = public_path('/installation/');
+    File::deleteDirectory($instDir);
+
+    return redirect()->back()->with('installation-deleted', __('Installation directory was deleted successfully!'));
+})->middleware('auth')->name('remove-installation');
+
 // Installation
 Route::prefix('/installation')->group(function (){
     Route::get('/error-connection', [App\Http\Controllers\Dashboard\InstallController::class, 'errorConnection']);

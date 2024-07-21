@@ -110,6 +110,16 @@
                 </div>
                 <div class="container">
                     <div class="page-inner">
+                        @if(checkInstallation())
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>{!! __('Installation directory is still available. For your better security - please remove this folder manually or click: <a href="' . route('remove-installation') . '" class="">Remove Installation Directory</a>.') !!}</strong>
+                            </div>
+                        @endif
+                        @if(session('installation-deleted'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ session('installation-deleted') }}</strong>
+                            </div>
+                        @endif
                         @yield('content')
                     </div>
                 </div>
