@@ -102,6 +102,8 @@ Route::prefix('/nt-admin')->middleware('auth')->group(function (){
     Route::post('/themes/activate/{theme}', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesActivate'])->name('dash.themes.activate');
     Route::post('/themes/delete/{theme}', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesDelete'])->name('dash.themes.delete');
     Route::post('/themes/upload', [App\Http\Controllers\Dashboard\AppearanceController::class, 'themesUpload'])->name('dash.themes.upload');
+    // Applications
+    Route::get('/apps', [App\Http\Controllers\Dashboard\AppsController::class, 'index'])->name('dash.apps');
     // Site Custommize
     Route::get('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customize'])->name('dash.customize');
     Route::post('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customizeSave'])->name('dash.customize.save');

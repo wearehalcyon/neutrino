@@ -153,6 +153,32 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit', 'dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#apps" class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit', 'dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('active') }}@endif" aria-expanded="false">
+                            <i class="fas fa-plug"></i>
+                            <p>{{ __('Applications') }}</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse @if(in_array($routeName, ['dash.apps'])){{ __('show') }}@endif" id="apps">
+                            <ul class="nav nav-collapse">
+                                <li class="@if(in_array($routeName, ['dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.posts') }}">
+                                        <span class="sub-item">{{ __('All Posts') }}</span>
+                                    </a>
+                                </li>
+                                <li class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.categories') }}">
+                                        <span class="sub-item">{{ __('Categories') }}</span>
+                                    </a>
+                                </li>
+                                <li class="@if(in_array($routeName, ['dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.tags') }}">
+                                        <span class="sub-item">{{ __('Tags') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item @if($routeName == 'dash.site-settings'){{ 'active' }}@endif">
                         <a href="{{ route('dash.site-settings') }}">
                             <i class="fas fa-cog"></i>
