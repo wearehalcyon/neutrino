@@ -1,26 +1,4 @@
-<?php
-require_once 'checker.php';
-if (!$connection) {
-    header("Location: " . '/installation/error-connection.php');
-    exit(1);
-}
-
-if (isset($_GET['run']) && $_GET['run'] == 'install') {
-    $sql_file = 'db/database.sql';
-    $sql = file_get_contents($sql_file);
-    $sql_commands = explode(';', $sql);
-    foreach ($sql_commands as $sql_command) {
-        $sql_command = trim($sql_command);
-
-        if (!empty($sql_command)) {
-            $pdo->exec($sql_command);
-        }
-    }
-
-    header('Location:' . '/installation/finished.php');
-    exit(1);
-}
-?>
+<?php require_once 'checker.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +6,7 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome | Install Neutrino</title>
+    <title>Success | Install Neutrino</title>
     <style>
         *{
             box-sizing: border-box;
@@ -118,28 +96,31 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
 <body>
     <main class="main">
         <div class="installator-window">
-            <h1>Install Neutrino</h1>
-            <p>Welcome to Neutrino installer!</p>
-            <p>Click "Run Installer" for automatic installation database.</p>
-            <div class="button">
-                <a id="install-button" href="/installation/index.php?run=install">Run Installer</a>
-            </div>
+            <?php if ($tables) : ?>
+                <h1>Finished!</h1>
+                <p>Neutrino was installed successfully.</p>
+                <h4>Administrator data:</h4>
+                <div class="tab">
+                    <code>
+                        <strong>LOGIN:</strong> admin@admin.com<br>
+                        <strong>PASSWORD:</strong> Administrator<br>
+                    </code>
+                </div>
+                <p style="margin-top: 20px; font-size: 14px;">Remove <strong>installation</strong> folder from <strong>public</strong> folder for your seccurity<br>
+                    and change this credentials in administrator settings page.</p>
+                <div class="button">
+                    <a id="install-button" href="/">Open Site</a>
+                    <a id="install-button" href="/nt-admin">Open Dashboard</a>
+                </div>
+            <?php else : ?>
+                <h1>Error</h1>
+                <p>Neutrino still not installed.</p>
+                <div class="button">
+                    <a id="install-button" href="/installation/index.php">Install</a>
+                </div>
+            <?php endif; ?>
             <div class="installer-ver">Installer version: 1.0.1</div>
         </div>
     </main>
-    <script>
-        const installButton = document.getElementById('install-button');
-
-        installButton.addEventListener('click', function() {
-            const spinnerImg = document.createElement('img');
-            spinnerImg.src = 'spinner.svg';
-            spinnerImg.alt = 'Loading...';
-            spinnerImg.width = '16';
-            spinnerImg.height = '16';
-
-            installButton.innerHTML = '';
-            installButton.appendChild(spinnerImg);
-        });
-    </script>
 </body>
 </html>

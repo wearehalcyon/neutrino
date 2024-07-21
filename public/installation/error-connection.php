@@ -1,25 +1,13 @@
 <?php
-require_once 'checker.php';
-if (!$connection) {
-    header("Location: " . '/installation/error-connection.php');
-    exit(1);
-}
-
-if (isset($_GET['run']) && $_GET['run'] == 'install') {
-    $sql_file = 'db/database.sql';
-    $sql = file_get_contents($sql_file);
-    $sql_commands = explode(';', $sql);
-    foreach ($sql_commands as $sql_command) {
-        $sql_command = trim($sql_command);
-
-        if (!empty($sql_command)) {
-            $pdo->exec($sql_command);
-        }
+    require_once 'checker.php';
+    if ($tables) {
+        header("Location: " . '/installation/finished.php');
+        exit(1);
     }
-
-    header('Location:' . '/installation/finished.php');
-    exit(1);
-}
+    if ($connection) {
+        header("Location: " . '/installation/index.php');
+        exit(1);
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,7 +16,7 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome | Install Neutrino</title>
+    <title>Databse Connection Error | Install Neutrino</title>
     <style>
         *{
             box-sizing: border-box;
@@ -90,7 +78,7 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
             text-align: center;
             margin-top: 20px;
         }
-        .button a{
+        .button button{
             display: inline-block;
             position: relative;
             color: #fff;
@@ -102,9 +90,8 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
             border-radius: 4px;
             letter-spacing: 1px;
             cursor: pointer;
-            text-decoration: none;
         }
-        .button a:hover{
+        .button button:hover{
             background-color: #195bd9;
         }
         .installer-ver{
@@ -118,27 +105,34 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
 <body>
     <main class="main">
         <div class="installator-window">
-            <h1>Install Neutrino</h1>
-            <p>Welcome to Neutrino installer!</p>
-            <p>Click "Run Installer" for automatic installation database.</p>
+            <h1>Oops!</h1>
+            <p>There is no connection to the database. Check the connection details in the <strong>.env</strong> file</p>
+            <h4>Current connection data:</h4>
+            <div class="tab">
+                <code>
+                    <strong>HOST:</strong> <?php echo $dbhost ? $dbhost : '-'; ?><br>
+                    <strong>PORT:</strong> <?php echo $dbport ? $dbport : '-'; ?><br>
+                    <strong>SOCKET:</strong> <?php echo $dbsock ? $dbsock : '-'; ?><br>
+                    <strong>DB NAME:</strong> <?php echo $dbname ? $dbname : '-'; ?><br>
+                    <strong>DB USER:</strong> <?php echo $dbuser ? $dbuser : '-'; ?><br>
+                    <strong>DB PASSWORD:</strong> <?php echo $dbpass ? $dbpass : '-'; ?><br>
+                </code>
+            </div>
             <div class="button">
-                <a id="install-button" href="/installation/index.php?run=install">Run Installer</a>
+                <button>Refresh</button>
             </div>
             <div class="installer-ver">Installer version: 1.0.1</div>
         </div>
     </main>
     <script>
-        const installButton = document.getElementById('install-button');
+        document.addEventListener('DOMContentLoaded', function() {
+            const refreshButton = document.querySelector('.button button');
 
-        installButton.addEventListener('click', function() {
-            const spinnerImg = document.createElement('img');
-            spinnerImg.src = 'spinner.svg';
-            spinnerImg.alt = 'Loading...';
-            spinnerImg.width = '16';
-            spinnerImg.height = '16';
-
-            installButton.innerHTML = '';
-            installButton.appendChild(spinnerImg);
+            if (refreshButton) {
+                refreshButton.addEventListener('click', function() {
+                    location.reload();
+                });
+            }
         });
     </script>
 </body>

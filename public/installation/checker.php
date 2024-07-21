@@ -14,6 +14,33 @@ $dbuser = $_ENV['DB_USERNAME'];
 $dbpass = $_ENV['DB_PASSWORD'];
 $dbtype = $_ENV['DB_CONNECTION'];
 $dbname = $_ENV['DB_DATABASE'];
+$dbport = $_ENV['DB_PORT'];
+$dbsock = $_ENV['DB_SOCKET'];
 
-$dsn = $dbtype . ":host=" . $dbhost . ";dbname=" . $dbname;
-$pdo = new PDO($dsn, $dbuser, $dbpass);
+try {
+    $dsn = $dbtype . ":host=" . $dbhost . ";dbname=" . $dbname;
+    $pdo = new PDO($dsn, $dbuser, $dbpass);
+
+    switch ($dbtype) {
+        case 'mysql':
+            $stmt = $pdo->query("SHOW TABLES");
+            break;
+        case 'pgsql':
+            $stmt = $pdo->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'");
+            break;
+        case 'sqlite':
+            $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
+            break;
+        default:
+            throw new Exception("Unsupported database type: " . $dbtype);
+    }
+
+    $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    if (empty($tables)) {
+        $connection = true;
+    }
+} catch (\PDOException $e) {
+    $connection = false;
+    $tables = false;
+}
