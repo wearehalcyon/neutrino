@@ -153,8 +153,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item @if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit', 'dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('submenu active') }}@endif">
-                        <a data-bs-toggle="collapse" href="#apps" class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit', 'dash.tags', 'dash.tags.add', 'dash.tags.edit', 'dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('active') }}@endif" aria-expanded="false">
+                    <li class="nav-item @if(in_array($routeName, ['dash.apps'])){{ __('submenu active') }}@endif">
+                        <a data-bs-toggle="collapse" href="#apps" class="@if(in_array($routeName, ['dash.apps'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fas fa-plug"></i>
                             <p>{{ __('Applications') }}</p>
                             <span class="caret"></span>
