@@ -56,12 +56,6 @@ Run npm commands (minimum node version is 18^)
 
 #### Step 5:
 
-Generate App key
-
-<code>php artisan key:generate</code>
-
-#### Step 6:
-
 Login to dashboard with base credentials
 <br>
 <strong>Login: </strong><i>admin@admin.com</i>
