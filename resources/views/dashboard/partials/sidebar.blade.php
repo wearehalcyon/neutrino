@@ -161,19 +161,9 @@
                         </a>
                         <div class="collapse @if(in_array($routeName, ['dash.apps'])){{ __('show') }}@endif" id="apps">
                             <ul class="nav nav-collapse">
-                                <li class="@if(in_array($routeName, ['dash.posts', 'dash.posts.add', 'dash.posts.edit'])){{ __('active') }}@endif">
-                                    <a href="{{ route('dash.posts') }}">
-                                        <span class="sub-item">{{ __('All Posts') }}</span>
-                                    </a>
-                                </li>
-                                <li class="@if(in_array($routeName, ['dash.categories', 'dash.categories.add', 'dash.categories.edit'])){{ __('active') }}@endif">
-                                    <a href="{{ route('dash.categories') }}">
-                                        <span class="sub-item">{{ __('Categories') }}</span>
-                                    </a>
-                                </li>
-                                <li class="@if(in_array($routeName, ['dash.tags', 'dash.tags.add', 'dash.tags.edit'])){{ __('active') }}@endif">
-                                    <a href="{{ route('dash.tags') }}">
-                                        <span class="sub-item">{{ __('Tags') }}</span>
+                                <li class="@if(in_array($routeName, ['dash.apps'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.apps') }}">
+                                        <span class="sub-item">{{ __('All Applications') }}</span>
                                     </a>
                                 </li>
                             </ul>

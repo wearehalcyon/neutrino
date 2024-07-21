@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use App\Models\ContactFormDatabase;
 use App\Models\Tag;
 use App\Models\User;
@@ -15,6 +16,15 @@ use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
+
+// Load applications
+$appsRoot = __DIR__ . '/../../app/Applications/';
+$appsDir = glob($appsRoot . '*', GLOB_ONLYDIR);
+foreach ($appsDir as $item) {
+    $appName = basename($item);
+    include $appsRoot . $appName . '/' . $appName . '.php';
+}
+
 
 // Check installation
 if (!function_exists('checkInstallation')) {
