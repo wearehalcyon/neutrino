@@ -46,19 +46,12 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-function shouldRedirect($path = null) {
-    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    return $currentPath !== $path;
-}
-
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 try {
-    // Создание PDO подключения используя переменные окружения
     $dsn = $_ENV['DB_CONNECTION'] . ":host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE'];
     $pdo = new PDO($dsn, $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
 
-    // Запрос для получения списка таблиц
     switch ($_ENV['DB_CONNECTION']) {
         case 'mysql':
             $stmt = $pdo->query("SHOW TABLES");
@@ -78,9 +71,6 @@ try {
     if (empty($tables)) {
         header("Location: " . '/installation/index.php');
         exit(1);
-    } else {
-        // Если нужно, можно вывести сообщение об успешном подключении и наличии таблиц
-        // echo "Подключение к базе данных успешно, таблицы существуют.";
     }
 } catch (\PDOException $e) {
     header("Location: " . '/installation/error-connection.php');
