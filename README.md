@@ -2,7 +2,6 @@
 
 ### Actual version:
 - 0.5.2 (BETA)
-<br>
 Added installer user interface. However, this does not remove all installation steps that are given in the README file. Currently in test mode.
 
 ### Previous versions:
