@@ -17,6 +17,17 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
         }
     }
 
+    $name = $_GET['login'];
+    $email = $_GET['email'];
+    $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+
+    $update_query = "UPDATE nt_users SET name = :name, email = :email, password = :password WHERE id = 1";
+    $stmt = $pdo->prepare($update_query);
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+    $stmt->execute();
+
     header('Location:' . '/installation/finished.php');
     exit(1);
 }
@@ -90,7 +101,7 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
             text-align: center;
             margin-top: 20px;
         }
-        .button a{
+        .button button{
             display: inline-block;
             position: relative;
             color: #fff;
@@ -113,18 +124,59 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
             color: #b3b3b3;
             margin-top: 30px;
         }
+        form{
+            margin-top: 20px;
+        }
+        .form-control{
+            position: relative;
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .form-control input{
+            width: 300px;
+            height: auto;
+            max-width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .logo{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img{
+            width: auto;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
     <main class="main">
         <div class="installator-window">
-            <h1>Install Neutrino</h1>
-            <p>Welcome to Neutrino installer!</p>
-            <p>Click "Run Installer" for automatic installation database.</p>
-            <div class="button">
-                <a id="install-button" href="/installation/index.php?run=install">Run Installer</a>
+            <div class="logo">
+                <img src="../assets/images/svg/nt-logo-dash-dark.svg" alt="Neutrino Logo">
             </div>
-            <div class="installer-ver">Installer version: 1.0.1</div>
+            <h1>Installation</h1>
+            <p>Welcome to Neutrino installer!</p>
+<!--            <p>Click "Run Installer" for automatic installation database.</p>-->
+            <h4>Set Administrator credentials</h4>
+            <form action="/installation/index.php" method="get">
+                <input type="hidden" name="run" value="install">
+                <div class="form-control">
+                    <input type="text" name="login" placeholder="Name" value="<?php echo isset($_GET['login']) ? $_GET['login'] : ''; ?>" required>
+                </div>
+                <div class="form-control">
+                    <input type="email" name="email" placeholder="Email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>" required>
+                </div>
+                <div class="form-control">
+                    <input type="password" name="password" placeholder="Password" value="<?php echo isset($_GET['password']) ? $_GET['password'] : ''; ?>" required>
+                </div>
+                <div class="button">
+                    <button type="submit" id="install-button">Run Installer</button>
+                </div>
+            </form>
+            <div class="installer-ver">Installer version: 1.0.2</div>
         </div>
     </main>
     <script>

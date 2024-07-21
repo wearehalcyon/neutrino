@@ -91,23 +91,27 @@
             color: #b3b3b3;
             margin-top: 30px;
         }
+        .logo{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img{
+            width: auto;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
     <main class="main">
         <div class="installator-window">
+            <div class="logo">
+                <img src="../assets/images/svg/nt-logo-dash-dark.svg" alt="Neutrino Logo">
+            </div>
             <?php if ($tables) : ?>
                 <h1>Finished!</h1>
                 <p>Neutrino was installed successfully.</p>
-                <h4>Administrator data:</h4>
-                <div class="tab">
-                    <code>
-                        <strong>LOGIN:</strong> admin@admin.com<br>
-                        <strong>PASSWORD:</strong> Administrator<br>
-                    </code>
-                </div>
-                <p style="margin-top: 20px; font-size: 14px;">Remove <strong>installation</strong> folder from <strong>public</strong> folder for your seccurity<br>
-                    and change this credentials in administrator settings page.</p>
+                <p>Now you can use your credentials for login.</p>
+                <p style="margin-top: 20px; font-size: 14px;"><i>Now if you want you can delete installation directory at:<br><strong>"SITEPATH/public/installation"</strong></i></p>
                 <div class="button">
                     <a id="install-button" href="/">Open Site</a>
                     <a id="install-button" href="/nt-admin">Open Dashboard</a>
@@ -119,7 +123,7 @@
                     <a id="install-button" href="/installation/index.php">Install</a>
                 </div>
             <?php endif; ?>
-            <div class="installer-ver">Installer version: 1.0.1</div>
+            <div class="installer-ver">Installer version: 1.0.2</div>
         </div>
     </main>
 </body>

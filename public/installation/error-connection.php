@@ -100,11 +100,22 @@
             color: #b3b3b3;
             margin-top: 30px;
         }
+        .logo{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img{
+            width: auto;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
     <main class="main">
         <div class="installator-window">
+            <div class="logo">
+                <img src="../assets/images/svg/nt-logo-dash-dark.svg" alt="Neutrino Logo">
+            </div>
             <h1>Oops!</h1>
             <p>There is no connection to the database. Check the connection details in the <strong>.env</strong> file</p>
             <h4>Current connection data:</h4>
@@ -121,7 +132,7 @@
             <div class="button">
                 <button>Refresh</button>
             </div>
-            <div class="installer-ver">Installer version: 1.0.1</div>
+            <div class="installer-ver">Installer version: 1.0.2</div>
         </div>
     </main>
     <script>
