@@ -13,6 +13,10 @@ class HomeController extends Controller
     {
         $theme = Setting::where('option_name', 'front_theme')->first();
         $homepageID = Setting::where('option_name', 'homepage_id')->first();
+        if (!$homepageID) {
+            abort(404);
+        }
+
         $page = Page::find($homepageID->option_value);
         $template = $page->template;
         if ($template == 'default') {
