@@ -46,6 +46,50 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+function shouldRedirect($path = null) {
+    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    return $currentPath !== $path;
+}
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+try {
+    // Создание PDO подключения используя переменные окружения
+    $dsn = $_ENV['DB_CONNECTION'] . ":host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE'];
+    $pdo = new PDO($dsn, $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+
+    // Запрос для получения списка таблиц
+    switch ($_ENV['DB_CONNECTION']) {
+        case 'mysql':
+            $stmt = $pdo->query("SHOW TABLES");
+            break;
+        case 'pgsql':
+            $stmt = $pdo->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'");
+            break;
+        case 'sqlite':
+            $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'");
+            break;
+        default:
+            throw new Exception("Unsupported database type: " . $_ENV['DB_CONNECTION']);
+    }
+
+    $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    if (empty($tables)) {
+        header("Location: " . '/installation/index.php');
+        exit(1);
+    } else {
+        // Если нужно, можно вывести сообщение об успешном подключении и наличии таблиц
+        // echo "Подключение к базе данных успешно, таблицы существуют.";
+    }
+} catch (\PDOException $e) {
+    header("Location: " . '/installation/error-connection.php');
+    exit(1);
+} catch (\Exception $e) {
+    echo "Ошибка: " . $e->getMessage();
+    exit(1);
+}
+
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(

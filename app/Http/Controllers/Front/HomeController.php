@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+
         $theme = Setting::where('option_name', 'front_theme')->first();
         $homepageID = Setting::where('option_name', 'homepage_id')->first();
         if (!$homepageID) {

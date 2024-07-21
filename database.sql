@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost:8889
--- Время создания: Июл 17 2024 г., 07:04
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июл 21 2024 г., 14:23
 -- Версия сервера: 5.7.39
--- Версия PHP: 7.4.33
+-- Версия PHP: 8.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -201,7 +201,7 @@ CREATE TABLE `nt_pages` (
 --
 
 INSERT INTO `nt_pages` (`id`, `name`, `slug`, `parent_id`, `author_id`, `status`, `content`, `template`, `created_at`, `updated_at`) VALUES
-(1, 'Sample Page', 'sample-page', NULL, 1, 1, '<p>This is base page created as default after installation <a href=\"https://intakedigital.net/neutrino-cms/\" title=\"Neutrino CMS\" target=\"_blank\">Neutrino</a>.</p>', 'default', '2024-07-17 02:59:45', '2024-07-17 02:59:45');
+(1, 'Home Page', 'home-page', NULL, 1, 1, '<p>This is base page created as default after installation <a href=\"https://intakedigital.net/neutrino-cms/\" title=\"Neutrino CMS\" target=\"_blank\">Neutrino</a>.</p>', 'default', '2024-07-17 02:59:45', '2024-07-17 02:59:45');
 
 -- --------------------------------------------------------
 
@@ -325,7 +325,10 @@ INSERT INTO `nt_settings` (`id`, `type`, `option_name`, `option_value`) VALUES
 (1, '', 'site_name', 'Neutrino CMS'),
 (2, NULL, 'blog_base', 'blog'),
 (3, NULL, 'category_base', 'category/{category}'),
-(4, NULL, 'tag_base', 'tag/{tag}');
+(4, NULL, 'tag_base', 'tag/{tag}'),
+(5, NULL, 'debug_bar', '0'),
+(6, NULL, 'homepage_id', '1'),
+(7, NULL, 'front_theme', 'moon-base');
 
 -- --------------------------------------------------------
 
@@ -679,7 +682,7 @@ ALTER TABLE `nt_post_to_tags`
 -- AUTO_INCREMENT для таблицы `nt_settings`
 --
 ALTER TABLE `nt_settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `nt_tags`

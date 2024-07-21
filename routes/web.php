@@ -14,11 +14,13 @@ use App\Models\Setting;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+// Installation
+Route::prefix('/installation')->group(function (){
+    Route::get('/error-connection', [App\Http\Controllers\Dashboard\InstallController::class, 'errorConnection']);
+    Route::get('/', [App\Http\Controllers\Dashboard\InstallController::class, 'index'])->name('install.index');
+});
 
 // Dahboard
 Route::prefix('/nt-admin')->middleware('auth')->group(function (){
