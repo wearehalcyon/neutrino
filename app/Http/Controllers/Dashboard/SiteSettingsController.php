@@ -53,7 +53,7 @@ class SiteSettingsController extends Controller
         }
 
         // Site URL
-        if (!getOption('front_theme')) {
+        if (!getOption('site_url')) {
             Setting::create([
                 'option_name' => 'site_url',
                 'option_value' => $request->site_url,
@@ -104,7 +104,7 @@ class SiteSettingsController extends Controller
         }
 
         // Posts Per Page
-        if (!getOption('front_theme')) {
+        if (!getOption('posts_per_page')) {
             Setting::create([
                 'option_name' => 'posts_per_page',
                 'option_value' => $request->posts_per_page,
