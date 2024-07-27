@@ -9,13 +9,13 @@ $app = require_once __DIR__.'/../../bootstrap/app.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 
-$dbhost = $_ENV['DB_HOST'];
-$dbuser = $_ENV['DB_USERNAME'];
-$dbpass = $_ENV['DB_PASSWORD'];
-$dbtype = $_ENV['DB_CONNECTION'];
-$dbname = $_ENV['DB_DATABASE'];
-$dbport = $_ENV['DB_PORT'];
-$dbsock = $_ENV['DB_SOCKET'];
+$dbhost = $_ENV['DB_HOST'] ?? null;
+$dbuser = $_ENV['DB_USERNAME'] ?? null;
+$dbpass = $_ENV['DB_PASSWORD'] ?? null;
+$dbtype = $_ENV['DB_CONNECTION'] ?? null;
+$dbname = $_ENV['DB_DATABASE'] ?? null;
+$dbport = $_ENV['DB_PORT'] ?? null;
+$dbsock = $_ENV['DB_SOCKET'] ?? null;
 
 try {
     $dsn = $dbtype . ":host=" . $dbhost . ";dbname=" . $dbname;
