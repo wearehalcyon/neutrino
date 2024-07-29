@@ -83,7 +83,8 @@ body .homepage-hero .page-title {
   padding: 10px 10px 10px 25px;
   background-color: rgba(255, 255, 255, 0.2);
   letter-spacing: 15px;
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 @media screen and (max-width: 1200px) {
@@ -216,6 +217,4 @@ body .post-card:hover {
 }
 body.admin-bar .header {
   top: 30px;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
