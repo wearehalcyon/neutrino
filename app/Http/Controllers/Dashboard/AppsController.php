@@ -54,9 +54,32 @@ class AppsController extends Controller
                 'php' => $filePHP,
                 'json' => $fileJSON,
                 'svg' => $fileSVG,
+                'name' => $app->name,
+                'slug' => $app->slug,
+                'id' => $app->id,
+                'status' => $app->status
             ];
         }
 
         return view('dashboard.page-apps', compact('routeName', 'apps'));
+    }
+
+    public function update($id, $name, $status){
+
+        $app = Application::where([
+            'id' => $id,
+            'name' => $name
+        ])->first();
+
+        // dd($id, $name);
+
+        if ($app) {
+            $app->status = $status;
+            $app->save();
+
+            return redirect()->back()->with('success', __('App status was updated successfully.'));
+        } else {
+            return redirect()->back()->with('error', __('Ooops! Something went wrong. App status was not updated.'));
+        }
     }
 }

@@ -18,6 +18,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" >
         <div>
@@ -47,12 +52,18 @@
                                 @foreach ($apps as $app)
                                     @php($app = (array)$app)
                                     @if($app['json'])
-                                        <tr>
+                                        <tr @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>
                                             <td class="app-icon">{!! $app['svg'] !!}</td>
                                             <td>{{  $app['json']->name }}</td>
                                             <td>{{  $app['json']->version }}</td>
                                             <td>{{  $app['json']->author }}</td>
                                             <td>{{  $app['json']->description }}</td>
+                                            <td>
+                                                <select name="status" class="form-select form-control w-auto" data-name="{{ $app['name']  }}" data-id="{{ $app['id']  }}" style="padding-right: 40px;">
+                                                    <option value="1" @if($app['status'] == 1) selected @endif>{{  __('Activated') }}</option>
+                                                    <option value="0" @if($app['status'] == 0) selected @endif>{{  __('Deactivated') }}</option>
+                                                </select>
+                                            </td>
                                         </tr>
                                     @endif
                                 @endforeach
@@ -66,4 +77,19 @@
 @endsection
 
 @section('footer-scripts')
+    <script>
+        let status = $('select[name="status"]');
+        status.on('change', function(event){
+            let name = $(this).data('name'),
+                id = $(this).data('id'),
+                status = $(this).val(),
+                urlTemplate = "{{ route('dash.apps.update', ['id' => 'ID_PLACEHOLDER', 'name' => 'NAME_PLACEHOLDER', 'status' => 'STATUS_PLACEHOLDER']) }}",
+                url = urlTemplate
+                .replace('ID_PLACEHOLDER', id)
+                .replace('NAME_PLACEHOLDER', encodeURIComponent(name))
+                .replace('STATUS_PLACEHOLDER', encodeURIComponent(status));
+
+                window.location.href = url;
+        });
+    </script>
 @endsection
