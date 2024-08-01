@@ -18,6 +18,9 @@ use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
 use App\Services\ActionHooks;
 
+// Extract shortcode from content
+require_once 'inc/process-shortcodes.php';
+
 // Action Hooks
 if (!function_exists('add_action')) {
     function addAction($hook, $callback, $priority = 1)
