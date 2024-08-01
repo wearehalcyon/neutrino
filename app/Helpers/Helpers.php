@@ -43,7 +43,6 @@ foreach ($appsDir as $item) {
     include $appsRoot . $appName . '/' . $appName . '.php';
 }
 
-
 // Check installation
 if (!function_exists('checkInstallation')) {
     function checkInstallation(){
