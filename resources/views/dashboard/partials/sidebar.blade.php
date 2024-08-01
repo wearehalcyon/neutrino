@@ -190,6 +190,9 @@
                         </a>
                     </li>
                 @endif
+                @php
+                    doAction('nt_sidebar_menu_items')
+                @endphp
             </ul>
         </div>
     </div>
