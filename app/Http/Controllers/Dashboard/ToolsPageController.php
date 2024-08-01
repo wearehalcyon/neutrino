@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 class ToolsPageController extends Controller
 {
     public function index(){
-        // $routeName = Route::currentRouteName();
+        $routeName = Route::currentRouteName();
 
-        // return view('dashboard.page-custom-admin-page', compact('routeName'));
+        return view('dashboard.page-custom-admin-page', compact('routeName'));
     }
 }

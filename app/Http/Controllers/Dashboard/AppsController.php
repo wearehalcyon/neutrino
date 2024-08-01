@@ -71,15 +71,30 @@ class AppsController extends Controller
             'name' => $name
         ])->first();
 
-        // dd($id, $name);
-
-        if ($app) {
+        if ($app && $status != 2) {
             $app->status = $status;
             $app->save();
 
             return redirect()->back()->with('success', __('App status was updated successfully.'));
         } else {
             return redirect()->back()->with('error', __('Ooops! Something went wrong. App status was not updated.'));
+        }
+    }
+
+    public function uninstall($id, $name, $status){
+        $app = Application::where([
+            'id' => $id,
+            'name' => $name
+        ])->first();
+
+        if ($app && $status == 2) {
+            $app->delete();
+
+            File::deleteDirectory(app_path('/Applications/' . $name));
+
+            return redirect()->back()->with('success', __('App was uninstalled successfully.'));
+        } else {
+            return redirect()->back()->with('error', __('Ooops! Something went wrong. App uninstall was crashed.'));
         }
     }
 }

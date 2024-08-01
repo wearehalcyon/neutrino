@@ -45,23 +45,24 @@
                                     <th scope="col">{{  __('Version') }}</th>
                                     <th scope="col">{{  __('Author') }}</th>
                                     <th scope="col">{{  __('Description') }}</th>
-                                    <th scope="col">{{  __('Status') }}</th>
+                                    <th scope="col">{{  __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($apps as $app)
                                     @php($app = (array)$app)
                                     @if($app['json'])
-                                        <tr @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>
-                                            <td class="app-icon">{!! $app['svg'] !!}</td>
-                                            <td>{{  $app['json']->name }}</td>
-                                            <td>{{  $app['json']->version }}</td>
-                                            <td>{{  $app['json']->author }}</td>
-                                            <td>{{  $app['json']->description }}</td>
+                                        <tr>
+                                            <td class="app-icon" @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>{!! $app['svg'] !!}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->name }}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->version }}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->author }}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->description }}</td>
                                             <td>
                                                 <select name="status" class="form-select form-control w-auto" data-name="{{ $app['name']  }}" data-id="{{ $app['id']  }}" style="padding-right: 40px;">
                                                     <option value="1" @if($app['status'] == 1) selected @endif>{{  __('Activated') }}</option>
                                                     <option value="0" @if($app['status'] == 0) selected @endif>{{  __('Deactivated') }}</option>
+                                                    <option value="2">{{ __('Uninstall') }}</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -84,12 +85,21 @@
                 id = $(this).data('id'),
                 status = $(this).val(),
                 urlTemplate = "{{ route('dash.apps.update', ['id' => 'ID_PLACEHOLDER', 'name' => 'NAME_PLACEHOLDER', 'status' => 'STATUS_PLACEHOLDER']) }}",
+                urlTemplateUninstall = "{{ route('dash.apps.uninstall', ['id' => 'ID_PLACEHOLDER', 'name' => 'NAME_PLACEHOLDER', 'status' => 'STATUS_PLACEHOLDER']) }}",
                 url = urlTemplate
+                .replace('ID_PLACEHOLDER', id)
+                .replace('NAME_PLACEHOLDER', encodeURIComponent(name))
+                .replace('STATUS_PLACEHOLDER', encodeURIComponent(status)),
+                urlUninstall = urlTemplateUninstall
                 .replace('ID_PLACEHOLDER', id)
                 .replace('NAME_PLACEHOLDER', encodeURIComponent(name))
                 .replace('STATUS_PLACEHOLDER', encodeURIComponent(status));
 
-                window.location.href = url;
+                if (parseInt(status) !== 2) {
+                    window.location.href = url;
+                } else {
+                    window.location.href = urlUninstall;
+                }
         });
     </script>
 @endsection
