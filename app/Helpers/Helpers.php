@@ -17,30 +17,70 @@ use Illuminate\Support\Str;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
 use App\Services\ActionHooks;
+use App\Models\Application;
 
 // Extract shortcode from content
 require_once 'inc/process-shortcodes.php';
 
 // Action Hooks
 if (!function_exists('addAction')) {
-    function addAction($hook, $callback, $priority = 1)
+    function addAction($hook, $callback, $priority = 10)
     {
-        app(ActionHooks::class)->addActionHook($hook, $callback, $priority);
+        if (app()->bound(ActionHooks::class)) {
+            app(ActionHooks::class)->addAction($hook, $callback, $priority);
+        } else {
+            ActionHooks::addEarlyAction($hook, $callback, $priority);
+        }
     }
 }
 if (!function_exists('doAction')) {
     function doAction($hook, $args = [])
     {
-        app(ActionHooks::class)->addActionHook($hook, $args);
+        app(ActionHooks::class)->doAction($hook, $args);
     }
 }
 
 // Load applications
 $appsRoot = __DIR__ . '/../../app/Applications/';
 $appsDir = glob($appsRoot . '*', GLOB_ONLYDIR);
+
+$apps = [];
 foreach ($appsDir as $item) {
     $appName = basename($item);
+
+    $appDB = Application::where('name', $appName)->first();
+
+    if (!$appDB) {
+        Application::create([
+            'name' => $appName,
+            'slug' => $appName . '/' . $appName,
+            'status' => 0
+        ]);
+    }
+
     include $appsRoot . $appName . '/' . $appName . '.php';
+
+    if (file_exists($appsRoot . $appName . '/' . $appName . '.php')) {
+        $filePHP = $appsRoot . $appName . '/' . $appName . '.php';
+    } else {
+        $filePHP = null;
+    }
+    if (file_exists($appsRoot . $appName . '/' . 'info.json')) {
+        $fileJSON = json_decode(file_get_contents($appsRoot . $appName . '/' . 'info.json'));
+    } else {
+        $fileJSON = null;
+    }
+    if (file_exists($appsRoot . $appName . '/' . 'icon.svg')) {
+        $fileSVG = file_get_contents($appsRoot . $appName . '/' . 'icon.svg');
+    } else {
+        $fileSVG = null;
+    }
+
+    $apps[] = [
+        'php' => $filePHP,
+        'json' => $fileJSON,
+        'svg' => $fileSVG,
+    ];
 }
 
 // Check installation

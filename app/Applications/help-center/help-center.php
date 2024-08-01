@@ -12,8 +12,3 @@ addAction('nt_sidebar_menu_items_tools', function(){
 <?php
     endif;
 }, 1);
-
-// Custom admin page - Help Center
-addAction('custom_admin_page_view', function(){
-    
-}, 1);
