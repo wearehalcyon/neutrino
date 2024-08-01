@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
 use App\Models\ContactFormDatabase;
 use App\Models\Tag;
 use App\Models\User;
@@ -24,7 +23,7 @@ require_once 'inc/process-shortcodes.php';
 
 // Action Hooks
 if (!function_exists('addAction')) {
-    function addAction($hook, $callback, $priority = 10)
+    function addAction($hook, $callback, $priority = 1)
     {
         if (app()->bound(ActionHooks::class)) {
             app(ActionHooks::class)->addAction($hook, $callback, $priority);

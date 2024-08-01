@@ -12,3 +12,12 @@ addAction('nt_sidebar_menu_items_tools', function(){
 <?php
     endif;
 }, 1);
+
+// Add page action
+addAction('custom_admin_page_content', function(){
+    addAction('custom_admin_page_title', function(){
+        echo 'Test';
+    }, 1);
+    
+    require_once __DIR__ . "/pages/page-index.php";
+}, 1);
