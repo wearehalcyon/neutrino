@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __(applyFilter('custom_admin_page_title', '')))
+@section('title', applyFilter('custom_admin_page_title', ''))
 
 @section('header-scripts')
     {{ doAction('custom_admin_page_header_scripts') }}
