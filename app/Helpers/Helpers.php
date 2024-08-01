@@ -38,6 +38,21 @@ if (!function_exists('doAction')) {
         app(ActionHooks::class)->doAction($hook, $args);
     }
 }
+if (!function_exists('addFilter')) {
+    function addFilter($hook, $callback, $priority = 1)
+    {
+        if (app()->bound(ActionHooks::class)) {
+            app(ActionHooks::class)->addFilter($hook, $callback, $priority);
+        } else {
+            ActionHooks::addEarlyFilter($hook, $callback, $priority);
+        }
+    }
+}
+if (!function_exists('applyFilter')) {
+    function applyFilter($hook, $value, $args = []){
+        return app(ActionHooks::class)->applyFilter($hook, $value, $args);
+    }
+}
 
 // Check installation
 if (!function_exists('checkInstallation')) {
