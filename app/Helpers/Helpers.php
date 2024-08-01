@@ -16,6 +16,21 @@ use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
+use App\Services\ActionHooks;
+
+// Action Hooks
+if (!function_exists('add_action')) {
+    function add_action($hook, $callback, $priority = 10)
+    {
+        app(ActionHooks::class)->addAction($hook, $callback, $priority);
+    }
+}
+if (!function_exists('do_action')) {
+    function do_action($hook, $args = [])
+    {
+        app(ActionHooks::class)->doAction($hook, $args);
+    }
+}
 
 // Load applications
 $appsRoot = __DIR__ . '/../../app/Applications/';
