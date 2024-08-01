@@ -3,5 +3,5 @@
     <div>Powered by <a href="https://intakedigital.net/neutrino-cms" target="_blank" title="Neutrino">{{ config('app.name') }}</a> | Version: {{ config('app.version') }}</div>
 </div>
 @php
-    do_action('footer_scripts')
+    doAction('nt_footer_end')
 @endphp

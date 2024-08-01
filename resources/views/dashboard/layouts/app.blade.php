@@ -162,5 +162,8 @@
         <script src="{{ asset('assets/js/kaiadmin.js') }}"></script>
 
         @yield('footer-scripts')
+        @php
+            doAction('nt_footer_scripts')
+        @endphp
     </body>
 </html>
