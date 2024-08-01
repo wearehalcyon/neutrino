@@ -11,6 +11,8 @@ class ToolsPageController extends Controller
     public function index(){
         $routeName = Route::currentRouteName();
 
-        return view('dashboard.page-custom-admin-page', compact('routeName'));
+        $title = doAction('custom_admin_page_title');
+
+        return view('dashboard.page-custom-admin-page', compact('routeName', 'title'));
     }
 }
