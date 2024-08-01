@@ -17,6 +17,9 @@
                         <p>{{ __('Dashboard') }}</p>
                     </a>
                 </li>
+                @php
+                    doAction('nt_sidebar_menu_items_index')
+                @endphp
                 @if(hideAccess([3,4,5]))
                     <li class="nav-section">
                         <span class="sidebar-mini-icon">
@@ -125,6 +128,9 @@
                         </a>
                     </li>
                 @endif
+                @php
+                    doAction('nt_sidebar_menu_items_content')
+                @endphp
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                       <i class="fa fa-ellipsis-h"></i>
@@ -176,12 +182,9 @@
                         </a>
                     </li>
                 @endif
-                <li class="nav-item @if($routeName == 'help'){{ 'active' }}@endif">
-                    <a href="{{ route('dash') }}">
-                        <i class="fas fa-info-circle"></i>
-                        <p>{{ __('Help') }}</p>
-                    </a>
-                </li>
+                @php
+                    doAction('nt_sidebar_menu_items_tools')
+                @endphp
                 @if(hideAccess([2,3,4,5]))
                     <li class="nav-item @if($routeName == 'zen'){{ 'active' }}@endif">
                         <a href="{{ route('dash') }}">
@@ -190,9 +193,6 @@
                         </a>
                     </li>
                 @endif
-                @php
-                    doAction('nt_sidebar_menu_items')
-                @endphp
             </ul>
         </div>
     </div>

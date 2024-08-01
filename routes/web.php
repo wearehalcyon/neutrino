@@ -118,6 +118,11 @@ Route::prefix('/nt-admin')->middleware('auth')->group(function (){
     Route::get('/contact-forms/database/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'view'])->name('dash.c-forms-db.view');
     Route::get('/contact-forms/database/delete/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'delete'])->name('dash.c-forms-db.delete');
     Route::get('/contact-forms/database/mark-unread/{id}-{uid}', [App\Http\Controllers\Dashboard\ContactFormsDatabaseController::class, 'markUnread'])->name('dash.c-forms-db.mark-unread');
+    // Tools action hooks routes
+    Route::get('/tools', function(){
+        return redirect()->route('dash');
+    });
+    Route::get('/tools/{slug}', [App\Http\Controllers\Dashboard\ToolsPageController::class, 'index'])->name('dash.tools.page');
 });
 
 // Pages
