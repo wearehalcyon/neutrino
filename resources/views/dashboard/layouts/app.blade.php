@@ -97,6 +97,9 @@
                 }
             }
         </style>
+        @php
+            doAction('nt_head_scripts')
+        @endphp
     </head>
     <body>
         <div class="wrapper">
