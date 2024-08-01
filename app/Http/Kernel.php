@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\DebugModeMiddleware::class,
         \App\Http\Middleware\AdminBarMiddleware::class,
+        \App\Http\Middleware\ApplicationsInitMiddleware::class,
     ];
 
     /**

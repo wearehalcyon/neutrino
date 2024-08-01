@@ -13,7 +13,6 @@ use App\Models\ContentMeta;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\ContactForm;
-use App\Models\Application;
 use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Facades\Agent;
@@ -39,39 +38,6 @@ if (!function_exists('doAction')) {
     {
         app(ActionHooks::class)->doAction($hook, $args);
     }
-}
-
-// Load applications
-$appsRoot = __DIR__ . '/../../app/Applications/';
-$appsDir = glob($appsRoot . '*', GLOB_ONLYDIR);
-
-$apps = [];
-foreach ($appsDir as $item) {
-    $appName = basename($item);
-
-    include $appsRoot . $appName . '/' . $appName . '.php';
-
-    if (file_exists($appsRoot . $appName . '/' . $appName . '.php')) {
-        $filePHP = $appsRoot . $appName . '/' . $appName . '.php';
-    } else {
-        $filePHP = null;
-    }
-    if (file_exists($appsRoot . $appName . '/' . 'info.json')) {
-        $fileJSON = json_decode(file_get_contents($appsRoot . $appName . '/' . 'info.json'));
-    } else {
-        $fileJSON = null;
-    }
-    if (file_exists($appsRoot . $appName . '/' . 'icon.svg')) {
-        $fileSVG = file_get_contents($appsRoot . $appName . '/' . 'icon.svg');
-    } else {
-        $fileSVG = null;
-    }
-
-    $apps[] = [
-        'php' => $filePHP,
-        'json' => $fileJSON,
-        'svg' => $fileSVG,
-    ];
 }
 
 // Check installation
