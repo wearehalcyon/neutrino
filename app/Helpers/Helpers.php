@@ -22,16 +22,16 @@ use App\Services\ActionHooks;
 require_once 'inc/process-shortcodes.php';
 
 // Action Hooks
-if (!function_exists('add_action')) {
+if (!function_exists('addAction')) {
     function addAction($hook, $callback, $priority = 1)
     {
-        app(ActionHooks::class)->addAction($hook, $callback, $priority);
+        app(ActionHooks::class)->addActionHook($hook, $callback, $priority);
     }
 }
-if (!function_exists('do_action')) {
+if (!function_exists('doAction')) {
     function doAction($hook, $args = [])
     {
-        app(ActionHooks::class)->doAction($hook, $args);
+        app(ActionHooks::class)->addActionHook($hook, $args);
     }
 }
 

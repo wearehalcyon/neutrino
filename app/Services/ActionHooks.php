@@ -6,14 +6,13 @@ class ActionHooks
 {
     protected $actions = [];
 
-    public function addAction($hook, $callback, $priority = 10)
+    public function addActionHook($hook, $callback, $priority = 10)
     {
         $this->actions[$hook][$priority][] = $callback;
-        // Сортируем массив приоритетов после добавления нового действия
         ksort($this->actions[$hook]);
     }
 
-    public function doAction($hook, $args = [])
+    public function doActionHook($hook, $args = [])
     {
         if (!isset($this->actions[$hook])) {
             return;

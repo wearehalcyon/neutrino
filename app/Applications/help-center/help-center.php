@@ -15,5 +15,5 @@ addAction('nt_sidebar_menu_items_tools', function(){
 
 // Custom admin page - Help Center
 addAction('custom_admin_page_view', function(){
-    echo 123;
+    
 }, 1);

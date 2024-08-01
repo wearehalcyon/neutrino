@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class ToolsPageController extends Controller
 {
     public function index(){
-        return view('dashboard.page-custom-admin-page');
+        $routeName = Route::currentRouteName();
+
+        return view('dashboard.page-custom-admin-page', compact('routeName'));
     }
 }
