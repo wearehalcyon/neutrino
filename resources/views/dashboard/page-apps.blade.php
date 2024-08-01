@@ -98,8 +98,20 @@
                 if (parseInt(status) !== 2) {
                     window.location.href = url;
                 } else {
-                    window.location.href = urlUninstall;
+                    if (confirm('Do you really want to delete this App?') == true) {
+                        window.location.href = urlUninstall;
+                    }
+                    return false;
                 }
+        });
+    </script>
+    <script>
+        let delBtn = $('.delete');
+        delBtn.on('click', function(){
+            if (confirm('Do you really want to delete this page?') == true) {
+                return true;
+            }
+            return false;
         });
     </script>
 @endsection
