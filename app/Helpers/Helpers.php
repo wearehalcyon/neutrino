@@ -20,7 +20,7 @@ use App\Services\ActionHooks;
 
 // Action Hooks
 if (!function_exists('add_action')) {
-    function addAction($hook, $callback, $priority = 10)
+    function addAction($hook, $callback, $priority = 1)
     {
         app(ActionHooks::class)->addAction($hook, $callback, $priority);
     }
