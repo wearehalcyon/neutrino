@@ -12,8 +12,6 @@ class Application extends Model
     protected $fillable = [
         'name',
         'slug',
-        'status',
-        'install_date',
-        'udpate_date'
+        'status'
     ];
 }

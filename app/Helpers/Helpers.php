@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use App\Models\ContactFormDatabase;
 use App\Models\Tag;
 use App\Models\User;
@@ -12,12 +13,12 @@ use App\Models\ContentMeta;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\ContactForm;
+use App\Models\Application;
 use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
 use App\Services\ActionHooks;
-use App\Models\Application;
 
 // Extract shortcode from content
 require_once 'inc/process-shortcodes.php';
@@ -47,16 +48,6 @@ $appsDir = glob($appsRoot . '*', GLOB_ONLYDIR);
 $apps = [];
 foreach ($appsDir as $item) {
     $appName = basename($item);
-
-    $appDB = Application::where('name', $appName)->first();
-
-    if (!$appDB) {
-        Application::create([
-            'name' => $appName,
-            'slug' => $appName . '/' . $appName,
-            'status' => 0
-        ]);
-    }
 
     include $appsRoot . $appName . '/' . $appName . '.php';
 
