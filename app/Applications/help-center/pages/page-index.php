@@ -65,6 +65,9 @@
                             <a class="nav-link no-filter" id="getMenu-tab" data-bs-toggle="pill" href="#getMenu" role="tab" aria-controls="getMenu" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getMenu'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getMetaData-tab" data-bs-toggle="pill" href="#getMetaData" role="tab" aria-controls="getMetaData" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getMetaData'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -116,6 +119,9 @@
                             </div>
                             <div class="tab-pane fade" id="getMenu" role="tabpanel" aria-labelledby="getMenu-tab">
                                 <?php include __DIR__ . "/../tabs/get-menu.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getMetaData" role="tabpanel" aria-labelledby="getMetaData-tab">
+                                <?php include __DIR__ . "/../tabs/get-meta-data.php"; ?>
                             </div>
                         </div>
                     </div>

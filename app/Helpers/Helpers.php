@@ -465,8 +465,7 @@ if (!function_exists('getMenu')) {
 
 // Get META parameter
 if (!function_exists('getMetaData')) {
-    function getMetaData($type = null, $id = null, $key = null)
-    {
+    function getMetaData($type = null, $id = null, $key = null){
         $args = [
             'type' => $type,
             $type . '_id' => $id,
