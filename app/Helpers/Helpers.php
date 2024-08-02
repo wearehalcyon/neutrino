@@ -505,8 +505,7 @@ if (!function_exists('getCategory')) {
 
 // Get tag
 if (!function_exists('getTag')) {
-    function getTag($slug = null)
-    {
+    function getTag($slug = null){
         $tag = Tag::where('slug', $slug)->first();
 
         if (!$tag) {
@@ -519,8 +518,7 @@ if (!function_exists('getTag')) {
 
 // Get page
 if (!function_exists('getPage')) {
-    function getPage($slug = null)
-    {
+    function getPage($slug = null){
         $page = Page::where('slug', $slug)->first();
 
         if (!$page) {
@@ -533,8 +531,7 @@ if (!function_exists('getPage')) {
 
 // Get page by ID
 if (!function_exists('getPageByID')) {
-    function getPageByID($id = null)
-    {
+    function getPageByID($id = null){
         $page = Page::find($id);
 
         if (!$page) {
