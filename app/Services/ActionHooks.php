@@ -27,7 +27,7 @@ class ActionHooks
         self::$earlyFilters = [];
     }
 
-    public function addAction($hook, $callback, $priority = 10)
+    public function addAction($hook, $callback, $priority = 1)
     {
         if (!isset($this->actions[$hook])) {
             $this->actions[$hook] = [];
@@ -49,7 +49,7 @@ class ActionHooks
         }
     }
 
-    public static function addEarlyAction($hook, $callback, $priority = 10)
+    public static function addEarlyAction($hook, $callback, $priority = 1)
     {
         if (!isset(self::$earlyActions[$hook])) {
             self::$earlyActions[$hook] = [];
@@ -57,7 +57,7 @@ class ActionHooks
         self::$earlyActions[$hook][] = ['callback' => $callback, 'priority' => $priority];
     }
 
-    public function addFilter($hook, $callback, $priority = 10)
+    public function addFilter($hook, $callback, $priority = 1)
     {
         if (!isset($this->filters[$hook])) {
             $this->filters[$hook] = [];

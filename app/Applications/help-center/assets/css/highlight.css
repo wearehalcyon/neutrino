@@ -83,9 +83,9 @@ pre.code .kwd span {
 }
 pre.code .com,
 pre.code .com span { 
-	color:#008;
+	color:#ababab;
 	font-style: italic;
-	font-weight: normal; 
+	font-weight: 500; 
 }
 pre.code .typ { 
 	color: #606; 
@@ -133,7 +133,7 @@ pre.code .fnc span {
 }
 .php pre.code .com,
 .php pre.code .com span { 
-	color:#008;
+	color:#ababab;
 	font-style: italic;
-	font-weight: normal; 
+	font-weight: 500; 
 }

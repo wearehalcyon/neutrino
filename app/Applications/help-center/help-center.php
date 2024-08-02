@@ -24,6 +24,19 @@ if (request()->segment(3) === 'help-center') {
         $highlightCSS = app_path('/Applications/help-center/assets/css/highlight.css');
         $highlightCSS = file_get_contents($highlightCSS);
         echo '<style>' . $highlightCSS . '</style>';
+        echo '<style>
+            ul{
+                list-style-type: none;
+                margin-bottom: 20px;
+            }
+            ul li{
+                display: block;
+                font-size: 16px;
+            }
+            ul li code{
+                font-size: 17px;
+            }
+        </style>';
     }, 1);
     addAction('custom_admin_page_footer_scripts', function(){
         $highlightJS = app_path('/Applications/help-center/assets/js/highlight.js');
