@@ -14,5 +14,5 @@
 <h4 style="font-size:18px;">How to use</h4>
 <p><?php echo __('To output an <code>isMobile</code>, use the following code anywhere in your template:'); ?></p>
 <pre class="code">
-    <?php echo htmlspecialchars('isMobile($data = \'user_agent\')'); ?>
+    <?php echo htmlspecialchars('isMobile($data = \'useragent\')'); ?>
 </pre>

@@ -116,6 +116,9 @@
                             <a class="nav-link no-filter" id="isMobile-tab" data-bs-toggle="pill" href="#isMobile" role="tab" aria-controls="isMobile" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('isMobile'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getAuthor-tab" data-bs-toggle="pill" href="#getAuthor" role="tab" aria-controls="getAuthor" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getAuthor'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -218,6 +221,9 @@
                             </div>
                             <div class="tab-pane fade" id="getUserAgent" role="tabpanel" aria-labelledby="getUserAgent-tab">
                                 <?php include __DIR__ . "/../tabs/get-useragent.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getAuthor" role="tabpanel" aria-labelledby="getAuthor-tab">
+                                <?php include __DIR__ . "/../tabs/get-author.php"; ?>
                             </div>
                         </div>
                     </div>

@@ -792,8 +792,7 @@ if (!function_exists('isMobile')) {
 
 // Get author
 if (!function_exists('getAuthor')) {
-    function getAuthor($id = null)
-    {
+    function getAuthor($id = null){
         $user = User::find($id);
 
         return $user;
