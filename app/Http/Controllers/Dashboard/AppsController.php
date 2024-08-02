@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Models\Application;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Response;
 
 class AppsController extends Controller
 {
@@ -108,5 +110,20 @@ class AppsController extends Controller
         $apps = collect($jsonArray);
 
         return view('dashboard.page-apps-install', compact('routeName', 'apps'));
+    }
+
+    public function download($name_id){
+        restrictAccess([4,5]);
+
+        $pkgSrc = 'https://api.intakedigital.net/nt/apps/' . $name_id . '/' . $name_id . '.zip';
+        $response = Http::get($pkgSrc);
+
+        if ($response->failed()) {
+            abort(404);
+        }
+
+        return response($response->body(), 200)
+            ->header('Content-Type', $response->header('Content-Type'))
+            ->header('Content-Disposition', 'attachment; filename="' . $name_id . '.zip"');
     }
 }

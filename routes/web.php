@@ -108,6 +108,7 @@ Route::prefix('/nt-admin')->middleware('auth')->group(function (){
     Route::get('/apps/uninstall/{id}/{name}/{status}', [App\Http\Controllers\Dashboard\AppsController::class, 'uninstall'])->name('dash.apps.uninstall');
     Route::get('/apps/install', [App\Http\Controllers\Dashboard\AppsController::class, 'install'])->name('dash.apps.install');
     Route::get('/apps/install/{name_id}', [App\Http\Controllers\Dashboard\AppsController::class, 'installApp'])->name('dash.apps.install.app');
+    Route::get('/apps/install/download/{name_id}', [App\Http\Controllers\Dashboard\AppsController::class, 'download'])->name('dash.apps.install.download');
     // Site Custommize
     Route::get('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customize'])->name('dash.customize');
     Route::post('/customize', [App\Http\Controllers\Dashboard\AppearanceController::class, 'customizeSave'])->name('dash.customize.save');

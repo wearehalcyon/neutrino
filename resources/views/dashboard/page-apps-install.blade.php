@@ -97,17 +97,13 @@
                                             <img src="{{  $app->icon }}" alt="{{ $app->name . ' App Icon' }}" width="100" height="100">
                                             <div class="actions">
                                                 @if(!$appDB)
-                                                    <a href="{{  route('dash.apps.install.app', $app->id) }}" class="btn btn-primary btn-round install no-filter">{{  __('Install') }}</a>
+                                                    <a href="{{  route('dash.apps.install.app', $app->id) }}" class="btn btn-primary btn-round install no-filter">{{  __('INSTALL') }}</a>
                                                 @else
                                                     <a class="btn installed no-filter">{{  __('Installed') }}</a>
                                                 @endif
                                             </div>
                                             <div class="actions">
-                                                @if(!$appDB)
-                                                    <a href="{{  route('dash.apps.install.app', $app->id) }}" class="btn btn-primary btn-round install no-filter">{{  __('Install') }}</a>
-                                                @else
-                                                    <a class="btn installed no-filter">{{  __('Installed') }}</a>
-                                                @endif
+                                                <a href="{{  route('dash.apps.install.download', $app->id) }}" class="btn btn-primary btn-border btn-round install no-filter">{{  __('Download') }}</a>
                                             </div>
                                         </div>
                                         <div class="app-data">
