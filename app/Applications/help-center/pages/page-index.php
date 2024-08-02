@@ -62,6 +62,9 @@
                             <a class="nav-link no-filter" id="getPermalink-tab" data-bs-toggle="pill" href="#getPermalink" role="tab" aria-controls="getPermalink" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getPermalink'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getMenu-tab" data-bs-toggle="pill" href="#getMenu" role="tab" aria-controls="getMenu" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getMenu'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -110,6 +113,9 @@
                             </div>
                             <div class="tab-pane fade" id="getPermalink" role="tabpanel" aria-labelledby="getPermalink-tab">
                                 <?php include __DIR__ . "/../tabs/get-permalink.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getMenu" role="tabpanel" aria-labelledby="getMenu-tab">
+                                <?php include __DIR__ . "/../tabs/get-menu.php"; ?>
                             </div>
                         </div>
                     </div>
