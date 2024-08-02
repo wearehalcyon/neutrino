@@ -95,6 +95,9 @@
                             <a class="nav-link no-filter" id="getPostCategories-tab" data-bs-toggle="pill" href="#getPostCategories" role="tab" aria-controls="getPostCategories" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getPostCategories'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getCategoryPosts-tab" data-bs-toggle="pill" href="#getCategoryPosts" role="tab" aria-controls="getCategoryPosts" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getCategoryPosts'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -176,6 +179,9 @@
                             </div>
                             <div class="tab-pane fade" id="getPostCategories" role="tabpanel" aria-labelledby="getPostCategories-tab">
                                 <?php include __DIR__ . "/../tabs/get-post-categories.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getCategoryPosts" role="tabpanel" aria-labelledby="getCategoryPosts-tab">
+                                <?php include __DIR__ . "/../tabs/get-category-posts.php"; ?>
                             </div>
                         </div>
                     </div>
