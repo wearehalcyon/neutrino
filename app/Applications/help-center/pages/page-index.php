@@ -38,6 +38,21 @@
                             <a class="nav-link no-filter" id="getOption-tab" data-bs-toggle="pill" href="#getOption" role="tab" aria-controls="getOption" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getOption'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getUser-tab" data-bs-toggle="pill" href="#getUser" role="tab" aria-controls="getUser" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getUser'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getUserRole-tab" data-bs-toggle="pill" href="#getUserRole" role="tab" aria-controls="getUserRole" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getUserRole'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="restrictAccess-tab" data-bs-toggle="pill" href="#restrictAccess" role="tab" aria-controls="restrictAccess" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('restrictAccess'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="hideAccess-tab" data-bs-toggle="pill" href="#hideAccess" role="tab" aria-controls="hideAccess" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('hideAccess'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getHead-tab" data-bs-toggle="pill" href="#getHead" role="tab" aria-controls="getHead" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getHead'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -62,6 +77,21 @@
                             </div>
                             <div class="tab-pane fade" id="getOption" role="tabpanel" aria-labelledby="getOption-tab">
                                 <?php include __DIR__ . "/../tabs/get-option.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getUser" role="tabpanel" aria-labelledby="getUser-tab">
+                                <?php include __DIR__ . "/../tabs/get-user.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getUserRole" role="tabpanel" aria-labelledby="getUserRole-tab">
+                                <?php include __DIR__ . "/../tabs/get-user-role.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="restrictAccess" role="tabpanel" aria-labelledby="restrictAccess-tab">
+                                <?php include __DIR__ . "/../tabs/restrict-access.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="hideAccess" role="tabpanel" aria-labelledby="hideAccess-tab">
+                                <?php include __DIR__ . "/../tabs/hide-access.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getHead" role="tabpanel" aria-labelledby="getHead-tab">
+                                <?php include __DIR__ . "/../tabs/get-head.php"; ?>
                             </div>
                         </div>
                     </div>

@@ -47,6 +47,10 @@ if (request()->segment(3) === 'help-center') {
                 max-width: 100%;
                 height: auto;
             }
+                pre.code{
+                    max-height: 300px;
+                    overflow-y: auto;
+                }
         </style>';
     }, 1);
     addAction('custom_admin_page_footer_scripts', function(){
