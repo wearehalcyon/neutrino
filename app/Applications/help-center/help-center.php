@@ -36,6 +36,17 @@ if (request()->segment(3) === 'help-center') {
             ul li code{
                 font-size: 17px;
             }
+            .screen{
+                max-width: 100%;
+                height: auto;
+                width: 250px;
+                cursor: pointer;
+            }
+            .swal2-popup.swal2-modal{
+                min-width: 1600px;
+                max-width: 100%;
+                height: auto;
+            }
         </style>';
     }, 1);
     addAction('custom_admin_page_footer_scripts', function(){
@@ -43,5 +54,15 @@ if (request()->segment(3) === 'help-center') {
         $highlightJS = file_get_contents($highlightJS);
         echo '<script>' . $highlightJS . '</script>';
         echo '<script>$(document).ready(function(){$("pre.code").highlight({zebra:true,indent:"tabs",});});</script>';
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+        echo '<script>
+            $(".screen").on("click", function(){
+                let image = $(this).attr("src");
+                Swal.fire({
+                    html: `<img src="${image}" alt="Image" style="max-width: 100%; height: auto;">`,
+                    confirmButtonText: "Close"
+                });
+            });
+        </script>';
     }, 1);
 }
