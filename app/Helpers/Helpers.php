@@ -492,8 +492,7 @@ if (!function_exists('getBodyClass')) {
 
 // Get category
 if (!function_exists('getCategory')) {
-    function getCategory($slug = null)
-    {
+    function getCategory($slug = null){
         $category = Category::where('slug', $slug)->first();
 
         if (!$category) {

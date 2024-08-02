@@ -71,6 +71,9 @@
                             <a class="nav-link no-filter" id="getBodyClass-tab" data-bs-toggle="pill" href="#getBodyClass" role="tab" aria-controls="getBodyClass" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getBodyClass'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getCategory-tab" data-bs-toggle="pill" href="#getCategory" role="tab" aria-controls="getCategory" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getCategory'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -128,6 +131,9 @@
                             </div>
                             <div class="tab-pane fade" id="getBodyClass" role="tabpanel" aria-labelledby="getBodyClass-tab">
                                 <?php include __DIR__ . "/../tabs/get-body-class.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getCategory" role="tabpanel" aria-labelledby="getCategory-tab">
+                                <?php include __DIR__ . "/../tabs/get-category.php"; ?>
                             </div>
                         </div>
                     </div>
