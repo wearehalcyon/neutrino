@@ -575,16 +575,14 @@ if (!function_exists('getPosts')) {
 
 // Get date
 if (!function_exists('getPostDate')) {
-    function getPostDate($format = null, $date = null)
-    {
+    function getPostDate($format = null, $date = null){
         return date($format, strtotime($date));
     }
 }
 
 // Get post categories
 if (!function_exists('getPostCategories')) {
-    function getPostCategories($id = null)
-    {
+    function getPostCategories($id = null){
         $categories = Category::join('post_to_categories', 'categories.id', '=', 'post_to_categories.category_id')
             ->where('post_to_categories.post_id', $id)
             ->select('categories.*')

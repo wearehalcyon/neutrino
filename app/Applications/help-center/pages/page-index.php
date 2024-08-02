@@ -89,6 +89,12 @@
                             <a class="nav-link no-filter" id="getPosts-tab" data-bs-toggle="pill" href="#getPosts" role="tab" aria-controls="getPosts" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getPosts'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getPostDate-tab" data-bs-toggle="pill" href="#getPostDate" role="tab" aria-controls="getPostDate" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getPostDate'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getPostCategories-tab" data-bs-toggle="pill" href="#getPostCategories" role="tab" aria-controls="getPostCategories" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getPostCategories'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -164,6 +170,12 @@
                             </div>
                             <div class="tab-pane fade" id="getPosts" role="tabpanel" aria-labelledby="getPosts-tab">
                                 <?php include __DIR__ . "/../tabs/get-posts.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getPostDate" role="tabpanel" aria-labelledby="getPostDate-tab">
+                                <?php include __DIR__ . "/../tabs/get-post-date.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getPostCategories" role="tabpanel" aria-labelledby="getPostCategories-tab">
+                                <?php include __DIR__ . "/../tabs/get-post-categories.php"; ?>
                             </div>
                         </div>
                     </div>
