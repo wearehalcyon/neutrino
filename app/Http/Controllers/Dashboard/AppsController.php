@@ -106,8 +106,7 @@ class AppsController extends Controller
         $jsonSource = 'https://api.intakedigital.net/nt/apps-repo.php?type=json';
         $jsonArray = json_decode(file_get_contents($jsonSource));
         $apps = collect($jsonArray);
-        dd($apps);
 
-        return view('dashboard.page-apps-install', compact('routeName'));
+        return view('dashboard.page-apps-install', compact('routeName', 'apps'));
     }
 }
