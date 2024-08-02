@@ -54,9 +54,9 @@
                                     @if($app['json'])
                                         <tr>
                                             <td class="app-icon" @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>{!! $app['svg'] !!}</td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->name }}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif><strong style="font-weight:700;">{{  $app['json']->name }}</strong></td>
                                             <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->version }}</td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->author }}</td>
+                                            <td @if($app['status'] == 0) style="color: #999;" @endif><a href="{{  $app['json']->author_url }}" title="{{  $app['json']->author }}" style="font-weight:400;">{{  $app['json']->author }}</a></td>
                                             <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->description }}</td>
                                             <td>
                                                 <select name="status" class="form-select form-control w-auto" data-name="{{ $app['name']  }}" data-id="{{ $app['id']  }}" style="padding-right: 40px;">
