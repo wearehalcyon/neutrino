@@ -60,14 +60,6 @@
     <h4><?php echo __('addAction'); ?></h4>
     <p><?php echo __('This function will provide you to register/init hook for <code>doAction</code> point.'); ?></p>
     <p><?php echo __('<code>addAction</code> Function source code:'); ?></p>
-    <p>
-        <ul>
-            <li><strong><?php echo __('Arguments:'); ?></strong></li>
-            <li><code>$hook</code> - <?php echo __("<i>String</i> | Should be a name of hook, for example <strong>'my_hook'</strong>"); ?></li>
-            <li><code>$callback</code> - <?php echo __("<i>Function</i> | Should be a PHP function"); ?></li>
-            <li><code>$priority</code> - <?php echo __("<i>Int</i> | Should be a number of displaying position, default is - 1"); ?></li>
-        </ul>
-    </p>
     <pre class="code">
         function addAction($hook, $callback, $priority = 1){
             if (app()->bound(ActionHooks::class)) {
@@ -91,9 +83,17 @@
     </pre>
     <h4 style="font-size:18px;">How to use <code>addAction</code></h4>
     <p><?php echo __('To output an <code>addAction</code>, use the following code anywhere in your template:'); ?></p>
+    <p>
+        <ul>
+            <li><strong><?php echo __('Arguments:'); ?></strong></li>
+            <li><code>$hook</code> - <?php echo __("<i>String</i> | Should be a name of hook, for example <strong>'my_hook'</strong>"); ?></li>
+            <li><code>$callback</code> - <?php echo __("<i>Function</i> | Should be a PHP function"); ?></li>
+            <li><code>$priority</code> - <?php echo __("<i>Int</i> | Should be a number of displaying position, default is - 1"); ?></li>
+        </ul>
+    </p>
     <pre class="code">
-        <?php echo htmlspecialchars("addAction('my_action', function(){
-            echo 'Hello, world!';
-        }, 10)"); ?>
+        <?php echo htmlspecialchars('addAction($hook = \'my_action\', $callback = function(){
+            echo \'Hello, world!\';
+        }, $priority = 10)'); ?>
     </pre>
 </div>
