@@ -83,6 +83,9 @@
                             <a class="nav-link no-filter" id="getPageByID-tab" data-bs-toggle="pill" href="#getPageByID" role="tab" aria-controls="getPageByID" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getPageByID'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getPost-tab" data-bs-toggle="pill" href="#getPost" role="tab" aria-controls="getPost" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getPost'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -152,6 +155,9 @@
                             </div>
                             <div class="tab-pane fade" id="getPageByID" role="tabpanel" aria-labelledby="getPageByID-tab">
                                 <?php include __DIR__ . "/../tabs/get-page-by-id.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getPost" role="tabpanel" aria-labelledby="getPost-tab">
+                                <?php include __DIR__ . "/../tabs/get-post.php"; ?>
                             </div>
                         </div>
                     </div>

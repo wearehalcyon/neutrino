@@ -544,8 +544,7 @@ if (!function_exists('getPageByID')) {
 
 // Get post
 if (!function_exists('getPost')) {
-    function getPost($slug = null)
-    {
+    function getPost($slug = null){
         $post = Post::where('slug', $slug)->first();
 
         if (!$post) {
