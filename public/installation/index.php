@@ -28,6 +28,11 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
     $stmt->execute();
 
+    $update_query_settings = "UPDATE nt_settings SET option_value = :email WHERE option_name = 'site_email'";
+    $stmt_settings = $pdo->prepare($update_query_settings);
+    $stmt_settings->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt_settings->execute();
+
     header('Location:' . '/installation/finished.php');
     exit(1);
 }

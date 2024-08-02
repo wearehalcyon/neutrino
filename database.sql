@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 02 2024 г., 19:04
+-- Время создания: Авг 02 2024 г., 19:12
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.2.20
 
@@ -344,13 +344,14 @@ CREATE TABLE `nt_settings` (
 --
 
 INSERT INTO `nt_settings` (`id`, `type`, `option_name`, `option_value`) VALUES
-(1, '', 'site_name', 'Neutrino CMS'),
+(1, NULL, 'site_name', 'Neutrino CMS'),
 (2, NULL, 'blog_base', 'blog'),
 (3, NULL, 'category_base', 'category/{category}'),
 (4, NULL, 'tag_base', 'tag/{tag}'),
 (5, NULL, 'debug_bar', '0'),
 (6, NULL, 'homepage_id', '1'),
-(7, NULL, 'front_theme', 'moon-base');
+(7, NULL, 'front_theme', 'moon-base'),
+(8, NULL, 'site_email', NULL);
 
 -- --------------------------------------------------------
 
@@ -390,7 +391,7 @@ CREATE TABLE `nt_users` (
 --
 
 INSERT INTO `nt_users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@admin.com', NULL, '$2y$12$4FCzJ1k19GFnUVJ4JAXcQOh3aAD1VP5rfbkNMMtClpFz9SyiL9hHS', 'C7yTc4FG31uOEGsurnCkRUMgxlZlX1HNG2L32a7LUYu4y2mSVKMYd2pZj0aL', '2024-07-17 00:21:07', '2024-08-02 13:04:06');
+(1, 'Administrator', 'admin@admin.com', NULL, '$2y$10$k4iPiDI2/yYcAeZcpR6Jx.KZY1AUCvLrYzmAcdt7bSya0Ab7MfnJS', 'C7yTc4FG31uOEGsurnCkRUMgxlZlX1HNG2L32a7LUYu4y2mSVKMYd2pZj0aL', '2024-07-17 00:21:07', '2024-08-02 13:04:06');
 
 -- --------------------------------------------------------
 
@@ -716,7 +717,7 @@ ALTER TABLE `nt_post_to_tags`
 -- AUTO_INCREMENT для таблицы `nt_settings`
 --
 ALTER TABLE `nt_settings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `nt_tags`
