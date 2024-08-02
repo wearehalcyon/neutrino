@@ -32,6 +32,12 @@
                             </a>
                             <hr>
                             <h5><?php echo __('Functions'); ?></h6>
+                            <a class="nav-link no-filter" id="url-tab" data-bs-toggle="pill" href="#url" role="tab" aria-controls="url" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('url'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getOption-tab" data-bs-toggle="pill" href="#getOption" role="tab" aria-controls="getOption" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getOption'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -50,6 +56,12 @@
                             </div>
                             <div class="tab-pane fade" id="contactus" role="tabpanel" aria-labelledby="contactus-tab">
                                 <?php include __DIR__ . "/../tabs/contactus.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="url" role="tabpanel" aria-labelledby="url-tab">
+                                <?php include __DIR__ . "/../tabs/url.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getOption" role="tabpanel" aria-labelledby="getOption-tab">
+                                <?php include __DIR__ . "/../tabs/get-option.php"; ?>
                             </div>
                         </div>
                     </div>
