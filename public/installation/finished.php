@@ -123,7 +123,7 @@
                     <a id="install-button" href="/installation/index.php">Install</a>
                 </div>
             <?php endif; ?>
-            <div class="installer-ver">Installer version: 1.0.2</div>
+            <div class="installer-ver">Installer version: 1.0.3</div>
         </div>
     </main>
 </body>

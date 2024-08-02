@@ -1,9 +1,10 @@
 <p align="center"><img src="https://raw.githubusercontent.com/wearehalcyon/neutrino/main/public/favicon.png" alt="Neutrino CMS" width="120" height="120"></p>
 
 ### Actual version:
-- 0.5.2 (BETA) — Added installer user interface. However, this does not remove all installation steps that are given in the README file. Currently in test mode.
+- 0.6 (BETA) — Updated installep app. Also added Apps section and repository with few apps.
 
 ### Previous versions:
+- 0.5.2
 - 0.5.1
 - 0.5
 - 0.1

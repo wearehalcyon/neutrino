@@ -181,7 +181,7 @@ if (isset($_GET['run']) && $_GET['run'] == 'install') {
                     <button type="submit" id="install-button">Run Installer</button>
                 </div>
             </form>
-            <div class="installer-ver">Installer version: 1.0.2</div>
+            <div class="installer-ver">Installer version: 1.0.3</div>
         </div>
     </main>
     <script>

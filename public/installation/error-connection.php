@@ -132,7 +132,7 @@
             <div class="button">
                 <button>Refresh</button>
             </div>
-            <div class="installer-ver">Installer version: 1.0.2</div>
+            <div class="installer-ver">Installer version: 1.0.3</div>
         </div>
     </main>
     <script>
