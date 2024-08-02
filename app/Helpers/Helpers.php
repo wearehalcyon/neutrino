@@ -557,8 +557,7 @@ if (!function_exists('getPost')) {
 
 // Get posts
 if (!function_exists('getPosts')) {
-    function getPosts($category = null, $orderby = 'created_at', $order = 'ASC', $limit = null)
-    {
+    function getPosts($category = null, $orderby = 'created_at', $order = 'ASC', $limit = null){
         if ($limit) {
             $limit = $limit;
         } else {
