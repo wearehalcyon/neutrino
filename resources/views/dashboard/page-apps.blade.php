@@ -37,39 +37,45 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">{{  __('Name') }}</th>
-                                    <th scope="col">{{  __('Version') }}</th>
-                                    <th scope="col">{{  __('Author') }}</th>
-                                    <th scope="col">{{  __('Description') }}</th>
-                                    <th scope="col">{{  __('Actions') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($apps as $app)
-                                    @php($app = (array)$app)
-                                    @if($app['json'])
-                                        <tr>
-                                            <td class="app-icon" @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>{!! $app['svg'] !!}</td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif><strong style="font-weight:700;">{{  $app['json']->name }}</strong></td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->version }}</td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif><a href="{{  $app['json']->author_url }}" title="{{  $app['json']->author }}" style="font-weight:400;">{{  $app['json']->author }}</a></td>
-                                            <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->description }}</td>
-                                            <td>
-                                                <select name="status" class="form-select form-control w-auto" data-name="{{ $app['name']  }}" data-id="{{ $app['id']  }}" style="padding-right: 40px;">
-                                                    <option value="1" @if($app['status'] == 1) selected @endif>{{  __('Activated') }}</option>
-                                                    <option value="0" @if($app['status'] == 0) selected @endif>{{  __('Deactivated') }}</option>
-                                                    <option value="2">{{ __('Uninstall') }}</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @if($apps)
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">{{  __('Name') }}</th>
+                                        <th scope="col">{{  __('Version') }}</th>
+                                        <th scope="col">{{  __('Author') }}</th>
+                                        <th scope="col">{{  __('Description') }}</th>
+                                        <th scope="col">{{  __('Actions') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($apps as $app)
+                                        @php($app = (array)$app)
+                                        @if($app['json'])
+                                            <tr>
+                                                <td class="app-icon" @if($app['status'] == 0) style="opacity: .5; filter: grayscale(100%);" @endif>{!! $app['svg'] !!}</td>
+                                                <td @if($app['status'] == 0) style="color: #999;" @endif><strong style="font-weight:700;">{{  $app['json']->name }}</strong></td>
+                                                <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->version }}</td>
+                                                <td @if($app['status'] == 0) style="color: #999;" @endif><a href="{{  $app['json']->author_url }}" title="{{  $app['json']->author }}" style="font-weight:400;">{{  $app['json']->author }}</a></td>
+                                                <td @if($app['status'] == 0) style="color: #999;" @endif>{{  $app['json']->description }}</td>
+                                                <td>
+                                                    <select name="status" class="form-select form-control w-auto" data-name="{{ $app['name']  }}" data-id="{{ $app['id']  }}" style="padding-right: 40px;">
+                                                        <option value="1" @if($app['status'] == 1) selected @endif>{{  __('Activated') }}</option>
+                                                        <option value="0" @if($app['status'] == 0) selected @endif>{{  __('Deactivated') }}</option>
+                                                        <option value="2">{{ __('Uninstall') }}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="col-12">
+                                <p style="margin-bottom: 0;">{{  __('No any Apps installed yet.') }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

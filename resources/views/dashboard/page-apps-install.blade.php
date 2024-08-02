@@ -29,6 +29,10 @@
             padding: 3px 10px;
             font-size: 12px;
         }
+        .app-item .icon .actions .install .preloader{
+            width: 14px;
+            height: 14px;
+        }
         .app-item .icon .actions .installed{
             display: block;
             position: relative;
@@ -36,6 +40,14 @@
             padding: 3px 10px;
             font-size: 12px;
             cursor: default;
+        }
+        .app-item .icon .actions .download{
+            display: block;
+            position: relative;
+            width: 100%;
+            padding: 3px 10px;
+            font-size: 12px;
+            color: #1572e8;
         }
         .app-item .app-data{
             padding-top: 10px;
@@ -102,9 +114,11 @@
                                                     <a class="btn installed no-filter">{{  __('Installed') }}</a>
                                                 @endif
                                             </div>
-                                            <div class="actions">
-                                                <a href="{{  route('dash.apps.install.download', $app->id) }}" class="btn btn-primary btn-border btn-round install no-filter">{{  __('Download') }}</a>
-                                            </div>
+                                            @if(!$appDB)
+                                                <div class="actions">
+                                                    <a href="{{  route('dash.apps.install.download', $app->id) }}" class="btn btn-primary btn-border btn-round download no-filter">{{  __('Download') }}</a>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="app-data">
                                             <h6>{{ $app->name }}</h6>
@@ -142,4 +156,13 @@
 @endsection
 
 @section('footer-scripts')
+    <script>
+        jQuery(document).ready(function($){
+            let installBtn = $('.install');
+            installBtn.on('click', function(){
+                let imgSrc = "{{  asset('assets/images/svg/preloader.svg') }}";
+                $(this).html('<img class="preloader" src="' + imgSrc + '" alt="preloader" width="14" height="14">');
+            });
+        });
+    </script>
 @endsection

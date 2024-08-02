@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Models\Application;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Response;
+use ZipArchive;
 
 class AppsController extends Controller
 {
@@ -36,6 +35,7 @@ class AppsController extends Controller
 
         $appsDB = Application::all();
         
+        $apps = [];
         foreach ($appsDB as $app) {
             if (File::exists(app_path('/Applications/' . $app->slug . '.php'))) {
                 $filePHP = app_path('/Applications/' . $app->slug . '.php');
@@ -56,10 +56,10 @@ class AppsController extends Controller
                 'php' => $filePHP,
                 'json' => $fileJSON,
                 'svg' => $fileSVG,
-                'name' => $app->name,
-                'slug' => $app->slug,
-                'id' => $app->id,
-                'status' => $app->status
+                'name' => $app->name ? $app->name : '',
+                'slug' => $app->slug ? $app->slug : '',
+                'id' => $app->id ? $app->id : '',
+                'status' => $app->status ? $app->status : ''
             ];
         }
 
@@ -125,5 +125,62 @@ class AppsController extends Controller
         return response($response->body(), 200)
             ->header('Content-Type', $response->header('Content-Type'))
             ->header('Content-Disposition', 'attachment; filename="' . $name_id . '.zip"');
+    }
+
+    public function installApp($name_id){
+        restrictAccess([4,5]);
+
+        $app = Application::where('name', $name_id)->first();
+
+        if (!$app) {
+            Application::create([
+                'name' => $name_id,
+                'slug' => $name_id . '/' . $name_id,
+                'status' => 0
+            ]);
+            $pkgSrc = 'https://api.intakedigital.net/nt/apps/' . $name_id . '/' . $name_id . '.zip';
+            $response = Http::get($pkgSrc);
+            $tempPath = app_path('Applications/temp_' . $name_id);
+
+            if ($response->failed()) {
+                abort(404);
+            }
+
+            $fileName = $name_id . '.zip';
+            $filePath = app_path('/Applications/' . $fileName);
+            File::put($filePath, $response->body());
+            $tempPath = app_path('Applications/temp_' . $name_id);
+
+            $zip = new ZipArchive;
+            if ($zip->open($filePath) === true) {
+                $zip->extractTo($tempPath);
+                $zip->close();
+            } else {
+                File::delete($filePath);
+                abort(500, 'Unable to extract the file.');
+            }
+
+            $directories = File::directories($tempPath);
+            if (count($directories) === 1) {
+                $innerFolder = $directories[0];
+                
+                $extractPath = app_path('Applications/' . $name_id);
+
+                if (!File::exists($extractPath)) {
+                    File::makeDirectory($extractPath, 0755, true);
+                }
+
+                File::copyDirectory($innerFolder, $extractPath);
+            } else {
+                abort(500, 'Unexpected folder structure in the archive.');
+            }
+
+            File::delete($filePath);
+            File::deleteDirectory($tempPath);
+
+            return redirect()->back()->with('success', __('App was installed successfully'));
+        } else {
+            return redirect()->back()->with('error', __('Oops! Something went wrong. Try again please.'));
+        }
     }
 }
