@@ -131,8 +131,7 @@ if (!function_exists('hideAccess')) {
 
 // Get Head
 if (!function_exists('getHead')) {
-    function getHead()
-    {
+    function getHead(){
         $array = [];
         $settings = Setting::where([
             'option_name' => 'favicon',
@@ -313,8 +312,7 @@ if (!function_exists('getHead')) {
 
 // Get Footer
 if (!function_exists('getFooter')) {
-    function getFooter()
-    {
+    function getFooter(){
         echo '<script id="nt-base-jquery-script" src="' . asset('assets/js/core/jquery-3.7.1.min.js') . '"></script>';
         echo getOption('footer_scripts');
     }

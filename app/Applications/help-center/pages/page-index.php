@@ -53,6 +53,9 @@
                             <a class="nav-link no-filter" id="getHead-tab" data-bs-toggle="pill" href="#getHead" role="tab" aria-controls="getHead" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getHead'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getFooter-tab" data-bs-toggle="pill" href="#getFooter" role="tab" aria-controls="getFooter" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getFooter'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -92,6 +95,9 @@
                             </div>
                             <div class="tab-pane fade" id="getHead" role="tabpanel" aria-labelledby="getHead-tab">
                                 <?php include __DIR__ . "/../tabs/get-head.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getFooter" role="tabpanel" aria-labelledby="getFooter-tab">
+                                <?php include __DIR__ . "/../tabs/get-footer.php"; ?>
                             </div>
                         </div>
                     </div>
