@@ -74,6 +74,9 @@
                             <a class="nav-link no-filter" id="getCategory-tab" data-bs-toggle="pill" href="#getCategory" role="tab" aria-controls="getCategory" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getCategory'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getTag-tab" data-bs-toggle="pill" href="#getTag" role="tab" aria-controls="getTag" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getTag'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -134,6 +137,9 @@
                             </div>
                             <div class="tab-pane fade" id="getCategory" role="tabpanel" aria-labelledby="getCategory-tab">
                                 <?php include __DIR__ . "/../tabs/get-category.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getTag" role="tabpanel" aria-labelledby="getTag-tab">
+                                <?php include __DIR__ . "/../tabs/get-tag.php"; ?>
                             </div>
                         </div>
                     </div>
