@@ -21,6 +21,9 @@
                             <a class="nav-link no-filter" id="dashboard-tab" data-bs-toggle="pill" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('Dashboard UI'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="hooks-tab" data-bs-toggle="pill" href="#hooks" role="tab" aria-controls="hooks" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('System Hooks'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -30,6 +33,9 @@
                             </div>
                             <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                 <?php include __DIR__ . "/../tabs/dash-ui.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="hooks" role="tabpanel" aria-labelledby="hooks-tab">
+                                <?php include __DIR__ . "/../tabs/hooks.php"; ?>
                             </div>
                         </div>
                     </div>

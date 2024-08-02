@@ -20,4 +20,15 @@ if (request()->segment(3) === 'help-center') {
     addAction('custom_admin_page_content', function(){
         require_once __DIR__ . "/pages/page-index.php";
     }, 1);
+    addAction('custom_admin_page_header_scripts', function(){
+        $highlightCSS = app_path('/Applications/help-center/assets/css/highlight.css');
+        $highlightCSS = file_get_contents($highlightCSS);
+        echo '<style>' . $highlightCSS . '</style>';
+    }, 1);
+    addAction('custom_admin_page_footer_scripts', function(){
+        $highlightJS = app_path('/Applications/help-center/assets/js/highlight.js');
+        $highlightJS = file_get_contents($highlightJS);
+        echo '<script>' . $highlightJS . '</script>';
+        echo '<script>$(document).ready(function(){$("pre.code").highlight({zebra:true,indent:"tabs",});});</script>';
+    }, 1);
 }

@@ -12,7 +12,6 @@ class ActionHooks
 
     public function __construct()
     {
-        // Инициализация ранних экшенов
         foreach (self::$earlyActions as $hook => $callbacks) {
             foreach ($callbacks as $callback) {
                 $this->addAction($hook, $callback['callback'], $callback['priority']);
@@ -20,7 +19,6 @@ class ActionHooks
         }
         self::$earlyActions = [];
 
-        // Инициализация ранних фильтров
         foreach (self::$earlyFilters as $hook => $callbacks) {
             foreach ($callbacks as $callback) {
                 $this->addFilter($hook, $callback['callback'], $callback['priority']);
@@ -29,7 +27,6 @@ class ActionHooks
         self::$earlyFilters = [];
     }
 
-    // Методы для экшенов
     public function addAction($hook, $callback, $priority = 10)
     {
         if (!isset($this->actions[$hook])) {
@@ -60,7 +57,6 @@ class ActionHooks
         self::$earlyActions[$hook][] = ['callback' => $callback, 'priority' => $priority];
     }
 
-    // Методы для фильтров
     public function addFilter($hook, $callback, $priority = 10)
     {
         if (!isset($this->filters[$hook])) {
