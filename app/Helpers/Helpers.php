@@ -479,8 +479,7 @@ if (!function_exists('getMetaData')) {
 
 // Get Body class
 if (!function_exists('getBodyClass')) {
-    function getBodyClass($custom_classes = null)
-    {
+    function getBodyClass($custom_classes = null){
         if (Auth::user()) {
             $classes = 'body-class launched admin-bar ' . $custom_classes;
         } else {
