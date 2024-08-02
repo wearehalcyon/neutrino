@@ -97,4 +97,17 @@ class AppsController extends Controller
             return redirect()->back()->with('error', __('Ooops! Something went wrong. App uninstall was crashed.'));
         }
     }
+
+    public function install(){
+        restrictAccess([4,5]);
+
+        $routeName = Route::currentRouteName();
+
+        $jsonSource = 'https://api.intakedigital.net/nt/apps-repo.php?type=json';
+        $jsonArray = json_decode(file_get_contents($jsonSource));
+        $apps = collect($jsonArray);
+        dd($apps);
+
+        return view('dashboard.page-apps-install', compact('routeName'));
+    }
 }

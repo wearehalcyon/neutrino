@@ -11,6 +11,7 @@ use App\Models\MenuItem;
 use App\Models\ContentMeta;
 use App\Models\Category;
 use App\Models\Setting;
+use App\Models\Application;
 use App\Models\ContactForm;
 use Illuminate\Support\Str;
 // use Jenssegers\Agent\Agent;
@@ -811,5 +812,13 @@ if (!function_exists('getExcerpt')) {
         $excerpt = Str::limit($clean, $limit, $suffix);
 
         return $excerpt;
+    }
+}
+
+// Get App
+if (!function_exists('getApp')) {
+    function getApp($name_id = null){
+        $app = Application::where('name', $name_id)->first();
+        return $app;
     }
 }

@@ -162,14 +162,19 @@
                     <li class="nav-item @if(in_array($routeName, ['dash.apps'])){{ __('submenu active') }}@endif">
                         <a data-bs-toggle="collapse" href="#apps" class="@if(in_array($routeName, ['dash.apps'])){{ __('active') }}@endif" aria-expanded="false">
                             <i class="fab fa-app-store-ios"></i>
-                            <p>{{ __('Applications') }}</p>
+                            <p>{{ __('Apps') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse @if(in_array($routeName, ['dash.apps'])){{ __('show') }}@endif" id="apps">
+                        <div class="collapse @if(in_array($routeName, ['dash.apps', 'dash.apps.install'])){{ __('show') }}@endif" id="apps">
                             <ul class="nav nav-collapse">
                                 <li class="@if(in_array($routeName, ['dash.apps'])){{ __('active') }}@endif">
                                     <a href="{{ route('dash.apps') }}">
-                                        <span class="sub-item">{{ __('All Applications') }}</span>
+                                        <span class="sub-item">{{ __('All Apps') }}</span>
+                                    </a>
+                                </li>
+                                <li class="@if(in_array($routeName, ['dash.apps.install'])){{ __('active') }}@endif">
+                                    <a href="{{ route('dash.apps.install') }}">
+                                        <span class="sub-item">{{ __('Install App') }}</span>
                                     </a>
                                 </li>
                             </ul>
