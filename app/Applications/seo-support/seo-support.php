@@ -14,9 +14,11 @@ addAction('nt_sidebar_menu_items_tools', function(){
 }, 1);
 
 // Add page action
-addFilter('custom_admin_page_title', function($seo_support_title) {
-    return __('SEO Support');
-}, 1);
-addAction('custom_admin_page_content', function(){
-    require_once __DIR__ . "/pages/page-index.php";
-}, 1);
+if (request()->segment(3) === 'seo-support') {
+    addFilter('custom_admin_page_title', function($title) {
+        return __('SEO Support');
+    }, 1);
+    addAction('custom_admin_page_content', function(){
+        require_once __DIR__ . "/pages/page-index.php";
+    }, 1);
+}

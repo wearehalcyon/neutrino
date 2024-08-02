@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
 use App\Services\ActionHooks;
+use Illuminate\Support\Facades\Route;
 
 // Extract shortcode from content
 require_once 'inc/process-shortcodes.php';
