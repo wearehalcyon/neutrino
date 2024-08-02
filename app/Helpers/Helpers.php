@@ -327,8 +327,7 @@ if (!function_exists('getThemeAssetsUri')) {
 
 // Get Permalink
 if (!function_exists('getPermalink')) {
-    function getPermalink($type = null, $id = null)
-    {
+    function getPermalink($type = null, $id = null){
         if ($type && $id) {
             if ($type == 'page') {
                 $page = Page::find($id);

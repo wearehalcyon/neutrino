@@ -59,6 +59,9 @@
                             <a class="nav-link no-filter" id="getThemeAssetsUri-tab" data-bs-toggle="pill" href="#getThemeAssetsUri" role="tab" aria-controls="getThemeAssetsUri" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getThemeAssetsUri'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getPermalink-tab" data-bs-toggle="pill" href="#getPermalink" role="tab" aria-controls="getPermalink" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getPermalink'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -104,6 +107,9 @@
                             </div>
                             <div class="tab-pane fade" id="getThemeAssetsUri" role="tabpanel" aria-labelledby="getThemeAssetsUri-tab">
                                 <?php include __DIR__ . "/../tabs/get-theme-assets-url.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getPermalink" role="tabpanel" aria-labelledby="getPermalink-tab">
+                                <?php include __DIR__ . "/../tabs/get-permalink.php"; ?>
                             </div>
                         </div>
                     </div>
