@@ -27,6 +27,11 @@
                             <a class="nav-link no-filter" id="filter-hooks-tab" data-bs-toggle="pill" href="#filter-hooks" role="tab" aria-controls="filter-hooks" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('System Filter Hooks'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="contactus-tab" data-bs-toggle="pill" href="#contactus" role="tab" aria-controls="contactus" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('Help / Contact Us'); ?></strong>
+                            </a>
+                            <hr>
+                            <h5><?php echo __('Functions'); ?></h6>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -42,6 +47,9 @@
                             </div>
                             <div class="tab-pane fade" id="filter-hooks" role="tabpanel" aria-labelledby="filter-hooks-tab">
                                 <?php include __DIR__ . "/../tabs/filter-hooks.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="contactus" role="tabpanel" aria-labelledby="contactus-tab">
+                                <?php include __DIR__ . "/../tabs/contactus.php"; ?>
                             </div>
                         </div>
                     </div>

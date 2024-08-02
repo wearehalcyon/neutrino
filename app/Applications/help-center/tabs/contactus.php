@@ -1,0 +1,1 @@
+<h3><?php echo __('Help / Contact Us'); ?></h3>
