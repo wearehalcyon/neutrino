@@ -629,8 +629,7 @@ if (!function_exists('getCategoryPosts')) {
 
 // Get category posts
 if (!function_exists('getTagPosts')) {
-    function getTagPosts($id = null, $orderby = 'created_at', $order = 'ASC', $limit = null)
-    {
+    function getTagPosts($id = null, $orderby = 'created_at', $order = 'ASC', $limit = null){
         if ($orderby == 'random') {
             $posts = Post::join('post_to_tags', 'posts.id', '=', 'post_to_tags.post_id')
                 ->where('post_to_tags.tag_id', $id)
@@ -707,7 +706,7 @@ if (!function_exists('getRelatedPosts')) {
 
 // Get tag link
 if (!function_exists('getTagLink')) {
-    function getTagLink($slug = null) {
+    function getTagLink($slug = null){
         if ($slug) {
             $link = route('pages.blog.tag', $slug);
 
@@ -722,7 +721,7 @@ if (!function_exists('getTagLink')) {
 
 // Get category link
 if (!function_exists('getCategoryLink')) {
-    function getCategoryLink($slug = null) {
+    function getCategoryLink($slug = null){
         if ($slug) {
             $link = route('pages.blog.category', $slug);
 

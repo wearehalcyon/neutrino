@@ -98,6 +98,15 @@
                             <a class="nav-link no-filter" id="getCategoryPosts-tab" data-bs-toggle="pill" href="#getCategoryPosts" role="tab" aria-controls="getCategoryPosts" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getCategoryPosts'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getTagPosts-tab" data-bs-toggle="pill" href="#getTagPosts" role="tab" aria-controls="getTagPosts" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getTagPosts'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getTagLink-tab" data-bs-toggle="pill" href="#getTagLink" role="tab" aria-controls="getTagLink" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getTagLink'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getCategoryLink-tab" data-bs-toggle="pill" href="#getCategoryLink" role="tab" aria-controls="getCategoryLink" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getCategoryLink'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -182,6 +191,15 @@
                             </div>
                             <div class="tab-pane fade" id="getCategoryPosts" role="tabpanel" aria-labelledby="getCategoryPosts-tab">
                                 <?php include __DIR__ . "/../tabs/get-category-posts.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getTagPosts" role="tabpanel" aria-labelledby="getTagPosts-tab">
+                                <?php include __DIR__ . "/../tabs/get-tag-posts.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getTagLink" role="tabpanel" aria-labelledby="getTagLink-tab">
+                                <?php include __DIR__ . "/../tabs/get-tag-link.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getCategoryLink" role="tabpanel" aria-labelledby="getCategoryLink-tab">
+                                <?php include __DIR__ . "/../tabs/get-category-link.php"; ?>
                             </div>
                         </div>
                     </div>
