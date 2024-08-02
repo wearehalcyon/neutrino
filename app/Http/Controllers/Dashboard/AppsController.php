@@ -56,10 +56,10 @@ class AppsController extends Controller
                 'php' => $filePHP,
                 'json' => $fileJSON,
                 'svg' => $fileSVG,
-                'name' => $app->name ? $app->name : '',
-                'slug' => $app->slug ? $app->slug : '',
-                'id' => $app->id ? $app->id : '',
-                'status' => $app->status ? $app->status : ''
+                'name' => $app->name,
+                'slug' => $app->slug,
+                'id' => $app->id,
+                'status' => $app->status
             ];
         }
 
