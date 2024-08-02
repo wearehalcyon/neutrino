@@ -745,8 +745,7 @@ if (!function_exists('getCFMCounter')) {
 
 // Get GeoIP
 if (!function_exists('getGeoIp')) {
-    function getGeoIp($ip = null)
-    {
+    function getGeoIp($ip = null){
         $location = Location::get($ip);
         if (!$location) {
             return false;
@@ -758,8 +757,7 @@ if (!function_exists('getGeoIp')) {
 
 // Get user agent
 if (!function_exists('getUserAgent')) {
-    function getUserAgent($data = null, $value = null)
-    {
+    function getUserAgent($data = null, $value = null){
         if (!$data) {
             return '';
         }
@@ -783,8 +781,7 @@ if (!function_exists('getUserAgent')) {
 
 // Is mobile detect
 if (!function_exists('isMobile')) {
-    function isMobile($data = null)
-    {
+    function isMobile($data = null){
         if ($data) {
             return Agent::isMobile($data);
         } else {

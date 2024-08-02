@@ -107,6 +107,15 @@
                             <a class="nav-link no-filter" id="getCategoryLink-tab" data-bs-toggle="pill" href="#getCategoryLink" role="tab" aria-controls="getCategoryLink" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getCategoryLink'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getGeoIp-tab" data-bs-toggle="pill" href="#getGeoIp" role="tab" aria-controls="getGeoIp" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getGeoIp'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="getUserAgent-tab" data-bs-toggle="pill" href="#getUserAgent" role="tab" aria-controls="getUserAgent" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getUserAgent'); ?></strong>
+                            </a>
+                            <a class="nav-link no-filter" id="isMobile-tab" data-bs-toggle="pill" href="#isMobile" role="tab" aria-controls="isMobile" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('isMobile'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -200,6 +209,15 @@
                             </div>
                             <div class="tab-pane fade" id="getCategoryLink" role="tabpanel" aria-labelledby="getCategoryLink-tab">
                                 <?php include __DIR__ . "/../tabs/get-category-link.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getGeoIp" role="tabpanel" aria-labelledby="getGeoIp-tab">
+                                <?php include __DIR__ . "/../tabs/get-geoip.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="isMobile" role="tabpanel" aria-labelledby="isMobile-tab">
+                                <?php include __DIR__ . "/../tabs/is-mobile.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getUserAgent" role="tabpanel" aria-labelledby="getUserAgent-tab">
+                                <?php include __DIR__ . "/../tabs/get-useragent.php"; ?>
                             </div>
                         </div>
                     </div>
