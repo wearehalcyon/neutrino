@@ -18,7 +18,7 @@ if (request()->segment(3) === 'help-center') {
         return __('Help Center');
     }, 1);
     addAction('custom_admin_page_content', function(){
-        require_once __DIR__ . "/pages/page-index.php";
+        require_once app_path('/Applications/help-center/pages/page-index.php');
     }, 1);
     addAction('custom_admin_page_header_scripts', function(){
         $highlightCSS = app_path('/Applications/help-center/assets/css/highlight.css');

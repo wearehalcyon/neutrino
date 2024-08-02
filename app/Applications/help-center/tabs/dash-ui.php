@@ -4,6 +4,12 @@
     $img2 = file_get_contents($appPath . '/assets/images/screen-2.jpg');
     $img3 = file_get_contents($appPath . '/assets/images/screen-3.jpg');
     $img4 = file_get_contents($appPath . '/assets/images/screen-4.jpg');
+    $img5 = file_get_contents($appPath . '/assets/images/screen-5.jpg');
+    $img6 = file_get_contents($appPath . '/assets/images/screen-6.jpg');
+    $img7 = file_get_contents($appPath . '/assets/images/screen-7.jpg');
+    $img8 = file_get_contents($appPath . '/assets/images/screen-8.jpg');
+    $img9 = file_get_contents($appPath . '/assets/images/screen-9.jpg');
+    $img10 = file_get_contents($appPath . '/assets/images/screen-10.jpg');
 ?>
 <h3><?php echo __('Dashboard UI'); ?></h3>
 <p>
@@ -12,10 +18,10 @@
         <li>- <a href="#blogs">Blog</a></li>
         <li>- <a href="#pages">Pages</a></li>
         <li>- <a href="#comments">Comments</a></li>
-        <li>- <a href="#menu">Menu</a></li>
+        <li>- <a href="#menus">Menu</a></li>
         <li>- <a href="#media">Media Files</a></li>
         <li>- <a href="#users">Users</a></li>
-        <li>- <a href="#appearance">Appearance</a></li>
+        <li>- <a href="#appearances">Appearance</a></li>
         <li>- <a href="#apps">Apps</a></li>
         <li>- <a href="#site-settings">Site Settings</a></li>
     </ul>
@@ -37,6 +43,32 @@
 </div>
 <div id="comments">
     <h4 style="padding-top:40px;"><?php echo __('Comments'); ?></h4>
-    <p><?php echo __(''); ?></p>
+    <p><?php echo __('On the comments page, you can manage discussions on your site. You have the ability to delete, approve, or reject individual comments.'); ?></p>
     <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img4); ?>" alt="Screen 4" class="screen">
+</div>
+<div id="menus">
+    <h4 style="padding-top:40px;"><?php echo __('Menu'); ?></h4>
+    <p><?php echo __('The menu page is responsible for creating menus and their items. You need to create at least one menu before you can add items to it. This step is crucial before you can organize any of your menus.'); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img5); ?>" alt="Screen 5" class="screen">
+</div>
+<div id="media">
+    <h4 style="padding-top:40px;"><?php echo __('Media Files'); ?></h4>
+    <p><?php echo __('On the media files page, you will find a file manager where you can add, delete, and crop your images. The file manager is not limited to just images, it allows you to easily work with virtually any type of file.'); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img6); ?>" alt="Screen 6" class="screen">
+</div>
+<div id="users">
+    <h4 style="padding-top:40px;"><?php echo __('Users'); ?></h4>
+    <p><?php echo __('The users page allows you to manage accounts. Here, you can create, delete, or edit any account if you have the appropriate permissions. Otherwise, you only have access to your own account. However, administrators also have access to their own profile.'); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img7); ?>" alt="Screen 7" class="screen">
+</div>
+<div id="appearances">
+    <h4 style="padding-top:40px;"><?php echo __('Appearance'); ?></h4>
+    <p><?php echo __('On the Appearance page, you can manage your themes. Installing and deleting them is a breeze! Just make sure to follow the theme creation guidelines if you\'re a developer. Additionally, in the customization section, you\'ll find basic site settings such as the logo, banner, favicon, and even scripts for the header and footer of the site.'); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img8); ?>" alt="Screen 8" class="screen">
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img9); ?>" alt="Screen 9" class="screen">
+</div>
+<div id="apps">
+    <h4 style="padding-top:40px;"><?php echo __('Apps'); ?></h4>
+    <p><?php echo __(''); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img10); ?>" alt="Screen 10" class="screen">
 </div>

@@ -161,7 +161,7 @@
                     </li>
                     <li class="nav-item @if(in_array($routeName, ['dash.apps'])){{ __('submenu active') }}@endif">
                         <a data-bs-toggle="collapse" href="#apps" class="@if(in_array($routeName, ['dash.apps'])){{ __('active') }}@endif" aria-expanded="false">
-                            <i class="fas fa-plug"></i>
+                            <i class="fab fa-app-store-ios"></i>
                             <p>{{ __('Applications') }}</p>
                             <span class="caret"></span>
                         </a>
