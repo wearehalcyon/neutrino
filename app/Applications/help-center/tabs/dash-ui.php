@@ -10,6 +10,7 @@
     $img8 = file_get_contents($appPath . '/assets/images/screen-8.jpg');
     $img9 = file_get_contents($appPath . '/assets/images/screen-9.jpg');
     $img10 = file_get_contents($appPath . '/assets/images/screen-10.jpg');
+    $img11 = file_get_contents($appPath . '/assets/images/screen-11.jpg');
 ?>
 <h3><?php echo __('Dashboard UI'); ?></h3>
 <p>
@@ -22,8 +23,8 @@
         <li>- <a href="#media">Media Files</a></li>
         <li>- <a href="#users">Users</a></li>
         <li>- <a href="#appearances">Appearance</a></li>
-        <li>- <a href="#apps">Apps</a></li>
-        <li>- <a href="#site-settings">Site Settings</a></li>
+        <li>- <a href="#appss">Apps</a></li>
+        <li>- <a href="#sitesettings">Site Settings</a></li>
     </ul>
 </p>
 <div id="dash">
@@ -67,8 +68,13 @@
     <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img8); ?>" alt="Screen 8" class="screen">
     <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img9); ?>" alt="Screen 9" class="screen">
 </div>
-<div id="apps">
+<div id="appss">
     <h4 style="padding-top:40px;"><?php echo __('Apps'); ?></h4>
-    <p><?php echo __(''); ?></p>
+    <p><?php echo __('On the Applications page, you can install any application from the repository, as well as remove or deactivate it. Currently, we haven\'t opened up for third-party application installations, but this may change soon.'); ?></p>
     <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img10); ?>" alt="Screen 10" class="screen">
+</div>
+<div id="sitesettings">
+    <h4 style="padding-top:40px;"><?php echo __('Site Settings'); ?></h4>
+    <p><?php echo __('The Site Settings page handles the main site information, such as the Title, Description, Admin Email, enabling or disabling the debug bar, setting the homepage and blog pages, and more.'); ?></p>
+    <img src="<?php echo 'data:image/jpeg;base64,' . base64_encode($img11); ?>" alt="Screen 11" class="screen">
 </div>
