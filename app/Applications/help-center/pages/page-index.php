@@ -119,6 +119,9 @@
                             <a class="nav-link no-filter" id="getAuthor-tab" data-bs-toggle="pill" href="#getAuthor" role="tab" aria-controls="getAuthor" aria-selected="false" tabindex="-1">
                                 <strong><?php echo __('getAuthor'); ?></strong>
                             </a>
+                            <a class="nav-link no-filter" id="getExcerpt-tab" data-bs-toggle="pill" href="#getExcerpt" role="tab" aria-controls="getExcerpt" aria-selected="false" tabindex="-1">
+                                <strong><?php echo __('getExcerpt'); ?></strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-7 col-md-9 col-lg-9 col-xl-10">
@@ -224,6 +227,9 @@
                             </div>
                             <div class="tab-pane fade" id="getAuthor" role="tabpanel" aria-labelledby="getAuthor-tab">
                                 <?php include __DIR__ . "/../tabs/get-author.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="getExcerpt" role="tabpanel" aria-labelledby="getExcerpt-tab">
+                                <?php include __DIR__ . "/../tabs/get-excerpt.php"; ?>
                             </div>
                         </div>
                     </div>
