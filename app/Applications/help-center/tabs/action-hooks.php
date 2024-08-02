@@ -1,5 +1,9 @@
-<h3><?php echo __('System Hooks'); ?></h3>
-<p><?php echo __('In this section, you can familiarize yourself with the hooks system (actions and filters). If you\'ve worked with WordPress, you should understand the basic concept. However, we offer a slightly different approach:'); ?></p>
+<h3><?php echo __('System Action Hooks'); ?></h3>
+<p><?php echo __('In this section, you can familiarize yourself with the action hooks system. If you\'ve worked with WordPress, you should understand the basic concept. However, we offer a slightly different approach:'); ?></p>
+<ul>
+    <li>- <a href="#do-action">doAction</a></li>
+    <li>- <a href="#add-action">addAction</a></li>
+</ul>
 <hr>
 <div id="do-action">
     <h4><?php echo __('doAction'); ?></h4>
